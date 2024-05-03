@@ -1273,8 +1273,8 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1832742037
-  m_SortingLayer: 4
+  m_SortingLayerID: 780002669
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -14909,7 +14909,10 @@ GameObject:
   - component: {fileID: 1109401012}
   - component: {fileID: 1109401011}
   - component: {fileID: 1109401014}
+  - component: {fileID: 1109401017}
   - component: {fileID: 1109401013}
+  - component: {fileID: 1109401016}
+  - component: {fileID: 1109401015}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -14955,8 +14958,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1041447381
-  m_SortingLayer: 2
+  m_SortingLayerID: -1821637471
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -614437233, guid: c461072fca1c19843a277aa8dbbb3114, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -14978,7 +14981,7 @@ Transform:
   m_GameObject: {fileID: 1109401010}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.27, y: 2.62, z: 0}
+  m_LocalPosition: {x: 0.01, y: 1.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -14996,6 +14999,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73cc8ffb73120de468b67489e9efbffd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerMediator: {fileID: 1109401015}
 --- !u!114 &1109401014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15026,6 +15030,48 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1109401015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1109401010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5832447839c79534aa78eb938d508671, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerBehavior: {fileID: 1109401016}
+  playerInputHandler: {fileID: 1109401013}
+  characterStats: {fileID: 11400000, guid: bf41fb9f30dd5db4a90523c955ff9ed7, type: 2}
+  playerStats: {fileID: 1109401017}
+--- !u!114 &1109401016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1109401010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef66e11199547334b8e4d06ef181117b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMediator: {fileID: 1109401015}
+--- !u!114 &1109401017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1109401010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d21b08cd867d8924088576cbc43d7629, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMediator: {fileID: 1109401015}
 --- !u!1001 &1113313315
 PrefabInstance:
   m_ObjectHideFlags: 0

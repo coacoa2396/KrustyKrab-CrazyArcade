@@ -9,10 +9,17 @@ namespace pakjungmin
     {
         PlayerMediator playerMediator;
 
+
+        private void Awake()
+        {
+            playerMediator = GetComponent<PlayerMediator>();
+            
+        }
+
         public void Move(Vector3 moveDir)
         {
-            // CharacterStats stat = playerMediator.playerStats;
-            // gameObject.transform.Translate(moveDir*stat.Speed,Space.World);
+            PlayerStats stat = playerMediator.playerStats;
+            gameObject.transform.Translate(moveDir*stat.Speed*Time.deltaTime,Space.World);
         }
 
         public void Plant()

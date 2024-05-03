@@ -8,7 +8,7 @@ namespace pakjungmin
 {
     public class PlayerStats : MonoBehaviour
     {
-        [SerializeField] PlayerMediator playerMediator;
+        PlayerMediator playerMediator;
 
         OwnStats ownStats;
 
@@ -18,12 +18,12 @@ namespace pakjungmin
 
         void Awake()
         {
+            playerMediator = GetComponent<PlayerMediator>();
             InitSet();
         }
 
         void InitSet()
         {
-
             ownStats.powerValue = playerMediator.characterStats.Power;
             ownStats.speedValue = playerMediator.characterStats.Speed;
             ownStats.bombValue = playerMediator.characterStats.Bomb;
