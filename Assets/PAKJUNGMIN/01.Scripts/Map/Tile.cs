@@ -7,7 +7,7 @@ namespace pakjungmin
 {
     public class Tile : MonoBehaviour
     {
-        public Node tileNode;
+      
 
     }
 
