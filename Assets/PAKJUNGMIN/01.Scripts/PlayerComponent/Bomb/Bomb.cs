@@ -21,16 +21,18 @@ namespace pakjungmin
         /// <returns></returns>
         IEnumerator WaitExplode()
         {
+            //폭파 시간 루틴 구현 필요
             yield return null;
         }
 
         private void OnEnable()
         {
-
+            //활성화 시 코루틴 시작 구현 필요
         }
-        /// <summary>
-        /// 물풍선의 기폭.
-        /// </summary>
+        private void OnDisable()
+        {
+            //물줄기 생성 루틴 구현 필요.
+        }
         void Explode()
         {
 
