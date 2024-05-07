@@ -11,7 +11,7 @@ namespace pakjungmin
 
         [Header("캐릭터의 이동속도")]
         [SerializeField] float speed;
-        [Header("캐릭터의 물풍선 파워")]
+        [Header("캐릭터의 초기 물줄기 파워")]
         [SerializeField] float powerValue;
         [Header("캐릭터의 초기 물풍선 개수")]
         [SerializeField] float bombValue;
