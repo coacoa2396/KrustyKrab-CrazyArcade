@@ -7,18 +7,22 @@ using pakjungmin;
 namespace pakjungmin
 {
     /// <summary>
-    /// Class : ÇÃ·¹ÀÌ¾î°¡ ÇöÀç ¼­ ÀÖ´Â ¹ßÆÇ°ú ÆøÅº ¼³Ä¡ À§Ä¡ µîÀ» °è»êÇÑ´Ù.
+    /// Class : í”Œë ˆì´ì–´ê°€ í˜„ì¬ ì„œ ìˆëŠ” ë°œíŒê³¼ í­íƒ„ ì„¤ì¹˜ ìœ„ì¹˜ ë“±ì„ ê³„ì‚°í•œë‹¤.
     /// </summary>
     public class FloorChecker : MonoBehaviour
     {
-        public Tile nowTile; //ÇöÀç ÇÃ·¹ÀÌ¾î°¡ ¼­ ÀÖ´Â Å¸ÀÏ == ÀÎÁ¢Å¸ÀÏ ¸®½ºÆ® Áß °¡Àå °¡±î¿î °Å¸®ÀÇ Å¸ÀÏ.
-        List<Tile> touchedTiles = new List<Tile>(); // ÀÎÁ¢ Å¸ÀÏ ¸®½ºÆ®
+        public Tile nowTile; //í˜„ì¬ í”Œë ˆì´ì–´ê°€ ì„œ ìˆëŠ” íƒ€ì¼ == ì¸ì ‘íƒ€ì¼ ë¦¬ìŠ¤íŠ¸ ì¤‘ ê°€ì¥ ê°€ê¹Œìš´ ê±°ë¦¬ì˜ íƒ€ì¼.
+        [SerializeField] List<Tile> touchedTiles = new List<Tile>(); // ì¸ì ‘ íƒ€ì¼ ë¦¬ìŠ¤íŠ¸
+
+
         public void OnTriggerEnter2D(Collider2D collision)
         {
+            Debug.Log("1");
             AddList(collision);
         }
         private void OnTriggerStay2D(Collider2D collision)
         {
+            Debug.Log("2");
             AddList(collision);
         }
         private void OnTriggerExit2D(Collider2D collision)
@@ -27,16 +31,19 @@ namespace pakjungmin
         }
         void AddList(Collider2D collision)
         {
-            //ÀÎÁ¢ÇÑ Å¸ÀÏÀ» ÀÎÁ¢Å¸ÀÏ ¸®½ºÆ®¿¡ Ãß°¡
+            if (touchedTiles.Contains(collision.gameObject.GetComponent<Tile>())){ return; }
+            //ì¸ì ‘í•œ íƒ€ì¼ì„ ì¸ì ‘íƒ€ì¼ ë¦¬ìŠ¤íŠ¸ì— ì¶”ê°€
+            touchedTiles.Add(collision.gameObject.GetComponent<Tile>());
         }
         void RemoveList(Collider2D collision)
         {
-            //¹ş¾î³­ Å¸ÀÏÀ» ÀÎÁ¢Å¸ÀÏ ¸®½ºÆ®¿¡¼­ Á¦°Å.
+            //ë²—ì–´ë‚œ íƒ€ì¼ì„ ì¸ì ‘íƒ€ì¼ ë¦¬ìŠ¤íŠ¸ì—ì„œ ì œê±°.
+            touchedTiles.Remove(collision.gameObject.GetComponent<Tile>());
         }
-        //Method : ÇÃ·¹ÀÌ¾îÀÇ À§Ä¡¿Í ¸®½ºÆ® ¾È Å¸ÀÏÀÇ Á¤Á¡µéÀÇ °Å¸®¸¦ °¢°¢ °è»êÇÏ¿©, Á¦ÀÏ °¡±î¿î Å¸ÀÏÀ» ÇöÀç Å¸ÀÏ·Î Ãë±ŞÇÑ´Ù.
+        //Method : í”Œë ˆì´ì–´ì˜ ìœ„ì¹˜ì™€ ë¦¬ìŠ¤íŠ¸ ì•ˆ íƒ€ì¼ì˜ ì •ì ë“¤ì˜ ê±°ë¦¬ë¥¼ ê°ê° ê³„ì‚°í•˜ì—¬, ì œì¼ ê°€ê¹Œìš´ íƒ€ì¼ì„ í˜„ì¬ íƒ€ì¼ë¡œ ì·¨ê¸‰í•œë‹¤.
         void LocatePlayer()
         {
-            //ÇÃ·¹ÀÌ¾îÀÇ À§Ä¡¿Í ¸®½ºÆ® ¾È Å¸ÀÏÀÇ Á¤Á¡À» °è»êÇÏ¿©, Á¦ÀÏ °¡±î¿î Å¸ÀÏÀ» ÇöÀç Å¸ÀÏ·Î Ãë±ŞÇÏ´Â ·ÎÁ÷.
+            //í”Œë ˆì´ì–´ì˜ ìœ„ì¹˜ì™€ ë¦¬ìŠ¤íŠ¸ ì•ˆ íƒ€ì¼ì˜ ì •ì ì„ ê³„ì‚°í•˜ì—¬, ì œì¼ ê°€ê¹Œìš´ íƒ€ì¼ì„ í˜„ì¬ íƒ€ì¼ë¡œ ì·¨ê¸‰í•˜ëŠ” ë¡œì§.
         }
 
     }

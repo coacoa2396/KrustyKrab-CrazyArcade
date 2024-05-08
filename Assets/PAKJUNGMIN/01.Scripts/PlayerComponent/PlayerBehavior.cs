@@ -23,18 +23,19 @@ namespace pakjungmin
         public void Move(Vector3 moveDir)
         {
             PlayerStats stat = playerMediator.playerStats;
-            this.moveDir = moveDir;
+            this.moveDir.x = moveDir.x;
+            this.moveDir.y = moveDir.z;
         }
 
         /// <summary>
-        /// ÇÃ·¹ÀÌ¾îÀÇ ¹°Ç³¼± ¼³Ä¡ Çàµ¿
+        /// í”Œë ˆì´ì–´ì˜ ë¬¼í’ì„  ì„¤ì¹˜ í–‰ë™
         /// </summary>
         public void Plant()
         {
 
         }
         /// <summary>
-        /// ¾×Æ¼ºê ¾ÆÀÌÅÛ »ç¿ë
+        /// ì•¡í‹°ë¸Œ ì•„ì´í…œ ì‚¬ìš©
         /// </summary>
         public void Use()
         {
