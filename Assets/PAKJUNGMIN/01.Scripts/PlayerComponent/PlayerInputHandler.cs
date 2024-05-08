@@ -6,10 +6,18 @@ using UnityEngine.InputSystem;
 
 namespace pakjungmin
 {
+    /// <summary>
+    /// Class : 플레이어 인풋 시스템 이벤트를 받는 클래스
+    /// </summary>
     public class PlayerInputHandler : MonoBehaviour
     {
         PlayerMediator playerMediator;
         Vector3 moveDir;
+
+        private void Awake()
+        {
+            playerMediator = GetComponent<PlayerMediator>();
+        }
 
         public void OnMove(InputValue value)
         {
@@ -25,5 +33,7 @@ namespace pakjungmin
         {
             playerMediator.InputUse();
         }
+
+
     }
 }

@@ -6,6 +6,9 @@ using UnityEngine.Scripting.APIUpdating;
 
 namespace pakjungmin
 {
+    /// <summary>
+    /// Class : 플레이어의 모든 
+    /// </summary>
     public class PlayerMediator : MonoBehaviour
     {
         public PlayerBehavior playerBehavior; //플레이어의 행동.
