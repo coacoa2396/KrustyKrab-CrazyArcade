@@ -8,9 +8,16 @@ using UnityEngine;
 /// </summary>
 public class Bubble : PassiveBase
 {
-    protected override void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        base.OnTriggerEnter2D(collision);                       // 레이어마스크 체크
+        if (CheckWater(collision.gameObject))
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        if (!CheckPlayer(collision.gameObject))
+            return;
 
         Player = collision.gameObject.GetComponent<PlayerMediator>();
 
