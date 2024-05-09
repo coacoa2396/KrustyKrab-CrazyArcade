@@ -5,6 +5,7 @@ using UnityEngine;
 /// <summary>
 /// 제작 : 찬규 
 /// 아이템 Devil
+/// 지속시간동안 방향입력이 반대로 되거나 물풍선을 마구 놓는 상태로 변한다
 /// </summary>
 public class Devil : PassiveBase
 {
