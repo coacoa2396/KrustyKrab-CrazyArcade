@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 685264dee10edeb479c46dce06d9bc74, type: 3}
   m_Name: Bezzi
   m_EditorClassIdentifier: 
-  speed: 10
-  powerValue: 1
-  bombValue: 1
+  speed: 5
+  powerValue: 0
+  MaxpowerValue: 0
+  bombValue: 0
+  MaxbombValue: 0

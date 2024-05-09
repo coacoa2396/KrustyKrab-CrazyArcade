@@ -4,22 +4,26 @@ using UnityEngine;
 
 namespace pakjungmin
 {
-    // Scriptable Object : ½ºÅ©·´ÅÍºí ¿ÀºêÁ§Æ®·Î Ä³¸¯ÅÍº° ½ºÅİ ÀúÀå
+    // Scriptable Object : ìŠ¤í¬ëŸ½í„°ë¸” ì˜¤ë¸Œì íŠ¸ë¡œ ìºë¦­í„°ë³„ ìŠ¤í…Ÿ ì €ì¥
     [CreateAssetMenu(fileName = "CharactorStats", menuName = "PAKJUNGMIN_ScriptableObject/New_CharactorStats")]
     public class CharacterStats : ScriptableObject
     {
 
-        [Header("Ä³¸¯ÅÍÀÇ ÀÌµ¿¼Óµµ")]
+        [Header("ìºë¦­í„°ì˜ ì´ë™ì†ë„")]
         [SerializeField] float speed;
-        [Header("Ä³¸¯ÅÍÀÇ ÃÊ±â ¹°ÁÙ±â ÆÄ¿ö")]
-        [SerializeField] float powerValue;
-        [Header("Ä³¸¯ÅÍÀÇ ÃÊ±â ¹°Ç³¼± °³¼ö")]
-        [SerializeField] float bombValue;
+        [Header("ìºë¦­í„°ì˜ ì´ˆê¸° ë¬¼ì¤„ê¸° íŒŒì›Œ")]
+        [SerializeField] int powerValue;
+        [Header("ìºë¦­í„°ì˜ ìµœëŒ€ ë¬¼ì¤„ê¸° íŒŒì›Œ")]
+        [SerializeField] int MaxpowerValue;
+        [Header("ìºë¦­í„°ì˜ ì´ˆê¸° ë¬¼í’ì„  ê°œìˆ˜")]
+        [SerializeField] int bombValue;
+        [Header("ìºë¦­í„°ì˜ ìµœëŒ€ ë¬¼í’ì„  ê°œìˆ˜")]
+        [SerializeField] int MaxbombValue;
 
 
         public float Speed { get { return speed; } }
-        public float Power { get { return powerValue; } }
-        public float Bomb { get { return bombValue; } }
+        public int Power { get { return powerValue; } }
+        public int Bomb { get { return bombValue; } }
     }
 
 

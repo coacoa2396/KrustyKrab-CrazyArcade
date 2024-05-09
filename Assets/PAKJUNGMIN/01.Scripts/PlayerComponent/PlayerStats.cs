@@ -16,6 +16,7 @@ namespace pakjungmin
         public float Bomb { get { return ownStats.bombValue; } set { ownStats.bombValue = value; } }
         public float Power { get { return ownStats.powerValue; } set { ownStats.powerValue = value; } }
 
+
         void Awake()
         {
             playerMediator = GetComponent<PlayerMediator>();
