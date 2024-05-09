@@ -6,10 +6,12 @@ using UnityEngine.UI;
 
 public class UI_TitleScene : InGameUI
 {
+    [SerializeField] UI_SignUp signUpPopup;
     enum GameObjects
     {
         LoginButton,
         QuitButton,
+        SignUpButton,
         PasswordInputField,
         IdInputField
     }
@@ -19,6 +21,12 @@ public class UI_TitleScene : InGameUI
         base.Awake();
         GetUI<Button>(GameObjects.LoginButton.ToString()).onClick.AddListener(Login);
         GetUI<Button>(GameObjects.QuitButton.ToString()).onClick.AddListener(Quit);
+        GetUI<Button>(GameObjects.SignUpButton.ToString()).onClick.AddListener(SignUp);
+    }
+
+    public void SignUp()
+    {
+        Manager.UI.ShowPopUpUI(signUpPopup);
     }
 
     public void Login()
@@ -44,6 +52,7 @@ public class UI_TitleScene : InGameUI
 
             Debug.Log("Login Success");
             SetInteractable(true);
+            //씬 전환(로비씬으로)
         });
     }
 
@@ -61,6 +70,7 @@ public class UI_TitleScene : InGameUI
     {
         GetUI<Button>(GameObjects.LoginButton.ToString()).interactable = interactable;
         GetUI<Button>(GameObjects.QuitButton.ToString()).interactable = interactable;
+        GetUI<Button>(GameObjects.SignUpButton.ToString()).interactable = interactable;
         GetUI<InputField>(GameObjects.PasswordInputField.ToString()).interactable = interactable;
         GetUI<InputField>(GameObjects.IdInputField.ToString()).interactable = interactable;
     }
