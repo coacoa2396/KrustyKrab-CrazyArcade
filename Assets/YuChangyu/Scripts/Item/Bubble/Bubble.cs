@@ -5,12 +5,20 @@ using UnityEngine;
 /// <summary>
 /// 제작 : 찬규 
 /// 아이템 : 물풍선 
+/// 플레이어가 한번에 놓을 수 있는 물풍선의 갯수가 1 증가한다
 /// </summary>
 public class Bubble : PassiveBase
 {
-    protected override void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        base.OnTriggerEnter2D(collision);                       // 레이어마스크 체크
+        if (CheckWater(collision.gameObject))
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        if (!CheckPlayer(collision.gameObject))
+            return;
 
         Player = collision.gameObject.GetComponent<PlayerMediator>();
 
