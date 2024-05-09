@@ -71,13 +71,11 @@ public class UI_TitleScene : InGameUI
 
     private void SetInteractable(bool interactable)
     {
-        Debug.Log(interactable);
         GetUI<Button>(GameObjects.QuitButton.ToString()).interactable = interactable;
         GetUI<Button>(GameObjects.LoginButton.ToString()).interactable = interactable;
         GetUI<Button>(GameObjects.SignUpButton.ToString()).interactable = interactable;
         GetUI<TMP_InputField>(GameObjects.PasswordInputField.ToString()).interactable = interactable;
         GetUI<TMP_InputField>(GameObjects.IdInputField.ToString()).interactable = interactable;
-        Debug.Log("complete");
 
     }
 
