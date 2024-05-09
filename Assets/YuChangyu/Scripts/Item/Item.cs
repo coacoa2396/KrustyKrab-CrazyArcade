@@ -7,21 +7,23 @@ using UnityEngine;
 /// </summary>
 public class Item : MonoBehaviour
 {
-    [Header ("LayerMask")]
+    [Header("LayerMask")]
     [SerializeField] LayerMask playerCheck;         // 트리거에서 플레이어를 체크 할 레이어마스크
     [SerializeField] LayerMask waterCourseCheck;           // 물줄기 체크
 
-    protected virtual void OnTriggerEnter2D(Collider2D collision)
+    public bool CheckPlayer(GameObject gameObject)
     {
-        if (waterCourseCheck.Contain(collision.gameObject.layer))         // 물줄기에 닿으면
-        {
-            Destroy(gameObject);                                    // 아이템 제거
-            return;
-        }
+        if (playerCheck.Contain(gameObject.layer))
+            return true;
 
-        if (!playerCheck.Contain(collision.gameObject.layer))       // 플레이어가 아니면
-            return;                                                 // 리턴
+        return false;
     }
 
+    public bool CheckWater(GameObject gameObject)
+    {
+        if (waterCourseCheck.Contain(gameObject.layer))
+            return true;
 
+        return false;
+    }
 }

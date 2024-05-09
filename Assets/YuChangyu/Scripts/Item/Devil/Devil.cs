@@ -8,9 +8,16 @@ using UnityEngine;
 /// </summary>
 public class Devil : PassiveBase
 {
-    protected override void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        base.OnTriggerEnter2D(collision);
+        if (CheckWater(collision.gameObject))
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        if (!CheckPlayer(collision.gameObject))
+            return;
 
         Player = Player = collision.gameObject.GetComponent<PlayerMediator>();
 

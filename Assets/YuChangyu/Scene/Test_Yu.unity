@@ -9310,7 +9310,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nowTile: {fileID: 0}
   touchedTiles: []
-  distanceList: []
 --- !u!58 &1515317475
 CircleCollider2D:
   m_ObjectHideFlags: 0
