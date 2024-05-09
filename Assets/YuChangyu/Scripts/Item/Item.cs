@@ -13,7 +13,7 @@ public class Item : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!bombCheck.Contain(collision.gameObject.layer))         // 물줄기에 닿으면
+        if (bombCheck.Contain(collision.gameObject.layer))         // 물줄기에 닿으면
         {
             Destroy(gameObject);                                    // 아이템 제거
             return;

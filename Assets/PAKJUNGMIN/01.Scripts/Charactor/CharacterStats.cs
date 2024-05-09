@@ -14,16 +14,18 @@ namespace pakjungmin
         [Header("캐릭터의 초기 물줄기 파워")]
         [SerializeField] int powerValue;
         [Header("캐릭터의 최대 물줄기 파워")]
-        [SerializeField] int MaxpowerValue;
+        [SerializeField] int maxPowerValue;
         [Header("캐릭터의 초기 물풍선 개수")]
         [SerializeField] int bombValue;
         [Header("캐릭터의 최대 물풍선 개수")]
-        [SerializeField] int MaxbombValue;
+        [SerializeField] int maxBombValue;
 
 
         public float Speed { get { return speed; } }
         public int Power { get { return powerValue; } }
         public int Bomb { get { return bombValue; } }
+        public int Maxbomb { get { return maxBombValue; } }
+        public int MaxPower { get { return maxPowerValue; } }
     }
 
 
