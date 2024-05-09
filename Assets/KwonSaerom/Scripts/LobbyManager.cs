@@ -7,6 +7,16 @@ using UnityEngine;
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
 
+    private ClientState state;
+    private void Update()
+    {
+        ClientState curState = PhotonNetwork.NetworkClientState;
+        if (state == curState)
+            return;
+        state = curState;
+        Debug.Log(state);
+    }
+
     /// 방
     public override void OnCreatedRoom()
     {
@@ -15,7 +25,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
-        base.OnJoinedRoom();
+        Debug.Log("만듦");
     }
 
     public override void OnLeftRoom()

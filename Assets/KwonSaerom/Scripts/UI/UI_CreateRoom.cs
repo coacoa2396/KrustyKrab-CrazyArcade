@@ -32,7 +32,7 @@ public class UI_CreateRoom : PopUpUI
     public void CreateRoom()
     {
         string roomName = GetUI<TMP_InputField>(GameObjects.RoomNameInput.ToString()).text;
-        string maxPlayerStr = GetUI<TMP_InputField>(GameObjects.RoomNameInput.ToString()).text;
+        string maxPlayerStr = GetUI<TMP_InputField>(GameObjects.MaxPlayerInput.ToString()).text;
 
         if (roomName == "")
             roomName = roomNameList[Random.Range(0, roomNameList.Length)];
