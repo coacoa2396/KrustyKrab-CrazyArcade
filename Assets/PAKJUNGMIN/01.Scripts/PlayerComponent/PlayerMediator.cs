@@ -7,14 +7,15 @@ using UnityEngine.Scripting.APIUpdating;
 namespace pakjungmin
 {
     /// <summary>
-    /// Class : ÇÃ·¹ÀÌ¾îÀÇ ¸ğµç 
+    /// Class : í”Œë ˆì´ì–´ì˜ ëª¨ë“  
     /// </summary>
     public class PlayerMediator : MonoBehaviour
     {
-        public PlayerBehavior playerBehavior; //ÇÃ·¹ÀÌ¾îÀÇ Çàµ¿.
-        public PlayerInputHandler playerInputHandler; //Ä³¸¯ÅÍ ÀÎÇ² ½Ã½ºÅÛ 
-        public CharacterStats characterStats; // Ä³¸¯ÅÍº° ½ºÅİ µ¥ÀÌÅÍ ½ºÅ©·´ÅÍºí ¿ÀºêÁ§Æ®
-        public PlayerStats playerStats; //ÇÃ·¹ÀÌ¾îÀÇ ÇöÀç ½ºÅİ
+        public PlayerBehavior playerBehavior; //í”Œë ˆì´ì–´ì˜ í–‰ë™.
+        public PlayerInputHandler playerInputHandler; //ìºë¦­í„° ì¸í’‹ ì‹œìŠ¤í…œ 
+        public CharacterStats characterStats; // ìºë¦­í„°ë³„ ìŠ¤í…Ÿ ë°ì´í„° ìŠ¤í¬ëŸ½í„°ë¸” ì˜¤ë¸Œì íŠ¸
+        public PlayerStats playerStats; //í”Œë ˆì´ì–´ì˜ í˜„ì¬ ìŠ¤í…Ÿ
+
 
         public void InputMove(Vector3 moveDir)
         {

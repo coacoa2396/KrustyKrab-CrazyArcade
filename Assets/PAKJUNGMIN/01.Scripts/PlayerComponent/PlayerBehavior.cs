@@ -17,6 +17,7 @@ namespace pakjungmin
         }
         private void Update()
         {
+           
             gameObject.transform.Translate(moveDir * playerMediator.playerStats.Speed * Time.deltaTime, Space.World);
         }
 
@@ -32,7 +33,8 @@ namespace pakjungmin
         /// </summary>
         public void Plant()
         {
-
+            //플레이어가 물풍선 프리팹과 물풍선이 놓일 좌표를 알고 있어야함.
+            //Manager.Pool.GetPool(Waterbomb, 물풍선 타일 좌표, Quaternion.identity);
         }
         /// <summary>
         /// 액티브 아이템 사용
