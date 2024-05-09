@@ -1,3 +1,4 @@
+using Firebase.Extensions;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -36,7 +37,7 @@ public class UI_TitleScene : InGameUI
         string id = GetUI<TMP_InputField>(GameObjects.IdInputField.ToString()).text;
         string password = GetUI<TMP_InputField>(GameObjects.PasswordInputField.ToString()).text;
 
-        FirebaseManager.Auth.SignInWithEmailAndPasswordAsync(id, password).ContinueWith(task =>
+        FirebaseManager.Auth.SignInWithEmailAndPasswordAsync(id, password).ContinueWithOnMainThread(task =>
         {
             if(task.IsCanceled)
             {
@@ -48,11 +49,11 @@ public class UI_TitleScene : InGameUI
             {
                 Debug.Log("Faulted");
                 SetInteractable(true);
-                Debug.Log("dd");
                 return;
             }
 
             Debug.Log("Login Success");
+            Manager.Scene.LoadScene("LobbyScene");
             SetInteractable(true);
             //씬 전환(로비씬으로)
         });
