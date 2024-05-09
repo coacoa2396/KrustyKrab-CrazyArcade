@@ -17,16 +17,17 @@ namespace pakjungmin
 
         public void OnTriggerEnter2D(Collider2D collision)
         {
-            Debug.Log("1");
+            Debug.Log("Enter");
             AddList(collision);
         }
         private void OnTriggerStay2D(Collider2D collision)
         {
-            Debug.Log("2");
+            Debug.Log("Stay");
             AddList(collision);
         }
         private void OnTriggerExit2D(Collider2D collision)
         {
+            Debug.Log("Exit");
             RemoveList(collision);
         }
         void AddList(Collider2D collision)
@@ -44,6 +45,8 @@ namespace pakjungmin
         void LocatePlayer()
         {
             //플레이어의 위치와 리스트 안 타일의 정점을 계산하여, 제일 가까운 타일을 현재 타일로 취급하는 로직.
+
+
         }
 
     }
