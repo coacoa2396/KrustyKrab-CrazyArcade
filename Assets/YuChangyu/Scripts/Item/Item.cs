@@ -9,11 +9,11 @@ public class Item : MonoBehaviour
 {
     [Header ("LayerMask")]
     [SerializeField] LayerMask playerCheck;         // 트리거에서 플레이어를 체크 할 레이어마스크
-    [SerializeField] LayerMask bombCheck;           // 물줄기 체크
+    [SerializeField] LayerMask waterCourseCheck;           // 물줄기 체크
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if (bombCheck.Contain(collision.gameObject.layer))         // 물줄기에 닿으면
+        if (waterCourseCheck.Contain(collision.gameObject.layer))         // 물줄기에 닿으면
         {
             Destroy(gameObject);                                    // 아이템 제거
             return;
