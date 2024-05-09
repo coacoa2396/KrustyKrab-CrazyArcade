@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class UI_LobbyScene : InGameUI
 {
+    [SerializeField] UI_CreateRoom createRoomPopup;
     enum GameObjects
     {
         CreateRoomButton,
@@ -26,7 +27,7 @@ public class UI_LobbyScene : InGameUI
 
     public void CreateRoom()
     {
-        
+        Manager.UI.ShowPopUpUI(createRoomPopup);
     }
     
     public void QuickPlayer()
