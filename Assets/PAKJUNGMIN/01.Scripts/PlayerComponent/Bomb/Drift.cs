@@ -6,7 +6,7 @@ using UnityEngine;
 /// <summary>
 /// Class : 물줄기
 /// </summary>
-public class WaterCourse : PooledObject
+public class Drift : PooledObject
 {
     Coroutine courseCoroutine;
 

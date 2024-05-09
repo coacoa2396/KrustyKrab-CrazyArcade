@@ -11,6 +11,5 @@ public class WaterBombSpawner : MonoBehaviour
     private void Awake()
     {
         Manager.Pool.CreatePool(waterBomb, size, capacity);
-        //CreatePool(prefab, 23, 200);
     }
 }
