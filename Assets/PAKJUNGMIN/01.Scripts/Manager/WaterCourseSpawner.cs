@@ -1,18 +1,15 @@
+using pakjungmin;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class WaterCourseSpawner : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] Drift waterCourse;
+    [SerializeField] int size;
+    [SerializeField] int capacity;
+    private void Awake()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Manager.Pool.CreatePool(waterCourse, size, capacity);
     }
 }

@@ -42,22 +42,21 @@ namespace pakjungmin
             //gameObject.transform.position = locatePos.transform.position;
             //waterCoursePower = (int)playerMediator.playerStats.Power;
             explodeCoroutine = StartCoroutine(WaitExplode());
-            //활성화 시 코루틴 시작 구현 필요
 
         }
         private void OnDisable()
         {
-            //물줄기 생성 루틴 구현 필요.
             explodeTime = 4;
         }
         void Explode()
         {
-            //물줄기 구현 로직 필요.
+            Locatedrift();
             gameObject.SetActive(false);
         }
-        void SetWaterCourse()
+        void Locatedrift()
         {
             //물줄기의 범위 계산 루틴.
+            
         }
     }
 }

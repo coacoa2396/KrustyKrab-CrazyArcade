@@ -31,10 +31,10 @@ namespace pakjungmin
         /// <summary>
         /// 플레이어의 물풍선 설치 행동
         /// </summary>
-        public void Plant()
+        public void Plant(PooledObject waterBomb,Vector3 BombPos)
         {
             //플레이어가 물풍선 프리팹과 물풍선이 놓일 좌표를 알고 있어야함.
-            //Manager.Pool.GetPool(Waterbomb, 물풍선 타일 좌표, Quaternion.identity);
+            Manager.Pool.GetPool(waterBomb,BombPos, Quaternion.identity);
         }
         /// <summary>
         /// 액티브 아이템 사용

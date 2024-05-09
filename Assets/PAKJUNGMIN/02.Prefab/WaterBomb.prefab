@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7428059292069296923}
   - component: {fileID: 1149463310955052931}
   m_Layer: 0
-  m_Name: Bomb
+  m_Name: WaterBomb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -71,8 +71,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1411546363
-  m_SortingLayer: 2
+  m_SortingLayerID: -1821637471
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 371088758, guid: 19796ac0f6c34864db89cfaba3fd44f3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -97,4 +97,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48c2862185ef55a42bca57ec139a535c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  autoRelease: 0
+  releaseTime: 0
   explodeTime: 4

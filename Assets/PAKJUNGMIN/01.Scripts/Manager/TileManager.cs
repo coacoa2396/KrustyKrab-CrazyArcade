@@ -7,33 +7,29 @@ namespace pakjungmin {
     public class TileManager : MonoBehaviour
     {
         [SerializeField] GameObject map;
-        public Tile[] tilemap;
+        public Tile[] tileMap;
 
         [SerializeField] int lengthX;
         [SerializeField] int lengthY;
 
         private void Awake()
         {
-            //tilemap = map.GetComponentsInChildren<Tile>();
-
-            //int[,] nameArray = new int[lengthY, lengthX];
-
-            ////for (int x = 0; x < nameArray.GetLength(0); x++)
-            ////{
-            ////    for (int y = 0; y < nameArray.GetLength(1); y++)
-            ////    {
-
-            ////    }
-            ////}
-
-            //for (int x = 0; x < lengthX; x++)
-            //{
-            //    for (int y = 0; y < lengthY; y++)
-            //    {
-            //        tilemap[y].name = $"{x},{y}";
-            //        Debug.Log("1");
-            //    }
-            //}
+            tileMap = map.GetComponentsInChildren<Tile>();
+            int x = 0;
+            int y = 0;
+            foreach(Tile tile in tileMap)
+            {
+                tile.gameObject.name = $"{x},{y}";
+                tile.tileNode.posX = x;
+                tile.tileNode.posY = y;
+                Debug.Log($"{x},{y}");
+                y++;
+                if(y >= lengthY)
+                {
+                    x++;
+                    y = 0;
+                }
+            }
         }
     }
 

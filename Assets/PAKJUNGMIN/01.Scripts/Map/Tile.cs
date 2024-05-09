@@ -10,21 +10,21 @@ namespace pakjungmin
     {
         public enum TileStyle 
         {
-            Normal, //ÀÏ¹İ ¹Ù´Ú
-            Thorny, //°¡½Ã¹ç
-            Swamp, //´ËÁö´ë
+            Normal, //ì¼ë°˜ ë°”ë‹¥
+            Thorny, //ê°€ì‹œë°­
+            Swamp, //ëŠªì§€ëŒ€
         }
-        bool isWallhere; //ÀÌ Å¸ÀÏ À§¿¡ º®ÀÌ ¼¼¿öÁü ¿©ºÎ
-        [SerializeField] TileNode tileNode; //Å¸ÀÏÀÇ ÁÂÇ¥.
+        bool isWallhere; //ì´ íƒ€ì¼ ìœ„ì— ë²½ì´ ì„¸ì›Œì§ ì—¬ë¶€
+        [SerializeField] public TileNode tileNode; //íƒ€ì¼ì˜ ì¢Œí‘œ.
 
-        TileStyle tileStyle; //¹Ù´ÚÀÇ Á¾·ù
+        TileStyle tileStyle; //ë°”ë‹¥ì˜ ì¢…ë¥˜
         
     }
     [Serializable]
     public struct TileNode
     {
-        public int posY;
         public int posX;
+        public int posY;
     }
 
 
