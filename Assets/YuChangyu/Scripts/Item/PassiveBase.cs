@@ -8,5 +8,6 @@ using UnityEngine;
 /// </summary>
 public class PassiveBase : Item
 {
-    [SerializeField] PlayerStats player;            // 스탯을 올려줄 플레이어    
+    [SerializeField] PlayerMediator player;            // 스탯을 올려줄 플레이어
+    public PlayerMediator Player {get {return player;} set { player = value; } }
 }
