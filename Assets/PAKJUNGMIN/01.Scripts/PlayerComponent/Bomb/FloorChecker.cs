@@ -14,7 +14,7 @@ namespace pakjungmin
     {
         public Tile nowTile; //현재 플레이어가 서 있는 타일 == 인접타일 리스트 중 가장 가까운 거리의 타일.
         [SerializeField] List<Tile> touchedTiles = new List<Tile>(); // 인접 타일 리스트
-        [SerializeField] List<float> distanceList = new List<float>();
+        List<float> distanceList = new List<float>();
 
 
 
