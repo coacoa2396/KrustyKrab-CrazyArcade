@@ -18,5 +18,7 @@ public class Bubble : PassiveBase
             return;                                                     // 리턴
 
         Player.playerStats.Bomb++;
+
+        Destroy(gameObject);
     }
 }
