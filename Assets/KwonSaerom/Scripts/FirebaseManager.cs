@@ -15,7 +15,7 @@ public class FirebaseManager : MonoBehaviour
     public static FirebaseApp App { get { return app; } }
 
     private static FirebaseAuth auth;
-    public static FirebaseAuth Auth { get { return Auth; } }
+    public static FirebaseAuth Auth { get { return auth; } }
 
     private void Awake()
     {
@@ -49,6 +49,8 @@ public class FirebaseManager : MonoBehaviour
             }else
             {
                 Debug.LogError("error" + dependencyStatus);
+                app = null;
+                auth = null;
             }
         });
     }

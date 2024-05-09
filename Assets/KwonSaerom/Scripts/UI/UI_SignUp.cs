@@ -1,6 +1,7 @@
 using Firebase.Extensions;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Windows;
@@ -27,10 +28,10 @@ public class UI_SignUp : PopUpUI
     public void SignUp()
     {
         SetInteractable(false);
-        string id = GetUI<InputField>(GameObjects.IDInput.ToString()).text;
-        string pw = GetUI<InputField>(GameObjects.PWInput.ToString()).text;
-        string confirm = GetUI<InputField>(GameObjects.PWConfirmInput.ToString()).text;
-        string nickName = GetUI<InputField>(GameObjects.NickNameInput.ToString()).text;
+        string id = GetUI<TMP_InputField>(GameObjects.IDInput.ToString()).text;
+        string pw = GetUI<TMP_InputField>(GameObjects.PWInput.ToString()).text;
+        string confirm = GetUI<TMP_InputField>(GameObjects.PWConfirmInput.ToString()).text;
+        string nickName = GetUI<TMP_InputField>(GameObjects.NickNameInput.ToString()).text;
 
         if(pw != confirm)
         {
@@ -65,9 +66,9 @@ public class UI_SignUp : PopUpUI
     {
         GetUI<Button>(GameObjects.SignUpButton.ToString()).interactable = interactable;
         GetUI<Button>(GameObjects.CloseButton.ToString()).interactable = interactable;
-        GetUI<InputField>(GameObjects.IDInput.ToString()).interactable = interactable;
-        GetUI<InputField>(GameObjects.PWInput.ToString()).interactable = interactable;
-        GetUI<InputField>(GameObjects.PWConfirmInput.ToString()).interactable = interactable;
-        GetUI<InputField>(GameObjects.NickNameInput.ToString()).interactable = interactable;
+        GetUI<TMP_InputField>(GameObjects.IDInput.ToString()).interactable = interactable;
+        GetUI<TMP_InputField>(GameObjects.PWInput.ToString()).interactable = interactable;
+        GetUI<TMP_InputField>(GameObjects.PWConfirmInput.ToString()).interactable = interactable;
+        GetUI<TMP_InputField>(GameObjects.NickNameInput.ToString()).interactable = interactable;
     }
 }

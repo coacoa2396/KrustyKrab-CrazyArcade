@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -32,8 +33,8 @@ public class UI_TitleScene : InGameUI
     public void Login()
     {
         SetInteractable(false);
-        string id = GetUI<InputField>(GameObjects.IdInputField.ToString()).text;
-        string password = GetUI<InputField>(GameObjects.PasswordInputField.ToString()).text;
+        string id = GetUI<TMP_InputField>(GameObjects.IdInputField.ToString()).text;
+        string password = GetUI<TMP_InputField>(GameObjects.PasswordInputField.ToString()).text;
 
         FirebaseManager.Auth.SignInWithEmailAndPasswordAsync(id, password).ContinueWith(task =>
         {
@@ -47,6 +48,7 @@ public class UI_TitleScene : InGameUI
             {
                 Debug.Log("Faulted");
                 SetInteractable(true);
+                Debug.Log("dd");
                 return;
             }
 
@@ -68,11 +70,14 @@ public class UI_TitleScene : InGameUI
 
     private void SetInteractable(bool interactable)
     {
-        GetUI<Button>(GameObjects.LoginButton.ToString()).interactable = interactable;
+        Debug.Log(interactable);
         GetUI<Button>(GameObjects.QuitButton.ToString()).interactable = interactable;
+        GetUI<Button>(GameObjects.LoginButton.ToString()).interactable = interactable;
         GetUI<Button>(GameObjects.SignUpButton.ToString()).interactable = interactable;
-        GetUI<InputField>(GameObjects.PasswordInputField.ToString()).interactable = interactable;
-        GetUI<InputField>(GameObjects.IdInputField.ToString()).interactable = interactable;
+        GetUI<TMP_InputField>(GameObjects.PasswordInputField.ToString()).interactable = interactable;
+        GetUI<TMP_InputField>(GameObjects.IdInputField.ToString()).interactable = interactable;
+        Debug.Log("complete");
+
     }
 
 }
