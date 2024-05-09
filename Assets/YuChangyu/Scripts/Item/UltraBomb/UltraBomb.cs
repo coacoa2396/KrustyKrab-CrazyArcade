@@ -5,6 +5,7 @@ using UnityEngine;
 /// <summary>
 /// 제작 : 찬규 
 /// 아이템 UltraBomb
+/// 플레이어의 파워가 최대치까지 상승한다
 /// </summary>
 public class UltraBomb : PassiveBase
 {

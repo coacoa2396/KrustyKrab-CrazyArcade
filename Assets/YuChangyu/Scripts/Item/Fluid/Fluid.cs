@@ -5,6 +5,7 @@ using UnityEngine;
 /// <summary>
 /// 제작 : 찬규
 /// 아이템 : 물병
+/// 플레이어의 파워가 1 상승한다
 /// </summary>
 public class Fluid : PassiveBase
 {
