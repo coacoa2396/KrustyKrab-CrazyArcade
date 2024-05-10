@@ -1,3 +1,4 @@
+using pakjungmin;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -5,18 +6,14 @@ using UnityEngine;
 
 public class WaterBombCollider : MonoBehaviour
 {
-    //물풍선을 놓았을 때, 콜라이더를 끄고 다시 켜는 로직 구현 필요
 
-    CircleCollider2D circleCollider;
-
-
-    private void OnEnable()
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        circleCollider = GetComponent<CircleCollider2D>();
+        Debug.Log("asfdasdf");
+        if (collision.gameObject.GetComponent<Drift>())
+        {
+            Debug.Log("물폭탄 연쇄 작용");
+            GetComponentInParent<WaterBomb>().Explode();
+        }
     }
-    //private void OnCollisionExit2D(Collision2D collision)
-    //{
-    //    Debug.Log("Exit human");
-    //    circleCollider.enabled = true;
-    //}
 }

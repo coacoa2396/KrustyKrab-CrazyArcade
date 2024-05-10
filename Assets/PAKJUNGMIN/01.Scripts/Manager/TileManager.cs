@@ -29,11 +29,11 @@ namespace pakjungmin {
                 tile.gameObject.name = $"{x},{y}";
                 tile.tileNode.posX = x;
                 tile.tileNode.posY = y;
-                y++;
-                if(y >= lengthY)
+                x++;
+                if(x >= lengthX)
                 {
-                    x++;
-                    y = 0;
+                    y++;
+                    x = 0;
                 }
             }
         }
