@@ -1601,6 +1601,51 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 923172936851581049, guid: d29ec2480d156364388c53e38248d003, type: 3}
   m_PrefabInstance: {fileID: 1632883633}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &255861315
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 255861317}
+  - component: {fileID: 255861316}
+  m_Layer: 0
+  m_Name: DriftManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &255861316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 255861315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88edf69244c9ada4987923300c662b58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  driftprefab: {fileID: 8523388214241208693, guid: 937aa17bc7ec23c41b56b522af889bbc, type: 3}
+--- !u!4 &255861317
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 255861315}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.7495918, y: -4.1510854, z: 1793.7068}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &256813773
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3303,7 +3348,7 @@ GameObject:
   - component: {fileID: 475864948}
   - component: {fileID: 475864950}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: MapEndee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4457,7 +4502,7 @@ GameObject:
   - component: {fileID: 628272491}
   - component: {fileID: 628272493}
   m_Layer: 0
-  m_Name: GameObject (1)
+  m_Name: MapEndee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6216,7 +6261,7 @@ GameObject:
   - component: {fileID: 957338387}
   - component: {fileID: 957338389}
   m_Layer: 0
-  m_Name: GameObject (2)
+  m_Name: MapEndee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7073,6 +7118,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &1109401027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1109401010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ea81ea61e695214989dff1451fbf75e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownState: 0
 --- !u!4 &1112626551 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 923172936851581049, guid: d29ec2480d156364388c53e38248d003, type: 3}
@@ -10749,7 +10807,7 @@ GameObject:
   - component: {fileID: 1733722289}
   - component: {fileID: 1733722291}
   m_Layer: 0
-  m_Name: GameObject (3)
+  m_Name: MapEndee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13526,6 +13584,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 559376696125852104, guid: c368780d46b190541be9da8f7fa217ee, type: 3}
       insertIndex: 3
       addedObject: {fileID: 1109401018}
+    - targetCorrespondingSourceObject: {fileID: 559376696125852104, guid: c368780d46b190541be9da8f7fa217ee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1109401027}
   m_SourcePrefab: {fileID: 100100000, guid: c368780d46b190541be9da8f7fa217ee, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
@@ -13540,3 +13601,4 @@ SceneRoots:
   - {fileID: 231329925}
   - {fileID: 2110485173}
   - {fileID: 1788322191}
+  - {fileID: 255861317}

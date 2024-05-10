@@ -8,7 +8,7 @@ namespace pakjungmin
     public class WaterBomb : PooledObject
     {
         //물풍선의 소유권. 즉 설치한 플레이어의 정보 필드 구현 필요.
-        PlayerMediator playerMediator;
+        //PlayerMediator playerMediator;
 
         //물풍선 폭파되기까지 시간.
         [SerializeField] float explodeTime;
@@ -40,7 +40,7 @@ namespace pakjungmin
 
         private void OnEnable()
         {
-            if(!GetComponentInChildren<BombLocator>()) { Debug.Log("null");
+            if(!GetComponentInChildren<BombLocator>()) { 
                 return;
             }
             //int power = playerMediator.playerStats.Power;
@@ -52,14 +52,14 @@ namespace pakjungmin
         {
             explodeTime = 4;
         }
-        void Explode()
+
+        public void Explode()
         {
             int posX = GetComponentInChildren<BombLocator>().PosX;
             int posY = GetComponentInChildren<BombLocator>().PosY;
-            int power = playerMediator.playerStats.Power;
-
-            DriftManager.Drift.LocateDrift(posX, posY,power);
+            //int power = playerMediator.playerStats.Power;
             gameObject.SetActive(false);
+            DriftManager.Drift.LocateDrift(posX, posY,3);
         }
     }
 }

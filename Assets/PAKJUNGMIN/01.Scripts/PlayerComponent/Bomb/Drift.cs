@@ -9,16 +9,20 @@ using UnityEngine;
 public class Drift : PooledObject
 {
 
-    float driftTime = 0.7f;
+    public float driftTime = 1f;
     Coroutine courseCoroutine;
 
     IEnumerator CourseTime()
     {
-        driftTime -= Time.deltaTime;
-        yield return null;
-        if (driftTime <= 0)
+        while (true)
         {
-            gameObject.SetActive(false);
+            driftTime -= Time.deltaTime;
+            yield return null;
+            if (driftTime <= 0)
+            {
+                gameObject.SetActive(false);
+                break;
+            }
         }
     }
 
@@ -28,14 +32,22 @@ public class Drift : PooledObject
     }
     private void OnDisable()
     {
-        driftTime = 0.7f;
+        driftTime = 1f;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //플레이어가 물줄기 범위 안에 있다면, 플레이어 상태를 감옥 상태로 변경
+        if (collision.gameObject.GetComponent<PlayerState>())
+        {
+            Debug.Log("플레이어가 물줄기에 맞았습니다.");
+        }
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
         //플레이어가 물줄기 범위 안에 있다면, 플레이어 상태를 감옥 상태로 변경
+        if (collision.gameObject.GetComponent<PlayerState>())
+        {
+            Debug.Log("플레이어가 물줄기에 맞았습니다.");
+        }
     }
 }

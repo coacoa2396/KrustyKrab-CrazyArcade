@@ -30,70 +30,53 @@ public class DriftManager: MonoBehaviour
        Tile bombTile;
        List<Tile> driftList = new List<Tile>();
        Tile[] tilemap = TileManager.Tile.tileMap;
-        int powerint = 0;
        foreach (Tile tile in tilemap)
        {
-            if(tile.tileNode.posX == x && tile.tileNode.posY == y)
+            if (tile.tileNode.posX == x && tile.tileNode.posY == y)
             {
                 bombTile = tile;
                 driftList.Add(bombTile);
 
                 //폭심지 기준 동
-                for (int q = 1; q < power; q++)
+                for (int q = 0; q < power; q++)
                 {
-                    try
-                    {
-                        driftList.Add(FindTile(x + q, y));
-                    }
-                    catch
-                    {
-                        Debug.Log("예외 발생");
-                        return;
-                    }
+                    if (FindTile(x + q, y) != null)
+                    { driftList.Add(FindTile(x + q, y)); }
+
                 }
                 //폭심지 기준 서
-                for (int q = 1; q < power; q++)
+                for (int q = 0; q < power; q++)
                 {
-                    try
+
+                    if (FindTile(x - q, y) != null)
                     {
                         driftList.Add(FindTile(x - q, y));
-                    }
-                    catch
-                    {
-                        Debug.Log("예외 발생");
-                        return;
-                    }
+                    };
+
                 }
                 //폭심지 기준 남
                 for (int q = 0; q < power; q++)
                 {
-                    try
+                    if (FindTile(x, y - q) != null)
                     {
                         driftList.Add(FindTile(x, y - q));
                     }
-                    catch
-                    {
-                        Debug.Log("예외 발생");
-                        return;
-                    }
+
                 }
                 //폭심지 기준 북
                 for (int q = 0; q < power; q++)
                 {
-                    try
+
+                    if (FindTile(x, y + q) != null)
                     {
                         driftList.Add(FindTile(x, y + q));
                     }
-                    catch
-                    {
-                        Debug.Log("예외 발생");
-                        return;
-                    }
+
                 }
                 break;
             }
-       }
-       if(driftList.Count > 0)
+        }
+        if (driftList.Count > 0)
        {
            RaiseDrift(driftList);
        }
@@ -121,6 +104,5 @@ public class DriftManager: MonoBehaviour
         {
             Manager.Pool.GetPool(driftprefab,tile.transform.position,Quaternion.identity);
         }
-        Debug.Log("물줄기 RaiseDirft!!!");
     }
 }
