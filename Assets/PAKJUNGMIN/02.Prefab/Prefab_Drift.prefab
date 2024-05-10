@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4213437325657358205}
   - component: {fileID: 8523388214241208693}
   m_Layer: 0
-  m_Name: WaterCourse
+  m_Name: Prefab_Drift
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -13,8 +13,8 @@ namespace pakjungmin
         OwnStats ownStats;
 
         public float Speed { get { return ownStats.speedValue; } set { ownStats.speedValue = value; } }
-        public float Bomb { get { return ownStats.bombValue; } set { ownStats.bombValue = value; } }
-        public float Power { get { return ownStats.powerValue; } set { ownStats.powerValue = value; } }
+        public int Bomb { get { return ownStats.bombValue; } set { ownStats.bombValue = value; } }
+        public int Power { get { return ownStats.powerValue; } set { ownStats.powerValue = value; } }
 
 
         void Awake()
@@ -36,7 +36,7 @@ namespace pakjungmin
     public struct OwnStats
     {
         public float speedValue;
-        public float bombValue;
-        public float powerValue;
+        public int bombValue;
+        public int powerValue;
     }
 }
