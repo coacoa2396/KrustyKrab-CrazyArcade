@@ -2,14 +2,11 @@ using pakjungmin;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-/// <summary>
-/// 제작 : 찬규 
-/// 탈 것 : 우주선
-/// </summary>
-public class SpaceShip : PassiveBase
+
+public class Turtle : PassiveBase
 {
-    // [SerializeField] GameObject spaceShipPrefab; 
-    // [SerializeField] GameObject brokenSpaceShipPrefab; 
+    // [SerializeField] GameObject turtlePrefab;
+    // [SerializeField] GameObject pirateTurtlePrefab;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -24,7 +21,7 @@ public class SpaceShip : PassiveBase
 
         Player = Player = collision.gameObject.GetComponent<PlayerMediator>();
 
-        // 우주선 프리팹 생성해서 플레이어가 타게 만들어준다
-        // 일정 확률로 고장난 우주선이 생성된다
+        // 거북이 프리팹 생성해서 플레이어가 타게 만들어준다
+        // 일정 확률로 속도가 매우 빠른 해적거북이가 생성된다
     }
 }
