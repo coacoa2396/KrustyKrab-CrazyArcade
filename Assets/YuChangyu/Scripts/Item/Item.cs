@@ -1,3 +1,4 @@
+using pakjungmin;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,11 @@ public class Item : MonoBehaviour
     [Header("LayerMask")]
     [SerializeField] LayerMask playerCheck;         // 트리거에서 플레이어를 체크 할 레이어마스크
     [SerializeField] LayerMask waterCourseCheck;           // 물줄기 체크
+
+    [Header("Component")]
+    [SerializeField] PlayerMediator player;            // 스탯을 올려줄 플레이어
+
+    public PlayerMediator Player { get { return player; } set { player = value; } }
 
     public bool CheckPlayer(GameObject gameObject)
     {
