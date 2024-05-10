@@ -5,12 +5,20 @@ using UnityEngine;
 /// <summary>
 /// 제작 : 찬규 
 /// 아이템 : 롤러스케이트
+/// 플레이어의 속도가 1 상승한다
 /// </summary>
-public class Roller : PassiveBase
+public class Roller : Item
 {
-    protected override void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        base.OnTriggerEnter2D(collision);
+        if (CheckWater(collision.gameObject))
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        if (!CheckPlayer(collision.gameObject))
+            return;
 
         Player = collision.gameObject.GetComponent<PlayerMediator>();
 
