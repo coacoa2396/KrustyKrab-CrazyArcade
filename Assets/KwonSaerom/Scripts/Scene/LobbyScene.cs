@@ -9,7 +9,6 @@ public class LobbyScene : BaseScene
     {
         yield return null;
         //DB에서 플레이어의 정보를 들고와유
-        PhotonNetwork.ConnectUsingSettings();
     }
 
 }

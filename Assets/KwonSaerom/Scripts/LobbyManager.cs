@@ -1,4 +1,5 @@
 using Photon.Pun;
+using Photon.Pun.UtilityScripts;
 using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,6 +9,12 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 {
 
     private ClientState state;
+
+    private void Awake()
+    {
+        PhotonNetwork.ConnectUsingSettings();
+    }
+
     private void Update()
     {
         ClientState curState = PhotonNetwork.NetworkClientState;
@@ -16,6 +23,18 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         state = curState;
         Debug.Log(state);
     }
+
+    public override void OnConnected()
+    {
+        Debug.Log("OnConnected");
+        PhotonNetwork.JoinLobby();
+    }
+
+    public override void OnConnectedToMaster()
+    {
+        Debug.Log("OnConnectedToMaster");
+    }
+
 
     /// 방
     public override void OnCreatedRoom()

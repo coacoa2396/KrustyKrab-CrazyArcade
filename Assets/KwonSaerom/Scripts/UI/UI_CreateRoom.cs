@@ -26,6 +26,7 @@ public class UI_CreateRoom : PopUpUI
         base.Awake();
         GetUI<Button>(GameObjects.CreateButton.ToString()).onClick.AddListener(CreateRoom);
         GetUI<Button>(GameObjects.CloseButton.ToString()).onClick.AddListener(Manager.UI.ClearPopUpUI);
+        GetUI<TMP_InputField>(GameObjects.RoomNameInput.ToString()).text = roomNameList[Random.Range(0, roomNameList.Length)];
     }
 
 
@@ -42,6 +43,8 @@ public class UI_CreateRoom : PopUpUI
 
         RoomOptions options = new RoomOptions();
         options.MaxPlayers = maxPlayer;
+        if(Time.timeScale < 0.1f)
+            Time.timeScale = 1;
         PhotonNetwork.CreateRoom(roomName, options);
     }
 
