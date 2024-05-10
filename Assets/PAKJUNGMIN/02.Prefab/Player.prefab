@@ -172,6 +172,8 @@ MonoBehaviour:
   playerInputHandler: {fileID: 2401648610603406281}
   characterStats: {fileID: 11400000, guid: 449459e613b40b049b82d3d6a108f181, type: 2}
   playerStats: {fileID: 593347029573452070}
+  floorChecker: {fileID: 0}
+  prefab: {fileID: 0}
 --- !u!1 &1636724071041555875
 GameObject:
   m_ObjectHideFlags: 0
@@ -183,7 +185,6 @@ GameObject:
   - component: {fileID: 135816166707320708}
   - component: {fileID: 2535720167757176718}
   - component: {fileID: 6710971103676178686}
-  - component: {fileID: 4220369419345224403}
   m_Layer: 0
   m_Name: FloorChecker
   m_TagString: Untagged
@@ -220,7 +221,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nowTile: {fileID: 0}
   touchedTiles: []
-  distanceList: []
 --- !u!58 &6710971103676178686
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -256,30 +256,3 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.19912818
---- !u!50 &4220369419345224403
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1636724071041555875}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 7

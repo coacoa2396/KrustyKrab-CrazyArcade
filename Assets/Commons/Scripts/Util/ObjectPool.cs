@@ -30,7 +30,7 @@ public class ObjectPool : MonoBehaviour
     {
         if (objectPool.Count > 0)
         {
-            PooledObject instance = objectPool.Pop();
+            PooledObject instance = objectPool.Pop(); // 0. 0
             instance.transform.position = position;
             instance.transform.rotation = rotation;
             instance.gameObject.SetActive(true);
