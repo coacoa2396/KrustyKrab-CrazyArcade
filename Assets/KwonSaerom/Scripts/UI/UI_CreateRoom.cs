@@ -23,6 +23,8 @@ public class UI_CreateRoom : PopUpUI
 
     protected override void Awake()
     {
+        if (Time.timeScale < 0.1f)
+            Time.timeScale = 1;
         base.Awake();
         GetUI<Button>(GameObjects.CreateButton.ToString()).onClick.AddListener(CreateRoom);
         GetUI<Button>(GameObjects.CloseButton.ToString()).onClick.AddListener(Manager.UI.ClearPopUpUI);

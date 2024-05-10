@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
-
+    [SerializeField] UI_Room roomPopup;
     private ClientState state;
 
     private void Awake()
@@ -39,12 +39,13 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     /// 방
     public override void OnCreatedRoom()
     {
-        Debug.Log("방들어옴");
+        Debug.Log("만듦");
     }
 
     public override void OnJoinedRoom()
     {
-        Debug.Log("만듦");
+        Manager.UI.ShowPopUpUI(roomPopup);
+        Debug.Log("방들어옴");
     }
 
     public override void OnLeftRoom()

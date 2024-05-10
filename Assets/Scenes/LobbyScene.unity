@@ -371,6 +371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f33da3b2325ce3438a5e68118953e64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  roomPopup: {fileID: 8867375855300458438, guid: fb571d31758df2745a84e5285549a2c1, type: 3}
 --- !u!1001 &4777241962272471069
 PrefabInstance:
   m_ObjectHideFlags: 0
