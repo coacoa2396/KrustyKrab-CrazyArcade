@@ -7,12 +7,14 @@ using UnityEngine.InputSystem;
 namespace pakjungmin
 {
     /// <summary>
-    /// Class : �÷��̾� ��ǲ �ý��� �̺�Ʈ�� �޴� Ŭ����
+    /// Class : 플레이어 인풋 시스템 이벤트를 받는 클래스
     /// </summary>
     public class PlayerInputHandler : MonoBehaviour
     {
         PlayerMediator playerMediator;
         Vector3 moveDir;
+
+        public Vector3 MoveDir { get { return moveDir; } } // 외부에서 확인 할 프로퍼티 -> 유찬규 추가
 
         private void Awake()
         {
