@@ -1,3 +1,4 @@
+using pakjungmin;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,5 +8,8 @@ using UnityEngine;
 /// </summary>
 public class ActiveBase : Item
 {
+    [SerializeField] PlayerMediator player;            // 플레이어
+    public PlayerMediator Player { get { return player; } set { player = value; } }
 
+    
 }
