@@ -8,13 +8,14 @@ using UnityEngine;
 /// </summary>
 public class Projectile : MonoBehaviour
 {
-    [Header ("Component")]
+    [Header("Component")]
     [SerializeField] Rigidbody rigid;
 
     [Header("LayerMask")]
-    [SerializeField] LayerMask bombCheck;
+    [SerializeField] LayerMask bombCheck;   // 폭탄 체크
+    [SerializeField] LayerMask destroyCheck;// 벽이나 플레이어에 부딫히면 파괴
 
-    [Header ("Spec")]
+    [Header("Spec")]
     [SerializeField] string shootVec;       // up, right, down, left
     [SerializeField] float speed;           // 투사체의 속도
 
@@ -44,7 +45,14 @@ public class Projectile : MonoBehaviour
         if (bombCheck.Contain(collision.gameObject.layer))
         {
             WaterBomb bomb = collision.gameObject.GetComponent<WaterBomb>();
-            
+            bomb.Explode();
+            Destroy(gameObject);
+            return;
+        }
+        else if (destroyCheck.Contain(collision.gameObject.layer))
+        {
+            Destroy(gameObject);
+            return;
         }
     }
 }
