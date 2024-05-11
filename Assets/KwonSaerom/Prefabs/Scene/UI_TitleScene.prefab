@@ -428,6 +428,7 @@ MonoBehaviour:
   followTarget: {fileID: 0}
   followOffset: {x: 0, y: 0, z: 0}
   signUpPopup: {fileID: -193515173779898183, guid: 5dc89538267f17641a6f3e73d1f00276, type: 3}
+  warningPopup: {fileID: 2830730982586570911, guid: fb22bb5fd7d5a9145ac54386f6152c11, type: 3}
 --- !u!1 &3666304173236653502
 GameObject:
   m_ObjectHideFlags: 0

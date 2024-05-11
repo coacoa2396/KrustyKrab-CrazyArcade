@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class UI_TitleScene : InGameUI
 {
     [SerializeField] UI_SignUp signUpPopup;
+    [SerializeField] UI_Warning warningPopup;
     enum GameObjects
     {
         LoginButton,
@@ -41,13 +42,15 @@ public class UI_TitleScene : InGameUI
         {
             if(task.IsCanceled)
             {
-                Debug.Log("취소됨");
+                UI_Warning warning = Manager.UI.ShowPopUpUI(warningPopup);
+                warning.SetLog("로그인에 실패하셨습니다.");
                 SetInteractable(true);
                 return;
             }
             if(task.IsFaulted)
             {
-                Debug.Log("Faulted");
+                UI_Warning warning = Manager.UI.ShowPopUpUI(warningPopup);
+                warning.SetLog("로그인에 실패하셨습니다.");
                 SetInteractable(true);
                 return;
             }
