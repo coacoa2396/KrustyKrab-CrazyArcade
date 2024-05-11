@@ -8,6 +8,7 @@ using UnityEngine.Windows;
 
 public class UI_SignUp : PopUpUI
 {
+    [SerializeField] UI_Warning warningPopup;
     enum GameObjects
     {
         SignUpButton,
@@ -35,27 +36,29 @@ public class UI_SignUp : PopUpUI
 
         if(pw != confirm)
         {
-            Debug.Log("비밀번호 확인 에러");
+            UI_Warning warning = Manager.UI.ShowPopUpUI(warningPopup);
+            warning.SetLog("비밀번호 확인 에러");
             SetInteractable(true);
             return;
         }
 
         FirebaseManager.Auth.CreateUserWithEmailAndPasswordAsync(id, pw).ContinueWithOnMainThread(task =>
         {
+            UI_Warning warning = Manager.UI.ShowPopUpUI(warningPopup);
             if (task.IsCanceled)
             {
-                Debug.Log("Canceled");
+                warning.SetLog("회원가입에 실패하셨습니다.");
                 SetInteractable(true);
                 return;
             }
             if (task.IsFaulted)
             {
-                Debug.Log("Faulted");
+                warning.SetLog("회원가입에 실패하셨습니다.");
                 SetInteractable(true);
                 return;
             }
 
-            Debug.Log("회원가입 완료");
+            warning.SetLog("회원가입 완료");
             Manager.UI.ClearPopUpUI();
             SetInteractable(true);
         });
