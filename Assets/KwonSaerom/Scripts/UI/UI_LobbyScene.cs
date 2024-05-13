@@ -1,4 +1,5 @@
 using Firebase.Extensions;
+using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -48,4 +49,9 @@ public class UI_LobbyScene : InGameUI
         GetUI<Button>(GameObjects.QuickPlayButton.ToString()).interactable = interactable;
     }
 
+    public void UpdateRoomList(List<RoomInfo> roomList)
+    { 
+    
+    
+    }
 }

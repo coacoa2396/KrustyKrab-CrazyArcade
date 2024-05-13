@@ -8,7 +8,11 @@ using UnityEngine;
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
     [SerializeField] UI_Room roomPopup;
+    [SerializeField] UI_LobbyScene lobbyScene;
     private ClientState state;
+
+    public static int RoomNum = 0; //동기화 필요
+    public static RoomEntity NowRoom; //현재 플레이어가 들어온 방의 정보 
 
     private void Awake()
     {
@@ -39,13 +43,14 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     /// 방
     public override void OnCreatedRoom()
     {
+        RoomNum++;
         Debug.Log("만듦");
     }
 
     public override void OnJoinedRoom()
     {
-        Manager.UI.ShowPopUpUI(roomPopup);
-        Debug.Log("방들어옴");
+        UI_Room room = Manager.UI.ShowPopUpUI(roomPopup);
+        room.SetRoomInfo(NowRoom);
     }
 
     public override void OnLeftRoom()
@@ -65,7 +70,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
-        base.OnRoomListUpdate(roomList);
+        lobbyScene.UpdateRoomList(roomList);
     }
 
     public override void OnMasterClientSwitched(Player newMasterClient)

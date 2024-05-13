@@ -47,6 +47,9 @@ public class UI_CreateRoom : PopUpUI
         options.MaxPlayers = maxPlayer;
         if(Time.timeScale < 0.1f)
             Time.timeScale = 1;
+
+        RoomEntity roomInfo = new RoomEntity(roomName, LobbyManager.RoomNum, maxPlayer);
+        LobbyManager.NowRoom = roomInfo;
         PhotonNetwork.CreateRoom(roomName, options);
     }
 
