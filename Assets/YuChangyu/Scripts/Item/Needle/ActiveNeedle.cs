@@ -2,7 +2,7 @@ using pakjungmin;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static PlayerState;
+using static PlayerStateMachine;
 /// <summary>
 /// 제작 : 찬규 
 /// 액티브아이템 : Needle의 사용 시 기능
@@ -18,7 +18,7 @@ public class ActiveNeedle : ActiveBase
 
     public void SaveMyself()
     {
-        if (!(Player.playerState.ownState == PlayerStates.Trapped))         // 물방울에 갖힌 상태가 아니면
+        if (!(Player.playerState.ownState == State.Trapped))         // 물방울에 갖힌 상태가 아니면
             return;                                                         // 리턴
 
         // 방울에서 나오는 애니메이션 재생

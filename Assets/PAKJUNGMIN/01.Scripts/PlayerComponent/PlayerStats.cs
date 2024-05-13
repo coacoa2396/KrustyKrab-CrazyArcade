@@ -19,7 +19,7 @@ namespace pakjungmin
 
         void Awake()
         {
-            playerMediator = GetComponent<PlayerMediator>();
+            playerMediator = GetComponentInParent<PlayerMediator>();
             InitSet();
         }
 

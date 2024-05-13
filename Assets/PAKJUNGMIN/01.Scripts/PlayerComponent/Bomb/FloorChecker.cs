@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using pakjungmin;
 using System.Linq;
+using Unity.VisualScripting;
 
 namespace pakjungmin
 {
@@ -77,6 +78,8 @@ namespace pakjungmin
                 }
                 distanceList.Add(Vector2.Distance((Vector2)tile.transform.position, playerPos));
             }
+            if (nowTile == null || touchedTiles == null) { return; }
+            if(distanceList.Count<=0) { return; }
             nowTile = touchedTiles[distanceList.IndexOf(distanceList.Min())];
             distanceList.Clear();
         }
