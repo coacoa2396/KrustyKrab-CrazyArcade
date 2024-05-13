@@ -20,8 +20,11 @@ public class Tile_WallDectector : MonoBehaviour
     {
         if (collision.GetComponent<BaseWall>())
         {
-            GetComponentInParent<Tile>().OnWall = false;
-            GetComponentInParent<Tile>().wall = null;
+            if (GetComponentInParent<Tile>())
+            {
+                GetComponentInParent<Tile>().OnWall = false;
+                GetComponentInParent<Tile>().wall = null;
+            }
            
         }
     }

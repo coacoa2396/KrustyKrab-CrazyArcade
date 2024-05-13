@@ -23,8 +23,13 @@ namespace pakjungmin
         public void Move(Vector3 moveDir)
         {
             PlayerStats stat = playerMediator.playerStats;
-            this.moveDir.x = moveDir.x;
-            this.moveDir.y = moveDir.z;
+
+            if (moveDir.x == 0 || moveDir.z == 0)
+            {
+                this.moveDir.x = moveDir.x;
+                this.moveDir.y = moveDir.z;
+
+            }
         }
 
         /// <summary>
