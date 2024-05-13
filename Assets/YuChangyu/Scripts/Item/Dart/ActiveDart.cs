@@ -26,16 +26,16 @@ public class ActiveDart : ActiveBase
         switch ((shootVec.x, shootVec.y, shootVec.z))
         {
             case (-1, 0, 0):
-                Instantiate(left);
+                Instantiate(left, transform.position, Quaternion.identity);
                 break;
             case (0, 0, 1):
-                Instantiate(up);
+                Instantiate(up, transform.position, Quaternion.identity);
                 break;
             case (1, 0, 0):
-                Instantiate(right);
+                Instantiate(right, transform.position, Quaternion.identity);
                 break;
             case (0, 0, -1):
-                Instantiate(down);
+                Instantiate(down, transform.position, Quaternion.identity);
                 break;
             default:
                 break;
