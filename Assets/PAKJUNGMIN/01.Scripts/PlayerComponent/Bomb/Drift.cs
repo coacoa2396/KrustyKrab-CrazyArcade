@@ -1,3 +1,4 @@
+using pakjungmin;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -39,7 +40,7 @@ public class Drift : PooledObject
         //플레이어가 물줄기 범위 안에 있다면, 플레이어 상태를 감옥 상태로 변경
         if (collision.gameObject.GetComponent<PlayerState>())
         {
-            Debug.Log("플레이어가 물줄기에 맞았습니다.");
+            
         }
     }
     private void OnTriggerStay2D(Collider2D collision)
@@ -47,7 +48,7 @@ public class Drift : PooledObject
         //플레이어가 물줄기 범위 안에 있다면, 플레이어 상태를 감옥 상태로 변경
         if (collision.gameObject.GetComponent<PlayerState>())
         {
-            Debug.Log("플레이어가 물줄기에 맞았습니다.");
+            
         }
     }
 }
