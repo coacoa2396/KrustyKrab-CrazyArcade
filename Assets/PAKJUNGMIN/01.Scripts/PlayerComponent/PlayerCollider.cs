@@ -9,7 +9,7 @@ public class PlayerCollider : MonoBehaviour
 
     private void Awake()
     {
-        playerMediator = GetComponentInParent<PlayerMediator>();
+        playerMediator = GetComponent<PlayerMediator>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

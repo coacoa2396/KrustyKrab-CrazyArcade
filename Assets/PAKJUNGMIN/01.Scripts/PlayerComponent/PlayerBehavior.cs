@@ -16,8 +16,7 @@ namespace pakjungmin
             
         }
         private void Update()
-        {
-           
+        {       
             gameObject.transform.Translate(moveDir * playerMediator.playerStats.Speed * Time.deltaTime, Space.World);
         }
 
