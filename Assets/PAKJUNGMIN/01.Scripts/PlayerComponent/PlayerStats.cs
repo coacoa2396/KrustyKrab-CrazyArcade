@@ -10,7 +10,7 @@ namespace pakjungmin
     {
         PlayerMediator playerMediator;
 
-        OwnStats ownStats;
+        [SerializeField] OwnStats ownStats;
 
         public float Speed { get { return ownStats.speedValue; } set { ownStats.speedValue = value; } }
         public int Bomb { get { return ownStats.bombValue; } set { ownStats.bombValue = value; } }
@@ -19,7 +19,7 @@ namespace pakjungmin
 
         void Awake()
         {
-            playerMediator = GetComponent<PlayerMediator>();
+            playerMediator = GetComponentInParent<PlayerMediator>();
             InitSet();
         }
 

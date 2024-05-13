@@ -15,9 +15,8 @@ namespace pakjungmin
             playerMediator = GetComponent<PlayerMediator>();
             
         }
-        private void Update()
-        {
-           
+        private void FixedUpdate()
+        {       
             gameObject.transform.Translate(moveDir * playerMediator.playerStats.Speed * Time.deltaTime, Space.World);
         }
 

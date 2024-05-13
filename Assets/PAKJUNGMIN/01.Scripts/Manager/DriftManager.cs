@@ -36,22 +36,57 @@ public class DriftManager: MonoBehaviour
             {
                 bombTile = tile;
                 driftList.Add(bombTile);
-
+                //벽에 가로막혔다면 계산을 끝내야한다.
                 //폭심지 기준 동
                 for (int q = 0; q < power; q++)
                 {
                     if (FindTile(x + q, y) != null)
-                    { driftList.Add(FindTile(x + q, y)); }
+                    {
+                        if (!FindTile(x + q, y).isWallhere) //벽이 없었을 경우 
+                        {
+                            driftList.Add(FindTile(x + q, y));
+                        }
+                        else if(FindTile(x + q, y).isWallhere)
+                        {
+                            IBreakable breakable = FindTile(x + q, y).wall.GetComponent<IBreakable>();
+
+                            if(breakable != null)
+                            {
+                                driftList.Add(FindTile(x + q, y));
+                                break;
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                    }
 
                 }
                 //폭심지 기준 서
                 for (int q = 0; q < power; q++)
                 {
-
                     if (FindTile(x - q, y) != null)
                     {
-                        driftList.Add(FindTile(x - q, y));
-                    };
+                        if (!FindTile(x - q, y).isWallhere) //벽이 없었을 경우 
+                        {
+                            driftList.Add(FindTile(x - q, y));
+                        }
+                        else if (FindTile(x - q, y).isWallhere)
+                        {
+                            IBreakable breakable = FindTile(x - q, y).wall.GetComponent<IBreakable>();
+
+                            if (breakable != null)
+                            {
+                                driftList.Add(FindTile(x - q, y));
+                                break;
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                    }
 
                 }
                 //폭심지 기준 남
@@ -59,19 +94,51 @@ public class DriftManager: MonoBehaviour
                 {
                     if (FindTile(x, y - q) != null)
                     {
-                        driftList.Add(FindTile(x, y - q));
+                        if (!FindTile(x, y - q).isWallhere) //벽이 없었을 경우 
+                        {
+                            driftList.Add(FindTile(x, y - q));
+                        }
+                        else if (FindTile(x, y - q).isWallhere)
+                        {
+                            IBreakable breakable = FindTile(x, y - q).wall.GetComponent<IBreakable>();
+
+                            if (breakable != null)
+                            {
+                                driftList.Add(FindTile(x, y - q));
+                                break;
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
                     }
 
                 }
                 //폭심지 기준 북
                 for (int q = 0; q < power; q++)
                 {
-
                     if (FindTile(x, y + q) != null)
                     {
-                        driftList.Add(FindTile(x, y + q));
-                    }
+                        if (!FindTile(x, y + q).isWallhere) //벽이 없었을 경우 
+                        {
+                            driftList.Add(FindTile(x, y + q));
+                        }
+                        else if (FindTile(x, y + q).isWallhere)
+                        {
+                            IBreakable breakable = FindTile(x, y + q).wall.GetComponent<IBreakable>();
 
+                            if (breakable != null)
+                            {
+                                driftList.Add(FindTile(x, y + q));
+                                break;
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                    }
                 }
                 break;
             }
@@ -82,7 +149,8 @@ public class DriftManager: MonoBehaviour
        }
        
     }
-    //타일의 노드를 통해 검색해서 타일을 찾아냄.
+    //타일의 노드를 통해 검색해서 물줄기 폭발이 발생할 타일을 찾아냄.
+    //이때 벽일 경우 1칸만 파괴, 파괴할 수 없는 벽은 나오지 않게 해야한다.
     Tile FindTile(int x,int y)
     {
         Tile[] tilemap = TileManager.Tile.tileMap;
@@ -97,6 +165,35 @@ public class DriftManager: MonoBehaviour
 
         return null;
     }
+
+    //void CalculateDrift(int x,int y,int power,List<Tile> driftList)
+    //{
+    //    for (int q = 0; q < power; q++)
+    //    {
+    //        if (FindTile(x + q, y) != null)
+    //        {
+    //            if (!FindTile(x + q, y).isWallhere) //벽이 없었을 경우 
+    //            {
+    //                driftList.Add(FindTile(x + q, y));
+    //            }
+    //            else if (FindTile(x + q, y).isWallhere)
+    //            {
+    //                IBreakable breakable = FindTile(x + q, y).wall.GetComponent<IBreakable>();
+
+    //                if (breakable == null)
+    //                {
+    //                    driftList.Add(FindTile(x + q, y));
+    //                    break;
+    //                }
+    //                else
+    //                {
+    //                    break;
+    //                }
+    //            }
+    //        }
+
+    //    }
+    //}
 
     public void RaiseDrift(List<Tile> tileList)
     {

@@ -7,7 +7,7 @@ using UnityEngine.Scripting.APIUpdating;
 namespace pakjungmin
 {
     /// <summary>
-    /// Class : 플레이어의 모든 
+    /// Class : 플레이어 오브젝트 중재자
     /// </summary>
     public class PlayerMediator : MonoBehaviour
     {
@@ -15,7 +15,7 @@ namespace pakjungmin
         public PlayerInputHandler playerInputHandler; //캐릭터 인풋 시스템 
         public CharacterStats characterStats; // 캐릭터별 스텟 데이터 스크럽터블 오브젝트
         public PlayerStats playerStats; //플레이어의 현재 스텟
-        public PlayerState playerState; // 플레이어의 현재 상태 -> 유찬규 추가 내용
+        public PlayerStateMachine playerState; // 플레이어의 현재 상태 -> 유찬규 추가 내용
         public FloorChecker floorChecker;
         public WaterBomb prefab;
 

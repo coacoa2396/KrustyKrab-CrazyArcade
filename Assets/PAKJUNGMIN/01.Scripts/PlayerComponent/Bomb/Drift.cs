@@ -38,7 +38,7 @@ public class Drift : PooledObject
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //플레이어가 물줄기 범위 안에 있다면, 플레이어 상태를 감옥 상태로 변경
-        if (collision.gameObject.GetComponent<PlayerState>())
+        if (collision.gameObject.GetComponent<PlayerStateMachine>())
         {
             
         }
@@ -46,7 +46,7 @@ public class Drift : PooledObject
     private void OnTriggerStay2D(Collider2D collision)
     {
         //플레이어가 물줄기 범위 안에 있다면, 플레이어 상태를 감옥 상태로 변경
-        if (collision.gameObject.GetComponent<PlayerState>())
+        if (collision.gameObject.GetComponent<PlayerStateMachine>())
         {
             
         }
