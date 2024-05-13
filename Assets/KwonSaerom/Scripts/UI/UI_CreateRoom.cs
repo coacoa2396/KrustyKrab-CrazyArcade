@@ -10,7 +10,7 @@ public class UI_CreateRoom : PopUpUI
 {
     private string[] roomNameList =
     {
-        "즐거운 게임해요","매너겜 필수"
+        "즐거운 게임해요","매너겜 필수","초보자 환영!!!"
     };
 
     enum GameObjects
@@ -48,9 +48,12 @@ public class UI_CreateRoom : PopUpUI
         if(Time.timeScale < 0.1f)
             Time.timeScale = 1;
 
-        RoomEntity roomInfo = new RoomEntity(roomName, LobbyManager.RoomNum, maxPlayer);
+        int roomKey = LobbyManager.RoomNum; // 룸 번호를 key로
+        PhotonNetwork.CreateRoom(roomKey.ToString(), options);
+
+        RoomEntity roomInfo = new RoomEntity(roomName, roomKey, maxPlayer);
         LobbyManager.NowRoom = roomInfo;
-        PhotonNetwork.CreateRoom(roomName, options);
+
         Close();
     }
 

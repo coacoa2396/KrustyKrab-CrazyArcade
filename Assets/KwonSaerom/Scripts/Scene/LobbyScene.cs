@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class LobbyScene : BaseScene
 {
+    [SerializeField] LobbyManager lobbyManager;
     public override IEnumerator LoadingRoutine()
     {
         yield return null;
-        //DB에서 플레이어의 정보를 들고와유
     }
 
 }
