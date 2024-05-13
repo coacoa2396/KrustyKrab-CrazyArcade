@@ -9,7 +9,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     [Header("Component")]
-    [SerializeField] Rigidbody rigid;
+    [SerializeField] Rigidbody2D rigid;
 
     [Header("LayerMask")]
     [SerializeField] LayerMask bombCheck;   // 폭탄 체크
@@ -19,8 +19,12 @@ public class Projectile : MonoBehaviour
     [SerializeField] string shootVec;       // up, right, down, left
     [SerializeField] float speed;           // 투사체의 속도
 
+
+
     private void Start()
     {
+        rigid = GetComponent<Rigidbody2D>();
+
         switch (shootVec)
         {
             case "up":
