@@ -36,8 +36,9 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     /// 방
     public override void OnCreatedRoom()
     {
-        photonView.RPC("SetRoomNum", RpcTarget.All);
-        photonView.RPC("CreateRoomInLobby", RpcTarget.All, NowRoom.Serialize());
+        Debug.Log("OnCreatedRoom");
+        SetRoomNum();
+        CreateRoomInLobby(NowRoom);
     }
 
     public override void OnJoinedRoom()
@@ -65,6 +66,16 @@ public class LobbyManager : MonoBehaviourPunCallbacks
                         createdRooms.Remove(createdRooms[i]); //방을 지운다
                 }
             }
+            //방이 생기면 -> RoomNum++ 하기
+            else
+            {
+                for (int i = 0; i < createdRooms.Count; i++)
+                {
+                    //방이 생긴다.
+                    if (createdRooms[i].RoomNum == int.Parse(roomInfo.Name))
+                        createdRooms.Remove(createdRooms[i]); //방을 지운다
+                }
+            }
         }
         lobbyScene.UpdateRoomList(createdRooms);
     }
@@ -75,19 +86,13 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     }
 
 
-    //RPC는 방에있는 놈들만 ,.. 움직인다!
-    [PunRPC]
     private void SetRoomNum()
     {
-        Debug.LogError("SetRoomNum");
         RoomNum++;
     }
 
-    [PunRPC]
-    private void CreateRoomInLobby(string code)
+    private void CreateRoomInLobby(RoomEntity entity)
     {
-        Debug.LogError("CreateRoomInLobby");
-        RoomEntity entity = new RoomEntity(code); // 코드해독하여 객체에 저장
         createdRooms.Add(entity);
         lobbyScene.UpdateRoomList(createdRooms);
     }

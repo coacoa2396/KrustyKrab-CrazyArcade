@@ -48,10 +48,10 @@ public class UI_CreateRoom : PopUpUI
         if(Time.timeScale < 0.1f)
             Time.timeScale = 1;
 
-        int roomKey = LobbyManager.RoomNum; // 룸 번호를 key로
-        PhotonNetwork.CreateRoom(roomKey.ToString(), options);
+        string roomkey = $"{LobbyManager.RoomNum}/roomName";
+        PhotonNetwork.CreateRoom(roomkey, options);
 
-        RoomEntity roomInfo = new RoomEntity(roomName, roomKey, maxPlayer);
+        RoomEntity roomInfo = new RoomEntity(roomName, LobbyManager.RoomNum, maxPlayer);
         LobbyManager.NowRoom = roomInfo;
 
         Close();
