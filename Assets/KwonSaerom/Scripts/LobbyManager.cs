@@ -55,18 +55,10 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public override void OnLeftRoom()
     {
-        base.OnLeftRoom();
+        Debug.Log("방에서 나감");
     }
 
-    public override void OnPlayerEnteredRoom(Player newPlayer)
-    {
-        base.OnPlayerEnteredRoom(newPlayer);
-    }
-
-    public override void OnPlayerLeftRoom(Player otherPlayer)
-    {
-        base.OnPlayerLeftRoom(otherPlayer);
-    }
+    
 
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
