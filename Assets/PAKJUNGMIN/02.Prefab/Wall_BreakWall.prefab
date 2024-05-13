@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4023228354464149091}
   - component: {fileID: 5226896159195615538}
   m_Layer: 22
-  m_Name: BreakWall
+  m_Name: Wall_BreakWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

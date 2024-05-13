@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 3309333214313369730}
   - component: {fileID: 6392576373513966548}
   m_Layer: 22
-  m_Name: Prefab_Home
+  m_Name: Wall_InbreakableWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -139,7 +139,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8552411513573243604}
-  m_BodyType: 2
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0

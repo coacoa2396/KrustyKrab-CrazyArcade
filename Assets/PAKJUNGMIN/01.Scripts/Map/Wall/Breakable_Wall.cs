@@ -10,7 +10,6 @@ public class Breakable_Wall : BaseWall, IBreakable
        // 랜덤 확률로 아이템 생성 루틴
        
     }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.GetComponent<Drift>())

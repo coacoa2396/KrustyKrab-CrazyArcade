@@ -1,23 +1,29 @@
-using System.Collections;
+ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using pakjungmin;
 /// <summary>
-/// Class : Å¸ÀÏÀÇ Äİ¶óÀÌ´õ. Å¸ÀÏ À§¿¡ ¹«¾ùÀÌ ÀÖ´ÂÁö ÆÇ´Ü.
+/// Class : íƒ€ì¼ ìœ„ì— ë²½ì´ ìˆëŠ”ê°€ ì—¬ë¶€ íŒë‹¨
 /// </summary>
-public class TileDectector : MonoBehaviour
+public class Tile_WallDectector : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //¹üÀ§ »ó¿¡ µé¾î¿Â °ÍÀÌ ÇÃ·¹ÀÌ¾î, ¹°Ç³¼±ÀÎÁö ¿©ºÎ
-    }
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        //¹üÀ§ »ó¿¡ µé¾î¿Â °ÍÀÌ ÇÃ·¹ÀÌ¾î, ¹°Ç³¼±ÀÎÁö ¿©ºÎ
+        if (collision.GetComponent<BaseWall>())
+        {
+            GetComponentInParent<Tile>().OnWall = true;
+            GetComponentInParent<Tile>().wall = collision.gameObject;
+           
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        //¹üÀ§ »ó¿¡ µé¾î¿Â °ÍÀÌ ÇÃ·¹ÀÌ¾î, ¹°Ç³¼±ÀÎÁö ¿©ºÎ
+        if (collision.GetComponent<BaseWall>())
+        {
+            GetComponentInParent<Tile>().OnWall = false;
+            GetComponentInParent<Tile>().wall = null;
+           
+        }
     }
 
 }
