@@ -32,16 +32,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     }
 
 
-    public override void OnJoinedLobby()
-    {
-        Debug.LogError("OnJoinedLobby");
-    }
-
-    public override void OnLeftLobby()
-    {
-        Debug.LogError("OnLeftLobby");
-    }
-
     /// 방
     public override void OnCreatedRoom()
     {
@@ -71,7 +61,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
-        Debug.LogError("방 리스트 Update");
         foreach (RoomInfo roomInfo in roomList)
         {
             //방이 사라짐
