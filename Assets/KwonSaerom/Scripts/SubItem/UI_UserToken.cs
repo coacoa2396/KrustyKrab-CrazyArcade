@@ -42,8 +42,6 @@ public class UI_UserToken : BaseUI
             Debug.Log("onVisit is false");
             return;
         }
-        if (onPlayer == true)
-            return;
         OnPlayer(true);
         GetUI<TMP_Text>(GameObjects.UserNickname.ToString()).text = nickName;
         GetUI<Image>(GameObjects.PlayerImg.ToString()).sprite = character;
