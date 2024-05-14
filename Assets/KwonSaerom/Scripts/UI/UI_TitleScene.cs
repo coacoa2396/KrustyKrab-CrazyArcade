@@ -57,7 +57,9 @@ public class UI_TitleScene : InGameUI
             }
 
             Debug.Log("Login Success");
+            UserEntity userEntity = UserDataManager.GetUserData(id);
             Manager.Scene.LoadScene("LobbyScene");
+            
             SetInteractable(true);
             //씬 전환(로비씬으로)
         });
