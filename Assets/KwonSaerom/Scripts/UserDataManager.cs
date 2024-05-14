@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class UserDataManager
 {
+    public static UserEntity User = null;
+
+
     public static void CreateUserData(UserEntity user)
     {
         string json = JsonUtility.ToJson(user);
@@ -28,7 +31,8 @@ public class UserDataManager
             });
     }
 
-    public static UserEntity GetUserData(string id)
+    //로그인시 나의 데이터를 들고와서 저장함.
+    public static void LocalLoginGetUserData(string id)
     {
         string key = ToKey(id);
         FirebaseManager.DB
@@ -40,19 +44,18 @@ public class UserDataManager
                 if (task.IsCanceled)
                 {
                     Debug.Log("GetUserData : IsCanceled");
-                    return null;
+                    return;
                 }
                 if (task.IsFaulted)
                 {
                     Debug.Log("GetUserData : IsFaulted");
-                    return null;
+                    return;
                 }
                 DataSnapshot snapshot = task.Result;
-                string json = snapshot.GetRawJsonValue();
-                Debug.Log(json);
-                return JsonUtility.FromJson<UserEntity>(json);
+                User = JsonUtility.FromJson<UserEntity>(snapshot.GetRawJsonValue());
+                //User = new UserEntity(snapshot);
+                Debug.Log(User.ToString());
             });
-        return null;
     }
 
     private static string ToKey(string userId)
@@ -62,7 +65,7 @@ public class UserDataManager
 
     private static string ToKey(UserEntity user)
     {
-        return user.key.Replace('@', 'a').Replace('.', 'b');
+        return user.Key.Replace('@', 'a').Replace('.', 'b');
     }
 
 

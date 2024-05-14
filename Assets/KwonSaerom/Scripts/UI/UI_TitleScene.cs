@@ -57,11 +57,13 @@ public class UI_TitleScene : InGameUI
             }
 
             Debug.Log("Login Success");
-            UserEntity userEntity = UserDataManager.GetUserData(id);
+
+            //user 정보를 들고온다.
+            UserDataManager.LocalLoginGetUserData(id);
+            StartCoroutine(CoWait());
+            // 씬 전환(로비씬으로)
             Manager.Scene.LoadScene("LobbyScene");
-            
             SetInteractable(true);
-            //씬 전환(로비씬으로)
         });
     }
 
@@ -83,6 +85,11 @@ public class UI_TitleScene : InGameUI
         GetUI<TMP_InputField>(GameObjects.PasswordInputField.ToString()).interactable = interactable;
         GetUI<TMP_InputField>(GameObjects.IdInputField.ToString()).interactable = interactable;
 
+    }
+
+    IEnumerator CoWait()
+    {
+        yield return new WaitForSeconds(3f);
     }
 
 }

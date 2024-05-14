@@ -23,11 +23,11 @@ public class RoomUserController : MonoBehaviourPunCallbacks
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
-        Debug.Log(newPlayer.NickName+" 들어옴");
+        Debug.LogError(newPlayer.NickName+" 들어옴");
     }
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
-        Debug.Log(otherPlayer.NickName+" 나감");
+        Debug.LogError(otherPlayer.NickName+" 나감");
     }
 }
