@@ -7,13 +7,18 @@ using UnityEngine.UI;
 
 public class UI_Room : PopUpUI
 {
+    RoomUserController roomController;
     enum GameObjects
     {
         SelectMapButton,
         GameStartButton,
         RoomName,
         RoomNumber,
-        ExitButton
+        ExitButton,
+        DaoSelect,
+        CappiSelect,
+        BazziSelect,
+        MaridSelect
     }
 
 
@@ -23,6 +28,11 @@ public class UI_Room : PopUpUI
         if (Time.timeScale == 0)
             Time.timeScale = 1;
         GetUI<Button>(GameObjects.ExitButton.ToString()).onClick.AddListener(ExitRoom);
+        GetUI<Button>(GameObjects.DaoSelect.ToString()).onClick.AddListener(()=> SelectCharacter(Define.Characters.Dao));
+        GetUI<Button>(GameObjects.CappiSelect.ToString()).onClick.AddListener(()=> SelectCharacter(Define.Characters.Cappi));
+        GetUI<Button>(GameObjects.BazziSelect.ToString()).onClick.AddListener(()=> SelectCharacter(Define.Characters.Bazzi));
+        GetUI<Button>(GameObjects.MaridSelect.ToString()).onClick.AddListener(()=> SelectCharacter(Define.Characters.Marid));
+        GetUI<Button>(GameObjects.BazziSelect.ToString()).Select();
     }
 
 
@@ -38,5 +48,10 @@ public class UI_Room : PopUpUI
     {
         Close();
         PhotonNetwork.LeaveRoom();
+    }
+
+    public void SelectCharacter(Define.Characters character)
+    {
+        roomController.CharacterChange(character);
     }
 }

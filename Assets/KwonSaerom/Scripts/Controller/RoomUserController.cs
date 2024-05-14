@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static Define;
 
 public class RoomUserController : MonoBehaviourPunCallbacks
 {
@@ -36,13 +37,11 @@ public class RoomUserController : MonoBehaviourPunCallbacks
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
-        Debug.LogError(newPlayer.NickName+" 들어옴");
         AddPlayer(newPlayer);
     }
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
-        Debug.LogError(otherPlayer.NickName+" 나감");
         RemovePlayer(otherPlayer);
     }
 
@@ -100,5 +99,17 @@ public class RoomUserController : MonoBehaviourPunCallbacks
                 players.RemoveAt(i);
         }
         UpdatePlayer();
+    }
+
+    public void CharacterChange(Characters character)
+    {
+        string key = Manager.Game.Player.key;
+        photonView.RPC("UpdateCharacterChange", RpcTarget.All, key, character);
+    }
+
+
+    [PunRPC]
+    public void UpdateCharacterChange(string key,Characters character)
+    {
     }
 }
