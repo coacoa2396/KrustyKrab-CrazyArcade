@@ -43,8 +43,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         Debug.Log("OnConnectedToMaster");
         createdRooms.Clear();
-        bool suc = PhotonNetwork.JoinLobby();
-        Debug.LogError(suc);
+        NowRoom = null;
+        PhotonNetwork.JoinLobby();
     }
 
     public override void OnJoinedRoom()
@@ -82,7 +82,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
                     if (createdRooms[i].RoomNum == roomInfoNum)
                     {
                         //방 정보 업데이트
-
+                        isNew = false;
                     }
                 }
                 if(isNew)
