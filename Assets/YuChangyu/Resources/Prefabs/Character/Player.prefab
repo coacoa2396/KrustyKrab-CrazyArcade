@@ -176,7 +176,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drownTimer: 0
-  ownTimer: 0.02
   ownState: 0
 --- !u!1 &6329253290272671365
 GameObject:
@@ -441,7 +440,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &1939273329001176629
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -2,19 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bomb_Collider_Manager : MonoBehaviour
+public class Player_Detector_Controller : MonoBehaviour
 {
-    [Header("플레이어 통과 여부 콜라이더")]
-    [SerializeField] BoxCollider2D playercollider;
+     BoxCollider2D playercollider;
 
+    private void Awake()
+    {
+        playercollider = transform.GetChild(0).gameObject.GetComponent<BoxCollider2D>();
+    }
 
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.GetComponent<PlayerCollider>())
         {
-            
+            Debug.Log("콜라이더 On");
+            playercollider.enabled = true;
         }
     }
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.gameObject.GetComponent<PlayerCollider>())
+    //    {
+
+    //    }
+    //}
 
 }
