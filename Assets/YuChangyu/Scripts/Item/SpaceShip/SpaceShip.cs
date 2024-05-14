@@ -26,5 +26,7 @@ public class SpaceShip : Item
 
         // 우주선 프리팹 생성해서 플레이어가 타게 만들어준다
         // 일정 확률로 고장난 우주선이 생성된다
+
+        Destroy(gameObject);
     }
 }

@@ -19,5 +19,7 @@ public class Glove : Item
         Player = Player = collision.gameObject.GetComponent<PlayerMediator>();
 
         // 플레이어 스킬에서 던지기 기능 활성화 시키기
+
+        Destroy(gameObject);
     }
 }

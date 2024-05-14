@@ -27,5 +27,7 @@ public class Devil : Item
         // Random.Range(0,2)를 해서
         // 0이면 반대입력상태
         // 1이면 물풍선 마구 놓는 상태
+
+        Destroy(gameObject);
     }
 }

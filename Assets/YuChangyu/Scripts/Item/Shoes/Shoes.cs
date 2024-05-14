@@ -19,5 +19,7 @@ public class Shoes : Item
         Player = Player = collision.gameObject.GetComponent<PlayerMediator>();
 
         // 플레이어에게 물풍선을 발로 미는 기능 활성화 시키기
+
+        Destroy(gameObject);
     }
 }
