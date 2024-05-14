@@ -6,7 +6,7 @@ using UnityEngine;
 /// 제작 : 찬규 
 /// 아이템 : Owl
 /// </summary>
-public class Owl : Item
+public class Owl : Item, IAcquirable
 {
     // [SerializeField] GameObject owlPrefab;
 

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Turtle : Item
+public class Turtle : Item, IAcquirable
 {
     // [SerializeField] GameObject turtlePrefab;
     // [SerializeField] GameObject pirateTurtlePrefab;

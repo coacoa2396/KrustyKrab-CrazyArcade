@@ -7,7 +7,7 @@ using UnityEngine;
 /// 아이템 : 물병
 /// 플레이어의 파워가 1 상승한다
 /// </summary>
-public class Fluid : Item
+public class Fluid : Item, IAcquirable
 {
     void OnTriggerEnter2D(Collider2D collision)
     {

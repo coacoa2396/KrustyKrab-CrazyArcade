@@ -1,4 +1,5 @@
 using pakjungmin;
+using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,7 @@ using UnityEngine;
 /// 아이템 UltraBomb
 /// 플레이어의 파워가 최대치까지 상승한다
 /// </summary>
-public class UltraBomb : Item
+public class UltraBomb : Item,IAcquirable
 {
     void OnTriggerEnter2D(Collider2D collision)
     {
