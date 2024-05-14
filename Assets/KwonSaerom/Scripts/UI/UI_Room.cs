@@ -35,6 +35,11 @@ public class UI_Room : PopUpUI
         GetUI<Button>(GameObjects.BazziSelect.ToString()).Select();
     }
 
+    private void Start()
+    {
+        roomController = GetComponentInChildren<RoomUserController>();
+    }
+
 
     public void SetRoomInfo(RoomEntity roomInfo)
     {
