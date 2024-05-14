@@ -13,12 +13,12 @@ public class RoomUserController : MonoBehaviourPunCallbacks
     [SerializeField] List<Sprite> sprites;
 
     private UI_UserToken[] userTokens;
-    private List<UserEntity> players;
+    private List<PlayerEntity> players;
 
 
     private void Awake()
     {
-        players = new List<UserEntity>();
+        players = new List<PlayerEntity>();
     }
 
     private void Start()
@@ -60,7 +60,7 @@ public class RoomUserController : MonoBehaviourPunCallbacks
         for (int i = 0; i < maxPlayer; i++)
         {
             if (i < players.Count)
-                userTokens[i].SetPlayer(players[i].nickName, sprites[(int)Define.Characters.Marid]);
+                userTokens[i].SetPlayer(players[i].User.nickName, sprites[(int)players[i].Character]);
             else
                 userTokens[i].OnPlayer(false);
         }
@@ -86,8 +86,8 @@ public class RoomUserController : MonoBehaviourPunCallbacks
                     }
                     DataSnapshot snapshot = task.Result;
                     UserEntity user = JsonUtility.FromJson<UserEntity>(snapshot.GetRawJsonValue());
-                    players.Add(user);
-                    userTokens[players.Count - 1].SetPlayer(user.nickName, sprites[(int)Define.Characters.Marid]);
+                    players.Add(new PlayerEntity(user));
+                    userTokens[players.Count - 1].SetPlayer(user.nickName, sprites[(int)Define.Characters.Bazzi]);
                 });
     }
 
@@ -95,7 +95,7 @@ public class RoomUserController : MonoBehaviourPunCallbacks
     {
         for(int i=0;i<players.Count;i++)
         {
-            if (player.NickName.Equals(players[i].key))
+            if (player.NickName.Equals(players[i].User.key))
                 players.RemoveAt(i);
         }
         UpdatePlayer();
@@ -103,7 +103,7 @@ public class RoomUserController : MonoBehaviourPunCallbacks
 
     public void CharacterChange(Characters character)
     {
-        string key = Manager.Game.Player.key;
+        string key = Manager.Game.Player.User.key;
         photonView.RPC("UpdateCharacterChange", RpcTarget.All, key, character);
     }
 
@@ -111,5 +111,13 @@ public class RoomUserController : MonoBehaviourPunCallbacks
     [PunRPC]
     public void UpdateCharacterChange(string key,Characters character)
     {
+        foreach(PlayerEntity player in players)
+        {
+            if(player.Key.Equals(key))
+            {
+                player.Character = character;
+            }
+        }
+        UpdatePlayer();
     }
 }

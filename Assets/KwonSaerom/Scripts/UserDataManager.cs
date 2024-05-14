@@ -53,7 +53,8 @@ public class UserDataManager
                     return;
                 }
                 DataSnapshot snapshot = task.Result;
-                Manager.Game.Player = JsonUtility.FromJson<UserEntity>(snapshot.GetRawJsonValue());
+                UserEntity user = JsonUtility.FromJson<UserEntity>(snapshot.GetRawJsonValue());
+                Manager.Game.Player = new PlayerEntity(user);
             });
     }
 
