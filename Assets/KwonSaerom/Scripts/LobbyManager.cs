@@ -52,6 +52,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         Debug.Log("OnConnectedToMaster");
+        createdRooms.Clear();
         bool suc = PhotonNetwork.JoinLobby();
         Debug.LogError(suc);
     }
