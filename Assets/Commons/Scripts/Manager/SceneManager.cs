@@ -112,8 +112,8 @@ public class SceneManager : Singleton<SceneManager>
         while (oper < 0.7f)
         {
             loadingBar.value = oper;
-            oper += Random.Range(0.1f, 0.15f);
-            float random = Random.Range(0.3f, 1f);
+            oper += Random.Range(0.1f, 0.5f);
+            float random = Random.Range(0.1f, 0.7f);
             yield return new WaitForSeconds(random);
         }
 

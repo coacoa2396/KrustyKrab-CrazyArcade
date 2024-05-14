@@ -19,7 +19,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     private void Awake()
     {
-        //PhotonNetwork.ConnectUsingSettings();
         createdRooms = new List<RoomEntity>();
     }
 
@@ -50,6 +49,13 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         RoomNum++;
     }
 
+    public override void OnConnectedToMaster()
+    {
+        Debug.Log("OnConnectedToMaster");
+        bool suc = PhotonNetwork.JoinLobby();
+        Debug.LogError(suc);
+    }
+
     public override void OnJoinedRoom()
     {
         UI_Room room = Manager.UI.ShowPopUpUI(roomPopup);
@@ -60,6 +66,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         Debug.Log("방에서 나감");
     }
+
 
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
