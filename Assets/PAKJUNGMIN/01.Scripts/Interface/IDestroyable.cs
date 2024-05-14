@@ -7,5 +7,4 @@ using UnityEngine;
 /// </summary>
 public interface IBreakable
 {
-    void OnBreak();
 }

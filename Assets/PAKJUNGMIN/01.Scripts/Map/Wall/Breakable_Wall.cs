@@ -16,16 +16,12 @@ public class Breakable_Wall : BaseWall, IBreakable
 
     [SerializeField] public GameObject randomItem;
 
-    public void OnBreak()
-    {
-       // 랜덤 확률로 아이템 생성 루틴
-       
-    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.GetComponent<Stream>())
         {
             gameObject.SetActive(false);
+            ItemSpawnController.Inst.SpawnItem(transform.position);
         }
     }
 }

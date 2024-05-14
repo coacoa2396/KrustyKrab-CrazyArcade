@@ -4,11 +4,20 @@ using UnityEngine;
 
 public class ItemDataManager : Singleton<ItemDataManager>
 {
-    [SerializeField] Dictionary<GameObject, string> itemDir = new Dictionary<GameObject, string>();
+    static ItemDataManager instance;
+
+    public static ItemDataManager ItemData { get { return instance; } }
 
 
-    private void Start()
+    public Dictionary<string,GameObject> itemDir = new Dictionary<string, GameObject>();
+
+   
+    private void Awake()
     {
+        if(instance != null) { instance = null; }
+        instance = this;
+
+
         GameObject[] array = Resources.LoadAll<GameObject>("Prefabs/Item");
 
         foreach (GameObject x in array)
@@ -16,7 +25,7 @@ public class ItemDataManager : Singleton<ItemDataManager>
             IAcquirable acquirable = x.GetComponent<IAcquirable>();
             if (acquirable != null)
             {
-                itemDir.Add(x, $"{x.name}");
+                itemDir.Add($"{x.name}",x);
                 Debug.Log($"아이템 딕셔너리 크기 : {itemDir.Count}");
                 Debug.Log($"{x.name}이 아이템 딕셔너리에 추가됨");
             }

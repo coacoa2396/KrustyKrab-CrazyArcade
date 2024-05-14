@@ -5,13 +5,13 @@ using UnityEngine;
 /// <summary>
 /// Class : 물줄기 총괄 매니저.
 /// </summary>
-public class DriftManager: MonoBehaviour
+public class StreamManager: MonoBehaviour
 {
-    static DriftManager instance;
+    static StreamManager instance;
 
-    public static DriftManager Drift { get { return instance; } }
+    public static StreamManager Stream { get { return instance; } }
 
-    [SerializeField] PooledObject driftprefab;
+    [SerializeField] PooledObject stream_Prefab;
 
     private void Start()
     {
@@ -200,7 +200,7 @@ public class DriftManager: MonoBehaviour
     {
         foreach(Tile tile in tileList)
         {
-            Manager.Pool.GetPool(driftprefab,tile.transform.position,Quaternion.identity);
+            Manager.Pool.GetPool(stream_Prefab,tile.transform.position,Quaternion.identity);
         }
     }
 }

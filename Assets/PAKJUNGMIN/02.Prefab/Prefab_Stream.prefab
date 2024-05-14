@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4213437325657358205}
   - component: {fileID: 8523388214241208693}
   - component: {fileID: 4768642557626969585}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: Prefab_Stream
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1821637471
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -1981996386, guid: 37ca3550c13f4a448a568bb70828119d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
