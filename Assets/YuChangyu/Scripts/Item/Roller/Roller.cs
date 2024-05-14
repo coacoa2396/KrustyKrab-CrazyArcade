@@ -28,5 +28,7 @@ public class Roller : Item, IAcquirable
         {
             Player.playerStats.Speed = 10f;
         }
+
+        Destroy(gameObject);
     }
 }
