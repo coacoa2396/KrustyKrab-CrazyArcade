@@ -8,6 +8,8 @@ using UnityEngine.UI;
 
 public class UI_CreateRoom : PopUpUI
 {
+    [SerializeField] UI_Warning warningPopup;
+
     private string[] roomNameList =
     {
         "즐거운 게임해요","매너겜 필수","초보자 환영!!!"
@@ -36,6 +38,13 @@ public class UI_CreateRoom : PopUpUI
     {
         string roomName = GetUI<TMP_InputField>(GameObjects.RoomNameInput.ToString()).text;
         string maxPlayerStr = GetUI<TMP_InputField>(GameObjects.MaxPlayerInput.ToString()).text;
+
+        if(roomName.Contains('/'))
+        {
+            UI_Warning warning = Manager.UI.ShowPopUpUI(warningPopup);
+            warning.SetLog("제목에 '/' 는 들어갈 수 없습니다.");
+            return;
+        }
 
         if (roomName == "")
             roomName = roomNameList[Random.Range(0, roomNameList.Length)];
