@@ -67,6 +67,7 @@ public class PlayerAnimationController : MonoBehaviour
 
         if (player.playerInputHandler.MoveDir.x == 0)           // 좌우 조작이 없는 경우
         {
+            animator.SetFloat("X", 0);
             if (player.playerInputHandler.MoveDir.z == -1)        // 아랫 방향 조작인 경우
             {
                 animator.SetFloat("Y", -1);
@@ -84,6 +85,7 @@ public class PlayerAnimationController : MonoBehaviour
         }
         else if (player.playerInputHandler.MoveDir.z == 0)      // 상하 조작이 없는 경우
         {
+            animator.SetFloat("Y", 0);
             if (player.playerInputHandler.MoveDir.x == -1)        // 좌 방향 조작인 경우
             {
                 animator.SetFloat("X", -1);
