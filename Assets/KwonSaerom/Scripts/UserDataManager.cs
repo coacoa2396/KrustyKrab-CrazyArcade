@@ -5,6 +5,7 @@ using UnityEngine;
 public class UserDataManager
 {
     public static UserEntity User = null;
+    public static UserEntity GetUser = null;
 
 
     public static void CreateUserData(UserEntity user)
@@ -53,17 +54,40 @@ public class UserDataManager
                 }
                 DataSnapshot snapshot = task.Result;
                 User = JsonUtility.FromJson<UserEntity>(snapshot.GetRawJsonValue());
-                //User = new UserEntity(snapshot);
-                Debug.Log(User.ToString());
             });
     }
 
-    private static string ToKey(string userId)
+    public static void GetUserData(string id)
+    {
+        string key = ToKey(id);
+        FirebaseManager.DB
+            .GetReference("User")
+            .Child(key)
+            .GetValueAsync()
+            .ContinueWithOnMainThread(task =>
+            {
+                if (task.IsCanceled)
+                {
+                    Debug.Log("GetUserData : IsCanceled");
+                    return;
+                }
+                if (task.IsFaulted)
+                {
+                    Debug.Log("GetUserData : IsFaulted");
+                    return;
+                }
+                DataSnapshot snapshot = task.Result;
+                GetUser = JsonUtility.FromJson<UserEntity>(snapshot.GetRawJsonValue());
+                Debug.Log(GetUser.ToString());
+            });
+    }
+
+    public static string ToKey(string userId)
     {
         return userId.Replace('@', 'a').Replace('.', 'b');
     }
 
-    private static string ToKey(UserEntity user)
+    public static string ToKey(UserEntity user)
     {
         return user.Key.Replace('@', 'a').Replace('.', 'b');
     }

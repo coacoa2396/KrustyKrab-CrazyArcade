@@ -7,7 +7,8 @@ using UnityEngine;
 public class RoomUserController : MonoBehaviourPunCallbacks
 {
     private UI_UserToken[] userTokens;
-    
+    private List<UserEntity> players;
+
     private void Start()
     {
         userTokens = GetComponentsInChildren<UI_UserToken>();

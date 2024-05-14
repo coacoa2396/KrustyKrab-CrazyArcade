@@ -1,10 +1,15 @@
+using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UI_UserToken : BaseUI
 {
     private bool onVisit = false;
+    private bool onPlayer = false;
+
     enum GameObjects
     {
         BackgroundOK,
@@ -25,17 +30,30 @@ public class UI_UserToken : BaseUI
     {
         this.onVisit = onVisit;
         GetUI(GameObjects.BackgroundOK.ToString()).SetActive(onVisit);
-        GetUI(GameObjects.UserNickname.ToString()).SetActive(onVisit);
-        GetUI(GameObjects.PlayerImg.ToString()).SetActive(onVisit);
+        OnPlayer(false);
     }
 
-    public void SetPlayer()
+
+
+    public void SetPlayer(string nickName,Sprite character)
     {
         if (!onVisit)
         {
             Debug.Log("onVisit is false");
             return;
         }
+        if (onPlayer == true)
+            return;
+        GetUI<TMP_Text>(GameObjects.UserNickname.ToString()).text = nickName;
+        GetUI<Image>(GameObjects.PlayerImg.ToString()).sprite = character;
     }
+
+    public void OnPlayer(bool onPlayer)
+    {
+        this.onPlayer = onPlayer;
+        GetUI(GameObjects.UserNickname.ToString()).SetActive(onPlayer);
+        GetUI(GameObjects.PlayerImg.ToString()).SetActive(onPlayer);
+    }
+
 
 }
