@@ -1,3 +1,4 @@
+using Photon.Realtime;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -20,9 +21,12 @@ public class RoomEntity
         this.maxPlayer = maxPlayer;
     }
 
-    public RoomEntity(string code)
+    public RoomEntity(RoomInfo info)
     {
-        DeSrialize(code);
+        string[] s = info.Name.Split("/");
+        roomName = s[1];
+        roomNum = int.Parse(s[0]);
+        maxPlayer = info.MaxPlayers;
     }
 
     public string Serialize()

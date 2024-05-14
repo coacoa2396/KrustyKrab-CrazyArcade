@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -31,7 +32,7 @@ public class SceneManager : Singleton<SceneManager>
 
     public void LoadScene(string sceneName)
     {
-        StartCoroutine(LoadingRoutine(sceneName));
+        StartCoroutine(PhotonLoadingRoutine(sceneName));
     }
 
     IEnumerator LoadingRoutine(string sceneName)
@@ -92,5 +93,37 @@ public class SceneManager : Singleton<SceneManager>
             fade.color = Color.Lerp(fadeOutColor, fadeInColor, rate);
             yield return null;
         }
+    }
+
+    IEnumerator PhotonLoadingRoutine(string sceneName)
+    {
+        fade.gameObject.SetActive(true);
+        yield return FadeOut();
+
+        Manager.Pool.ClearPool();
+        Manager.UI.ClearPopUpUI();
+        Manager.UI.ClearWindowUI();
+        Manager.UI.CloseInGameUI();
+
+        loadingBar.gameObject.SetActive(true);
+
+        PhotonNetwork.LoadLevel(sceneName);
+        float oper = 0;
+        while (oper < 0.7f)
+        {
+            loadingBar.value = oper;
+            oper += Random.Range(0.1f, 0.15f);
+            float random = Random.Range(0.3f, 1f);
+            yield return new WaitForSeconds(random);
+        }
+
+        Manager.UI.EnsureEventSystem();
+
+        BaseScene curScene = GetCurScene();
+        yield return curScene.LoadingRoutine();
+
+        loadingBar.gameObject.SetActive(false);
+        yield return FadeIn();
+        fade.gameObject.SetActive(false);
     }
 }

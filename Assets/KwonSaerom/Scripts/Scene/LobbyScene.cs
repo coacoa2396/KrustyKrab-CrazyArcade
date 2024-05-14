@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class LobbyScene : BaseScene
 {
-    [SerializeField] LobbyManager lobbyManager;
     public override IEnumerator LoadingRoutine()
     {
-        yield return null;
+        yield return 1f;
+        PhotonNetwork.JoinLobby();
+        yield return 2f;
     }
 
 }

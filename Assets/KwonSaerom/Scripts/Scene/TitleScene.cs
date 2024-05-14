@@ -38,12 +38,5 @@ public class TitleScene : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         Debug.Log("OnConnectedToMaster");
-        PhotonNetwork.JoinLobby();
     }
-
-    public override void OnJoinedLobby()
-    {
-        Debug.Log("OnJoinedLobby");
-    }
-
 }

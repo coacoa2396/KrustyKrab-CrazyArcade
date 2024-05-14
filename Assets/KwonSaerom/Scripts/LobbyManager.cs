@@ -10,7 +10,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 {
     [SerializeField] UI_Room roomPopup;
     [SerializeField] UI_LobbyScene lobbyScene;
-    
+
     private ClientState state;
     private List<RoomEntity> createdRooms;
 
@@ -33,12 +33,21 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     }
 
 
+    public override void OnJoinedLobby()
+    {
+        Debug.LogError("OnJoinedLobby");
+    }
+
+    public override void OnLeftLobby()
+    {
+        Debug.LogError("OnLeftLobby");
+    }
+
     /// 방
     public override void OnCreatedRoom()
     {
         Debug.Log("OnCreatedRoom");
-        SetRoomNum();
-        CreateRoomInLobby(NowRoom);
+        RoomNum++;
     }
 
     public override void OnJoinedRoom()
@@ -62,18 +71,28 @@ public class LobbyManager : MonoBehaviourPunCallbacks
             {
                 for(int i=0;i< createdRooms.Count;i++)
                 {
-                    if (createdRooms[i].RoomNum == int.Parse(roomInfo.Name))
+                    int roomInfoNum = int.Parse(roomInfo.Name.Split('/')[0]);
+                    if (createdRooms[i].RoomNum == roomInfoNum)
                         createdRooms.Remove(createdRooms[i]); //방을 지운다
                 }
             }
-            //방이 생기면 -> RoomNum++ 하기
             else
             {
+                bool isNew = true;
                 for (int i = 0; i < createdRooms.Count; i++)
                 {
-                    //방이 생긴다.
-                    if (createdRooms[i].RoomNum == int.Parse(roomInfo.Name))
-                        createdRooms.Remove(createdRooms[i]); //방을 지운다
+                    int roomInfoNum = int.Parse(roomInfo.Name.Split('/')[0]);
+                    if (createdRooms[i].RoomNum == roomInfoNum)
+                    {
+                        //방 정보 업데이트
+
+                    }
+                }
+                if(isNew)
+                {
+                    RoomNum++;
+                    RoomEntity entity = new RoomEntity(roomInfo);
+                    createdRooms.Add(entity);
                 }
             }
         }
@@ -83,18 +102,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public override void OnMasterClientSwitched(Player newMasterClient)
     {
         base.OnMasterClientSwitched(newMasterClient);
-    }
-
-
-    private void SetRoomNum()
-    {
-        RoomNum++;
-    }
-
-    private void CreateRoomInLobby(RoomEntity entity)
-    {
-        createdRooms.Add(entity);
-        lobbyScene.UpdateRoomList(createdRooms);
     }
 
 }
