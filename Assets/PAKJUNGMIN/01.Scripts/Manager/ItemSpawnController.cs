@@ -9,7 +9,10 @@ public class ItemSpawnController : MonoBehaviour
 {
     static ItemSpawnController instance;
 
-    List<GameObject> randomitemList;
+    [Header("아이템이 나올 확률 변수: 10에 가까울 수록 확률 높아짐")]
+    [SerializeField] int randomNumber;
+
+    [SerializeField] List<GameObject> randomitemList;
 
     public static ItemSpawnController Inst {  get { return instance; } }
 
@@ -28,6 +31,7 @@ public class ItemSpawnController : MonoBehaviour
         foreach (KeyValuePair<string,GameObject> itemData in ItemDataManager.ItemData.itemDir)
         {
             randomitemList.Add(itemData.Value);
+            Debug.Log($"추가된 아이템: {itemData.Key},randomitemList.Count : {randomitemList.Count}");
         }
     }
     /// <summary>
@@ -37,11 +41,17 @@ public class ItemSpawnController : MonoBehaviour
     public void SpawnItem(Vector3 tilePos)
     {
         if(randomitemList == null) { return; }
-        int randomspawn = Random.Range(0, 10);
-        Debug.Log($"r : {randomspawn}");
-        if(randomspawn > 5)
+
+        int randomnumber_ = Random.Range(0, 10);
+
+        Debug.Log($"{randomnumber_}");
+
+        if(randomNumber >= randomnumber_)
         {
-            Instantiate(randomitemList[Random.Range(0, randomitemList.Count)], tilePos, Quaternion.identity);
+            int R = Random.Range(0, randomitemList.Count);
+            Debug.Log($"r : {randomitemList[R].name}");
+            
+            Instantiate(randomitemList[R], tilePos, Quaternion.identity);
         }
     }
 }

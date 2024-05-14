@@ -26,8 +26,6 @@ public class ItemDataManager : Singleton<ItemDataManager>
             if (acquirable != null)
             {
                 itemDir.Add($"{x.name}",x);
-                Debug.Log($"아이템 딕셔너리 크기 : {itemDir.Count}");
-                Debug.Log($"{x.name}이 아이템 딕셔너리에 추가됨");
             }
         }
     }
