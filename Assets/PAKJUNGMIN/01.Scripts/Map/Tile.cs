@@ -1,7 +1,5 @@
 using System;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-
 
 
 namespace pakjungmin
@@ -16,7 +14,10 @@ namespace pakjungmin
         }
         
         public bool isWallhere; //이 타일 위에 벽이 세워짐 여부
+
+
         [SerializeField] public GameObject wall;
+
         [SerializeField] public TileNode tileNode; //타일의 좌표.
         public TileStyle tileStyle; //바닥의 종류
 

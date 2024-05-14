@@ -7,7 +7,7 @@ using UnityEngine;
 /// <summary>
 /// Class : 물줄기
 /// </summary>
-public class Drift : PooledObject
+public class Stream : PooledObject
 {
 
     public float driftTime = 1f;
@@ -35,20 +35,5 @@ public class Drift : PooledObject
     {
         driftTime = 1f;
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        //플레이어가 물줄기 범위 안에 있다면, 플레이어 상태를 감옥 상태로 변경
-        if (collision.gameObject.GetComponent<PlayerStateMachine>())
-        {
-            
-        }
-    }
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        //플레이어가 물줄기 범위 안에 있다면, 플레이어 상태를 감옥 상태로 변경
-        if (collision.gameObject.GetComponent<PlayerStateMachine>())
-        {
-            
-        }
-    }
+
 }

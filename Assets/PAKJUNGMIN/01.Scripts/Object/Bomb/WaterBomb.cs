@@ -59,7 +59,7 @@ namespace pakjungmin
             int posY = GetComponentInChildren<BombLocator>().PosY;
             //int power = playerMediator.playerStats.Power;
             gameObject.SetActive(false);
-            DriftManager.Drift.LocateDrift(posX, posY,3);
+            StreamManager.Stream.LocateDrift(posX, posY,3);
         }
     }
 }
