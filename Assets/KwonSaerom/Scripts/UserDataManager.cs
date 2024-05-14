@@ -53,7 +53,7 @@ public class UserDataManager
                     return;
                 }
                 DataSnapshot snapshot = task.Result;
-                User = JsonUtility.FromJson<UserEntity>(snapshot.GetRawJsonValue());
+                Manager.Game.Player = JsonUtility.FromJson<UserEntity>(snapshot.GetRawJsonValue());
             });
     }
 
@@ -89,9 +89,6 @@ public class UserDataManager
 
     public static string ToKey(UserEntity user)
     {
-        return user.Key.Replace('@', 'a').Replace('.', 'b');
+        return user.key.Replace('@', 'a').Replace('.', 'b');
     }
-
-
-
 }
