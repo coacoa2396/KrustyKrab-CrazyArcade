@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8523388214241208693}
   - component: {fileID: 4768642557626969585}
   m_Layer: 0
-  m_Name: Prefab_Drift
+  m_Name: Prefab_Stream
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

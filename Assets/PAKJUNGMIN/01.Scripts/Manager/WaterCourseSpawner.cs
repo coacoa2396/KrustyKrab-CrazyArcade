@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class WaterCourseSpawner : MonoBehaviour
 {
-    [SerializeField] Drift waterCourse;
+    [SerializeField] Stream waterCourse;
     [SerializeField] int size;
     [SerializeField] int capacity;
     private void Awake()

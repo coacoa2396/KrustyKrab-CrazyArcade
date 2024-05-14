@@ -13,18 +13,11 @@ public class Player_Detector_Controller : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<PlayerCollider>())
+        if (collision.gameObject.GetComponent<Player_Collider>())
         {
-            Debug.Log("콜라이더 On");
+            //Debug.Log("콜라이더 On");
             playercollider.enabled = true;
         }
     }
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (collision.gameObject.GetComponent<PlayerCollider>())
-    //    {
-
-    //    }
-    //}
 
 }

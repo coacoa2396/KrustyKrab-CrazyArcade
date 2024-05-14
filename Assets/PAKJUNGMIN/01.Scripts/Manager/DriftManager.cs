@@ -48,17 +48,18 @@ public class DriftManager: MonoBehaviour
                         }
                         else if(FindTile(x + q, y).isWallhere)
                         {
-                            IBreakable breakable = FindTile(x + q, y).wall.GetComponent<IBreakable>();
+                                IBreakable breakable = FindTile(x + q, y).wall.GetComponent<IBreakable>();
 
-                            if(breakable != null)
-                            {
-                                driftList.Add(FindTile(x + q, y));
-                                break;
-                            }
-                            else
-                            {
-                                break;
-                            }
+                                if (breakable != null)
+                                {
+                                    driftList.Add(FindTile(x + q, y));
+                                    break;
+                                }
+                                else
+                                {
+                                    break;
+                                }
+                            
                         }
                     }
 
