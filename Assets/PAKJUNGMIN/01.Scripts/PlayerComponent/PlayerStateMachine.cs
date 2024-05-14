@@ -21,10 +21,12 @@ public class PlayerStateMachine : MonoBehaviour
         Trapped,
         Die,
     }
-        [SerializeField] float drownTimer;
-        [SerializeField] float ownTimer;
+    [Header("물방울 갇혔을 때, 익사 시간")]
+    [SerializeField] float drownTimer;
+    float ownTimer;
 
     Coroutine coroutinedrown;
+    [Header("플레이어의 상태")]
     public State ownState;
 
     IEnumerator DrownCoroutine()
