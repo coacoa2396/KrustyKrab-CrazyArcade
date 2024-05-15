@@ -9,26 +9,70 @@ using UnityEngine;
 public class PlayerBombPlantController : MonoBehaviour
 {
     PlayerMediator playerMediator;
-
     /*
-     * 먼저 플레이어의 폭탄 개수가 정해지고, 폭탄을 사용하면
-     * 폭탄 소지 개수가 하나씩 줄어들며, 일정시간이 지날때마다
-     * 1개씩 다시 증가하는 로직으로 짜야할 것 같다.
-     * 
+     * 0. 플레이어의 현재 폭탄 개수만큼 현재 설치가능한 폭탄 개수 변수를 정한다. 
+     * 1. 이 변수는 플레이어의 현재 폭탄 개수가 최대치이다.
+     * 2. 폭탄을 설치하면, 이 변수는 1씩 줄어든다.
+     * 3. 일정 시간을 통해, 변수를 1씩 증가시킨다.
+     * 4. 이 변수가 0일 경우 폭탄 설치가 불가능하다.
      */
-    IEnumerator SetBombDelay()
-    {
 
-        return null;
+    int bombChance;
+    [Header("폭탄 설치가능 시간 주기 : float")]
+    [SerializeField] float chanceTimer; //기본값 3초
+    float ownChanceTimer;
+    Coroutine chanceCoroutine;
+
+    public int BombChance { get { return bombChance; }
+        set
+        { 
+            bombChance = value;
+            if(bombChance >= playerMediator.playerStats.OwnBomb)
+            {
+                bombChance = playerMediator.playerStats.OwnBomb;
+            }
+        } 
     }
 
+    IEnumerator GetChance()
+    {
+        ownChanceTimer = chanceTimer;
+        while (true)
+        {
+            ownChanceTimer -= Time.deltaTime;
+            yield return null;
+            if (ownChanceTimer <= 0)
+            {
+                BombChance++;
+                break;
+            }
+        }  
+       
+    }
+    private void Update()
+    {
+        if (bombChance < playerMediator.playerStats.OwnBomb)
+        {
+            chanceCoroutine = StartCoroutine(GetChance());
+        }
+    }
     private void Awake()
     {
-        playerMediator.GetComponentInParent<PlayerMediator>();
+        playerMediator = GetComponentInParent<PlayerMediator>();
     }
-    public void OnPlant(PooledObject waterBomb,Vector3 BombPos)
+    private void Start()
     {
-        //플레이어가 물풍선 프리팹과 물풍선이 놓일 좌표를 알고 있어야함.
-        Manager.Pool.GetPool(waterBomb, BombPos, Quaternion.identity);
+        bombChance = playerMediator.playerStats.OwnBomb;
+    }
+    public void PlantBomb(Bomb waterBomb,Vector3 BombPos)
+    {
+        if(bombChance <= 0) { return; }
+        //플레이어의 파워가 폭탄에 반영이 안되는 버그
+        //PlayerPlantController와 Bomb이 상호작용해야한다.
+
+        PooledObject pooledbomb = Manager.Pool.GetPool(waterBomb, BombPos, Quaternion.identity);
+        Bomb bomb = (Bomb)pooledbomb;
+        bomb.bombPower = playerMediator.playerStats.OwnPower;
+        bombChance--;
     }
 }

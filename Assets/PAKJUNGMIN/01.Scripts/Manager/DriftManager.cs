@@ -20,16 +20,20 @@ public class StreamManager: MonoBehaviour
         
     }
     /// <summary>
-    /// Method : 폭발 범위 계산
+    /// Method : 폭발 범위 계산 
     /// </summary>
     /// <param name="x"></param>
     /// <param name="y"></param>
     /// <param name="power"></param>
     public void LocateDrift(int x,int y,int power)
     {
+
        Tile bombTile;
        List<Tile> driftList = new List<Tile>();
        Tile[] tilemap = TileManager.Tile.tileMap;
+
+        power++; //<---- 나중에 아래 계산식을 고쳐야한다. 당장은 땜질로 막은 셈이다.
+
        foreach (Tile tile in tilemap)
        {
             if (tile.tileNode.posX == x && tile.tileNode.posY == y)

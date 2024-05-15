@@ -18,7 +18,7 @@ namespace pakjungmin
         public PlayerStateMachine playerState; // 플레이어의 현재 상태 -> 유찬규 추가 내용
         public FloorChecker floorChecker;
         public PlayerBombPlantController playerBombPlantController;
-        public WaterBomb prefab;
+        public Bomb bomb;
 
         ActiveBase curActiveItem;   // 플레이어의 현재 액티브아이템 -> 유찬규 추가 내용
         public ActiveBase CurActiveItem { get { return curActiveItem; } set { curActiveItem = value; } }
@@ -27,7 +27,7 @@ namespace pakjungmin
         {
             playerBehavior.Move(moveDir);
         }
-        public void InputPlant() { playerBehavior.Plant(prefab, floorChecker.nowTile.transform.position); }
+        public void InputPlant() { playerBehavior.Plant(bomb, floorChecker.nowTile.transform.position); }
         public void InputUse() { playerBehavior.Use(); }
     }
 }

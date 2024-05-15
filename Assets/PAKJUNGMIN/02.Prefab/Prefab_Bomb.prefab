@@ -102,7 +102,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   autoRelease: 0
   releaseTime: 49.24
-  explodeTime: 82.9
+  defaultTime: 4
+  ownTime: 0
+  bombPower: 0
 --- !u!1 &5137440433486470905
 GameObject:
   m_ObjectHideFlags: 0

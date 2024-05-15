@@ -44,6 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20bc180465d542445a91392a23077535, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bombChance: 0
+  chanceTimer: 4
 --- !u!1 &1940927758981435098
 GameObject:
   m_ObjectHideFlags: 0
@@ -89,9 +91,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ownStats:
-    speedValue: 10
-    bombValue: 1
-    powerValue: 1
+    ownSpeed: 0
+    maxSpeed: 0
+    ownBomb: 0
+    maxBomb: 0
+    ownPower: 0
+    maxPower: 0
 --- !u!1 &3232238079912426991
 GameObject:
   m_ObjectHideFlags: 0
@@ -395,8 +400,8 @@ GameObject:
   - component: {fileID: 1381087456254112997}
   - component: {fileID: 5005035888478634708}
   - component: {fileID: 5358685496621376991}
-  - component: {fileID: 1719110573422938993}
   - component: {fileID: 1939273329001176629}
+  - component: {fileID: 1719110573422938993}
   - component: {fileID: 3539488021904666665}
   m_Layer: 0
   m_Name: Player
@@ -496,6 +501,7 @@ MonoBehaviour:
   playerStats: {fileID: 2389473212426074714}
   playerState: {fileID: 8995620442060461275}
   floorChecker: {fileID: 6063436538036261759}
+  playerBombPlantController: {fileID: 6009658747611039626}
   prefab: {fileID: 1149463310955052931, guid: 64fcebdb24d58dc4aa8d319cb1f5a5b9, type: 3}
 --- !u!114 &1381087456254112997
 MonoBehaviour:
@@ -536,6 +542,18 @@ MonoBehaviour:
   player: {fileID: 0}
   animator: {fileID: 0}
   checkIdle: {x: 0, y: 0}
+--- !u!114 &1939273329001176629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8637128536137346432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12990664130f21748bb57a22e075125a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!50 &1719110573422938993
 Rigidbody2D:
   serializedVersion: 4
@@ -563,18 +581,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &1939273329001176629
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8637128536137346432}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12990664130f21748bb57a22e075125a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &3539488021904666665
 BoxCollider2D:
   m_ObjectHideFlags: 0

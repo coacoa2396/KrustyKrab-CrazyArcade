@@ -48,7 +48,7 @@ public class Projectile : MonoBehaviour
     {
         if (bombCheck.Contain(collision.gameObject.layer))
         {
-            WaterBomb bomb = collision.gameObject.GetComponent<WaterBomb>();
+            Bomb bomb = collision.gameObject.GetComponent<Bomb>();
             bomb.Explode();
             Destroy(gameObject);
             return;
