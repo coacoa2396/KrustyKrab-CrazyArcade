@@ -15,10 +15,44 @@ namespace pakjungmin
 
         [SerializeField] OwnStats ownStats;
 
-        public float Speed { get { return ownStats.speedValue; } set { ownStats.speedValue = value; } }
-        public int Bomb { get { return ownStats.bombValue; } set { ownStats.bombValue = value; } }
-        public int Power { get { return ownStats.powerValue; } set { ownStats.powerValue = value; } }
 
+        //Property : 현재 플레이어의 스탯 값이 플레이어의 최대 스탯 값을 넘어가면 최대 스탯으로 강제 조정한다.
+        public float OwnSpeed
+        { 
+            get { return ownStats.ownSpeed; } 
+            set 
+            { 
+                ownStats.ownSpeed = value;
+                if(ownStats.ownSpeed > ownStats.maxSpeed)
+                {
+                    ownStats.ownSpeed = ownStats.maxSpeed;
+                }
+            }
+        }
+        public int OwnBomb
+        { 
+            get { return ownStats.ownBomb; }
+            set 
+            {
+                ownStats.ownBomb = value;
+                if (ownStats.ownBomb > ownStats.maxBomb)
+                {
+                    ownStats.ownBomb = ownStats.maxBomb;
+                }
+            } 
+        }
+        public int OwnPower
+        { 
+            get { return ownStats.ownPower; }
+            set 
+            {
+                ownStats.ownPower = value;
+                if (ownStats.ownPower > ownStats.maxPower)
+                {
+                    ownStats.ownPower = ownStats.maxPower;
+                }
+            } 
+        }
 
         void Awake()
         {
@@ -26,12 +60,16 @@ namespace pakjungmin
             InitSet();
         }
 
-        //Method : 미리 설정한 캐릭터 스탯 스크럽터블 오브젝트의 값을 현재 캐릭터 스탯(구조체)에 복사한다.
+        //Method : 미리 설정한 캐릭터 스탯 스크럽터블 오브젝트의 값을 현재 캐릭터 스탯에 복사한다.
         void InitSet()
         {
-            ownStats.powerValue = playerMediator.characterStats.Power;
-            ownStats.speedValue = playerMediator.characterStats.Speed;
-            ownStats.bombValue = playerMediator.characterStats.Bomb;
+            ownStats.ownPower = playerMediator.characterStats.initPower;
+            ownStats.ownSpeed = playerMediator.characterStats.initSpeed;
+            ownStats.ownBomb = playerMediator.characterStats.initBomb;
+
+            ownStats.maxPower = playerMediator.characterStats.maxPower;
+            ownStats.maxSpeed = playerMediator.characterStats.maxSpeed;
+            ownStats.maxBomb = playerMediator.characterStats.maxBomb;
         }
     }
 
@@ -39,8 +77,13 @@ namespace pakjungmin
     [Serializable]
     public struct OwnStats
     {
-        public float speedValue;
-        public int bombValue;
-        public int powerValue;
+        public float ownSpeed;
+        public float maxSpeed;
+
+        public int ownBomb;
+        public int maxBomb;
+
+        public int ownPower;
+        public int maxPower;
     }
 }
