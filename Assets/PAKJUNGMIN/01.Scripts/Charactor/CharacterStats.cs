@@ -9,23 +9,22 @@ namespace pakjungmin
     public class CharacterStats : ScriptableObject
     {
 
-        [Header("캐릭터의 이동속도")]
-        [SerializeField] float speed;
-        [Header("캐릭터의 초기 물줄기 파워")]
-        [SerializeField] int powerValue;
-        [Header("캐릭터의 최대 물줄기 파워")]
-        [SerializeField] int maxPowerValue;
-        [Header("캐릭터의 초기 물풍선 개수")]
-        [SerializeField] int bombValue;
-        [Header("캐릭터의 최대 물풍선 개수")]
-        [SerializeField] int maxBombValue;
+        [Header("초기 이동속도")]
+        public float initSpeed;
+        [Header("최대 이동속도")]
+        public float maxSpeed;
 
 
-        public float Speed { get { return speed; } }
-        public int Power { get { return powerValue; } }
-        public int Bomb { get { return bombValue; } }
-        public int Maxbomb { get { return maxBombValue; } }
-        public int MaxPower { get { return maxPowerValue; } }
+        [Header("초기 물줄기 파워")]
+        public int initPower;
+        [Header("최대 물줄기 파워")]
+        public int maxPower;
+
+
+        [Header("초기 물풍선 개수")]
+        public int initBomb;
+        [Header("최대 물풍선 개수")]
+        public int maxBomb;
     }
 
 

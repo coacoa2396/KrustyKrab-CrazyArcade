@@ -11,7 +11,6 @@ public class RoundManager : MonoBehaviour
     static RoundManager instance;
     public static RoundManager Round { get { return instance; } }
 
-
     List<GameObject> playerList;
 
     private void Awake()
@@ -23,8 +22,11 @@ public class RoundManager : MonoBehaviour
     }
     private void Start()
     {
+        // ***** 지금 당장은 로비씬과 게임씬의 정보 교환이 어렵기에, Tag 사용 *******************
         playerList = GameObject.FindGameObjectsWithTag("Player").ToList<GameObject>();
     }
+
+
     /// <summary>
     /// Method :  라운드 시작 시 플레이어들을 정해진 시작 위치에 지정한다.
     /// </summary>

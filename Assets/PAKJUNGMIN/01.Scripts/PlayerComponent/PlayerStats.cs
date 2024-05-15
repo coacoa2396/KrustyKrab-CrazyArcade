@@ -6,6 +6,9 @@ using UnityEngine;
 
 namespace pakjungmin
 {
+    /// <summary>
+    /// Class : 플레이어 캐릭터의 현재 스탯
+    /// </summary>
     public class PlayerStats : MonoBehaviour
     {
         PlayerMediator playerMediator;
@@ -23,6 +26,7 @@ namespace pakjungmin
             InitSet();
         }
 
+        //Method : 미리 설정한 캐릭터 스탯 스크럽터블 오브젝트의 값을 현재 캐릭터 스탯(구조체)에 복사한다.
         void InitSet()
         {
             ownStats.powerValue = playerMediator.characterStats.Power;

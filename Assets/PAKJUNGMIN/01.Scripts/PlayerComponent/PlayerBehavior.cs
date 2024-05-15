@@ -13,7 +13,6 @@ namespace pakjungmin
         private void Awake()
         {
             playerMediator = GetComponent<PlayerMediator>();
-            
         }
         private void FixedUpdate()
         {       
@@ -31,18 +30,16 @@ namespace pakjungmin
 
             }
         }
-
         /// <summary>
-        /// 플레이어의 물풍선 설치 행동
+        /// Method : 플레이어 폭탄 설치 컨트롤러에 폭탄 설치를 명령하는 메소드.
         /// </summary>
+        /// <param name="waterBomb"></param>
+        /// <param name="BombPos"></param>
         public void Plant(PooledObject waterBomb,Vector3 BombPos)
         {
-            //플레이어가 물풍선 프리팹과 물풍선이 놓일 좌표를 알고 있어야함.
-            Manager.Pool.GetPool(waterBomb,BombPos, Quaternion.identity);
+            playerMediator.playerBombPlantController.OnPlant(waterBomb, BombPos);
         }
-        /// <summary>
-        /// 액티브 아이템 사용
-        /// </summary>
+
         public void Use()
         {
             playerMediator.CurActiveItem?.Use();     // 플레이어가 현재 들고있는 액티브아이템을 사용 -> 유찬규 추가

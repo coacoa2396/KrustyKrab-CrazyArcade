@@ -10,5 +10,5 @@ public class PlayerSkill : MonoBehaviour
 {
     bool isRide;
     bool isGrove;
-    bool isBoots;
+    bool isBoots; 
 }
