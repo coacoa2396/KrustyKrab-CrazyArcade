@@ -11035,6 +11035,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8995620442060461275, guid: e0d0f3830d1f3e641a43692869c0568d, type: 3}
+      propertyPath: drownTimer
+      value: 5.17
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
