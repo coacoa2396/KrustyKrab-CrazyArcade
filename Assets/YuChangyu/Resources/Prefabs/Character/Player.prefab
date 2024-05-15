@@ -44,8 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20bc180465d542445a91392a23077535, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bombChance: 0
-  chanceTimer: 4
+  chanceTimer: 7
 --- !u!1 &1940927758981435098
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,7 +254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ea81ea61e695214989dff1451fbf75e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drownTimer: 0
+  drownTimer: 5.17
   ownState: 0
 --- !u!1 &6329253290272671365
 GameObject:
@@ -403,7 +402,7 @@ GameObject:
   - component: {fileID: 1939273329001176629}
   - component: {fileID: 1719110573422938993}
   - component: {fileID: 3539488021904666665}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -502,7 +501,7 @@ MonoBehaviour:
   playerState: {fileID: 8995620442060461275}
   floorChecker: {fileID: 6063436538036261759}
   playerBombPlantController: {fileID: 6009658747611039626}
-  prefab: {fileID: 1149463310955052931, guid: 64fcebdb24d58dc4aa8d319cb1f5a5b9, type: 3}
+  bomb: {fileID: 1149463310955052931, guid: 64fcebdb24d58dc4aa8d319cb1f5a5b9, type: 3}
 --- !u!114 &1381087456254112997
 MonoBehaviour:
   m_ObjectHideFlags: 0
