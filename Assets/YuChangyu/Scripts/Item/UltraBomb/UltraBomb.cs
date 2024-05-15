@@ -23,10 +23,10 @@ public class UltraBomb : Item,IAcquirable
 
         Player = collision.gameObject.GetComponent<PlayerMediator>();
 
-        if (Player.characterStats.MaxPower == Player.playerStats.Power)     // 스크립터블오브젝트에서 설정된 물풍선 최대갯수랑 현재 플레이어의 물풍선 갯수가 같으면
-            return;                                                         // 리턴
+        //if (Player.characterStats.MaxPower == Player.playerStats.Power)     // 스크립터블오브젝트에서 설정된 물풍선 최대갯수랑 현재 플레이어의 물풍선 갯수가 같으면
+        //    return;                                                         // 리턴
 
-        Player.playerStats.Power = Player.characterStats.MaxPower;
+        Player.playerStats.OwnPower = Player.characterStats.maxPower; //박정민 추가 : 필드명 재조정으로 인한 필드명 변경
 
         Destroy(gameObject);
     }

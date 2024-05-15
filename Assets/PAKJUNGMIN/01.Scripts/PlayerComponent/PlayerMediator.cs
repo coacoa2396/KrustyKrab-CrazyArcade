@@ -17,6 +17,7 @@ namespace pakjungmin
         public PlayerStats playerStats; //플레이어의 현재 스텟
         public PlayerStateMachine playerState; // 플레이어의 현재 상태 -> 유찬규 추가 내용
         public FloorChecker floorChecker;
+        public PlayerBombPlantController playerBombPlantController;
         public WaterBomb prefab;
 
         ActiveBase curActiveItem;   // 플레이어의 현재 액티브아이템 -> 유찬규 추가 내용

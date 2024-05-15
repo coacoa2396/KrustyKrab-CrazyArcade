@@ -314,11 +314,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7791315436038328845, guid: 3cacc1b8015cdaf42825aafba6a2564f, type: 3}
   m_PrefabInstance: {fileID: 314543662}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &16861904 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7536406032021052491, guid: e0d0f3830d1f3e641a43692869c0568d, type: 3}
-  m_PrefabInstance: {fileID: 987720920}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &18180260 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7791315436038328845, guid: 3cacc1b8015cdaf42825aafba6a2564f, type: 3}
@@ -4065,7 +4060,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &338973231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4078,6 +4073,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5feb964e609b9514f8993113f6ea384d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  randomNumber: 10
+  randomitemList: []
 --- !u!4 &338973232
 Transform:
   m_ObjectHideFlags: 0
@@ -4782,37 +4779,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d29ec2480d156364388c53e38248d003, type: 3}
---- !u!1 &398377237
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 398377238}
-  m_Layer: 0
-  m_Name: Player_Steam_Checker
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &398377238
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 398377237}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 16861904}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &398872943 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7791315436038328845, guid: 3cacc1b8015cdaf42825aafba6a2564f, type: 3}
@@ -11059,10 +11025,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 7536406032021052491, guid: e0d0f3830d1f3e641a43692869c0568d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 398377238}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0d0f3830d1f3e641a43692869c0568d, type: 3}
 --- !u!4 &990335980 stripped

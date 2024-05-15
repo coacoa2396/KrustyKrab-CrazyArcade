@@ -9,12 +9,6 @@ public class PlayerStateMachine : MonoBehaviour
 {
     PlayerMediator playerMediator;
 
-
-    ////임시로 쓸 필드와 스프라이트 --> PlayerAnimator에서 재구현.
-    //[SerializeField] Sprite trapped;
-    //[SerializeField] Sprite died;
-
-
     public enum State
     {
         Alive,
@@ -74,15 +68,11 @@ public class PlayerStateMachine : MonoBehaviour
 
         Debug.Log("플레이어의 상태: 갇힘");
 
-        //playerMediator.GetComponentInParent<SpriteRenderer>().sprite = trapped; //--> PlayerAnimator에서 재구현.
-
-        playerMediator.playerStats.Speed = 0.2f;
+        playerMediator.playerStats.OwnSpeed = 0.2f;
         coroutinedrown = StartCoroutine(DrownCoroutine());       
     }
     void Die()
     {
-
-        //playerMediator.GetComponentInParent<SpriteRenderer>().sprite = died; //--> PlayerAnimator에서 재구현.
 
         Debug.Log("플레이어 사망");
         GetComponentInParent<PlayerMediator>().gameObject.SetActive(false);

@@ -22,13 +22,11 @@ public class Roller : Item, IAcquirable
 
         Player = collision.gameObject.GetComponent<PlayerMediator>();
 
-        Player.playerStats.Speed++;
-
-        if (Player.playerStats.Speed > 10f)                         // 플레이어 스피드 상한선
-        {
-            Player.playerStats.Speed = 10f;
-        }
-
-        Destroy(gameObject);
+        Player.playerStats.OwnSpeed++;
+        
+        //if (Player.playerStats.Speed > 10f)                         // 플레이어 스피드 상한선
+        //{
+        //    Player.playerStats.Speed = 10f;
+        //}
     }
 }
