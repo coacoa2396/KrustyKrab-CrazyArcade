@@ -10979,14 +10979,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4342343708932555487, guid: e0d0f3830d1f3e641a43692869c0568d, type: 3}
-      propertyPath: bomb
-      value: 
-      objectReference: {fileID: 1149463310955052931, guid: 64fcebdb24d58dc4aa8d319cb1f5a5b9, type: 3}
-    - target: {fileID: 6009658747611039626, guid: e0d0f3830d1f3e641a43692869c0568d, type: 3}
-      propertyPath: chanceTimer
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 7536406032021052491, guid: e0d0f3830d1f3e641a43692869c0568d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.14
@@ -11030,14 +11022,6 @@ PrefabInstance:
     - target: {fileID: 8637128536137346432, guid: e0d0f3830d1f3e641a43692869c0568d, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 8637128536137346432, guid: e0d0f3830d1f3e641a43692869c0568d, type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8995620442060461275, guid: e0d0f3830d1f3e641a43692869c0568d, type: 3}
-      propertyPath: drownTimer
-      value: 5.17
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
