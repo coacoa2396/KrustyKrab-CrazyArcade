@@ -68,7 +68,7 @@ public class PlayerStateMachine : MonoBehaviour
 
         Debug.Log("플레이어의 상태: 갇힘");
 
-        playerMediator.playerStats.Speed = 0.2f;
+        playerMediator.playerStats.OwnSpeed = 0.2f;
         coroutinedrown = StartCoroutine(DrownCoroutine());       
     }
     void Die()

@@ -16,7 +16,7 @@ namespace pakjungmin
         }
         private void FixedUpdate()
         {       
-            gameObject.transform.Translate(moveDir * playerMediator.playerStats.Speed * Time.deltaTime, Space.World);
+            gameObject.transform.Translate(moveDir * playerMediator.playerStats.OwnSpeed * Time.deltaTime, Space.World);
         }
 
         public void Move(Vector3 moveDir)
