@@ -24,5 +24,7 @@ public class Owl : Item, IAcquirable
         Player = Player = collision.gameObject.GetComponent<PlayerMediator>();
 
         // 부엉이 프리팹을 생성해서 플레이어가 타도록 만들어준다
+
+        Destroy(gameObject);
     }
 }

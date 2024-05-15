@@ -27,5 +27,7 @@ public class Shield : Item, IAcquirable
         // Player에서 CurActiveItem의 형식은 activeBase로 하면 됨
         Player.CurActiveItem = activeShield;                            // player의 CurActiveItem 바인딩
         activeShield.Init(Player);                                      // activeShield의 Player 바인딩
+
+        Destroy(gameObject);
     }
 }
