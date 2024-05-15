@@ -10979,6 +10979,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6009658747611039626, guid: e0d0f3830d1f3e641a43692869c0568d, type: 3}
+      propertyPath: chanceTimer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7536406032021052491, guid: e0d0f3830d1f3e641a43692869c0568d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.14
