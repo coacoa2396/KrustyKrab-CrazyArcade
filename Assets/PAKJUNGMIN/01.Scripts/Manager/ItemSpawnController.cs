@@ -25,13 +25,10 @@ public class ItemSpawnController : MonoBehaviour
     {
         randomitemList = new List<GameObject>();
 
-        Debug.Log($"1. {ItemDataManager.ItemData}");
-        Debug.Log($"2. {ItemDataManager.ItemData.itemDir}");
-
         foreach (KeyValuePair<string,GameObject> itemData in ItemDataManager.ItemData.itemDir)
         {
             randomitemList.Add(itemData.Value);
-            Debug.Log($"추가된 아이템: {itemData.Key},randomitemList.Count : {randomitemList.Count}");
+           
         }
     }
     /// <summary>
@@ -43,14 +40,9 @@ public class ItemSpawnController : MonoBehaviour
         if(randomitemList == null) { return; }
 
         int randomnumber_ = Random.Range(0, 10);
-
-        Debug.Log($"{randomnumber_}");
-
         if(randomNumber >= randomnumber_)
         {
             int R = Random.Range(0, randomitemList.Count);
-            Debug.Log($"r : {randomitemList[R].name}");
-            
             Instantiate(randomitemList[R], tilePos, Quaternion.identity);
         }
     }

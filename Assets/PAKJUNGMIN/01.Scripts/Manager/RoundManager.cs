@@ -34,7 +34,6 @@ public class RoundManager : MonoBehaviour
     }
 
 
-
     // ****** 로비 씬에서 플레이어의 정보 및 플레이어의 수를 알아올 수 있다면 아래 코드 전부 삭제 *************
 
 
