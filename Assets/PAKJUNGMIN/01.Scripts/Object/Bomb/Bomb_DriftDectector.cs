@@ -17,7 +17,7 @@ public class Bomb_DriftDectector : MonoBehaviour
         {
             try //나중에 정확한 로직을 써서 바꿀것. 예외 처리 지양. 0513 메모
             {
-                GetComponentInParent<WaterBomb>().Explode();
+                GetComponentInParent<Bomb>().Explode();
             }
             catch
             {

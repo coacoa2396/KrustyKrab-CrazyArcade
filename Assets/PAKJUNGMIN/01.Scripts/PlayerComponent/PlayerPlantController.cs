@@ -17,12 +17,10 @@ public class PlayerBombPlantController : MonoBehaviour
      * 4. 이 변수가 0일 경우 폭탄 설치가 불가능하다.
      */
 
-
-    [SerializeField] int bombChance;
+    int bombChance;
     [Header("폭탄 설치가능 시간 주기 : float")]
     [SerializeField] float chanceTimer; //기본값 3초
     float ownChanceTimer;
-
     Coroutine chanceCoroutine;
 
     public int BombChance { get { return bombChance; }
@@ -66,11 +64,15 @@ public class PlayerBombPlantController : MonoBehaviour
     {
         bombChance = playerMediator.playerStats.OwnBomb;
     }
-    public void OnPlant(PooledObject waterBomb,Vector3 BombPos)
+    public void PlantBomb(Bomb waterBomb,Vector3 BombPos)
     {
         if(bombChance <= 0) { return; }
+        //플레이어의 파워가 폭탄에 반영이 안되는 버그
+        //PlayerPlantController와 Bomb이 상호작용해야한다.
 
-        Manager.Pool.GetPool(waterBomb, BombPos, Quaternion.identity);
+        PooledObject pooledbomb = Manager.Pool.GetPool(waterBomb, BombPos, Quaternion.identity);
+        Bomb bomb = (Bomb)pooledbomb;
+        bomb.bombPower = playerMediator.playerStats.OwnPower;
         bombChance--;
     }
 }

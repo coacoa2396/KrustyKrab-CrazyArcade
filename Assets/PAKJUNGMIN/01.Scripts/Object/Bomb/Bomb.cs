@@ -1,65 +1,66 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 
 namespace pakjungmin
 {
-    public class WaterBomb : PooledObject
+    public class Bomb : PooledObject
     {
-        //물풍선의 소유권. 즉 설치한 플레이어의 정보 필드 구현 필요.
-        //PlayerMediator playerMediator;
-
-        //물풍선 폭파되기까지 시간.
-        [SerializeField] float explodeTime;
-
+        [Header("물풍선 폭파 시간")]
+        [SerializeField] float defaultTime;
+        [SerializeField] float ownTime;
 
         //물줄기의 파워
-        int waterCoursePower;
+        public int bombPower;
 
         Coroutine explodeCoroutine;
 
-        /// <summary>
-        /// Coroutine : 물풍선의 폭파 대기 시간 구현.
-        /// </summary>
-        /// <returns></returns>
+        // Coroutine : 물풍선의 폭파 대기 시간 구현.
         IEnumerator WaitExplode()
         {
             //폭파 시간 루틴 구현 필요
             while (true)
             {
-                explodeTime -= Time.deltaTime;
+                ownTime -= Time.deltaTime;
                 yield return null;
-                if (explodeTime <= 0) {
-                    break;
-                   
+                if (ownTime <= 0) {
+                    break;                
                 }
             }
-            if (explodeTime <= 0) { Explode();}
+            if (ownTime <= 0)
+            {
+                Explode();
+            }
         }
-
+        private void Start()
+        {
+            
+        }
         private void OnEnable()
         {
             if(!GetComponentInChildren<BombLocator>()) { 
                 return;
             }
-            //int power = playerMediator.playerStats.Power;
             explodeCoroutine = StartCoroutine(WaitExplode());
         }
-
-
         private void OnDisable()
         {
-            explodeTime = 4;
+            ownTime = defaultTime;
+
         }
 
         public void Explode()
         {
+
             int posX = GetComponentInChildren<BombLocator>().PosX;
             int posY = GetComponentInChildren<BombLocator>().PosY;
-            //int power = playerMediator.playerStats.Power;
             gameObject.SetActive(false);
-            StreamManager.Stream.LocateDrift(posX, posY,3);
+            StreamManager.Stream.LocateDrift(posX, posY,bombPower);
+            //코루틴 시간 차를 이용해, 순서가 꼬여 
+            //플레이어의 물폭탄 파워와, 물폭탄의 파워가 안되던 버그가 해결되었지만
+            //나중에 고쳐야한다.
         }
     }
 }

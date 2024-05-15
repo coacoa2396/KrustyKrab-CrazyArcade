@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class WaterBombSpawner : MonoBehaviour
 {
-    [SerializeField] WaterBomb waterBomb;
+    [SerializeField] Bomb waterBomb;
     [SerializeField] int size;
     [SerializeField] int capacity;
     private void Awake()
