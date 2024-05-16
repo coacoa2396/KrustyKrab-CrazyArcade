@@ -17,7 +17,7 @@ public class PlayerStateMachine : MonoBehaviour
     }
     [Header("물방울 갇혔을 때, 익사 시간")]
     [SerializeField] float drownTimer;
-    public float DrownTimer {get { return drownTimer;}} // 익사시간 프로퍼티 추가, 애니메이션에서 사용하기 위함 -> 유찬규 추가
+    public float DrownTimer { get { return drownTimer; } } // 익사시간 프로퍼티 추가, 애니메이션에서 사용하기 위함 -> 유찬규 추가
     [SerializeField] float ownTimer;
 
     Coroutine coroutinedrown;
@@ -30,7 +30,7 @@ public class PlayerStateMachine : MonoBehaviour
         {
             ownTimer -= Time.deltaTime;
             yield return null;
-            if(ownTimer <= 0)
+            if (ownTimer <= 0)
             {
                 ChangeState(State.Die);
                 break;
@@ -60,18 +60,26 @@ public class PlayerStateMachine : MonoBehaviour
         }
     }
     void Alive()
-    { 
-        if(drownTimer != ownTimer) { ownTimer = drownTimer; }
+    {
+        if (coroutinedrown != null)
+        {
+            StopCoroutine(coroutinedrown); // 부활시 익사 코루틴을 멈춰줘야함 -> 유찬규
+        }
+
+        if (drownTimer != ownTimer)
+        {
+            ownTimer = drownTimer;
+        }
 
     }
-    void Trapped() 
+    void Trapped()
     {
 
         Debug.Log("플레이어의 상태: 갇힘");
 
         playerMediator.playerStats.OwnSpeed = 0.2f;
-        
-        coroutinedrown = StartCoroutine(DrownCoroutine());       
+
+        coroutinedrown = StartCoroutine(DrownCoroutine());
     }
     void Die()
     {

@@ -12,6 +12,8 @@ public class PlayerAnimationController : MonoBehaviour
     [SerializeField] PlayerMediator player;
     [SerializeField] Animator animator;
 
+    public Animator Animator {get {return animator;}}
+
     [Header("variable")]
     [SerializeField] Vector2 checkIdle;
 
@@ -41,6 +43,7 @@ public class PlayerAnimationController : MonoBehaviour
         if (player.playerState.ownState == PlayerStateMachine.State.Alive)
         {
             checkTrap = false;
+            time = 0;
             if (player.playerInputHandler.MoveDir == Vector3.zero)  // 조작이 없으면 아이들 상태로 바꾸고 리턴
             {
                 animator.SetFloat("X", 0);
@@ -139,7 +142,6 @@ public class PlayerAnimationController : MonoBehaviour
         }
         else if (player.playerState.ownState == PlayerStateMachine.State.Die)
         {
-            checkTrap = false;
             animator.SetTrigger("Die");
         }
     }

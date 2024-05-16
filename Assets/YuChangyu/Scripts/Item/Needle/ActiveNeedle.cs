@@ -22,8 +22,9 @@ public class ActiveNeedle : ActiveBase
             return;                                                         // 리턴
 
         // 방울에서 나오는 애니메이션 재생
+        Player.playerAnimCon.Animator.SetTrigger("Revive");
 
-        // Player.playerState.ChangeState(Alive);       // 플레이어의 상태를 Alive로 바꿔준다
+        Player.playerState.ChangeState(State.Alive);       // 플레이어의 상태를 Alive로 바꿔준다
         useNumber--;
 
         // 사용횟수를 다 쓰면 CurActiveItem에서 제거하기
