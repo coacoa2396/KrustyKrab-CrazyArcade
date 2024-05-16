@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Breakable_Wall : BaseWall, IBreakable
+public class BreakableWall : BaseWall, IBreakable
 {
     /*
      * Object : 벽 속의 아이템만 구현.
@@ -21,7 +21,7 @@ public class Breakable_Wall : BaseWall, IBreakable
         if (collision.GetComponent<Stream>())
         {
             gameObject.SetActive(false);
-            ItemSpawnController.Inst.SpawnItem(transform.position);
+            ItemSpawner.Inst.SpawnItem(transform.position);
         }
     }
 }

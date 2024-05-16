@@ -7,7 +7,7 @@ using UnityEngine;
 /// <summary>
 /// Class : 플레이어에게 부여된 능력 혹은 상태이상
 /// </summary>
-public class PlayerSkill : MonoBehaviour
+public class PlayerAbility : MonoBehaviour
 {
     PlayerMediator playerMediator;
     //능력 여부 

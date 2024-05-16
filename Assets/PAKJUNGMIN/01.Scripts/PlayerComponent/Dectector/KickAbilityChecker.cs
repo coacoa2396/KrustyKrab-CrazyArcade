@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Skill_CanKick_Collider_Checker : MonoBehaviour
+public class KickAbilityChecker : MonoBehaviour
 {
     PlayerMediator playerMediator;
 
@@ -13,14 +13,14 @@ public class Skill_CanKick_Collider_Checker : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<Player_Detector_Controller>())
+        if (collision.gameObject.GetComponent<BombPlayerDectector>())
         {
             playerMediator.playerSkill.canKick = true;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<Player_Detector_Controller>())
+        if (collision.gameObject.GetComponent<BombPlayerDectector>())
         {
             playerMediator.playerSkill.canKick = false;
         }

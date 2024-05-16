@@ -34,7 +34,7 @@ public class RedDevil : Item, IAcquirable
         //}
 
         // 물풍선을 미는 기능 추가하기 (신발과 같은 기능)
-        Player.playerInventory.Inven.Add(ItemDataManager.ItemData.itemDir["RedDevil"]);
+        Player.playerInventory.Inven.Add(ItemManager.ItemData.itemDir["RedDevil"]);
         gameObject.SetActive(false);
     }
 }

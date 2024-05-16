@@ -27,7 +27,7 @@ public class Bubble : Item, IAcquirable
         Player = collision.gameObject.GetComponent<PlayerMediator>();
 
         Player.playerStats.OwnBomb++; // 박정민 추가 : Bomb에서 OwnBomb으로 명칭 변경.
-        Player.playerInventory.Inven.Add(ItemDataManager.ItemData.itemDir["Bubble"]);
+        Player.playerInventory.Inven.Add(ItemManager.ItemData.itemDir["Bubble"]);
         gameObject.SetActive(false);
     }
 }

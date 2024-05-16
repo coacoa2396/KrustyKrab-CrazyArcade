@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 /// <summary>
-/// Class : 물줄기 총괄 매니저.
+/// Class : 물줄기 생성 좌표 계산 후 풀링하는 클래스
 /// </summary>
 public class StreamManager : MonoBehaviour
 {
@@ -11,7 +11,7 @@ public class StreamManager : MonoBehaviour
 
     public static StreamManager Stream { get { return instance; } }
 
-    [SerializeField] PooledObject stream_Prefab;
+    [SerializeField] PooledObject waterStream_Prefab;
 
     private void Start()
     {
@@ -60,7 +60,7 @@ public class StreamManager : MonoBehaviour
                                 driftList.Add(FindTile(x + q, y));
                                 break;
                             }
-                            else if(breakable == null && FindTile(x + q, y).tileonObject.GetComponent<BombLocator>())
+                            else if(breakable == null && FindTile(x + q, y).tileonObject.GetComponent<BombTileCalculator>())
                             {
                                 
                                 driftList.Add(FindTile(x + q, y));
@@ -95,7 +95,7 @@ public class StreamManager : MonoBehaviour
                                 driftList.Add(FindTile(x - q, y));
                                 break;
                             }
-                            else if (breakable == null && FindTile(x - q, y).tileonObject.GetComponent<BombLocator>())
+                            else if (breakable == null && FindTile(x - q, y).tileonObject.GetComponent<BombTileCalculator>())
                             {
 
                                 driftList.Add(FindTile(x - q, y));
@@ -130,7 +130,7 @@ public class StreamManager : MonoBehaviour
                                 driftList.Add(FindTile(x, y - q));
                                 break;
                             }
-                            else if (breakable == null && FindTile(x, y - q).tileonObject.GetComponent<BombLocator>())
+                            else if (breakable == null && FindTile(x, y - q).tileonObject.GetComponent<BombTileCalculator>())
                             {
                                 
                                 driftList.Add(FindTile(x, y - q));
@@ -165,7 +165,7 @@ public class StreamManager : MonoBehaviour
                                 driftList.Add(FindTile(x, y + q));
                                 break;
                             }
-                            else if (breakable == null && FindTile(x, y + q).tileonObject.GetComponent<BombLocator>())
+                            else if (breakable == null && FindTile(x, y + q).tileonObject.GetComponent<BombTileCalculator>())
                             {
                                 
                                 driftList.Add(FindTile(x, y + q));
@@ -209,7 +209,7 @@ public class StreamManager : MonoBehaviour
     {
         foreach (Tile tile in tileList)
         {
-            Manager.Pool.GetPool(stream_Prefab, tile.transform.position, Quaternion.identity);
+            Manager.Pool.GetPool(waterStream_Prefab, tile.transform.position, Quaternion.identity);
         }
     }
 }

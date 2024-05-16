@@ -5,16 +5,16 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class ItemSpawnController : MonoBehaviour
+public class ItemSpawner : MonoBehaviour
 {
-    static ItemSpawnController instance;
+    static ItemSpawner instance;
 
     [Header("아이템이 나올 확률 변수: 10에 가까울 수록 확률 높아짐")]
     [SerializeField] int randomNumber;
 
     [SerializeField] List<GameObject> randomitemList;
 
-    public static ItemSpawnController Inst {  get { return instance; } }
+    public static ItemSpawner Inst {  get { return instance; } }
 
     private void Awake()
     {
@@ -25,7 +25,7 @@ public class ItemSpawnController : MonoBehaviour
     {
         randomitemList = new List<GameObject>();
 
-        foreach (KeyValuePair<string,GameObject> itemData in ItemDataManager.ItemData.itemDir)
+        foreach (KeyValuePair<string,GameObject> itemData in ItemManager.ItemData.itemDir)
         {
             randomitemList.Add(itemData.Value);
            

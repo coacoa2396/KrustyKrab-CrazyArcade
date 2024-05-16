@@ -32,7 +32,7 @@ public class Devil : Item, IAcquirable
         // 0이면 반대입력상태
         // 1이면 물풍선 마구 놓는 상태
 
-        Player.playerInventory.Inven.Add(ItemDataManager.ItemData.itemDir["Devil"]);
+        Player.playerInventory.Inven.Add(ItemManager.ItemData.itemDir["Devil"]);
         gameObject.SetActive(false);
     }
 }

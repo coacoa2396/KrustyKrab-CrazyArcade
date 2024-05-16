@@ -33,7 +33,7 @@ public class Dart : Item, IAcquirable
         activeDart.Init(Player);                                      // activeDart의 Player 바인딩
 
         // 박정민 추가 
-        Player.playerInventory.Inven.Add(ItemDataManager.ItemData.itemDir["Dart"]);
+        Player.playerInventory.Inven.Add(ItemManager.ItemData.itemDir["Dart"]);
         gameObject.SetActive(false);
     }
 }

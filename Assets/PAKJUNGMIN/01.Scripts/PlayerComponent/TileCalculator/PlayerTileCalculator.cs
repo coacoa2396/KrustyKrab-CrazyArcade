@@ -11,7 +11,7 @@ namespace pakjungmin
     /// <summary>
     /// Class : 플레이어가 현재 서 있는 발판과 폭탄 설치 위치 등을 계산한다.
     /// </summary>
-    public class FloorChecker : MonoBehaviour
+    public class PlayerTileCalculator : MonoBehaviour
     {
         public Tile nowTile; //현재 플레이어가 서 있는 타일 == 인접타일 리스트 중 가장 가까운 거리의 타일.
         [SerializeField] List<Tile> touchedTiles = new List<Tile>(); // 인접 타일 리스트
