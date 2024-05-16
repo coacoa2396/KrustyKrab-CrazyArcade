@@ -28,8 +28,8 @@ public class PlayerStateMachine : MonoBehaviour
     {
         while (true)
         {
-            ownTimer -= 1f;
-            yield return new WaitForSeconds(1f);
+            ownTimer -= Time.deltaTime;
+            yield return null;
             if(ownTimer <= 0)
             {
                 ChangeState(State.Die);
@@ -70,6 +70,7 @@ public class PlayerStateMachine : MonoBehaviour
         Debug.Log("플레이어의 상태: 갇힘");
 
         playerMediator.playerStats.OwnSpeed = 0.2f;
+        
         coroutinedrown = StartCoroutine(DrownCoroutine());       
     }
     void Die()

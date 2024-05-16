@@ -255,6 +255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drownTimer: 5.17
+  ownTimer: 0
   ownState: 0
 --- !u!1 &6329253290272671365
 GameObject:
@@ -499,6 +500,7 @@ MonoBehaviour:
   characterStats: {fileID: 11400000, guid: 449459e613b40b049b82d3d6a108f181, type: 2}
   playerStats: {fileID: 2389473212426074714}
   playerState: {fileID: 8995620442060461275}
+  playerAnimCon: {fileID: 0}
   floorChecker: {fileID: 6063436538036261759}
   playerBombPlantController: {fileID: 6009658747611039626}
   bomb: {fileID: 1149463310955052931, guid: 64fcebdb24d58dc4aa8d319cb1f5a5b9, type: 3}
@@ -623,5 +625,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8377116, y: 0.7946555}
+  m_Size: {x: 0.7, y: 0.7}
   m_EdgeRadius: 0
