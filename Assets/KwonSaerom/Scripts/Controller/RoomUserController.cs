@@ -120,7 +120,12 @@ public class RoomUserController : MonoBehaviourPunCallbacks
 
     public bool IsStart()
     {
-        return false;
+        foreach(PlayerEntity player in players)
+        {
+            if (player.IsReady == false)
+                return false;
+        }
+        return true;
     }
 
     public void CharacterChange(Characters character)
