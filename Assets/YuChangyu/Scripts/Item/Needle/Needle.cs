@@ -33,7 +33,8 @@ public class Needle : Item, IAcquirable
         Player.CurActiveItem = activeNeedle;                            // player의 CurActiveItem 바인딩
         activeNeedle.Init(Player);                                      // activeNeedle의 Player 바인딩
 
-        Destroy(gameObject);
+        Player.playerInventory.Inven.Add(ItemDataManager.ItemData.itemDir["Needle"]);
+        gameObject.SetActive(false);
     }
 
     

@@ -26,7 +26,7 @@ public class RedDevil : Item, IAcquirable
 
         Player = Player = collision.gameObject.GetComponent<PlayerMediator>();
 
-        Player.playerStats.OwnSpeed = 10f; 
+        Player.playerStats.OwnSpeed = 10f;
 
         //if (Player.playerStats.OwnSpeed > 10f)                         // 플레이어 스피드 상한선
         //{
@@ -34,6 +34,7 @@ public class RedDevil : Item, IAcquirable
         //}
 
         // 물풍선을 미는 기능 추가하기 (신발과 같은 기능)
-        Destroy(gameObject);
+        Player.playerInventory.Inven.Add(ItemDataManager.ItemData.itemDir["RedDevil"]);
+        gameObject.SetActive(false);
     }
 }

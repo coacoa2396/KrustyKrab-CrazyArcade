@@ -69,7 +69,6 @@ public class BombPlantController : MonoBehaviour
         if(bombChance <= 0) { return; }
         if (playerMediator.floorChecker.nowTile.OnObject) 
         {
-            Debug.Log("타일에 이미 무언가가 있음");
             return; 
         }
         //플레이어의 파워가 폭탄에 반영이 안되는 버그

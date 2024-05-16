@@ -32,6 +32,7 @@ public class Shield : Item, IAcquirable
         Player.CurActiveItem = activeShield;                            // player의 CurActiveItem 바인딩
         activeShield.Init(Player);                                      // activeShield의 Player 바인딩
 
-        Destroy(gameObject);
+        Player.playerInventory.Inven.Add(ItemDataManager.ItemData.itemDir["Shield"]);
+        gameObject.SetActive(false);
     }
 }

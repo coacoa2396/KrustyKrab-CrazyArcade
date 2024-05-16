@@ -32,6 +32,7 @@ public class Fluid : Item, IAcquirable
 
         Player.playerStats.OwnPower++; //박정민 추가 : Power ->OwnPower로 변경
 
-        Destroy(gameObject);
+        Player.playerInventory.Inven.Add(ItemDataManager.ItemData.itemDir["Fluid"]);
+        gameObject.SetActive(false);
     }
 }
