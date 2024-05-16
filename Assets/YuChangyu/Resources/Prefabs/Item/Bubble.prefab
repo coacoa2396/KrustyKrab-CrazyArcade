@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.9, y: 0.9, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8557857090980899766}
@@ -55,6 +55,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2147483648
   player: {fileID: 0}
+  waterProof: 0
 --- !u!95 &3526062171772882494
 Animator:
   serializedVersion: 5

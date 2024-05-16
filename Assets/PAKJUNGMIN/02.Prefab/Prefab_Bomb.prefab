@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1229910882982573769}
   - component: {fileID: 1149463310955052931}
+  - component: {fileID: 5357720223305666191}
   m_Layer: 0
   m_Name: Prefab_Bomb
   m_TagString: Untagged
@@ -134,7 +135,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1.025}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &5137440433486470905
