@@ -39,7 +39,15 @@ namespace pakjungmin
         {
             playerBehavior.Move(moveDir);
         }
-        public void InputPlant() { playerBehavior.Plant(bomb, floorChecker.nowTile.transform.position); }
+        public void InputPlant() {
+             //플레이어의 스킬에가 아니라 플레이어의 행동에서 하는 걸로 변경해야한다.
+            if (floorChecker.nowTile.OnObject)
+            {
+                return;
+            }
+
+            playerBehavior.Plant(bomb, floorChecker.nowTile.transform.position); 
+        }
         public void InputUse() { playerBehavior.Use(); }
     }
 }
