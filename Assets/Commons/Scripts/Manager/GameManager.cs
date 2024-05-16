@@ -11,4 +11,15 @@ public class GameManager : Singleton<GameManager>
     {
         Debug.Log(GetInstanceID());
     }
+
+    private void OnApplicationQuit()
+    {
+        Debug.Log("애플리케이션 종료됨");
+        Logout();
+    }
+
+    public void Logout()
+    {
+        UserDataManager.LocalUserSetConnect(false);
+    }
 }

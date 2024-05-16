@@ -53,7 +53,7 @@ MonoBehaviour:
     m_Bits: 8
   waterCourseCheck:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2147483648
   player: {fileID: 0}
 --- !u!95 &3526062171772882494
 Animator:
@@ -209,7 +209,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -771810489
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b95b49e9d0512e44a9b0ea643583db23, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
