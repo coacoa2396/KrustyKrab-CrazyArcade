@@ -173,7 +173,7 @@ public class StreamManager : MonoBehaviour
                             }
                             else
                             {
-                               ;
+                              
                                 break;
                             }
 
