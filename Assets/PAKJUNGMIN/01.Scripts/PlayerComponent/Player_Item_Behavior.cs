@@ -14,6 +14,8 @@ public class PlayerSkill : MonoBehaviour
     public bool onRide;
     public bool canThrow;
     public bool canKick;
+    //던지기와 킥이 둘다 가능할때 던지기만 하도록 조정해야한다.
+    public bool firstIsThrow;
 
     private void Start()
     {

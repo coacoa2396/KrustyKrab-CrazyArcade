@@ -409,7 +409,7 @@ GameObject:
   - component: {fileID: 6535811086372436344}
   - component: {fileID: 3667543648913738851}
   m_Layer: 0
-  m_Name: TileChecker
+  m_Name: BombLocator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -464,7 +464,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.09307864
+  m_Radius: 0.4
 --- !u!114 &6535811086372436344
 MonoBehaviour:
   m_ObjectHideFlags: 0

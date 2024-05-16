@@ -71,8 +71,6 @@ public class BombPlantController : MonoBehaviour
         {
             return; 
         }
-        //플레이어의 파워가 폭탄에 반영이 안되는 버그
-        //PlayerPlantController와 Bomb이 상호작용해야한다.
 
         PooledObject pooledbomb = Manager.Pool.GetPool(waterBomb, BombPos, Quaternion.identity);
         Bomb bomb = (Bomb)pooledbomb;
