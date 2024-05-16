@@ -6,7 +6,7 @@ using UnityEngine;
 /// <summary>
 /// Class : PlayerBehavoir에서 폭탄 설치 명령을 받아, 실제 폭탄 설치를 담당하는 클래스.
 /// </summary>
-public class PlayerBombPlantController : MonoBehaviour
+public class BombPlantController : MonoBehaviour
 {
     PlayerMediator playerMediator;
     /*
@@ -17,7 +17,7 @@ public class PlayerBombPlantController : MonoBehaviour
      * 4. 이 변수가 0일 경우 폭탄 설치가 불가능하다.
      */
 
-    int bombChance;
+    [SerializeField] int bombChance;
     [Header("폭탄 설치가능 시간 주기 : float")]
     [SerializeField] float chanceTimer; //기본값 3초
     float ownChanceTimer;
@@ -67,6 +67,11 @@ public class PlayerBombPlantController : MonoBehaviour
     public void PlantBomb(Bomb waterBomb,Vector3 BombPos)
     {
         if(bombChance <= 0) { return; }
+        if (playerMediator.floorChecker.nowTile.OnObject) 
+        {
+            Debug.Log("타일에 이미 무언가가 있음");
+            return; 
+        }
         //플레이어의 파워가 폭탄에 반영이 안되는 버그
         //PlayerPlantController와 Bomb이 상호작용해야한다.
 

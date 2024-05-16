@@ -46,13 +46,13 @@ public class StreamManager: MonoBehaviour
                 {
                     if (FindTile(x + q, y) != null)
                     {
-                        if (!FindTile(x + q, y).isWallhere) //벽이 없었을 경우 
+                        if (!FindTile(x + q, y).onObject) //벽이 없었을 경우 
                         {
                             driftList.Add(FindTile(x + q, y));
                         }
-                        else if(FindTile(x + q, y).isWallhere)
+                        else if(FindTile(x + q, y).onObject)
                         {
-                                IBreakable breakable = FindTile(x + q, y).wall.GetComponent<IBreakable>();
+                                IBreakable breakable = FindTile(x + q, y).tileonObject.GetComponent<IBreakable>();
 
                                 if (breakable != null)
                                 {
@@ -73,13 +73,13 @@ public class StreamManager: MonoBehaviour
                 {
                     if (FindTile(x - q, y) != null)
                     {
-                        if (!FindTile(x - q, y).isWallhere) //벽이 없었을 경우 
+                        if (!FindTile(x - q, y).onObject) //벽이 없었을 경우 
                         {
                             driftList.Add(FindTile(x - q, y));
                         }
-                        else if (FindTile(x - q, y).isWallhere)
+                        else if (FindTile(x - q, y).onObject)
                         {
-                            IBreakable breakable = FindTile(x - q, y).wall.GetComponent<IBreakable>();
+                            IBreakable breakable = FindTile(x - q, y).tileonObject.GetComponent<IBreakable>();
 
                             if (breakable != null)
                             {
@@ -99,13 +99,13 @@ public class StreamManager: MonoBehaviour
                 {
                     if (FindTile(x, y - q) != null)
                     {
-                        if (!FindTile(x, y - q).isWallhere) //벽이 없었을 경우 
+                        if (!FindTile(x, y - q).onObject) //벽이 없었을 경우 
                         {
                             driftList.Add(FindTile(x, y - q));
                         }
-                        else if (FindTile(x, y - q).isWallhere)
+                        else if (FindTile(x, y - q).onObject)
                         {
-                            IBreakable breakable = FindTile(x, y - q).wall.GetComponent<IBreakable>();
+                            IBreakable breakable = FindTile(x, y - q).tileonObject.GetComponent<IBreakable>();
 
                             if (breakable != null)
                             {
@@ -125,13 +125,13 @@ public class StreamManager: MonoBehaviour
                 {
                     if (FindTile(x, y + q) != null)
                     {
-                        if (!FindTile(x, y + q).isWallhere) //벽이 없었을 경우 
+                        if (!FindTile(x, y + q).onObject) //벽이 없었을 경우 
                         {
                             driftList.Add(FindTile(x, y + q));
                         }
-                        else if (FindTile(x, y + q).isWallhere)
+                        else if (FindTile(x, y + q).onObject)
                         {
-                            IBreakable breakable = FindTile(x, y + q).wall.GetComponent<IBreakable>();
+                            IBreakable breakable = FindTile(x, y + q).tileonObject.GetComponent<IBreakable>();
 
                             if (breakable != null)
                             {
