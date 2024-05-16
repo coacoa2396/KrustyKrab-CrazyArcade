@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 4828405969473716277}
   - component: {fileID: 6063436538036261759}
   - component: {fileID: 3136434963159182678}
-  - component: {fileID: 7169051437687312017}
+  - component: {fileID: 7738899368093776699}
   m_Layer: 0
   m_Name: FloorChecker
   m_TagString: Untagged
@@ -181,7 +181,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.19049609
---- !u!50 &7169051437687312017
+--- !u!50 &7738899368093776699
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -207,7 +207,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 0
 --- !u!1 &4692255720187432441
 GameObject:
   m_ObjectHideFlags: 0

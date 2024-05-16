@@ -15,7 +15,16 @@ public class Item : MonoBehaviour
     [Header("Component")]
     [SerializeField] PlayerMediator player;            // 스탯을 올려줄 플레이어
 
+    [Header("Spec")]
+    [SerializeField] int waterProof;        // 방수기능
+
     public PlayerMediator Player { get { return player; } set { player = value; } }
+    public int WaterProof { get { return waterProof; } set { waterProof = value; } }
+
+    private void Start()
+    {
+        waterProof = 1;
+    }
 
     public bool CheckPlayer(GameObject gameObject)
     {

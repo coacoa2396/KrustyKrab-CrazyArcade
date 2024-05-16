@@ -14,8 +14,12 @@ public class Shield : Item, IAcquirable
     {
         if (CheckWater(collision.gameObject))
         {
-            Destroy(gameObject);
-            return;
+            if (WaterProof <= 0)
+            {
+                Destroy(gameObject);
+                return;
+            }
+            WaterProof--;
         }
 
         if (!CheckPlayer(collision.gameObject))
