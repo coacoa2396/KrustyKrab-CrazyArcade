@@ -9,16 +9,18 @@ public class RoomEntity
     private string roomName;
     private int roomNum;
     private int maxPlayer;
-
+    private int nowPlayer;
     public string RoomName { get { return roomName; } }
     public int RoomNum { get { return roomNum; } }
     public int MaxPlayer { get { return maxPlayer; } }
+    public int NowPlayer { get { return nowPlayer; } set { nowPlayer = value; } }
 
     public RoomEntity(string roomName,int roomNum,int maxPlayer)
     {
         this.roomName = roomName;
         this.roomNum = roomNum;
         this.maxPlayer = maxPlayer;
+        nowPlayer = 1;
     }
 
     public RoomEntity(RoomInfo info)
@@ -27,6 +29,7 @@ public class RoomEntity
         roomName = s[1];
         roomNum = int.Parse(s[0]);
         maxPlayer = info.MaxPlayers;
+        nowPlayer = info.PlayerCount;
     }
 
     public string Serialize()

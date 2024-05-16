@@ -13,9 +13,11 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     private ClientState state;
     private List<RoomEntity> createdRooms;
+    private UI_Room nowRoomPopup;
 
     public static int RoomNum = 0; //동기화 필요
     public static RoomEntity NowRoom; //현재 플레이어가 들어온 방의 정보 
+
 
     private void Awake()
     {
@@ -43,19 +45,24 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         Debug.Log("OnConnectedToMaster");
         createdRooms.Clear();
-        bool suc = PhotonNetwork.JoinLobby();
-        Debug.LogError(suc);
+        NowRoom = null;
+        PhotonNetwork.JoinLobby();
     }
 
     public override void OnJoinedRoom()
     {
         UI_Room room = Manager.UI.ShowPopUpUI(roomPopup);
-        room.SetRoomInfo(NowRoom);
+        nowRoomPopup = room;
+        RoomEntity entity = new RoomEntity(PhotonNetwork.CurrentRoom);
+        NowRoom = entity;
+        room.SetRoomInfo(entity);
     }
 
     public override void OnLeftRoom()
     {
         Debug.Log("방에서 나감");
+        nowRoomPopup.Close();
+        nowRoomPopup = null;
     }
 
 
@@ -81,8 +88,9 @@ public class LobbyManager : MonoBehaviourPunCallbacks
                     int roomInfoNum = int.Parse(roomInfo.Name.Split('/')[0]);
                     if (createdRooms[i].RoomNum == roomInfoNum)
                     {
-                        //방 정보 업데이트
-
+                        Debug.Log("플레이어 숫자가 바뀌었다");
+                        createdRooms[i].NowPlayer = roomInfo.PlayerCount;
+                        isNew = false;
                     }
                 }
                 if(isNew)

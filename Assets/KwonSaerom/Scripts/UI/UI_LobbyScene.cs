@@ -1,4 +1,5 @@
 using Firebase.Extensions;
+using Photon.Pun;
 using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
@@ -26,7 +27,7 @@ public class UI_LobbyScene : InGameUI
         base.Awake();
         GetUI<Button>(GameObjects.CreateRoomButton.ToString()).onClick.AddListener(CreateRoom);
         GetUI<Button>(GameObjects.QuitButton.ToString()).onClick.AddListener(Quit);
-        GetUI<Button>(GameObjects.QuickPlayButton.ToString()).onClick.AddListener(QuickPlayer);
+        GetUI<Button>(GameObjects.QuickPlayButton.ToString()).onClick.AddListener(QuickJoinRoom);
         roomTokens = GetComponentsInChildren<UI_RoomToken>();
         foreach(UI_RoomToken token in roomTokens)
         {
@@ -40,9 +41,11 @@ public class UI_LobbyScene : InGameUI
         Manager.UI.ShowPopUpUI(createRoomPopup);
     }
     
-    public void QuickPlayer()
+    public void QuickJoinRoom()
     {
-
+        PhotonNetwork.JoinRandomRoom();
+        //Debug.Log(PhotonNetwork.CurrentRoom.Name);
+        //LobbyManager.NowRoom = new RoomEntity(PhotonNetwork.CurrentRoom);
     }
 
     public void Quit()

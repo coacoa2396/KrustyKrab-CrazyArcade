@@ -10,6 +10,6 @@ public class LobbyScene : BaseScene
         yield return 1f;
         PhotonNetwork.JoinLobby();
         yield return 2f;
+        PhotonNetwork.NickName = Manager.Game.Player.User.key;
     }
-
 }

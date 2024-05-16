@@ -58,6 +58,9 @@ public class UI_SignUp : PopUpUI
                 return;
             }
 
+            // 레벨별 경험치는 나중에 List 로 구현.
+            UserEntity userData = new UserEntity(id, nickName,1);
+            UserDataManager.CreateUserData(userData);
             warning.SetLog("회원가입 완료");
             Manager.UI.ClearPopUpUI();
             SetInteractable(true);
