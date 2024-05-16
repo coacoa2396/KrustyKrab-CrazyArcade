@@ -38,7 +38,7 @@ public class RoomUserController : MonoBehaviourPunCallbacks
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
-        AddPlayer(newPlayer);
+        AddPlayer(newPlayer,players.Count);
     }
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
@@ -49,10 +49,15 @@ public class RoomUserController : MonoBehaviourPunCallbacks
     private void InitRoom()
     {
         players.Clear();
-        foreach (Player player in PhotonNetwork.PlayerList)
+
+        for (int i=0;i< PhotonNetwork.PlayerList.Length;i++)
         {
-            AddPlayer(player);
+            AddPlayer(PhotonNetwork.PlayerList[i],i);
         }
+        //foreach (Player player in PhotonNetwork.PlayerList)
+        //{
+        //    AddPlayer(player);
+        //}
     }
 
     private void UpdatePlayer()
@@ -67,7 +72,7 @@ public class RoomUserController : MonoBehaviourPunCallbacks
         }
     }
 
-    private void AddPlayer(Player player)
+    private void AddPlayer(Player player,int index)
     {
         FirebaseManager.DB
                 .GetReference("User")
@@ -88,7 +93,7 @@ public class RoomUserController : MonoBehaviourPunCallbacks
                     DataSnapshot snapshot = task.Result;
                     UserEntity user = JsonUtility.FromJson<UserEntity>(snapshot.GetRawJsonValue());
                     players.Add(new PlayerEntity(user));
-                    userTokens[players.Count - 1].SetPlayer(user.nickName, sprites[(int)Define.Characters.Bazzi]);
+                    userTokens[index].SetPlayer(user.nickName, sprites[(int)Define.Characters.Bazzi]);
                 });
     }
 
