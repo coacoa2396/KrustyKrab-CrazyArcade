@@ -17,7 +17,8 @@ public class PlayerStateMachine : MonoBehaviour
     }
     [Header("물방울 갇혔을 때, 익사 시간")]
     [SerializeField] float drownTimer;
-    float ownTimer;
+    public float DrownTimer {get { return drownTimer;}} // 익사시간 프로퍼티 추가, 애니메이션에서 사용하기 위함 -> 유찬규 추가
+    [SerializeField] float ownTimer;
 
     Coroutine coroutinedrown;
     [Header("플레이어의 상태")]
@@ -75,7 +76,17 @@ public class PlayerStateMachine : MonoBehaviour
     {
 
         Debug.Log("플레이어 사망");
+        StartCoroutine(DieTime());      // Die애니메이션 재생을 위한 시간벌이 코루틴 -> 유찬규 추가
+    }
+    /// <summary>
+    /// 제작 : 찬규 
+    /// 죽자마자 바로 게임오브젝트의 active를 false로 해버리면 die 애니메이션이 재생이 될 시간이 없음
+    /// 고로 0.5초를 확보해서 죽는 애니메이션을 재생할 시간을 마련해야함
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator DieTime()
+    {
+        yield return new WaitForSeconds(1f);
         GetComponentInParent<PlayerMediator>().gameObject.SetActive(false);
     }
-    
 }

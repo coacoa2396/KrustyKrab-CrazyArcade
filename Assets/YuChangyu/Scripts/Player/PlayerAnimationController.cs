@@ -18,6 +18,7 @@ public class PlayerAnimationController : MonoBehaviour
     float time;
     Coroutine coroutine;
     bool checkRoutine;
+    bool checkTrap;
 
     private void Start()
     {
@@ -32,13 +33,14 @@ public class PlayerAnimationController : MonoBehaviour
         {
             time = 0;
             return;
-        }        
+        }
     }
 
     private void LateUpdate()
     {
         if (player.playerState.ownState == PlayerStateMachine.State.Alive)
         {
+            checkTrap = false;
             if (player.playerInputHandler.MoveDir == Vector3.zero)  // 조작이 없으면 아이들 상태로 바꾸고 리턴
             {
                 animator.SetFloat("X", 0);
@@ -122,17 +124,22 @@ public class PlayerAnimationController : MonoBehaviour
         }
         else if (player.playerState.ownState == PlayerStateMachine.State.Trapped)
         {
-            animator.SetTrigger("Trap");
+            if (!checkTrap)
+            {
+                animator.SetTrigger("Trap");
+                checkTrap = true;
+            }
 
             time += Time.deltaTime;
 
-            if (time > 4f)
-                time = 4f;
+            if (time > player.playerState.DrownTimer)
+                time = player.playerState.DrownTimer;
 
             animator.SetFloat("TrapTime", time);
         }
         else if (player.playerState.ownState == PlayerStateMachine.State.Die)
         {
+            checkTrap = false;
             animator.SetTrigger("Die");
         }
     }

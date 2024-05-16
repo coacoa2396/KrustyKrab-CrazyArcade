@@ -16,6 +16,7 @@ namespace pakjungmin
         public CharacterStats characterStats; // 캐릭터별 스텟 데이터 스크럽터블 오브젝트
         public PlayerStats playerStats; //플레이어의 현재 스텟
         public PlayerStateMachine playerState; // 플레이어의 현재 상태 -> 유찬규 추가 내용
+        public PlayerAnimationController playerAnimCon; // 플레이어 애니메이션 컨트롤러 -> 유찬규 추가 내용
         public FloorChecker floorChecker;
         public PlayerBombPlantController playerBombPlantController;
         public Bomb bomb;
