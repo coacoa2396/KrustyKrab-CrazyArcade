@@ -3,7 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player_Collider : MonoBehaviour
+/// <summary>
+/// Class : 플레이어가 물줄기에 맞았는지 여부만 담당
+/// </summary>
+public class PlayerStreamDectector : MonoBehaviour
 {
     PlayerMediator playerMediator;
 

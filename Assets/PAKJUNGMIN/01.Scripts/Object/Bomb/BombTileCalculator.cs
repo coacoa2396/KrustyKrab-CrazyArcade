@@ -2,8 +2,10 @@ using pakjungmin;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class BombLocator : MonoBehaviour
+/// <summary>
+/// Class : 폭탄의 좌표(타일 좌표 기준) 저장 담당
+/// </summary>
+public class BombTileCalculator : MonoBehaviour
 {
     int posX;
     int posY;

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaterBombSpawner : MonoBehaviour
+public class BombSpawner : MonoBehaviour
 {
     [SerializeField] Bomb waterBomb;
     [SerializeField] int size;

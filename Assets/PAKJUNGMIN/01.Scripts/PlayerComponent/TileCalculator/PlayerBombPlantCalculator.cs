@@ -6,7 +6,7 @@ using UnityEngine;
 /// <summary>
 /// Class : PlayerBehavoir에서 폭탄 설치 명령을 받아, 실제 폭탄 설치를 담당하는 클래스.
 /// </summary>
-public class BombPlantController : MonoBehaviour
+public class PlayerBombPlantCalculator : MonoBehaviour
 {
     PlayerMediator playerMediator;
     /*
@@ -70,7 +70,7 @@ public class BombPlantController : MonoBehaviour
 
         if(playerMediator.floorChecker.nowTile.OnObject)
         {
-            if (playerMediator.floorChecker.nowTile.tileonObject.GetComponent<BombLocator>())
+            if (playerMediator.floorChecker.nowTile.tileonObject.GetComponent<BombTileCalculator>())
             {
                 playerMediator.playerSkill.Throw();
                 return;

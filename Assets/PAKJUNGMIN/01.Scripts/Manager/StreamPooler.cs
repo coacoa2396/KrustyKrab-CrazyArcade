@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaterCourseSpawner : MonoBehaviour
+public class StreamPooler : MonoBehaviour
 {
     [SerializeField] Stream waterCourse;
     [SerializeField] int size;

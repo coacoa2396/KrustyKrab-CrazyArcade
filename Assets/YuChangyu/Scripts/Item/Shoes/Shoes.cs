@@ -24,7 +24,7 @@ public class Shoes : Item, IAcquirable
 
         // 플레이어에게 물풍선을 발로 미는 기능 활성화 시키기
 
-        Player.playerInventory.Inven.Add(ItemDataManager.ItemData.itemDir["Shoes"]);
+        Player.playerInventory.Inven.Add(ItemManager.ItemData.itemDir["Shoes"]);
         gameObject.SetActive(false);
     }
 }

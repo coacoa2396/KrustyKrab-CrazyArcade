@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemDataManager : Singleton<ItemDataManager>
+public class ItemManager : Singleton<ItemManager>
 {
-    static ItemDataManager instance;
+    static ItemManager instance;
 
-    public static ItemDataManager ItemData { get { return instance; } }
+    public static ItemManager ItemData { get { return instance; } }
 
     public Dictionary<string,GameObject> itemDir = new Dictionary<string, GameObject>();
 
