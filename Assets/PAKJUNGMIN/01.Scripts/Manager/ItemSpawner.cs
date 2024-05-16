@@ -27,8 +27,7 @@ public class ItemSpawner : MonoBehaviour
 
         foreach (KeyValuePair<string,GameObject> itemData in ItemManager.ItemData.itemDir)
         {
-            randomitemList.Add(itemData.Value);
-           
+            randomitemList.Add(itemData.Value);      
         }
     }
     /// <summary>
