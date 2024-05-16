@@ -10,7 +10,7 @@ using UnityEngine;
 public class Stream : PooledObject
 {
 
-    public float driftTime = 1f;
+    public float driftTime = 0.5f;
     Coroutine courseCoroutine;
 
     IEnumerator CourseTime()
@@ -33,7 +33,7 @@ public class Stream : PooledObject
     }
     private void OnDisable()
     {
-        driftTime = 1f;
+        driftTime = 0.5f;
     }
 
 }
