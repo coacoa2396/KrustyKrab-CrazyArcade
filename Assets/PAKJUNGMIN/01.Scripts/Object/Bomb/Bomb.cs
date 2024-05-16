@@ -51,13 +51,15 @@ namespace pakjungmin
 
         }
 
+        //**가끔가다가 pos가 0,0이 되어버리는 원인이 이곳인것 같다.
         public void Explode()
         {
-
+            Debug.Log($"GetComponentInChildren<BombTileCalculator>().PosX : {GetComponentInChildren<BombTileCalculator>().PosX}");
+            Debug.Log($"GetComponentInChildren<BombTileCalculator>().PosY : {GetComponentInChildren<BombTileCalculator>().PosY}");
             int posX = GetComponentInChildren<BombTileCalculator>().PosX;
             int posY = GetComponentInChildren<BombTileCalculator>().PosY;
+            StreamManager.Stream.CaculateStreamPos(posX, posY, bombPower);
             gameObject.SetActive(false);
-            StreamManager.Stream.LocateDrift(posX, posY,bombPower);
             //코루틴 시간 차를 이용해, 순서가 꼬여 
             //플레이어의 물폭탄 파워와, 물폭탄의 파워가 안되던 버그가 해결되었지만
             //나중에 고쳐야한다.

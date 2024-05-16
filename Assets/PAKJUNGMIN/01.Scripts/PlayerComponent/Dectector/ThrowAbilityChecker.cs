@@ -20,16 +20,14 @@ public class ThrowAbilityChecker : MonoBehaviour
 
         if(collision.gameObject.GetComponent<BombTileCalculator>())
         {
-            playerMediator.playerSkill.canThrow = true;
-           // playerMediator.playerSkill.canKick = true;
+            playerMediator.playerAbility.canThrow = true;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.GetComponent<BombTileCalculator>())
         {
-            playerMediator.playerSkill.canThrow =false;
-            //playerMediator.playerSkill.canKick = false;
+            playerMediator.playerAbility.canThrow =false;
         }
     }
 }

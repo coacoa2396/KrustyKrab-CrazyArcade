@@ -15,14 +15,14 @@ public class KickAbilityChecker : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<BombPlayerDectector>())
         {
-            playerMediator.playerSkill.canKick = true;
+            playerMediator.playerAbility.canKick = true;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.GetComponent<BombPlayerDectector>())
         {
-            playerMediator.playerSkill.canKick = false;
+            playerMediator.playerAbility.canKick = false;
         }
     }
 }
