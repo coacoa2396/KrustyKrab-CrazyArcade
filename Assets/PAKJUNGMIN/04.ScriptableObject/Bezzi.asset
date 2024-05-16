@@ -16,5 +16,5 @@ MonoBehaviour:
   maxSpeed: 20
   initPower: 1
   maxPower: 5
-  initBomb: 5
+  initBomb: 1
   maxBomb: 13
