@@ -108,7 +108,7 @@ public class RoomUserController : MonoBehaviourPunCallbacks
     }
 
 
-    [PunRPC]
+    [PunRPC] 
     public void UpdateCharacterChange(string key,Characters character)
     {
         foreach(PlayerEntity player in players)

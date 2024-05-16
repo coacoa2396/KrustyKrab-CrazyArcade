@@ -50,7 +50,9 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         UI_Room room = Manager.UI.ShowPopUpUI(roomPopup);
-        room.SetRoomInfo(NowRoom);
+        RoomEntity entity = new RoomEntity(PhotonNetwork.CurrentRoom);
+        NowRoom = entity;
+        room.SetRoomInfo(entity);
     }
 
     public override void OnLeftRoom()
@@ -81,7 +83,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
                     int roomInfoNum = int.Parse(roomInfo.Name.Split('/')[0]);
                     if (createdRooms[i].RoomNum == roomInfoNum)
                     {
-                        //방 정보 업데이트
+                        Debug.Log("플레이어 숫자가 바뀌었다");
+                        createdRooms[i].NowPlayer = roomInfo.PlayerCount;
                         isNew = false;
                     }
                 }

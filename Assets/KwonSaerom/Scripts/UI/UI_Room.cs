@@ -2,12 +2,14 @@ using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UI_Room : PopUpUI
 {
     RoomUserController roomController;
+
     enum GameObjects
     {
         SelectMapButton,
@@ -37,7 +39,19 @@ public class UI_Room : PopUpUI
 
     private void Start()
     {
-        roomController = GetComponentInChildren<RoomUserController>();
+        //roomController = GetComponentInChildren<RoomUserController>();
+        //Debug.LogError(roomController.photonView.ViewID);
+        if(PhotonNetwork.IsMasterClient)
+        {
+            GameObject go = PhotonNetwork.InstantiateRoomObject("UI_UserList", transform.position, transform.rotation);
+            roomController = go.GetComponentInChildren<RoomUserController>();
+            Debug.LogError(roomController + "Master");
+        }
+        else
+        {
+            roomController = GameObject.Find("UserList").GetComponentInChildren<RoomUserController>();
+            Debug.LogError(roomController + "No");
+        }
     }
 
 
