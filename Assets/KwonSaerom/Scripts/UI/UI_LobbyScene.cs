@@ -51,6 +51,7 @@ public class UI_LobbyScene : InGameUI
     public void Quit()
     {
         SetInteractable(false);
+        Manager.Game.Logout();
         Manager.Scene.LoadScene("TitleScene");
     }
 

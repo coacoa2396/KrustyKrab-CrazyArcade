@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class UserDataManager
 {
-    public static UserEntity User = null;
-    public static UserEntity GetUser = null;
-
-
     public static void CreateUserData(UserEntity user)
     {
         string json = JsonUtility.ToJson(user);
@@ -58,13 +54,14 @@ public class UserDataManager
             });
     }
 
-    public static void GetUserData(string id)
+    public static void LocalUserSetConnect(bool curConnect)
     {
-        string key = ToKey(id);
+        string key = ToKey(Manager.Game.Player.Key);
         FirebaseManager.DB
             .GetReference("User")
             .Child(key)
-            .GetValueAsync()
+            .Child("isConnect")
+            .SetValueAsync(curConnect)
             .ContinueWithOnMainThread(task =>
             {
                 if (task.IsCanceled)
@@ -77,9 +74,7 @@ public class UserDataManager
                     Debug.Log("GetUserData : IsFaulted");
                     return;
                 }
-                DataSnapshot snapshot = task.Result;
-                GetUser = JsonUtility.FromJson<UserEntity>(snapshot.GetRawJsonValue());
-                Debug.Log(GetUser.ToString());
+                Debug.Log("LocalUserSetConnect : DB 처리 완료");
             });
     }
 
