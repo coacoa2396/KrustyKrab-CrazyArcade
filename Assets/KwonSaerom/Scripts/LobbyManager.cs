@@ -4,7 +4,7 @@ using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
@@ -51,8 +51,14 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
+        //캐릭터 설정
+        PhotonNetwork.LocalPlayer.SetCustomProperties(new Hashtable() { { "Character", 0 } });
+
+        //방 팝업 켜기
         UI_Room room = Manager.UI.ShowPopUpUI(roomPopup);
         nowRoomPopup = room;
+
+        //방 정보를 들고와서 UI에 연결
         RoomEntity entity = new RoomEntity(PhotonNetwork.CurrentRoom);
         NowRoom = entity;
         room.SetRoomInfo(entity);

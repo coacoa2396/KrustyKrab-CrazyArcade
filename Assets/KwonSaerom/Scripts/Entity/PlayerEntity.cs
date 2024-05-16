@@ -13,10 +13,17 @@ public class PlayerEntity
     public Characters Character { get { return character; }set { character = value; } }
     public string Key { get { return key; } }
 
+    public PlayerEntity(UserEntity entity, Characters character)
+    {
+        user = entity;
+        key = entity.key;
+        this.character = character;
+    }
+
     public PlayerEntity(UserEntity entity)
     {
         user = entity;
         key = entity.key;
-        character = Define.Characters.Bazzi;
+        character = Characters.Bazzi;
     }
 }

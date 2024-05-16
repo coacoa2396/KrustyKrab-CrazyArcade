@@ -3,9 +3,6 @@ using Photon.Pun;
 using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
-using Unity.VisualScripting;
-using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -44,8 +41,6 @@ public class UI_LobbyScene : InGameUI
     public void QuickJoinRoom()
     {
         PhotonNetwork.JoinRandomRoom();
-        //Debug.Log(PhotonNetwork.CurrentRoom.Name);
-        //LobbyManager.NowRoom = new RoomEntity(PhotonNetwork.CurrentRoom);
     }
 
     public void Quit()

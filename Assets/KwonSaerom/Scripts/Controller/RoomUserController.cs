@@ -2,12 +2,11 @@ using Firebase.Database;
 using Firebase.Extensions;
 using Photon.Pun;
 using Photon.Realtime;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 using static Define;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
+
 
 public class RoomUserController : MonoBehaviourPunCallbacks
 {
@@ -54,10 +53,6 @@ public class RoomUserController : MonoBehaviourPunCallbacks
         {
             AddPlayer(PhotonNetwork.PlayerList[i],i);
         }
-        //foreach (Player player in PhotonNetwork.PlayerList)
-        //{
-        //    AddPlayer(player);
-        //}
     }
 
     private void UpdatePlayer()
@@ -90,10 +85,19 @@ public class RoomUserController : MonoBehaviourPunCallbacks
                         Debug.Log("GetUserData : IsFaulted");
                         return;
                     }
+                    //플레이어 정보 불러오기
                     DataSnapshot snapshot = task.Result;
                     UserEntity user = JsonUtility.FromJson<UserEntity>(snapshot.GetRawJsonValue());
-                    players.Add(new PlayerEntity(user));
-                    userTokens[index].SetPlayer(user.nickName, sprites[(int)Define.Characters.Bazzi]);
+
+                    //캐릭터선택 정보 불러오기
+                    Debug.Log("Player:"+index+" "+user.nickName);
+                    Hashtable ht = player.CustomProperties;
+                    int ch = (int)ht["Character"];
+                    Debug.Log("Player:"+index+" "+ch);
+                    players.Add(new PlayerEntity(user, (Characters)ch));
+
+                    //플레이어 정보를 UI에 저장
+                    userTokens[index].SetPlayer(user.nickName, sprites[ch]);
                 });
     }
 
@@ -109,6 +113,8 @@ public class RoomUserController : MonoBehaviourPunCallbacks
 
     public void CharacterChange(Characters character)
     {
+        PhotonNetwork.LocalPlayer.SetCustomProperties(new Hashtable() { { "Character", (int)character } });
+
         string key = Manager.Game.Player.User.key;
         photonView.RPC("UpdateCharacterChange", RpcTarget.All, key, character);
     }
@@ -117,9 +123,9 @@ public class RoomUserController : MonoBehaviourPunCallbacks
     [PunRPC] 
     public void UpdateCharacterChange(string key,Characters character)
     {
-        foreach(PlayerEntity player in players)
+        foreach (PlayerEntity player in players)
         {
-            if(player.Key.Equals(key))
+            if (player.Key.Equals(key))
             {
                 player.Character = character;
             }
