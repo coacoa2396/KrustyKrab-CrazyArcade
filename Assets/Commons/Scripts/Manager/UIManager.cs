@@ -35,7 +35,7 @@ public class UIManager : Singleton<UIManager>
         if (popUpStack.Count > 0)
         {
             PopUpUI topUI = popUpStack.Peek();
-            topUI.gameObject.SetActive(false);
+            //topUI.gameObject.SetActive(false);
         }
         else
         {

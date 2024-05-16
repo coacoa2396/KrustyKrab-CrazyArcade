@@ -9,6 +9,7 @@ using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class UI_Room : PopUpUI
 {
+    [SerializeField] UI_Warning warningPopup;
     RoomUserController roomController;
 
     enum GameObjects
@@ -75,10 +76,18 @@ public class UI_Room : PopUpUI
     {
         if(PhotonNetwork.IsMasterClient)
         {
-            Manager.Game.GamePlayers = roomController.Players;
-            Debug.Log($"게임 참가 플레이어 수 : {Manager.Game.GamePlayers.Count}");
-            //씬 로드 코드 작성하기
+            if(roomController.IsStart())
+            {
+                Manager.Game.GamePlayers = roomController.Players;
+                Debug.Log($"게임 참가 플레이어 수 : {Manager.Game.GamePlayers.Count}");
+                //씬 로드 코드 작성하기
 
+            }
+            else
+            {
+                UI_Warning warning = Manager.UI.ShowPopUpUI(warningPopup);
+                warning.SetLog("플레이어가 모두 레디하기 전까지는 시작할 수 없습니다.");
+            }
         }
         else
         {

@@ -38,11 +38,14 @@ public class RoomUserController : MonoBehaviourPunCallbacks
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
+        newPlayer.SetCustomProperties(new Hashtable() { { "Character", 0 } });
+        newPlayer.SetCustomProperties(new Hashtable() { { "Ready", false } });
         AddPlayer(newPlayer,players.Count);
     }
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
+        //초기화 시키기
         RemovePlayer(otherPlayer);
     }
 
@@ -113,6 +116,11 @@ public class RoomUserController : MonoBehaviourPunCallbacks
                 players.RemoveAt(i);
         }
         UpdatePlayer();
+    }
+
+    public bool IsStart()
+    {
+        return false;
     }
 
     public void CharacterChange(Characters character)
