@@ -15,7 +15,7 @@ public class Bomb_DriftDectector : MonoBehaviour
         //인식된다. 이를 방지하려면, 부모와 자식 서로에 RigidBody 컴포넌트가 필요하다.
         if (collision.gameObject.GetComponent<Stream>())
         {
-            try //나중에 정확한 로직을 써서 바꿀것. 예외 처리 지양. 0513 메모
+            try //나중에 정확한 로직을 써서 바꿀것. 예외 처리 사용지양. 0513 메모
             {
                 GetComponentInParent<Bomb>().Explode();
             }

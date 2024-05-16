@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8624012022957362087}
   - component: {fileID: 6009658747611039626}
   m_Layer: 0
-  m_Name: PlayerPlantController
+  m_Name: BombPlantController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20bc180465d542445a91392a23077535, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bombChance: 0
   chanceTimer: 7
 --- !u!1 &1940927758981435098
 GameObject:
@@ -96,37 +97,6 @@ MonoBehaviour:
     maxBomb: 0
     ownPower: 0
     maxPower: 0
---- !u!1 &3232238079912426991
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5132267054317756619}
-  m_Layer: 0
-  m_Name: Player_Steam_Checker
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5132267054317756619
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3232238079912426991}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7536406032021052491}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4470792413054758498
 GameObject:
   m_ObjectHideFlags: 0
@@ -413,6 +383,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 528edc3e5ba301f4caa3bf8b51ee0245, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onRide: 0
+  canThrow: 0
+  canKick: 0
 --- !u!1 &8637128536137346432
 GameObject:
   m_ObjectHideFlags: 0
@@ -455,7 +428,6 @@ Transform:
   - {fileID: 4828405969473716277}
   - {fileID: 6667553848706100268}
   - {fileID: 6185155556377655327}
-  - {fileID: 5132267054317756619}
   - {fileID: 1976657950225911536}
   - {fileID: 8624012022957362087}
   m_Father: {fileID: 0}
@@ -528,10 +500,11 @@ MonoBehaviour:
   characterStats: {fileID: 11400000, guid: 449459e613b40b049b82d3d6a108f181, type: 2}
   playerStats: {fileID: 2389473212426074714}
   playerState: {fileID: 8995620442060461275}
-  playerAnimCon: {fileID: 0}
+  playerAnimCon: {fileID: 5358685496621376991}
   floorChecker: {fileID: 6063436538036261759}
   playerBombPlantController: {fileID: 6009658747611039626}
   bomb: {fileID: 1149463310955052931, guid: 64fcebdb24d58dc4aa8d319cb1f5a5b9, type: 3}
+  curActiveItem: {fileID: 0}
 --- !u!114 &1381087456254112997
 MonoBehaviour:
   m_ObjectHideFlags: 0

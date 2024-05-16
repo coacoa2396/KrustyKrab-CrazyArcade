@@ -15,6 +15,9 @@ namespace pakjungmin
 
         [SerializeField] OwnStats ownStats;
 
+        public float trapSpeed = 0.2f;
+        public float aliveSpeed;
+        public float dieSpeed = 0;
 
         //Property : 현재 플레이어의 스탯 값이 플레이어의 최대 스탯 값을 넘어가면 최대 스탯으로 강제 조정한다.
         public float OwnSpeed

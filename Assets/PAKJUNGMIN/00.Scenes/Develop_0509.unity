@@ -11040,6 +11040,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BombPlantController
       objectReference: {fileID: 0}
+    - target: {fileID: 4342343708932555487, guid: e0d0f3830d1f3e641a43692869c0568d, type: 3}
+      propertyPath: playerAnimCon
+      value: 
+      objectReference: {fileID: 1684701041}
     - target: {fileID: 7536406032021052491, guid: e0d0f3830d1f3e641a43692869c0568d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.14
@@ -17284,6 +17288,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 923172936851581049, guid: d29ec2480d156364388c53e38248d003, type: 3}
   m_PrefabInstance: {fileID: 608667912}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1684701041 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5358685496621376991, guid: e0d0f3830d1f3e641a43692869c0568d, type: 3}
+  m_PrefabInstance: {fileID: 987720920}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 076383bb1a3f33a4289513dcaafabe0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1687570316
 PrefabInstance:
   m_ObjectHideFlags: 0
