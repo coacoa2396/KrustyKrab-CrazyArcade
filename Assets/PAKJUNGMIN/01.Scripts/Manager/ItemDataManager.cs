@@ -8,7 +8,6 @@ public class ItemDataManager : Singleton<ItemDataManager>
 
     public static ItemDataManager ItemData { get { return instance; } }
 
-
     public Dictionary<string,GameObject> itemDir = new Dictionary<string, GameObject>();
 
    

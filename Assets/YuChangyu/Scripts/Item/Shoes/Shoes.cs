@@ -9,8 +9,12 @@ public class Shoes : Item, IAcquirable
     {
         if (CheckWater(collision.gameObject))
         {
-            Destroy(gameObject);
-            return;
+            if (WaterProof <= 0)
+            {
+                Destroy(gameObject);
+                return;
+            }
+            WaterProof--;
         }
 
         if (!CheckPlayer(collision.gameObject))
@@ -20,6 +24,7 @@ public class Shoes : Item, IAcquirable
 
         // 플레이어에게 물풍선을 발로 미는 기능 활성화 시키기
 
-        Destroy(gameObject);
+        Player.playerInventory.Inven.Add(ItemDataManager.ItemData.itemDir["Shoes"]);
+        gameObject.SetActive(false);
     }
 }

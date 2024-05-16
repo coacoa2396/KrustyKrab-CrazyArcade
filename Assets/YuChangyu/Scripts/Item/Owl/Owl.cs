@@ -14,8 +14,12 @@ public class Owl : Item, IAcquirable
     {
         if (CheckWater(collision.gameObject))
         {
-            Destroy(gameObject);
-            return;
+            if (WaterProof <= 0)
+            {
+                Destroy(gameObject);
+                return;
+            }
+            WaterProof--;
         }
 
         if (!CheckPlayer(collision.gameObject))
@@ -25,6 +29,7 @@ public class Owl : Item, IAcquirable
 
         // 부엉이 프리팹을 생성해서 플레이어가 타도록 만들어준다
 
-        Destroy(gameObject);
+        Player.playerInventory.Inven.Add(ItemDataManager.ItemData.itemDir["Owl"]);
+        gameObject.SetActive(false);
     }
 }

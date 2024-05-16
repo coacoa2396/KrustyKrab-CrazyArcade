@@ -13,8 +13,12 @@ public class Roller : Item, IAcquirable
     {
         if (CheckWater(collision.gameObject))
         {
-            Destroy(gameObject);
-            return;
+            if (WaterProof <= 0)
+            {
+                Destroy(gameObject);
+                return;
+            }
+            WaterProof--;
         }
 
         if (!CheckPlayer(collision.gameObject))
@@ -23,10 +27,9 @@ public class Roller : Item, IAcquirable
         Player = collision.gameObject.GetComponent<PlayerMediator>();
 
         Player.playerStats.OwnSpeed++;
-        
-        //if (Player.playerStats.Speed > 10f)                         // 플레이어 스피드 상한선
-        //{
-        //    Player.playerStats.Speed = 10f;
-        //}
+
+        Player.playerInventory.Inven.Add(ItemDataManager.ItemData.itemDir["Roller"]);
+        gameObject.SetActive(false);
+
     }
 }

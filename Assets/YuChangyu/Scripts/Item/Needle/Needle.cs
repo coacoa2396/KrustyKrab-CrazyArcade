@@ -15,8 +15,12 @@ public class Needle : Item, IAcquirable
     {
         if (CheckWater(collision.gameObject))
         {
-            Destroy(gameObject);
-            return;
+            if (WaterProof <= 0)
+            {
+                Destroy(gameObject);
+                return;
+            }
+            WaterProof--;
         }
 
         if (!CheckPlayer(collision.gameObject))
@@ -29,7 +33,8 @@ public class Needle : Item, IAcquirable
         Player.CurActiveItem = activeNeedle;                            // player의 CurActiveItem 바인딩
         activeNeedle.Init(Player);                                      // activeNeedle의 Player 바인딩
 
-        Destroy(gameObject);
+        Player.playerInventory.Inven.Add(ItemDataManager.ItemData.itemDir["Needle"]);
+        gameObject.SetActive(false);
     }
 
     

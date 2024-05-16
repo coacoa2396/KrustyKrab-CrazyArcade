@@ -14,8 +14,12 @@ public class Dart : Item, IAcquirable
     {
         if (CheckWater(collision.gameObject))
         {
-            Destroy(gameObject);
-            return;
+            if (WaterProof <= 0)
+            {
+                Destroy(gameObject);
+                return;
+            }
+            WaterProof--;
         }
 
         if (!CheckPlayer(collision.gameObject))
@@ -27,6 +31,9 @@ public class Dart : Item, IAcquirable
         // Player에서 CurActiveItem의 형식은 activeBase로 하면 됨
         Player.CurActiveItem = activeDart;                            // player의 CurActiveItem 바인딩
         activeDart.Init(Player);                                      // activeDart의 Player 바인딩
-        Destroy(gameObject);
+
+        // 박정민 추가 
+        Player.playerInventory.Inven.Add(ItemDataManager.ItemData.itemDir["Dart"]);
+        gameObject.SetActive(false);
     }
 }

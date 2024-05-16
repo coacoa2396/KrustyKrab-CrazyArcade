@@ -41,6 +41,7 @@ public class PlayerStateMachine : MonoBehaviour
     private void Start()
     {
         playerMediator = GetComponentInParent<PlayerMediator>();
+        playerMediator.playerStats.aliveSpeed = playerMediator.playerStats.OwnSpeed;
         ChangeState(State.Alive);
     }
     public void ChangeState(State playerState)
@@ -61,6 +62,8 @@ public class PlayerStateMachine : MonoBehaviour
     }
     void Alive()
     {
+        playerMediator.playerStats.OwnSpeed = playerMediator.playerStats.aliveSpeed;
+
         if (coroutinedrown != null)
         {
             StopCoroutine(coroutinedrown); // 부활시 익사 코루틴을 멈춰줘야함 -> 유찬규
@@ -75,16 +78,15 @@ public class PlayerStateMachine : MonoBehaviour
     void Trapped()
     {
 
-        Debug.Log("플레이어의 상태: 갇힘");
-
-        playerMediator.playerStats.OwnSpeed = 0.2f;
+        playerMediator.playerStats.aliveSpeed = playerMediator.playerStats.OwnSpeed;
+        playerMediator.playerStats.OwnSpeed = playerMediator.playerStats.trapSpeed;
 
         coroutinedrown = StartCoroutine(DrownCoroutine());
     }
     void Die()
     {
+        playerMediator.playerStats.OwnSpeed = playerMediator.playerStats.dieSpeed;
 
-        Debug.Log("플레이어 사망");
         StartCoroutine(DieTime());      // Die애니메이션 재생을 위한 시간벌이 코루틴 -> 유찬규 추가
     }
     /// <summary>

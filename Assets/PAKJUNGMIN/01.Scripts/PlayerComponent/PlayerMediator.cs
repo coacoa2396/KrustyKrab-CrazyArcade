@@ -20,6 +20,7 @@ namespace pakjungmin
         public PlayerAnimationController playerAnimCon; // 플레이어 애니메이션 컨트롤러 -> 유찬규 추가 내용
         public FloorChecker floorChecker;
         public BombPlantController playerBombPlantController;
+        public PlayerInventory playerInventory;
         public Bomb bomb;
         [Space(3f)]
         [Header("플레이어 인벤토리")]

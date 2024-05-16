@@ -14,8 +14,12 @@ public class UltraBomb : Item,IAcquirable
     {
         if (CheckWater(collision.gameObject))
         {
-            Destroy(gameObject);
-            return;
+            if (WaterProof <= 0)
+            {
+                Destroy(gameObject);
+                return;
+            }
+            WaterProof--;
         }
 
         if (!CheckPlayer(collision.gameObject))
@@ -28,6 +32,7 @@ public class UltraBomb : Item,IAcquirable
 
         Player.playerStats.OwnPower = Player.characterStats.maxPower; //박정민 추가 : 필드명 재조정으로 인한 필드명 변경
 
-        Destroy(gameObject);
+        Player.playerInventory.Inven.Add(ItemDataManager.ItemData.itemDir["UltraBomb"]);
+        gameObject.SetActive(false);
     }
 }

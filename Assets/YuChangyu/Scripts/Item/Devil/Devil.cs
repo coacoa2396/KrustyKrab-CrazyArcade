@@ -13,8 +13,12 @@ public class Devil : Item, IAcquirable
     {
         if (CheckWater(collision.gameObject))
         {
-            Destroy(gameObject);
-            return;
+            if (WaterProof <= 0)
+            {
+                Destroy(gameObject);
+                return;
+            }
+            WaterProof--;
         }
 
         if (!CheckPlayer(collision.gameObject))
@@ -28,6 +32,7 @@ public class Devil : Item, IAcquirable
         // 0이면 반대입력상태
         // 1이면 물풍선 마구 놓는 상태
 
-        Destroy(gameObject);
+        Player.playerInventory.Inven.Add(ItemDataManager.ItemData.itemDir["Devil"]);
+        gameObject.SetActive(false);
     }
 }

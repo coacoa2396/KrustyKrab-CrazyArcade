@@ -13,8 +13,12 @@ public class Fluid : Item, IAcquirable
     {
         if (CheckWater(collision.gameObject))
         {
-            Destroy(gameObject);
-            return;
+            if (WaterProof <= 0)
+            {
+                Destroy(gameObject);
+                return;
+            }
+            WaterProof--;
         }
 
         if (!CheckPlayer(collision.gameObject))
@@ -28,6 +32,7 @@ public class Fluid : Item, IAcquirable
 
         Player.playerStats.OwnPower++; //박정민 추가 : Power ->OwnPower로 변경
 
-        Destroy(gameObject);
+        Player.playerInventory.Inven.Add(ItemDataManager.ItemData.itemDir["Fluid"]);
+        gameObject.SetActive(false);
     }
 }
