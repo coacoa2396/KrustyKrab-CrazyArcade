@@ -53,6 +53,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         //캐릭터 설정
         PhotonNetwork.LocalPlayer.SetCustomProperties(new Hashtable() { { "Character", 0 } });
+        PhotonNetwork.LocalPlayer.SetCustomProperties(new Hashtable() { { "Ready", false } });
 
         //방 팝업 켜기
         UI_Room room = Manager.UI.ShowPopUpUI(roomPopup);

@@ -5,6 +5,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class UI_Room : PopUpUI
 {
@@ -14,6 +15,7 @@ public class UI_Room : PopUpUI
     {
         SelectMapButton,
         GameStartButton,
+        RoomInfoChangeButton,
         RoomName,
         RoomNumber,
         ExitButton,
@@ -30,7 +32,6 @@ public class UI_Room : PopUpUI
         if (Time.timeScale == 0)
             Time.timeScale = 1;
         GetUI<Button>(GameObjects.ExitButton.ToString()).onClick.AddListener(ExitRoom);
-        GetUI<Button>(GameObjects.GameStartButton.ToString()).onClick.AddListener(GameStart);
         GetUI<Button>(GameObjects.DaoSelect.ToString()).onClick.AddListener(()=> SelectCharacter(Define.Characters.Dao));
         GetUI<Button>(GameObjects.CappiSelect.ToString()).onClick.AddListener(()=> SelectCharacter(Define.Characters.Cappi));
         GetUI<Button>(GameObjects.BazziSelect.ToString()).onClick.AddListener(()=> SelectCharacter(Define.Characters.Bazzi));
@@ -40,8 +41,6 @@ public class UI_Room : PopUpUI
 
     private void Start()
     {
-        //roomController = GetComponentInChildren<RoomUserController>();
-        //Debug.LogError(roomController.photonView.ViewID);
         if(PhotonNetwork.IsMasterClient)
         {
             GameObject go = PhotonNetwork.InstantiateRoomObject("UI_UserList", transform.position, transform.rotation);
@@ -51,6 +50,7 @@ public class UI_Room : PopUpUI
         {
             roomController = GameObject.Find("UserList").GetComponentInChildren<RoomUserController>();
         }
+        GetUI<Button>(GameObjects.GameStartButton.ToString()).onClick.AddListener(GameStart);
     }
 
 
@@ -61,7 +61,6 @@ public class UI_Room : PopUpUI
     }
 
     //MaxPlayer 에 따라 X 되어있는 자리.
-
     public void ExitRoom()
     {
         PhotonNetwork.LeaveRoom();
@@ -74,8 +73,18 @@ public class UI_Room : PopUpUI
 
     public void GameStart()
     {
-        Manager.Game.GamePlayers = roomController.Players;
-        Debug.Log($"게임 참가 플레이어 수 : {Manager.Game.GamePlayers.Count}");
-        //씬 로드
+        if(PhotonNetwork.IsMasterClient)
+        {
+            Manager.Game.GamePlayers = roomController.Players;
+            Debug.Log($"게임 참가 플레이어 수 : {Manager.Game.GamePlayers.Count}");
+            //씬 로드 코드 작성하기
+
+        }
+        else
+        {
+            //토글
+            bool readyInfo = !Manager.Game.Player.IsReady;
+            roomController.ReadyChange(readyInfo);
+        }
     }
 }
