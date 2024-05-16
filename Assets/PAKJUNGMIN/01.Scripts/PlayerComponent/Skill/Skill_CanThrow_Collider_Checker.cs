@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Skill_ColliderChecker : MonoBehaviour
+public class Skill_CanThrow_Collider_Checker : MonoBehaviour
 {
     PlayerMediator playerMediator;
 
@@ -17,16 +17,19 @@ public class Skill_ColliderChecker : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
         if(collision.gameObject.GetComponent<BombLocator>())
         {
-            playerMediator.playerSkill.canKick = true;
+            playerMediator.playerSkill.canThrow = true;
+           // playerMediator.playerSkill.canKick = true;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.GetComponent<BombLocator>())
         {
-            playerMediator.playerSkill.canKick = false;
+            playerMediator.playerSkill.canThrow =false;
+            //playerMediator.playerSkill.canKick = false;
         }
     }
 }

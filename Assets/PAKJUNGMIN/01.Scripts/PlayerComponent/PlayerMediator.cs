@@ -29,7 +29,7 @@ namespace pakjungmin
         public Bomb bomb;
         [Header("플레이어의 스킬")]
         public PlayerSkill playerSkill;
-        public Skill_ColliderChecker skill_ColliderChecker;
+        public Skill_CanThrow_Collider_Checker skill_ColliderChecker;
         [Space(3f)]
         [Header("플레이어 인벤토리")]
         [SerializeField] ActiveBase curActiveItem;   // 플레이어의 현재 액티브아이템 -> 유찬규 추가 내용
@@ -39,15 +39,16 @@ namespace pakjungmin
         {
             playerBehavior.Move(moveDir);
         }
-        public void InputPlant() {
-             //플레이어의 스킬에가 아니라 플레이어의 행동에서 하는 걸로 변경해야한다.
-            if (floorChecker.nowTile.OnObject)
+        public void InputPlant()
+        {
+            if (playerSkill.canThrow)
             {
-                return;
+                playerSkill.Throw();
             }
 
-            playerBehavior.Plant(bomb, floorChecker.nowTile.transform.position); 
+            playerBehavior.Plant(bomb, floorChecker.nowTile.transform.position);
         }
+        
         public void InputUse() { playerBehavior.Use(); }
     }
 }
