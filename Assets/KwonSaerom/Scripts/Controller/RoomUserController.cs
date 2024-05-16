@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 using static Define;
 
 public class RoomUserController : MonoBehaviourPunCallbacks
@@ -14,7 +15,7 @@ public class RoomUserController : MonoBehaviourPunCallbacks
 
     private UI_UserToken[] userTokens;
     private List<PlayerEntity> players;
-
+    public List<PlayerEntity> Players { get { return players; } }
 
     private void Awake()
     {

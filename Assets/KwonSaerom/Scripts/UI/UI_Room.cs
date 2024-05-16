@@ -30,6 +30,7 @@ public class UI_Room : PopUpUI
         if (Time.timeScale == 0)
             Time.timeScale = 1;
         GetUI<Button>(GameObjects.ExitButton.ToString()).onClick.AddListener(ExitRoom);
+        GetUI<Button>(GameObjects.GameStartButton.ToString()).onClick.AddListener(GameStart);
         GetUI<Button>(GameObjects.DaoSelect.ToString()).onClick.AddListener(()=> SelectCharacter(Define.Characters.Dao));
         GetUI<Button>(GameObjects.CappiSelect.ToString()).onClick.AddListener(()=> SelectCharacter(Define.Characters.Cappi));
         GetUI<Button>(GameObjects.BazziSelect.ToString()).onClick.AddListener(()=> SelectCharacter(Define.Characters.Bazzi));
@@ -65,12 +66,18 @@ public class UI_Room : PopUpUI
 
     public void ExitRoom()
     {
-        Close();
         PhotonNetwork.LeaveRoom();
     }
 
     public void SelectCharacter(Define.Characters character)
     {
         roomController.CharacterChange(character);
+    }
+
+    public void GameStart()
+    {
+        Manager.Game.GamePlayers = roomController.Players;
+        Debug.Log($"게임 참가 플레이어 수 : {Manager.Game.GamePlayers.Count}");
+        //씬 로드
     }
 }

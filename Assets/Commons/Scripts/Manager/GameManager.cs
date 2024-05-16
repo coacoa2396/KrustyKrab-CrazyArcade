@@ -1,9 +1,12 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
-    private PlayerEntity player;
+    private PlayerEntity player; //현재 Local 플레이어. (나)
     public PlayerEntity Player { get { return player; } set { player = value; } }
+    public List<PlayerEntity> GamePlayers { get; set; } //게임에 참여하는 전체 게임 플레이어 정보
+    
     public void Test()
     {
         Debug.Log(GetInstanceID());
