@@ -46,12 +46,10 @@ public class UI_Room : PopUpUI
         {
             GameObject go = PhotonNetwork.InstantiateRoomObject("UI_UserList", transform.position, transform.rotation);
             roomController = go.GetComponentInChildren<RoomUserController>();
-            Debug.LogError(roomController + "Master");
         }
         else
         {
             roomController = GameObject.Find("UserList").GetComponentInChildren<RoomUserController>();
-            Debug.LogError(roomController + "No");
         }
     }
 

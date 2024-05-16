@@ -61,9 +61,6 @@ public class UI_TitleScene : InGameUI
             //user 정보를 들고온다.
             UserDataManager.LocalLoginGetUserData(id);
             StartCoroutine(CoWait());
-            // 씬 전환(로비씬으로)
-            Manager.Scene.LoadScene("LobbyScene");
-            SetInteractable(true);
         });
     }
 
@@ -89,7 +86,18 @@ public class UI_TitleScene : InGameUI
 
     IEnumerator CoWait()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
+        if(Manager.Game.Player.User.isConnect)//이미 다른 기기에서 계정을 사용중이라면
+        {
+            UI_Warning warning = Manager.UI.ShowPopUpUI(warningPopup);
+            warning.SetLog("이미 플레이중인 계정입니다.");
+        }else
+        {
+            UserDataManager.LocalUserSetConnect(true); //연결
+            Manager.Scene.LoadScene("LobbyScene");
+        }
+        yield return new WaitForSeconds(1f);
+        SetInteractable(true); 
     }
 
 }
