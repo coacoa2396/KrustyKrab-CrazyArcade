@@ -223,4 +223,4 @@ MonoBehaviour:
     m_Bits: 2147483648
   player: {fileID: 0}
   waterProof: 0
-  activeDart: {fileID: 0}
+  activeDart: {fileID: 5862336613016456402, guid: 0bdbecd363c24c34e8e8b26bb18b01a1, type: 3}

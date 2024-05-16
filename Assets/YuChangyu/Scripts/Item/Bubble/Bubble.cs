@@ -26,11 +26,8 @@ public class Bubble : Item, IAcquirable
 
         Player = collision.gameObject.GetComponent<PlayerMediator>();
 
-        //if (Player.characterStats.Maxbomb == Player.playerStats.Bomb)   // 스크립터블오브젝트에서 설정된 물풍선 최대갯수랑 현재 플레이어의 물풍선 갯수가 같으면
-        //    return; --> 박정민 추가 : 이 코드는 PlayStat 자체에서 구현해서 필요없을 듯                                                  // 리턴
-
         Player.playerStats.OwnBomb++; // 박정민 추가 : Bomb에서 OwnBomb으로 명칭 변경.
-
-        Destroy(gameObject);
+        Player.playerInventory.Inven.Add(ItemDataManager.ItemData.itemDir["Bubble"]);
+        gameObject.SetActive(false);
     }
 }

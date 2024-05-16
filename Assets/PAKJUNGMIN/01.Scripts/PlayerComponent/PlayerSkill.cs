@@ -8,9 +8,11 @@ using UnityEngine;
 /// </summary>
 public class PlayerSkill : MonoBehaviour
 {
+
+    //능력 여부 
     [SerializeField] bool onRide;
     [SerializeField] bool canThrow;
-    [SerializeField] bool canKick; 
+    [SerializeField] bool canKick;
 
     public bool OnRide { get { return onRide; } set { onRide = value; } }
     public bool CanThrow { get { return canThrow; } set { canThrow = value; } }
@@ -30,6 +32,7 @@ public class PlayerSkill : MonoBehaviour
     public void Throw()
     {
         if (!canThrow) { return; }
+
     }
     /// <summary>
     /// Method : 플레이어가 물풍선을 차는 능력. --> 물풍선이 플레이어의 앞에 있을 경우에만 작동
