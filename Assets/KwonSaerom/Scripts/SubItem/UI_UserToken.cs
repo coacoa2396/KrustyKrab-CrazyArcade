@@ -7,14 +7,18 @@ using UnityEngine.UI;
 
 public class UI_UserToken : BaseUI
 {
+    private PlayerEntity player;
     private bool onVisit = false;
     private bool onPlayer = false;
+
+    public PlayerEntity Player { get { return player; } }
 
     enum GameObjects
     {
         BackgroundOK,
         UserNickname,
-        PlayerImg
+        PlayerImg,
+        ReadyInfo
     }
 
 
@@ -35,16 +39,18 @@ public class UI_UserToken : BaseUI
 
 
 
-    public void SetPlayer(string nickName,Sprite character)
+    public void SetPlayer(PlayerEntity entity,Sprite character)
     {
         if (!onVisit)
         {
             Debug.Log("onVisit is false");
             return;
         }
+        player = entity;
         OnPlayer(true);
-        GetUI<TMP_Text>(GameObjects.UserNickname.ToString()).text = nickName;
+        GetUI<TMP_Text>(GameObjects.UserNickname.ToString()).text = entity.User.nickName;
         GetUI<Image>(GameObjects.PlayerImg.ToString()).sprite = character;
+        GetUI(GameObjects.ReadyInfo.ToString()).SetActive(player.IsReady);
     }
 
     public void OnPlayer(bool onPlayer)
@@ -52,6 +58,7 @@ public class UI_UserToken : BaseUI
         this.onPlayer = onPlayer;
         GetUI(GameObjects.UserNickname.ToString()).SetActive(onPlayer);
         GetUI(GameObjects.PlayerImg.ToString()).SetActive(onPlayer);
+        GetUI(GameObjects.ReadyInfo.ToString()).SetActive(onPlayer);
     }
 
 

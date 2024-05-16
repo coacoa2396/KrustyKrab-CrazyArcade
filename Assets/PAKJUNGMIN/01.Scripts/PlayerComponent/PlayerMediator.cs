@@ -48,6 +48,7 @@ namespace pakjungmin
 
             playerBehavior.Plant(bomb, floorChecker.nowTile.transform.position);
         }
+        
         public void InputUse() { playerBehavior.Use(); }
     }
 }
