@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1229910882982573769}
   - component: {fileID: 1149463310955052931}
-  - component: {fileID: 5357720223305666191}
+  - component: {fileID: 6828072665403441246}
   m_Layer: 0
   m_Name: Prefab_Bomb
   m_TagString: Untagged
@@ -31,10 +31,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 3940427440834130090}
   - {fileID: 6755590451884246098}
   - {fileID: 7100963721925679925}
   - {fileID: 181528634756694230}
-  - {fileID: 3940427440834130090}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1149463310955052931
@@ -54,6 +54,27 @@ MonoBehaviour:
   defaultTime: 4
   ownTime: 0
   bombPower: 0
+--- !u!95 &6828072665403441246
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381932321144301548}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e28998980ac528f40930689ed651b539, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4974429385031927651
 GameObject:
   m_ObjectHideFlags: 0
@@ -127,7 +148,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 371088758, guid: 19796ac0f6c34864db89cfaba3fd44f3, type: 3}
+  m_Sprite: {fileID: 329114909, guid: fcb5b8f36194ec34c96906fa22981e99, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -135,7 +156,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1.025}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &5137440433486470905
