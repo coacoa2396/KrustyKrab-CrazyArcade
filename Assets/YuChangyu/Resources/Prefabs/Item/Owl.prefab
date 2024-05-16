@@ -91,7 +91,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.4
 --- !u!50 &66984391261249171
 Rigidbody2D:
   serializedVersion: 4
@@ -138,6 +138,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2147483648
   player: {fileID: 0}
+  waterProof: 0
 --- !u!1 &8021205592497371971
 GameObject:
   m_ObjectHideFlags: 0
@@ -209,7 +210,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -771810489
-  m_SortingLayer: 4
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -1883339701, guid: cad503ec5e36d6d468572fad41a5b4ee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

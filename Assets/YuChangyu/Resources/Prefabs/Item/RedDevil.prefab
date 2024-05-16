@@ -71,7 +71,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -771810489
-  m_SortingLayer: 4
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 50553725, guid: 9dd18fea89c597546ba54a8a0feb05c7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -139,6 +139,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2147483648
   player: {fileID: 0}
+  waterProof: 0
 --- !u!95 &7156636971600694712
 Animator:
   serializedVersion: 5
@@ -221,4 +222,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.6
+  m_Radius: 0.4

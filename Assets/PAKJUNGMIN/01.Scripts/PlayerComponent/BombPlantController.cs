@@ -67,12 +67,16 @@ public class BombPlantController : MonoBehaviour
     public void PlantBomb(Bomb waterBomb,Vector3 BombPos)
     {
         if(bombChance <= 0) { return; }
-        if (playerMediator.floorChecker.nowTile.OnObject) 
+
+        if(playerMediator.floorChecker.nowTile.OnObject)
         {
-            return; 
+            if (playerMediator.floorChecker.nowTile.tileonObject.GetComponent<BombLocator>())
+            {
+                playerMediator.playerSkill.Throw();
+                return;
+            }
+            return;
         }
-        //플레이어의 파워가 폭탄에 반영이 안되는 버그
-        //PlayerPlantController와 Bomb이 상호작용해야한다.
 
         PooledObject pooledbomb = Manager.Pool.GetPool(waterBomb, BombPos, Quaternion.identity);
         Bomb bomb = (Bomb)pooledbomb;
