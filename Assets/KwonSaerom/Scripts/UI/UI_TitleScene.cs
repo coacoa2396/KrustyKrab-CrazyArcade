@@ -87,7 +87,8 @@ public class UI_TitleScene : InGameUI
     IEnumerator CoWait()
     {
         yield return new WaitForSeconds(2f);
-        Debug.Log(Manager.Game.Player.User.nickName);
+        Debug.Log($"{Manager.Game.Player.User.nickName}님의 로그인 시도");
+        Debug.Log($"{Manager.Game.Player.User.isConnect} : 연결상태");
         if(Manager.Game.Player.User.isConnect)//이미 다른 기기에서 계정을 사용중이라면
         {
             UI_Warning warning = Manager.UI.ShowPopUpUI(warningPopup);

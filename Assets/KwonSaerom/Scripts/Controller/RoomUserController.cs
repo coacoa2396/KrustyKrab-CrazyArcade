@@ -26,7 +26,7 @@ public class RoomUserController : MonoBehaviourPunCallbacks
     {
         userTokens = GetComponentsInChildren<UI_UserToken>();
         int maxPlayer = LobbyManager.NowRoom.MaxPlayer;
-        for(int i=0;i<userTokens.Length;i++)
+        for (int i=0;i<userTokens.Length;i++)
         {
             if (i < maxPlayer)
                 userTokens[i].SetVisit(true);
@@ -70,6 +70,11 @@ public class RoomUserController : MonoBehaviourPunCallbacks
 
     private void AddPlayer(Player player,int index)
     {
+        if (player.IsMasterClient)
+            index = 0;
+        else if (index == 0) //마스터 클라이언트가 아닌데 index가 0이면(반장자리)
+            index = 1;
+
         FirebaseManager.DB
                 .GetReference("User")
                 .Child(UserDataManager.ToKey(player.NickName))

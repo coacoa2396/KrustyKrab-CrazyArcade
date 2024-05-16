@@ -84,6 +84,7 @@ public class UI_Room : PopUpUI
         {
             //토글
             bool readyInfo = !Manager.Game.Player.IsReady;
+            Manager.Game.Player.IsReady = readyInfo;
             roomController.ReadyChange(readyInfo);
         }
     }

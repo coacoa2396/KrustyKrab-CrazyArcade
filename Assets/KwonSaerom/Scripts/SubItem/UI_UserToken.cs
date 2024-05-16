@@ -7,9 +7,11 @@ using UnityEngine.UI;
 
 public class UI_UserToken : BaseUI
 {
-    PlayerEntity player;
+    private PlayerEntity player;
     private bool onVisit = false;
     private bool onPlayer = false;
+
+    public PlayerEntity Player { get { return player; } }
 
     enum GameObjects
     {
