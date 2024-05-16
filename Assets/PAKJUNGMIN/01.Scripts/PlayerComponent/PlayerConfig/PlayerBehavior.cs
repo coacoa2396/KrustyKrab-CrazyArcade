@@ -38,9 +38,8 @@ namespace pakjungmin
         public void Plant(Bomb waterBomb,Vector3 BombPos)
         {
             
-            playerMediator.playerBombPlantController.PlantBomb(waterBomb, BombPos);
+            playerMediator.playerBombPlantCalculator.PlantBomb(waterBomb, BombPos);
         }
-
         public void Use()
         {
             playerMediator.CurActiveItem?.Use();     // 플레이어가 현재 들고있는 액티브아이템을 사용 -> 유찬규 추가

@@ -68,11 +68,11 @@ public class PlayerBombPlantCalculator : MonoBehaviour
     {
         if(bombChance <= 0) { return; }
 
-        if(playerMediator.floorChecker.nowTile.OnObject)
+        if(playerMediator.playerTileCalculator.nowTile.OnObject)
         {
-            if (playerMediator.floorChecker.nowTile.tileonObject.GetComponent<BombTileCalculator>())
+            if (playerMediator.playerTileCalculator.nowTile.tileonObject.GetComponent<BombTileCalculator>())
             {
-                playerMediator.playerSkill.Throw();
+                playerMediator.playerAbility.Throw();
                 return;
             }
             return;
