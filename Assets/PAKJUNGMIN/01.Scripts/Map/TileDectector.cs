@@ -9,23 +9,21 @@ public class Tile_WallDectector : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.GetComponent<BaseWall>())
+        if (collision.GetComponent<BaseWall>() || collision.GetComponent<BombLocator>())
         {
-            GetComponentInParent<Tile>().OnWall = true;
-            GetComponentInParent<Tile>().wall = collision.gameObject;
+            GetComponentInParent<Tile>().OnObject = true;
+            GetComponentInParent<Tile>().tileonObject = collision.gameObject;
            
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.GetComponent<BaseWall>())
+        if (collision.GetComponent<BaseWall>() || collision.GetComponent<BombLocator>())
         {
-            if (GetComponentInParent<Tile>())
-            {
-                GetComponentInParent<Tile>().OnWall = false;
-                GetComponentInParent<Tile>().wall = null;
-            }
-           
+            if(!GetComponentInParent<Tile>()) { return; } //씬 종료 시 예외 체크.
+
+            GetComponentInParent<Tile>().OnObject = false;
+            GetComponentInParent<Tile>().tileonObject = null;    
         }
     }
 

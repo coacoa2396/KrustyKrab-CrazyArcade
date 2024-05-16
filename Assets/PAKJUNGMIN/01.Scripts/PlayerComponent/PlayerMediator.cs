@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Scripting.APIUpdating;
 
@@ -18,10 +19,11 @@ namespace pakjungmin
         public PlayerStateMachine playerState; // 플레이어의 현재 상태 -> 유찬규 추가 내용
         public PlayerAnimationController playerAnimCon; // 플레이어 애니메이션 컨트롤러 -> 유찬규 추가 내용
         public FloorChecker floorChecker;
-        public PlayerBombPlantController playerBombPlantController;
+        public BombPlantController playerBombPlantController;
         public Bomb bomb;
-
-        ActiveBase curActiveItem;   // 플레이어의 현재 액티브아이템 -> 유찬규 추가 내용
+        [Space(3f)]
+        [Header("플레이어 인벤토리")]
+        [SerializeField] ActiveBase curActiveItem;   // 플레이어의 현재 액티브아이템 -> 유찬규 추가 내용
         public ActiveBase CurActiveItem { get { return curActiveItem; } set { curActiveItem = value; } }
 
         public void InputMove(Vector3 moveDir)

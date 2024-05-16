@@ -16,9 +16,12 @@ public class BombLocator : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<Tile>())
         {
-            Tile nowTile = collision.gameObject.GetComponent<Tile>();
-            PosX = nowTile.tileNode.posX;
-            PosY = nowTile.tileNode.posY;
+            if (collision.gameObject.GetComponent<Tile>().OnObject) //타일 위에 아무것도 없을 때만
+            {
+                Tile nowTile = collision.gameObject.GetComponent<Tile>();
+                PosX = nowTile.tileNode.posX;
+                PosY = nowTile.tileNode.posY;
+            }
 
         }
     }
