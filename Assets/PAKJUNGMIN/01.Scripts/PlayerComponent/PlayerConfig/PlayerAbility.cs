@@ -35,13 +35,13 @@ public class PlayerAbility : MonoBehaviour
     {
         if (!canThrow) { return; }
         if (!playerMediator.playerInventory.Inven.Exists((gameObject_ => gameObject_.GetComponent<Glove>()))) {
-            Debug.Log("글러브 없음");
+            //Debug.Log("글러브 없음");
             return; 
         }
 
         if(canThrow)
         {
-            Debug.Log("폭탄 던지기!!");
+            //Debug.Log("폭탄 던지기!!");
         }
         
     }
