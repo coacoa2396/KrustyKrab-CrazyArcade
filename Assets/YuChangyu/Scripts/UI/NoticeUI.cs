@@ -23,7 +23,7 @@ public class NoticeUI : MonoBehaviour
         for (int i = 0; i < csv.Count; i++)
         {
             RectTransform _content = Instantiate(content, transform.position, Quaternion.identity).GetComponent<RectTransform>();
-            _content.anchorePosition = 
+            //_content.anchorePosition = 
         }
     }
 
