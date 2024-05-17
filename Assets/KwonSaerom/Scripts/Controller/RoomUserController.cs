@@ -49,6 +49,11 @@ public class RoomUserController : MonoBehaviourPunCallbacks
         RemovePlayer(otherPlayer);
     }
 
+    public override void OnMasterClientSwitched(Player newMasterClient)
+    {
+        userTokens[0].SwitchReady(false);
+    }
+
     private void InitRoom()
     {
         players.Clear();
@@ -120,7 +125,12 @@ public class RoomUserController : MonoBehaviourPunCallbacks
 
     public bool IsStart()
     {
-        return false;
+        foreach(PlayerEntity player in players)
+        {
+            if (player.IsReady == false)
+                return false;
+        }
+        return true;
     }
 
     public void CharacterChange(Characters character)
@@ -139,6 +149,7 @@ public class RoomUserController : MonoBehaviourPunCallbacks
         photonView.RPC("UpdateReadyChange", RpcTarget.All, key, isReady);
     }
 
+    //마스터 바뀌면 준비 꺼져야함.
     [PunRPC] 
     public void UpdateCharacterChange(string key,Characters character)
     {
