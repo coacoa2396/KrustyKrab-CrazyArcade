@@ -12,9 +12,6 @@ public class StreamManager : MonoBehaviour
     public static StreamManager Stream { get { return instance; } }
     [SerializeField] PooledObject waterStream_Prefab;
 
-
-    [SerializeField] List<GameObject> tileObjectList;
-
     private void Start()
     {
         if (instance != null) { instance = null; }
@@ -42,15 +39,22 @@ public class StreamManager : MonoBehaviour
             Manager.Pool.GetPool(waterStream_Prefab, tile.transform.position, Quaternion.identity);
         }
     }
+
+
+
     public void CalculateStream(int x, int y, int power)
     {
         List<Tile> streamList = new List<Tile>();
+
         streamList.Add(FindTile(x, y)); // -> 폭심지 추가
 
         //동
         for (int q = 0; q <= power; q++)
         {
-            if(q == 0) { continue; }
+            if((q == 0) || (FindTile(x+q,y) == null))
+            {
+                continue;
+            }
             if (FindTile(x + q, y) != null)
             {
                 if (!FindTile(x + q, y).onObject) // 맨땅
@@ -86,8 +90,10 @@ public class StreamManager : MonoBehaviour
         //서
         for (int q = 0; q <= power; q++)
         {
-            if (q == 0) { continue; }
-            
+            if (q == 0 || (FindTile(x - q, y) == null))
+            {
+                continue;
+            }
             if (FindTile(x - q, y) != null)
             {
                 if (!FindTile(x - q, y).onObject) // 맨땅
@@ -123,8 +129,10 @@ public class StreamManager : MonoBehaviour
         //남
         for (int q = 0; q <= power; q++)
         {
-            if (q == 0) { continue; }
-
+            if (q == 0 || (FindTile(x, y-q) == null))
+            {
+                continue;
+            }
             if (FindTile(x, y - q) != null)
             {
                 if (!FindTile(x, y - q).onObject) // 맨땅
@@ -160,7 +168,10 @@ public class StreamManager : MonoBehaviour
         //북
         for (int q = 0; q <= power; q++)
         {
-            if (q == 0) { continue; }
+            if (q == 0 || (FindTile(x, y + q) == null))
+            {
+                continue;
+            }
 
             if (FindTile(x, y + q) != null)
             {
@@ -194,13 +205,8 @@ public class StreamManager : MonoBehaviour
                 }
             }
         }
-        tileObjectList = new List<GameObject>();
         if (streamList.Count > 0)
         {
-            foreach(Tile tiles in streamList)
-            {
-                tileObjectList.Add(tiles.gameObject);
-            }
             RaiseStream(streamList);
         }
 
