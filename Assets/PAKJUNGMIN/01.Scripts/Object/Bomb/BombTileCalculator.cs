@@ -18,8 +18,7 @@ public class BombTileCalculator : MonoBehaviour
     {
         CalculatePos(collision);
     }
-
-    void CalculatePos(Collider2D collision) //===
+    void CalculatePos(Collider2D collision)
     {
         if (collision.gameObject.GetComponent<Tile>())
         {

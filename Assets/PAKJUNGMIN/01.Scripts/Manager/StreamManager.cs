@@ -12,33 +12,24 @@ public class StreamManager : MonoBehaviour
     public static StreamManager Stream { get { return instance; } }
     [SerializeField] PooledObject waterStream_Prefab;
 
-    [SerializeField] List<GameObject> tileObjectList;
-
     private void Start()
     {
         if (instance != null) { instance = null; }
         instance = this;
 
     }
-    /// <summary>
-    /// Method : 물줄기 범위 계산
-    /// </summary>
-    /// <param name="x"></param>
-    /// <param name="y"></param>
-    /// <param name="power"></param>
-    /// 
+    //Method :
     Tile FindTile(int x, int y)
     {
-        Tile[] tilemap = TileManager.Tile.tileMap;
-
-        foreach (Tile tile in tilemap)
+        if (TileManager.Tile.tileDic.ContainsKey($"{x},{y}"))
         {
-            if (tile.tileNode.posX == x && tile.tileNode.posY == y)
-            {
-                return tile;
-            }
+            return TileManager.Tile.tileDic[$"{x},{y}"];
         }
-        return null;
+        else
+        {
+            Debug.Log($"{x},{y} 좌표가 없다.");
+            return null;
+        }
     }
 
     public void RaiseStream(List<Tile> tileList)
@@ -48,19 +39,19 @@ public class StreamManager : MonoBehaviour
             Manager.Pool.GetPool(waterStream_Prefab, tile.transform.position, Quaternion.identity);
         }
     }
+
+
+
     public void CalculateStream(int x, int y, int power)
     {
         List<Tile> streamList = new List<Tile>();
 
-        Tile[] tilemap = TileManager.Tile.tileMap;
-
         streamList.Add(FindTile(x, y)); // -> 폭심지 추가
-
 
         //동
         for (int q = 0; q <= power; q++)
         {
-            if (FindTile(x + q, y) == FindTile(x, y))
+            if((q == 0) || (FindTile(x+q,y) == null))
             {
                 continue;
             }
@@ -69,6 +60,7 @@ public class StreamManager : MonoBehaviour
                 if (!FindTile(x + q, y).onObject) // 맨땅
                 {
                     streamList.Add(FindTile(x + q, y));
+                   
                     continue;
                 }
                 else if (FindTile(x + q, y).onObject) //타일 위에 무언가가 있었을 경우
@@ -98,9 +90,8 @@ public class StreamManager : MonoBehaviour
         //서
         for (int q = 0; q <= power; q++)
         {
-            if (FindTile(x - q, y) == FindTile(x, y))
+            if (q == 0 || (FindTile(x - q, y) == null))
             {
-
                 continue;
             }
             if (FindTile(x - q, y) != null)
@@ -138,7 +129,7 @@ public class StreamManager : MonoBehaviour
         //남
         for (int q = 0; q <= power; q++)
         {
-            if (FindTile(x, y - q) == FindTile(x, y))
+            if (q == 0 || (FindTile(x, y-q) == null))
             {
                 continue;
             }
@@ -177,11 +168,11 @@ public class StreamManager : MonoBehaviour
         //북
         for (int q = 0; q <= power; q++)
         {
-            if (FindTile(x, y + q) == FindTile(x, y))
+            if (q == 0 || (FindTile(x, y + q) == null))
             {
-
                 continue;
             }
+
             if (FindTile(x, y + q) != null)
             {
                 if (!FindTile(x, y + q).onObject) // 맨땅
@@ -214,13 +205,8 @@ public class StreamManager : MonoBehaviour
                 }
             }
         }
-        tileObjectList = new List<GameObject>();
         if (streamList.Count > 0)
         {
-            foreach(Tile tiles in streamList)
-            {
-                tileObjectList.Add(tiles.gameObject);
-            }
             RaiseStream(streamList);
         }
 
