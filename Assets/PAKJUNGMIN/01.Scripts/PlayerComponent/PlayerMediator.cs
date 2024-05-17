@@ -41,12 +41,16 @@ namespace pakjungmin
         }
         public void InputPlant()
         {
+            
+
             if (playerAbility.canThrow)
             {
                 playerAbility.Throw();
             }
-
-            playerBehavior.Plant(bomb, playerTileCalculator.nowTile.transform.position);
+            if (playerTileCalculator.nowTile != null)
+            {
+                playerBehavior.Plant(bomb, playerTileCalculator.nowTile.transform.position);
+            }
         }
         
         public void InputUse() { playerBehavior.Use(); }

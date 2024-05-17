@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 685264dee10edeb479c46dce06d9bc74, type: 3}
   m_Name: Bezzi
   m_EditorClassIdentifier: 
-  initSpeed: 3
+  initSpeed: 10
   maxSpeed: 20
   initPower: 1
   maxPower: 5
-  initBomb: 2
+  initBomb: 13
   maxBomb: 13

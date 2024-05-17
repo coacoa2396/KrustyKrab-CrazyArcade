@@ -31,12 +31,8 @@ namespace pakjungmin
             }
             if (ownTime <= 0)
             {
-                Explode();
+                CommandExplode();
             }
-        }
-        private void Start()
-        {
-            
         }
         private void OnEnable()
         {
@@ -48,18 +44,14 @@ namespace pakjungmin
         private void OnDisable()
         {
             ownTime = defaultTime;
+            GetComponentInChildren<BombTileCalculator>().PosX = 0;
+            GetComponentInChildren<BombTileCalculator>().PosY = 0;
 
         }
 
-        public void Explode()
+        public void CommandExplode()
         {
-
-            int posX = GetComponentInChildren<BombTileCalculator>().PosX;
-            int posY = GetComponentInChildren<BombTileCalculator>().PosY;
-            
-            StreamManager.Stream.CaculateStreamPos(posX, posY, bombPower);
-            gameObject.SetActive(false);
-
+            GetComponentInChildren<ExplodeHandler>().Explode(bombPower);
         }
     }
 }

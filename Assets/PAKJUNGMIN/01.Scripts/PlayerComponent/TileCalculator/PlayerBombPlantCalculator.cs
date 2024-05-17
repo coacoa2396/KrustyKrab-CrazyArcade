@@ -68,15 +68,17 @@ public class PlayerBombPlantCalculator : MonoBehaviour
     {
         if(bombChance <= 0) { return; }
 
-        if(playerMediator.playerTileCalculator.nowTile.OnObject)
-        {
-            if (playerMediator.playerTileCalculator.nowTile.tileonObject.GetComponent<BombTileCalculator>())
-            {
-                playerMediator.playerAbility.Throw();
-                return;
-            }
-            return;
-        }
+        //if(playerMediator.playerTileCalculator.nowTile.OnObject)
+        //{
+        //    if (playerMediator.playerTileCalculator.nowTile.tileonObject.GetComponent<BombTileCalculator>())
+        //    {
+        //        playerMediator.playerAbility.Throw();
+        //        return;
+        //    }
+        //    return;
+        //}
+        if (playerMediator.playerTileCalculator.nowTile.OnObject) { return; }
+        //Debug.Log($"0-1: {GetComponent<PlayerTileCalculator>().nowTile.tileNode.posX},{GetComponent<PlayerTileCalculator>().nowTile.tileNode.posY}");
 
         PooledObject pooledbomb = Manager.Pool.GetPool(waterBomb, BombPos, Quaternion.identity);
         Bomb bomb = (Bomb)pooledbomb;
