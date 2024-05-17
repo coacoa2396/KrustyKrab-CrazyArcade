@@ -14,4 +14,10 @@ public class Define
         Marid
     }
 
+
+    public enum Maps
+    {
+        BlockMap,
+        DesertMap
+    }
 }

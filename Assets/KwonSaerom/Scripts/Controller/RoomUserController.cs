@@ -172,6 +172,11 @@ public class RoomUserController : MonoBehaviourPunCallbacks
         photonView.RPC("UpdateReadyChange", RpcTarget.All, key, isReady);
     }
 
+    public void MapChage(Maps map)
+    {
+
+    }
+
     //마스터 바뀌면 준비 꺼져야함.
     [PunRPC] 
     public void UpdateCharacterChange(string key,Characters character)
@@ -199,6 +204,11 @@ public class RoomUserController : MonoBehaviourPunCallbacks
         UpdatePlayer();
     }
 
+    [PunRPC]
+    public void UpdateMap(Maps map)
+    {
+        Manager.Game.MapType = map;
+    }
 
 
 
