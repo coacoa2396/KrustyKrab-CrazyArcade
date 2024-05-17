@@ -39,14 +39,13 @@ public class StreamManager : MonoBehaviour
             {
                 bombTile = tile;
                 streamList.Add(bombTile);
-                Debug.Log($"폭심지 : {x},{y} 삽입");
 
                 //동
                 for (int q = 0; q <= power; q++)
                 {
                     if (FindTile(x + q, y) == FindTile(x, y))
                     {
-                        Debug.Log("같은 타일 계산 제외");
+
                         continue;
                     }
                     if (FindTile(x + q, y) != null)
@@ -54,7 +53,6 @@ public class StreamManager : MonoBehaviour
                         if (!FindTile(x + q, y).onObject) // 맨땅
                         {
                             streamList.Add(FindTile(x + q, y));
-                            Debug.Log($"동1: {x + q},{y} 삽입");
                             continue;
                         }
                         else if (FindTile(x + q, y).onObject) //타일 위에 무언가가 있었을 경우
@@ -64,13 +62,13 @@ public class StreamManager : MonoBehaviour
                             if (breakable != null) //파괴가능한 벽이었을 경우
                             {
                                 streamList.Add(FindTile(x + q, y));
-                                Debug.Log($"동2: {x + q},{y} 삽입");
+                               
                                 continue;
                             }
                             else if (breakable == null && FindTile(x + q, y).tileonObject.GetComponent<BombTileCalculator>())
                             {     //그것이 물폭탄이었다면               
                                 streamList.Add(FindTile(x + q, y));
-                                Debug.Log($"동3 : {x + q},{y} 삽입");
+                               
                                 continue;
                             }
                             else //파괴 불가능한 벽일 경우
@@ -86,7 +84,7 @@ public class StreamManager : MonoBehaviour
                 {
                     if (FindTile(x - q, y) == FindTile(x, y))
                     {
-                        Debug.Log("같은 타일 계산 제외");
+                        
                         continue;
                     }
                     if (FindTile(x - q, y) != null)
@@ -126,7 +124,7 @@ public class StreamManager : MonoBehaviour
                 {
                     if (FindTile(x, y - q) == FindTile(x, y))
                     {
-                        Debug.Log("같은 타일 계산 제외");
+                        
                         continue;
                     }
                     if (FindTile(x, y - q) != null)
@@ -134,7 +132,7 @@ public class StreamManager : MonoBehaviour
                         if (!FindTile(x, y - q).onObject) // 맨땅
                         {
                             streamList.Add(FindTile(x, y - q));
-                            Debug.Log($"동1: {x + q},{y} 삽입");
+                           
                             continue;
                         }
                         else if (FindTile(x, y - q).onObject) //타일 위에 무언가가 있었을 경우
@@ -144,13 +142,13 @@ public class StreamManager : MonoBehaviour
                             if (breakable != null) //파괴가능한 벽이었을 경우
                             {
                                 streamList.Add(FindTile(x, y - q));
-                                Debug.Log($"동2: {x + q},{y} 삽입");
+                              
                                 continue;
                             }
                             else if (breakable == null && FindTile(x, y - q).tileonObject.GetComponent<BombTileCalculator>())
                             {     //그것이 물폭탄이었다면               
                                 streamList.Add(FindTile(x, y - q));
-                                Debug.Log($"동3 : {x + q},{y} 삽입");
+                           
                                 continue;
                             }
                             else //파괴 불가능한 벽일 경우
@@ -166,7 +164,7 @@ public class StreamManager : MonoBehaviour
                 {
                     if (FindTile(x, y + q) == FindTile(x, y))
                     {
-                        Debug.Log("같은 타일 계산 제외");
+                    
                         continue;
                     }
                     if (FindTile(x, y + q) != null)
@@ -174,7 +172,7 @@ public class StreamManager : MonoBehaviour
                         if (!FindTile(x, y + q).onObject) // 맨땅
                         {
                             streamList.Add(FindTile(x, y + q));
-                            Debug.Log($"동1: {x + q},{y} 삽입");
+                         
                             continue;
                         }
                         else if (FindTile(x, y + q).onObject) //타일 위에 무언가가 있었을 경우
@@ -184,13 +182,13 @@ public class StreamManager : MonoBehaviour
                             if (breakable != null) //파괴가능한 벽이었을 경우
                             {
                                 streamList.Add(FindTile(x, y + q));
-                                Debug.Log($"동2: {x + q},{y} 삽입");
+                             
                                 continue;
                             }
                             else if (breakable == null && FindTile(x, y + q).tileonObject.GetComponent<BombTileCalculator>())
                             {     //그것이 물폭탄이었다면               
                                 streamList.Add(FindTile(x, y + q));
-                                Debug.Log($"동3 : {x + q},{y} 삽입");
+                              
                                 continue;
                             }
                             else //파괴 불가능한 벽일 경우
@@ -228,7 +226,6 @@ public class StreamManager : MonoBehaviour
 
     public void RaiseStream(List<Tile> tileList)
     {
-        Debug.Log($"tileList.Count : {tileList.Count}");
         foreach (Tile tile in tileList)
         {
             Manager.Pool.GetPool(waterStream_Prefab, tile.transform.position, Quaternion.identity);
