@@ -78,7 +78,7 @@ public class UI_Room : PopUpUI
         {
             if(roomController.IsStart())
             {
-                Manager.Game.GamePlayers = roomController.Players;
+                Manager.Game.GamePlayers = roomController.GetNowPlayerList();
                 Debug.Log($"게임 참가 플레이어 수 : {Manager.Game.GamePlayers.Count}");
                 //씬 로드 코드 작성하기
 

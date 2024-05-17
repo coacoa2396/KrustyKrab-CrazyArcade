@@ -115,7 +115,6 @@ public class RoomUserController : MonoBehaviourPunCallbacks
     private void RemovePlayer(Player player)
     {
         int nowCount = LobbyManager.NowRoom.NowPlayer--;
-        Debug.Log(nowCount);
         for(int i=0;i< nowCount; i++)
         {
             if (player.NickName.Equals(players[i].User.key))
@@ -136,12 +135,25 @@ public class RoomUserController : MonoBehaviourPunCallbacks
     {
         if (players.Count == 1)
             return false;
-        foreach(PlayerEntity player in players)
+        for(int i=1;i< LobbyManager.NowRoom.NowPlayer ;i++)
         {
-            if (player.IsReady == false)
+            Debug.Log(i + ":"+players[i].IsReady);
+            if (players[i].IsReady == false)
                 return false;
         }
         return true;
+    }
+
+    public List<PlayerEntity> GetNowPlayerList()
+    {
+        List<PlayerEntity> list = new List<PlayerEntity>();
+        foreach(PlayerEntity player in players)
+        {
+            if (player == null)
+                break;
+            list.Add(player);
+        }
+        return list;
     }
 
     public void CharacterChange(Characters character)
@@ -186,6 +198,8 @@ public class RoomUserController : MonoBehaviourPunCallbacks
         }
         UpdatePlayer();
     }
+
+
 
 
 }
