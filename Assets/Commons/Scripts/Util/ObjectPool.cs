@@ -19,10 +19,12 @@ public class ObjectPool : MonoBehaviour
         for (int i = 0; i < size; i++)
         {
             PooledObject instance = Instantiate(prefab);
+            instance.name = $"{this.prefab.name}.{i}"; //박정민 추가 -> 풀링될 오브젝트 생성 시 오브젝트 이름 각각 숫자 붙여 할당.
             instance.gameObject.SetActive(false);
             instance.Pool = this;
             instance.transform.parent = transform;
             objectPool.Push(instance);
+        
         }
     }
 

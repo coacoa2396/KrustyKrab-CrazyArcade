@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 namespace pakjungmin {
 
@@ -12,7 +13,9 @@ namespace pakjungmin {
 
 
         [SerializeField] GameObject map;
-        public Tile[] tileMap;
+        //public Tile[] tileMap;
+        public Dictionary<string, Tile> tileDic;
+
 
         [SerializeField] int lengthX;
         [SerializeField] int lengthY;
@@ -20,12 +23,14 @@ namespace pakjungmin {
         
         private void Awake()
         {
+            tileDic = new Dictionary<string, Tile>();
 
-            tileMap = map.GetComponentsInChildren<Tile>();
+            Tile[] tileMap = map.GetComponentsInChildren<Tile>();
+            //tileMap = map.GetComponentsInChildren<Tile>(); ^ Tile[] 지역 변수화 
             int x = 0;
             int y = 0;
             foreach(Tile tile in tileMap)
-            {
+            {            
                 tile.gameObject.name = $"{x},{y}";
                 tile.tileNode.posX = x;
                 tile.tileNode.posY = y;
@@ -35,6 +40,11 @@ namespace pakjungmin {
                     y++;
                     x = 0;
                 }
+            }
+            foreach(Tile tile in tileMap)
+            {
+                tileDic.Add($"{tile.gameObject.name}", tile);
+                Debug.Log($"{tile.gameObject.name} Added.");
             }
         }
         private void Start()

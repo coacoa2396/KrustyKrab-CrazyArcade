@@ -16,6 +16,10 @@ public class BombTileCalculator : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        CalculatePos(collision);
+    }
+    void CalculatePos(Collider2D collision)
+    {
         if (collision.gameObject.GetComponent<Tile>())
         {
             if (collision.gameObject.GetComponent<Tile>().OnObject) //타일 위에 아무것도 없을 때만
@@ -23,13 +27,7 @@ public class BombTileCalculator : MonoBehaviour
                 Tile nowTile = collision.gameObject.GetComponent<Tile>();
                 PosX = nowTile.tileNode.posX;
                 PosY = nowTile.tileNode.posY;
-                Debug.Log($"({PosX},{PosY})");
             }
-
         }
-    }
-    private void OnEnable()
-    {
-        
     }
 }

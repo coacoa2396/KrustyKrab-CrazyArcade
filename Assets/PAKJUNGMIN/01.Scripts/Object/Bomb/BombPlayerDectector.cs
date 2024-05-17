@@ -6,20 +6,18 @@ using UnityEngine;
 /// </summary>
 public class BombPlayerDectector : MonoBehaviour
 {
-     BoxCollider2D playercollider;
-
-    private void Awake()
-    {
-        playercollider = transform.GetChild(0).gameObject.GetComponent<BoxCollider2D>();
-    }
+    [SerializeField] BoxCollider2D playercollider;
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<PlayerStreamDectector>())
+        if (collision.gameObject.GetComponent<PlayerStreamDectector>() == null)
         {
             //Debug.Log("콜라이더 On");
             playercollider.enabled = true;
         }
     }
-
+    private void OnDisable()
+    {
+        playercollider.enabled = false;
+    }
 }
