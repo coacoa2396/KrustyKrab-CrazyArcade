@@ -60,7 +60,7 @@ public class UI_UserToken : BaseUI
         GetUI(GameObjects.PlayerImg.ToString()).SetActive(onPlayer);
         GetUI(GameObjects.ReadyInfo.ToString()).SetActive(onPlayer);
     }
-
+     
     public void SwitchReady(bool ready)
     {
         player.IsReady = ready;

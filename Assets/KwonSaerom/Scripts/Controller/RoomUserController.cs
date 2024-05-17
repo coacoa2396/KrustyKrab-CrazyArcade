@@ -20,6 +20,11 @@ public class RoomUserController : MonoBehaviourPunCallbacks
     private void Awake()
     {
         players = new List<PlayerEntity>();
+        for (int i = 0; i < 8; i++)
+            players.Add(null);
+
+        for (int i = 0; i < players.Count; i++)
+            Debug.Log(players[i]);
     }
 
     private void Start()
@@ -56,8 +61,6 @@ public class RoomUserController : MonoBehaviourPunCallbacks
 
     private void InitRoom()
     {
-        players.Clear();
-
         for (int i=0;i< PhotonNetwork.PlayerList.Length;i++)
         {
             AddPlayer(PhotonNetwork.PlayerList[i],i);
@@ -67,9 +70,10 @@ public class RoomUserController : MonoBehaviourPunCallbacks
     private void UpdatePlayer()
     {
         int maxPlayer = LobbyManager.NowRoom.MaxPlayer;
+        int playerCount = LobbyManager.NowRoom.NowPlayer;
         for (int i = 0; i < maxPlayer; i++)
         {
-            if (i < players.Count)
+            if (players[i] != null)
                 userTokens[i].SetPlayer(players[i], sprites[(int)players[i].Character]);
             else
                 userTokens[i].OnPlayer(false);
@@ -78,11 +82,6 @@ public class RoomUserController : MonoBehaviourPunCallbacks
 
     private void AddPlayer(Player player,int index)
     {
-        if (player.IsMasterClient)
-            index = 0;
-        else if (index == 0) //마스터 클라이언트가 아닌데 index가 0이면(반장자리)
-            index = 1;
-
         FirebaseManager.DB
                 .GetReference("User")
                 .Child(UserDataManager.ToKey(player.NickName))
@@ -106,7 +105,14 @@ public class RoomUserController : MonoBehaviourPunCallbacks
                     //캐릭터선택 정보 불러오기
                     Hashtable ht = player.CustomProperties;
                     PlayerEntity entity = new PlayerEntity(user, (Characters)(int)ht["Character"], (bool)ht["Ready"]);
-                    players.Add(entity);
+                    if(index < players.Count)
+                    {
+                        Debug.Log("안에 있다." +index + " : "+players.Count);
+                        players[index] = entity;
+                    }
+                        Debug.Log("안에 없" +index + " : "+players.Count);
+                    Debug.Log(entity);
+                    Debug.Log(players[index]);
 
                     //플레이어 정보를 UI에 저장
                     userTokens[index].SetPlayer(entity, sprites[(int)entity.Character]);
@@ -145,7 +151,7 @@ public class RoomUserController : MonoBehaviourPunCallbacks
 
     public void ReadyChange(bool isReady)
     {
-        PhotonNetwork.LocalPlayer.SetCustomProperties(new Hashtable() { { "Ready", true } });
+        PhotonNetwork.LocalPlayer.SetCustomProperties(new Hashtable() { { "Ready", isReady } });
 
         string key = Manager.Game.Player.User.key;
         photonView.RPC("UpdateReadyChange", RpcTarget.All, key, isReady);
@@ -157,7 +163,7 @@ public class RoomUserController : MonoBehaviourPunCallbacks
     {
         foreach (PlayerEntity player in players)
         {
-            if (player.Key.Equals(key))
+            if (player != null && player.Key.Equals(key))
             {
                 player.Character = character;
             }
@@ -170,7 +176,7 @@ public class RoomUserController : MonoBehaviourPunCallbacks
     {
         foreach (PlayerEntity player in players)
         {
-            if (player.Key.Equals(key))
+            if (player != null && player.Key.Equals(key))
             {
                 player.IsReady = isReady;
             }

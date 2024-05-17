@@ -1384,7 +1384,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b676f166bd64ad468fcaec4944e6f3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  warningPopup: {fileID: 2830730982586570911, guid: fb22bb5fd7d5a9145ac54386f6152c11, type: 3}
+  warningPopup: {fileID: 9104423673542333883, guid: 60a261afbe9095a42826bda6be6afffa, type: 3}
 --- !u!1 &8782024907369309780
 GameObject:
   m_ObjectHideFlags: 0
