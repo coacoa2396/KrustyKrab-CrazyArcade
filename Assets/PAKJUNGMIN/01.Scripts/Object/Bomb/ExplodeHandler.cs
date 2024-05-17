@@ -14,10 +14,7 @@ public class ExplodeHandler : MonoBehaviour
             int posY = GetComponentInParent<Bomb>().GetComponentInChildren<BombTileCalculator>().PosY;
 
 
-            StreamManager.Stream.CaculateStreamPos(posX, posY, power);
-
-
-
+            StreamManager.Stream.CalculateStream(posX, posY, power);
 
 
             GetComponentInParent<Bomb>().Release();
