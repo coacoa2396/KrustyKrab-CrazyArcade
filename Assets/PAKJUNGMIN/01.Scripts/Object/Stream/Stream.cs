@@ -9,7 +9,6 @@ using UnityEngine;
 /// </summary>
 public class Stream : PooledObject
 {
-
     public float driftTime = 0.5f;
     Coroutine courseCoroutine;
 
@@ -17,9 +16,9 @@ public class Stream : PooledObject
     {
         while (true)
         {
-            driftTime -= Time.deltaTime;
+            stream_time -= Time.deltaTime;
             yield return null;
-            if (driftTime <= 0)
+            if (stream_time <= 0)
             {
                 gameObject.SetActive(false);
                 break;

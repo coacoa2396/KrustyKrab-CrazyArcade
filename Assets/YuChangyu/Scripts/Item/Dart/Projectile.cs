@@ -49,7 +49,7 @@ public class Projectile : MonoBehaviour
         if (bombCheck.Contain(collision.gameObject.layer))
         {
             Bomb bomb = collision.gameObject.GetComponent<Bomb>();
-            bomb.Explode();
+            bomb.CommandExplode();
             Destroy(gameObject);
             return;
         }
