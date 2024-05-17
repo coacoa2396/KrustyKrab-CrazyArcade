@@ -394,7 +394,7 @@ GameObject:
   - component: {fileID: 3136434963159182678}
   - component: {fileID: 7738899368093776699}
   m_Layer: 0
-  m_Name: FloorChecker
+  m_Name: PlayerTileDectector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
