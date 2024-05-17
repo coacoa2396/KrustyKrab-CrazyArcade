@@ -20,7 +20,7 @@ public class Stream : PooledObject
             yield return null;
             if (stream_time <= 0)
             {
-                gameObject.SetActive(false);
+                Release();
                 break;
             }
         }

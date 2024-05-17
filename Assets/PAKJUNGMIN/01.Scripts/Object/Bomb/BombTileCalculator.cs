@@ -19,19 +19,13 @@ public class BombTileCalculator : MonoBehaviour
         CalculatePos(collision);
     }
 
-    void CalculatePos(Collider2D collision)
+    void CalculatePos(Collider2D collision) //===
     {
         if (collision.gameObject.GetComponent<Tile>())
         {
-            if (!collision.gameObject.GetComponent<Tile>().OnObject) {
-             
-                Debug.Log($"0-2 : {collision.gameObject.GetComponent<Tile>().tileNode.posX},{collision.gameObject.GetComponent<Tile>().tileNode.posY}");
-                return; 
-            }
             if (collision.gameObject.GetComponent<Tile>().OnObject) //타일 위에 아무것도 없을 때만
             {
                 Tile nowTile = collision.gameObject.GetComponent<Tile>();
-                Debug.Log($"2");
                 PosX = nowTile.tileNode.posX;
                 PosY = nowTile.tileNode.posY;
             }

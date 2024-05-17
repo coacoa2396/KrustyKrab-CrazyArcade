@@ -44,6 +44,8 @@ namespace pakjungmin
         private void OnDisable()
         {
             ownTime = defaultTime;
+            GetComponentInChildren<BombTileCalculator>().PosX = 0;
+            GetComponentInChildren<BombTileCalculator>().PosY = 0;
 
         }
 
