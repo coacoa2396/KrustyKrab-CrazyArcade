@@ -27,6 +27,7 @@ public class BombTileCalculator : MonoBehaviour
                 Tile nowTile = collision.gameObject.GetComponent<Tile>();
                 PosX = nowTile.tileNode.posX;
                 PosY = nowTile.tileNode.posY;
+
             }
         }
     }
