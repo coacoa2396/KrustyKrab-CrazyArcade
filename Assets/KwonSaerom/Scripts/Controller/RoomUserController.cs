@@ -125,6 +125,8 @@ public class RoomUserController : MonoBehaviourPunCallbacks
 
     public bool IsStart()
     {
+        if (players.Count == 1)
+            return false;
         foreach(PlayerEntity player in players)
         {
             if (player.IsReady == false)
