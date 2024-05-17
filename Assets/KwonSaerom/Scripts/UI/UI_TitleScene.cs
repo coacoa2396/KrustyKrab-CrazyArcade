@@ -95,7 +95,6 @@ public class UI_TitleScene : InGameUI
             warning.SetLog("이미 플레이중인 계정입니다.");
         }else
         {
-            UserDataManager.LocalUserSetConnect(true); //연결
             Manager.Scene.LoadScene("LobbyScene");
         }
         yield return new WaitForSeconds(1f);

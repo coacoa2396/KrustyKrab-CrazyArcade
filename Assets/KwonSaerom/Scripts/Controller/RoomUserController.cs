@@ -22,9 +22,6 @@ public class RoomUserController : MonoBehaviourPunCallbacks
         players = new List<PlayerEntity>();
         for (int i = 0; i < 8; i++)
             players.Add(null);
-
-        for (int i = 0; i < players.Count; i++)
-            Debug.Log(players[i]);
     }
 
     private void Start()
@@ -45,7 +42,7 @@ public class RoomUserController : MonoBehaviourPunCallbacks
     {
         newPlayer.SetCustomProperties(new Hashtable() { { "Character", 0 } });
         newPlayer.SetCustomProperties(new Hashtable() { { "Ready", false } });
-        AddPlayer(newPlayer,players.Count);
+        AddPlayer(newPlayer,++LobbyManager.NowRoom.NowPlayer);
     }
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
@@ -105,14 +102,8 @@ public class RoomUserController : MonoBehaviourPunCallbacks
                     //캐릭터선택 정보 불러오기
                     Hashtable ht = player.CustomProperties;
                     PlayerEntity entity = new PlayerEntity(user, (Characters)(int)ht["Character"], (bool)ht["Ready"]);
-                    if(index < players.Count)
-                    {
-                        Debug.Log("안에 있다." +index + " : "+players.Count);
-                        players[index] = entity;
-                    }
-                        Debug.Log("안에 없" +index + " : "+players.Count);
-                    Debug.Log(entity);
-                    Debug.Log(players[index]);
+                    players[index] = entity;
+                    Debug.Log("index " +index + " : "+players.Count);
 
                     //플레이어 정보를 UI에 저장
                     userTokens[index].SetPlayer(entity, sprites[(int)entity.Character]);
@@ -121,10 +112,17 @@ public class RoomUserController : MonoBehaviourPunCallbacks
 
     private void RemovePlayer(Player player)
     {
-        for(int i=0;i<players.Count;i++)
+        int nowCount = LobbyManager.NowRoom.NowPlayer--;
+        for(int i=0;i< nowCount; i++)
         {
             if (player.NickName.Equals(players[i].User.key))
-                players.RemoveAt(i);
+            {
+                players[i] = null;
+                for(int j=i+1;j< nowCount; j++)
+                {
+                    players[j] = players[j - 1];
+                }
+            }
         }
         UpdatePlayer();
     }

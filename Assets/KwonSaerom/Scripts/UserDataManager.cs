@@ -50,7 +50,6 @@ public class UserDataManager
                 }
                 DataSnapshot snapshot = task.Result;
                 UserEntity user = JsonUtility.FromJson<UserEntity>(snapshot.GetRawJsonValue());
-                Debug.Log(user.isConnect + "연결되어있ㄴ니?");
                 Manager.Game.Player = new PlayerEntity(user);
             });
     }
