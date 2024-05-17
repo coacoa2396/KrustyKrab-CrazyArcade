@@ -40,7 +40,7 @@ namespace pakjungmin
         }
         private void OnEnable()
         {
-            if(!GetComponentInChildren<BombLocator>()) { 
+            if(!GetComponentInChildren<BombTileCalculator>()) { 
                 return;
             }
             explodeCoroutine = StartCoroutine(WaitExplode());
@@ -54,13 +54,12 @@ namespace pakjungmin
         public void Explode()
         {
 
-            int posX = GetComponentInChildren<BombLocator>().PosX;
-            int posY = GetComponentInChildren<BombLocator>().PosY;
+            int posX = GetComponentInChildren<BombTileCalculator>().PosX;
+            int posY = GetComponentInChildren<BombTileCalculator>().PosY;
+            
+            StreamManager.Stream.CaculateStreamPos(posX, posY, bombPower);
             gameObject.SetActive(false);
-            StreamManager.Stream.LocateDrift(posX, posY,bombPower);
-            //코루틴 시간 차를 이용해, 순서가 꼬여 
-            //플레이어의 물폭탄 파워와, 물폭탄의 파워가 안되던 버그가 해결되었지만
-            //나중에 고쳐야한다.
+
         }
     }
 }

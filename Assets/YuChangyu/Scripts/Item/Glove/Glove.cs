@@ -24,7 +24,7 @@ public class Glove : Item,IAcquirable
 
         // 플레이어 스킬에서 던지기 기능 활성화 시키기
 
-        Player.playerInventory.Inven.Add(ItemDataManager.ItemData.itemDir["Glove"]);
+        Player.playerInventory.Inven.Add(ItemManager.ItemData.itemDir["Glove"]);
         gameObject.SetActive(false);
     }
 }

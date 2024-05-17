@@ -22,14 +22,14 @@ namespace pakjungmin
         public PlayerStateMachine playerState; // 플레이어의 현재 상태 -> 유찬규 추가 내용
         public PlayerAnimationController playerAnimCon; // 플레이어 애니메이션 컨트롤러 -> 유찬규 추가 내용
         [Header("플레이어의 콜라이더 관련")]
-        public FloorChecker floorChecker;
-        public BombPlantController playerBombPlantController;
+        public PlayerTileCalculator playerTileCalculator;
+        public PlayerBombPlantCalculator playerBombPlantCalculator;
         [Header("플레이어의 아이템 관련 ")]
         public PlayerInventory playerInventory;
         public Bomb bomb;
         [Header("플레이어의 스킬")]
-        public PlayerSkill playerSkill;
-        public Skill_ColliderChecker skill_ColliderChecker;
+        public PlayerAbility playerAbility;
+        public ThrowAbilityChecker throwAbilityChecker;
         [Space(3f)]
         [Header("플레이어 인벤토리")]
         [SerializeField] ActiveBase curActiveItem;   // 플레이어의 현재 액티브아이템 -> 유찬규 추가 내용
@@ -39,15 +39,16 @@ namespace pakjungmin
         {
             playerBehavior.Move(moveDir);
         }
-        public void InputPlant() {
-             //플레이어의 스킬에가 아니라 플레이어의 행동에서 하는 걸로 변경해야한다.
-            if (floorChecker.nowTile.OnObject)
+        public void InputPlant()
+        {
+            if (playerAbility.canThrow)
             {
-                return;
+                playerAbility.Throw();
             }
 
-            playerBehavior.Plant(bomb, floorChecker.nowTile.transform.position); 
+            playerBehavior.Plant(bomb, playerTileCalculator.nowTile.transform.position);
         }
+        
         public void InputUse() { playerBehavior.Use(); }
     }
 }

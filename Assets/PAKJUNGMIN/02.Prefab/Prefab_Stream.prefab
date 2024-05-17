@@ -147,7 +147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   autoRelease: 1
   releaseTime: 0.1
-  driftTime: 0.7
+  driftTime: 0.05
 --- !u!50 &4768642557626969585
 Rigidbody2D:
   serializedVersion: 4

@@ -1010,7 +1010,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1411546363
-  m_SortingLayer: 2
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -2552,7 +2552,7 @@ GameObject:
   - component: {fileID: 231329925}
   - component: {fileID: 231329924}
   m_Layer: 0
-  m_Name: WaterBombSpawner
+  m_Name: BombPooler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2614,7 +2614,7 @@ GameObject:
   - component: {fileID: 255861317}
   - component: {fileID: 255861316}
   m_Layer: 0
-  m_Name: StreamSpawner
+  m_Name: StreamManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2632,7 +2632,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88edf69244c9ada4987923300c662b58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stream_Prefab: {fileID: 8523388214241208693, guid: 937aa17bc7ec23c41b56b522af889bbc, type: 3}
+  waterStream_Prefab: {fileID: 8523388214241208693, guid: 937aa17bc7ec23c41b56b522af889bbc, type: 3}
 --- !u!4 &255861317
 Transform:
   m_ObjectHideFlags: 0
@@ -4130,7 +4130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5feb964e609b9514f8993113f6ea384d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  randomNumber: 20
+  randomNumber: 10
   randomitemList: []
 --- !u!4 &338973232
 Transform:
@@ -21078,6 +21078,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player2
       objectReference: {fileID: 0}
+    - target: {fileID: 8637128536137346432, guid: e0d0f3830d1f3e641a43692869c0568d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -22671,7 +22675,7 @@ GameObject:
   - component: {fileID: 2110485173}
   - component: {fileID: 2110485172}
   m_Layer: 0
-  m_Name: WaterCourseSpawner
+  m_Name: StreamPooler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

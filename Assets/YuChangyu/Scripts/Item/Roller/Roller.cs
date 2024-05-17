@@ -28,7 +28,7 @@ public class Roller : Item, IAcquirable
 
         Player.playerStats.OwnSpeed++;
 
-        Player.playerInventory.Inven.Add(ItemDataManager.ItemData.itemDir["Roller"]);
+        Player.playerInventory.Inven.Add(ItemManager.ItemData.itemDir["Roller"]);
         gameObject.SetActive(false);
 
     }
