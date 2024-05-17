@@ -10,16 +10,16 @@ using UnityEngine;
 public class Stream : PooledObject
 {
 
-    public float driftTime = 1f;
+    public float stream_time = 1f;
     Coroutine courseCoroutine;
 
     IEnumerator CourseTime()
     {
         while (true)
         {
-            driftTime -= Time.deltaTime;
+            stream_time -= Time.deltaTime;
             yield return null;
-            if (driftTime <= 0)
+            if (stream_time <= 0)
             {
                 gameObject.SetActive(false);
                 break;
@@ -33,7 +33,7 @@ public class Stream : PooledObject
     }
     private void OnDisable()
     {
-        driftTime = 1f;
+        stream_time = 1f;
     }
 
 }

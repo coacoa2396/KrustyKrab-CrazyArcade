@@ -16,7 +16,7 @@ public class BombStreamDectector : MonoBehaviour
         {
             try //나중에 정확한 로직을 써서 바꿀것. 예외 처리 사용지양. 0513 메모
             {
-                GetComponentInParent<Bomb>().Explode();
+                GetComponentInParent<Bomb>().CommandExplode();
             }
             catch
             {

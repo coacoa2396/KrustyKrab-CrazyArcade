@@ -123,8 +123,7 @@ public class StreamManager : MonoBehaviour
                 for (int q = 0; q <= power; q++)
                 {
                     if (FindTile(x, y - q) == FindTile(x, y))
-                    {
-                        
+                    {                      
                         continue;
                     }
                     if (FindTile(x, y - q) != null)

@@ -18,7 +18,7 @@ namespace pakjungmin
 
         [SerializeField] public GameObject tileonObject;
 
-        [SerializeField] public TileNode tileNode; //타일의 좌표.
+        public TileNode tileNode; //타일의 좌표.
 
         public TileStyle tileStyle; //바닥의 종류
 
