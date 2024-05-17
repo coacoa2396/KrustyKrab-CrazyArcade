@@ -55,14 +55,16 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         PhotonNetwork.LocalPlayer.SetCustomProperties(new Hashtable() { { "Character", 0 } });
         PhotonNetwork.LocalPlayer.SetCustomProperties(new Hashtable() { { "Ready", false } });
 
-        //방 팝업 켜기
-        UI_Room room = Manager.UI.ShowPopUpUI(roomPopup);
-        nowRoomPopup = room;
-
         //방 정보를 들고와서 UI에 연결
         RoomEntity entity = new RoomEntity(PhotonNetwork.CurrentRoom);
         NowRoom = entity;
+        NowRoom.NowPlayer = PhotonNetwork.CurrentRoom.PlayerCount;
+
+        //방 팝업 켜기
+        UI_Room room = Manager.UI.ShowPopUpUI(roomPopup);
+        nowRoomPopup = room;
         room.SetRoomInfo(entity);
+
     }
 
     public override void OnLeftRoom()

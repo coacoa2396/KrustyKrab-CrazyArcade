@@ -15,6 +15,7 @@ public class RoomUserController : MonoBehaviourPunCallbacks
 
     private UI_UserToken[] userTokens;
     private List<PlayerEntity> players;
+    private int nowPlayer;
     public List<PlayerEntity> Players { get { return players; } }
 
     private void Awake()
@@ -26,6 +27,7 @@ public class RoomUserController : MonoBehaviourPunCallbacks
 
     private void Start()
     {
+        Debug.Log("들어왔을때 플레이어 수 : " + LobbyManager.NowRoom.NowPlayer);
         userTokens = GetComponentsInChildren<UI_UserToken>();
         int maxPlayer = LobbyManager.NowRoom.MaxPlayer;
         for (int i=0;i<userTokens.Length;i++)
@@ -42,7 +44,7 @@ public class RoomUserController : MonoBehaviourPunCallbacks
     {
         newPlayer.SetCustomProperties(new Hashtable() { { "Character", 0 } });
         newPlayer.SetCustomProperties(new Hashtable() { { "Ready", false } });
-        AddPlayer(newPlayer,++LobbyManager.NowRoom.NowPlayer);
+        AddPlayer(newPlayer,LobbyManager.NowRoom.NowPlayer++);
     }
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
@@ -67,7 +69,6 @@ public class RoomUserController : MonoBehaviourPunCallbacks
     private void UpdatePlayer()
     {
         int maxPlayer = LobbyManager.NowRoom.MaxPlayer;
-        int playerCount = LobbyManager.NowRoom.NowPlayer;
         for (int i = 0; i < maxPlayer; i++)
         {
             if (players[i] != null)
@@ -75,6 +76,7 @@ public class RoomUserController : MonoBehaviourPunCallbacks
             else
                 userTokens[i].OnPlayer(false);
         }
+        userTokens[0].SwitchReady(false); //방장은 레디버튼 비활성화
     }
 
     private void AddPlayer(Player player,int index)
@@ -113,15 +115,18 @@ public class RoomUserController : MonoBehaviourPunCallbacks
     private void RemovePlayer(Player player)
     {
         int nowCount = LobbyManager.NowRoom.NowPlayer--;
+        Debug.Log(nowCount);
         for(int i=0;i< nowCount; i++)
         {
             if (player.NickName.Equals(players[i].User.key))
             {
+                Debug.Log(i);
                 players[i] = null;
-                for(int j=i+1;j< nowCount; j++)
+                for(int j=i;j< nowCount; j++)
                 {
-                    players[j] = players[j - 1];
+                    players[j] = players[j + 1];
                 }
+                break;
             }
         }
         UpdatePlayer();
