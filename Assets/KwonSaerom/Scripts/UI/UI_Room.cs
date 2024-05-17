@@ -49,7 +49,7 @@ public class UI_Room : PopUpUI
         }
         else
         {
-            roomController = GameObject.Find("UserList").GetComponentInChildren<RoomUserController>();
+            roomController = GameObject.Find("UI_UserList").GetComponentInChildren<RoomUserController>();
         }
         GetUI<Button>(GameObjects.GameStartButton.ToString()).onClick.AddListener(GameStart);
     }
