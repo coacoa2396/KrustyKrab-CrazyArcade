@@ -4,8 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using static Define;
 
-public class UI_SelectMap : PopUpUI
+public class UI_SelectMap : MonoBehaviour
 {
+    [SerializeField] Button confirmButton;
+    [SerializeField] Button closeButton;
+    [SerializeField] Button blockMap;
+    [SerializeField] Button desertMap;
+
     UI_Room nowRoomUI;
     Maps selectedMap;
 
@@ -17,16 +22,15 @@ public class UI_SelectMap : PopUpUI
         DesertMap
     }
 
-    protected override void Awake()
+    private void Awake()
     {
-        base.Awake();
         selectedMap = Manager.Game.MapType;
-        GetUI<Button>(GameObjects.ConfirmButton.ToString()).onClick.AddListener(ConfirmClick);
-        GetUI<Button>(GameObjects.CloseButton.ToString()).onClick.AddListener(Close);
-        GetUI<Button>(GameObjects.BlockMap.ToString()).onClick.AddListener(() => SelectMap(Maps.BlockMap));
-        GetUI<Button>(GameObjects.DesertMap.ToString()).onClick.AddListener(() => SelectMap(Maps.DesertMap));
+        confirmButton.onClick.AddListener(ConfirmClick);
+        closeButton.onClick.AddListener(Close);
+        blockMap.onClick.AddListener(() => SelectMap(Maps.BlockMap));
+        desertMap.onClick.AddListener(() => SelectMap(Maps.DesertMap));
     }
-
+    
     public void SetRoom(UI_Room room)
     {
         nowRoomUI = room;
@@ -41,6 +45,12 @@ public class UI_SelectMap : PopUpUI
     {
         Manager.Game.MapType = selectedMap;
         nowRoomUI.SelectMapConfirm();
+        Close();
+    }
+
+    public void Close()
+    {
+        Destroy(gameObject);
     }
 
 }

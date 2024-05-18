@@ -118,7 +118,7 @@ public class UI_Room : PopUpUI
     {
         if (PhotonNetwork.IsMasterClient == false)
             return;
-        UI_SelectMap selectUI = Manager.UI.ShowPopUpUI(selectMap);
+        UI_SelectMap selectUI = Instantiate(selectMap);
         selectUI.SetRoom(this);
     }
 
