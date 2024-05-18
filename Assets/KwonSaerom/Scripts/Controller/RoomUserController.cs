@@ -4,6 +4,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.TextCore.Text;
 using static Define;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
@@ -133,7 +134,7 @@ public class RoomUserController : MonoBehaviourPunCallbacks
 
     public bool IsStart()
     {
-        if (players.Count == 1)
+        if (LobbyManager.NowRoom.NowPlayer == 1)
             return false;
         for(int i=1;i< LobbyManager.NowRoom.NowPlayer ;i++)
         {
@@ -172,6 +173,11 @@ public class RoomUserController : MonoBehaviourPunCallbacks
         photonView.RPC("UpdateReadyChange", RpcTarget.All, key, isReady);
     }
 
+    public void MapChage(Maps map)
+    {
+        photonView.RPC("UpdateMap", RpcTarget.All, map);
+    }
+
     //마스터 바뀌면 준비 꺼져야함.
     [PunRPC] 
     public void UpdateCharacterChange(string key,Characters character)
@@ -199,6 +205,11 @@ public class RoomUserController : MonoBehaviourPunCallbacks
         UpdatePlayer();
     }
 
+    [PunRPC]
+    public void UpdateMap(Maps map)
+    {
+        Manager.Game.MapType = map;
+    }
 
 
 

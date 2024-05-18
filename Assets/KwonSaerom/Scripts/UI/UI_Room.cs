@@ -5,11 +5,15 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using static Define;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class UI_Room : PopUpUI
 {
+    [SerializeField] List<Sprite> mapImages;
     [SerializeField] UI_WarningRoom warningPopup;
+    [SerializeField] UI_SelectMap selectMap;
+
     RoomUserController roomController;
 
     enum GameObjects
@@ -23,7 +27,8 @@ public class UI_Room : PopUpUI
         DaoSelect,
         CappiSelect,
         BazziSelect,
-        MaridSelect
+        MaridSelect,
+        MapImage
     }
 
 
@@ -33,11 +38,22 @@ public class UI_Room : PopUpUI
         if (Time.timeScale == 0)
             Time.timeScale = 1;
         GetUI<Button>(GameObjects.ExitButton.ToString()).onClick.AddListener(ExitRoom);
+        GetUI<Button>(GameObjects.SelectMapButton.ToString()).onClick.AddListener(SelectMapClick);
         GetUI<Button>(GameObjects.DaoSelect.ToString()).onClick.AddListener(()=> SelectCharacter(Define.Characters.Dao));
         GetUI<Button>(GameObjects.CappiSelect.ToString()).onClick.AddListener(()=> SelectCharacter(Define.Characters.Cappi));
         GetUI<Button>(GameObjects.BazziSelect.ToString()).onClick.AddListener(()=> SelectCharacter(Define.Characters.Bazzi));
         GetUI<Button>(GameObjects.MaridSelect.ToString()).onClick.AddListener(()=> SelectCharacter(Define.Characters.Marid));
         GetUI<Button>(GameObjects.BazziSelect.ToString()).Select();
+    }
+
+    private void OnEnable()
+    {
+        Manager.Game.OnChangeMap += ChangeMapImage;
+    }
+
+    private void OnDisable()
+    {
+        Manager.Game.OnChangeMap -= ChangeMapImage;
     }
 
     private void Start()
@@ -96,5 +112,23 @@ public class UI_Room : PopUpUI
             Manager.Game.Player.IsReady = readyInfo;
             roomController.ReadyChange(readyInfo);
         }
+    }
+
+    public void SelectMapClick()
+    {
+        if (PhotonNetwork.IsMasterClient == false)
+            return;
+        UI_SelectMap selectUI = Instantiate(selectMap);
+        selectUI.SetRoom(this);
+    }
+
+    public void ChangeMapImage()
+    {
+        GetUI<Image>(GameObjects.MapImage.ToString()).sprite = mapImages[(int)Manager.Game.MapType];
+    }
+
+    public void SelectMapConfirm()
+    {
+        roomController.MapChage(Manager.Game.MapType);
     }
 }
