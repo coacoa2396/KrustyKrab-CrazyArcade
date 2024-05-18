@@ -16,8 +16,8 @@ public class GameManager : Singleton<GameManager>
         }
         set
         {
-            OnChangeMap?.Invoke();
             mapType = value;
+            OnChangeMap?.Invoke();
         }
     }
 

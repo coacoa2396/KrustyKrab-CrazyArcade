@@ -130,6 +130,5 @@ public class UI_Room : PopUpUI
     public void SelectMapConfirm()
     {
         roomController.MapChage(Manager.Game.MapType);
-        ChangeMapImage();
     }
 }
