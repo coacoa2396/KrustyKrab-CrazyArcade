@@ -38,7 +38,7 @@ public class PlayerAbility : MonoBehaviour
         if (!canThrow) { return; }
         if (!playerMediator.playerInventory.Inven.Exists((gameObject_ => gameObject_.GetComponent<Glove>())))
         {
-            Debug.Log("글러브 없음");
+           // Debug.Log("글러브 없음");
             return; 
         }
         if(canThrow)
@@ -57,10 +57,10 @@ public class PlayerAbility : MonoBehaviour
 
         if (!playerMediator.playerInventory.Inven.Exists((gameObject_ => gameObject_.GetComponent<Shoes>())))
         {
-            Debug.Log("신발 없음");
+            //Debug.Log("신발 없음");
             return;
         }
-        Debug.Log("킥!!");
+       // Debug.Log("킥!!");
 
         Bomb bomb = GetComponentInChildren<KickAbilityChecker>().targetBomb;
         
@@ -70,7 +70,7 @@ public class PlayerAbility : MonoBehaviour
 
         if(ray.collider.gameObject.GetComponent<BreakableWall>())
         {
-            Debug.Log("뭔가에 부딪힘");
+           // Debug.Log("뭔가에 부딪힘");
         }
 
     }
