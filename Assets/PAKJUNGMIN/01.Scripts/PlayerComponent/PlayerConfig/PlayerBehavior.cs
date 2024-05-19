@@ -35,9 +35,9 @@ namespace pakjungmin
         /// </summary>
         /// <param name="waterBomb"></param>
         /// <param name="BombPos"></param>
-        public void Plant(Bomb waterBomb,Vector3 BombPos)
-        {          
-            playerMediator.playerBombPlantCalculator.PlantBomb(waterBomb, BombPos);
+        public void Plant(Bomb waterBomb,Tile tile)
+        {
+            playerMediator.playerBombPlantCalculator.PlantBomb(waterBomb, TileManager.Tile.tileDic[$"{tile.tileNode.posX},{tile.tileNode.posY}"]);
         }
         public void Use()
         {
