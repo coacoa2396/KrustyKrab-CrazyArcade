@@ -44,7 +44,7 @@ namespace pakjungmin {
             foreach(Tile tile in tileMap)
             {
                 tileDic.Add($"{tile.gameObject.name}", tile);
-                Debug.Log($"{tile.gameObject.name} Added.");
+                //Debug.Log($"{tile.gameObject.name} Added.");
             }
         }
         private void Start()

@@ -7,8 +7,8 @@ using UnityEngine;
 /// </summary>
 public class BombTileCalculator : MonoBehaviour
 {
-    int posX;
-    int posY;
+    [SerializeField] int posX;
+    [SerializeField] int posY;
 
     public int PosX { get { return posX; } set { posX = value; } }
     public int PosY { get { return posY; } set { posY = value; } }
@@ -27,8 +27,10 @@ public class BombTileCalculator : MonoBehaviour
                 Tile nowTile = collision.gameObject.GetComponent<Tile>();
                 PosX = nowTile.tileNode.posX;
                 PosY = nowTile.tileNode.posY;
+                Debug.Log($"0. BombTileCalculator : {PosX},{PosY}");
 
             }
         }
     }
+
 }
