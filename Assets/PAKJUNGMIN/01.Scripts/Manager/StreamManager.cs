@@ -74,7 +74,7 @@ public class StreamManager : MonoBehaviour
 
                         break;
                     }
-                    else if (breakable == null && FindTile(x + q, y).tileonObject.GetComponent<BombTileCalculator>())
+                    else if (breakable == null && FindTile(x + q, y).tileonObject.GetComponent<BombStreamDectector>())
                     {     //그것이 물폭탄이었다면               
                         streamList.Add(FindTile(x + q, y));
 
@@ -113,7 +113,7 @@ public class StreamManager : MonoBehaviour
 
                         break;
                     }
-                    else if (breakable == null && FindTile(x - q, y).tileonObject.GetComponent<BombTileCalculator>())
+                    else if (breakable == null && FindTile(x - q, y).tileonObject.GetComponent<BombStreamDectector>())
                     {     //그것이 물폭탄이었다면               
                         streamList.Add(FindTile(x - q, y));
 
@@ -152,7 +152,7 @@ public class StreamManager : MonoBehaviour
 
                         break;
                     }
-                    else if (breakable == null && FindTile(x, y - q).tileonObject.GetComponent<BombTileCalculator>())
+                    else if (breakable == null && FindTile(x, y - q).tileonObject.GetComponent<BombStreamDectector>())
                     {     //그것이 물폭탄이었다면               
                         streamList.Add(FindTile(x, y - q));
 
@@ -192,7 +192,7 @@ public class StreamManager : MonoBehaviour
 
                         break;
                     }
-                    else if (breakable == null && FindTile(x, y + q).tileonObject.GetComponent<BombTileCalculator>())
+                    else if (breakable == null && FindTile(x, y + q).tileonObject.GetComponent<BombStreamDectector>())
                     {     //그것이 물폭탄이었다면               
                         streamList.Add(FindTile(x, y + q));
 

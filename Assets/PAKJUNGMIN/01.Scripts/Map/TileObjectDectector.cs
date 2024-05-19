@@ -11,7 +11,7 @@ public class TileObjectDectector : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.GetComponent<BaseWall>() || collision.GetComponent<BombTileCalculator>())
+        if (collision.GetComponent<BaseWall>() || collision.GetComponent<BombStreamDectector>())
         {
             GetComponentInParent<Tile>().OnObject = true;
             GetComponentInParent<Tile>().tileonObject = collision.gameObject;
@@ -20,7 +20,7 @@ public class TileObjectDectector : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.GetComponent<BaseWall>() || collision.GetComponent<BombTileCalculator>())
+        if (collision.GetComponent<BaseWall>() || collision.GetComponent<BombStreamDectector>())
         {
             if(!GetComponentInParent<Tile>()) { return; } //씬 종료 시 예외 체크.
 
