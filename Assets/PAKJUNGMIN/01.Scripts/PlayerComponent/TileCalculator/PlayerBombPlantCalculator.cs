@@ -72,9 +72,15 @@ public class PlayerBombPlantCalculator : MonoBehaviour
 
         if (playerMediator.playerTileCalculator.nowTile.OnObject) { return; }
 
+       
         Vector3 tilePos = TileManager.Tile.tileDic[$"{tile.tileNode.posX},{tile.tileNode.posY}"].transform.position;
+       
         PooledObject pooledbomb = Manager.Pool.GetPool(waterBomb, tilePos, Quaternion.identity);
         Bomb bomb = (Bomb)pooledbomb;
+
+        bomb.PosX = tile.tileNode.posX;
+        bomb.PosY = tile.tileNode.posY;
+
         bomb.bombPower = playerMediator.playerStats.OwnPower;
         bombChance--;
     }

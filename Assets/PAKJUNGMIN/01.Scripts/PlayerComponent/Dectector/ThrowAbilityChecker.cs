@@ -7,9 +7,6 @@ public class ThrowAbilityChecker : MonoBehaviour
 {
     PlayerMediator playerMediator;
 
-
-
-
     private void Start()
     {
         playerMediator = GetComponentInParent<PlayerMediator>();
@@ -18,14 +15,14 @@ public class ThrowAbilityChecker : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if(collision.gameObject.GetComponent<BombTileCalculator>())
+        if(collision.gameObject.GetComponent<BombCollider>())
         {
             playerMediator.playerAbility.canThrow = true;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<BombTileCalculator>())
+        if (collision.gameObject.GetComponent<BombCollider>())
         {
             playerMediator.playerAbility.canThrow =false;
         }

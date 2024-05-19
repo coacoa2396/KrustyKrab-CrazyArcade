@@ -15,13 +15,9 @@ namespace pakjungmin
         //물줄기의 파워
         public int bombPower;
 
-
-        [SerializeField] int posX;
-        [SerializeField] int posY;
-
-        public int PosX { get { return posX; } set { posX = value; } }
-        public int PosY { get { return posY; } set { posY = value; } }
-
+        [SerializeField] TileNode bombNode;
+        public int PosX { get { return bombNode.posX; } set { bombNode.posX = value; } }
+        public int PosY { get { return bombNode.posY; } set { bombNode.posY = value; } }
 
 
         Coroutine explodeCoroutine;
@@ -45,14 +41,15 @@ namespace pakjungmin
         }
         private void OnEnable()
         {
-
             explodeCoroutine = StartCoroutine(WaitExplode());
+
+
         }
         private void OnDisable()
         {
             ownTime = defaultTime;
-            posX = 0;
-            posY = 0;
+            PosX = 0;
+            PosY = 0;
         }
 
         public void CommandExplode()
