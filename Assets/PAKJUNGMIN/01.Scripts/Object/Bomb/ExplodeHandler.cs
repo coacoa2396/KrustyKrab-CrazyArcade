@@ -10,14 +10,8 @@ public class ExplodeHandler : MonoBehaviour
     {
         if (GetComponentInParent<Bomb>().GetComponentInChildren<BombTileCalculator>())
         {
-            //int posX = GetComponentInParent<Bomb>().GetComponentInChildren<BombTileCalculator>().PosX;
-            //int posY = GetComponentInParent<Bomb>().GetComponentInChildren<BombTileCalculator>().PosY;
-
-            int posX = bombtilePos.GetComponent<BombTileCalculator>().PosX;
-            int posY = bombtilePos.GetComponent<BombTileCalculator>().PosY;
-            Debug.Log($"2. ExplodeHandler : {posX},{posY}");
-            if (posX != 0 && posY != 0) { }
-            else if(posX == 0 && posY == 0) { Debug.LogError("Explode에서 버그 발견!!"); }
+           int posX = GetComponentInParent<Bomb>().PosX;
+           int posY = GetComponentInParent<Bomb>().PosY;
 
             StreamManager.Stream.CalculateStream(posX, posY, power);
             GetComponentInParent<Bomb>().Release();

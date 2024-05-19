@@ -23,15 +23,17 @@ public class PlayerBombPlantCalculator : MonoBehaviour
     float ownChanceTimer;
     Coroutine chanceCoroutine;
 
-    public int BombChance { get { return bombChance; }
+    public int BombChance
+    {
+        get { return bombChance; }
         set
-        { 
+        {
             bombChance = value;
-            if(bombChance >= playerMediator.playerStats.OwnBomb)
+            if (bombChance >= playerMediator.playerStats.OwnBomb)
             {
                 bombChance = playerMediator.playerStats.OwnBomb;
             }
-        } 
+        }
     }
 
     IEnumerator GetChance()
@@ -46,10 +48,10 @@ public class PlayerBombPlantCalculator : MonoBehaviour
                 BombChance++;
                 break;
             }
-        }  
-       
+        }
+
     }
-    private void Update()
+    private void FixedUpdate()
     {
         if (bombChance < playerMediator.playerStats.OwnBomb)
         {
@@ -64,23 +66,14 @@ public class PlayerBombPlantCalculator : MonoBehaviour
     {
         bombChance = playerMediator.playerStats.OwnBomb;
     }
-    public void PlantBomb(Bomb waterBomb,Vector3 BombPos)
+    public void PlantBomb(Bomb waterBomb, Tile tile)
     {
-        if(bombChance <= 0) { return; }
+        if (bombChance <= 0) { return; }
 
-        //if(playerMediator.playerTileCalculator.nowTile.OnObject)
-        //{
-        //    if (playerMediator.playerTileCalculator.nowTile.tileonObject.GetComponent<BombTileCalculator>())
-        //    {
-        //        playerMediator.playerAbility.Throw();
-        //        return;
-        //    }
-        //    return;
-        //}
         if (playerMediator.playerTileCalculator.nowTile.OnObject) { return; }
-        //Debug.Log($"0-1: {GetComponent<PlayerTileCalculator>().nowTile.tileNode.posX},{GetComponent<PlayerTileCalculator>().nowTile.tileNode.posY}");
 
-        PooledObject pooledbomb = Manager.Pool.GetPool(waterBomb, BombPos, Quaternion.identity);
+        Vector3 tilePos = TileManager.Tile.tileDic[$"{tile.tileNode.posX},{tile.tileNode.posY}"].transform.position;
+        PooledObject pooledbomb = Manager.Pool.GetPool(waterBomb, tilePos, Quaternion.identity);
         Bomb bomb = (Bomb)pooledbomb;
         bomb.bombPower = playerMediator.playerStats.OwnPower;
         bombChance--;

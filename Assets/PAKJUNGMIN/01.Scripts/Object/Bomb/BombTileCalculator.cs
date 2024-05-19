@@ -7,30 +7,28 @@ using UnityEngine;
 /// </summary>
 public class BombTileCalculator : MonoBehaviour
 {
-    [SerializeField] int posX;
-    [SerializeField] int posY;
+    [SerializeField] TileNode nowTile;
 
-    public int PosX { get { return posX; } set { posX = value; } }
-    public int PosY { get { return posY; } set { posY = value; } }
-
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        CalculatePos(collision);
+        if(collision.gameObject.GetComponent<Tile>() == null) { return; }
+
+        if (collision.gameObject.GetComponent<Tile>().OnObject)
+        {
+            CalculatePos(collision);
+        }
+
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        nowTile = default;
     }
     void CalculatePos(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<Tile>())
-        {
-            if (collision.gameObject.GetComponent<Tile>().OnObject) //타일 위에 아무것도 없을 때만
-            {
-                Tile nowTile = collision.gameObject.GetComponent<Tile>();
-                PosX = nowTile.tileNode.posX;
-                PosY = nowTile.tileNode.posY;
-                Debug.Log($"0. BombTileCalculator : {PosX},{PosY}");
-
-            }
-        }
+        nowTile = collision.GetComponent<Tile>().tileNode;
+        Debug.Log($"{transform.parent.name}`s NowTile : ({nowTile.posX},{nowTile.posY})");
+        GetComponentInParent<Bomb>().PosX = nowTile.posX;
+        GetComponentInParent<Bomb>().PosY = nowTile.posY;
     }
 
 }

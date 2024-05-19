@@ -49,7 +49,7 @@ namespace pakjungmin
             }
             if (playerTileCalculator.nowTile != null)
             {
-                playerBehavior.Plant(bomb, playerTileCalculator.nowTile.transform.position);
+                playerBehavior.Plant(bomb, TileManager.Tile.tileDic[$"{playerTileCalculator.nowTile.tileNode.posX},{playerTileCalculator.nowTile.tileNode.posY}"]);
             }
         }
         
