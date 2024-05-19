@@ -8,7 +8,7 @@ using UnityEngine;
 /// <summary>
 /// Class : 폭탄 입장에서 물줄기로 인한 연쇄 반응 혹은, 날아오는 다트 감지.
 /// </summary>
-public class BombCollider : MonoBehaviour
+public class BombStreamDectector : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
