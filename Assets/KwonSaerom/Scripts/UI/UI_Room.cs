@@ -5,11 +5,15 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using static Define;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class UI_Room : PopUpUI
 {
-    [SerializeField] UI_Warning warningPopup;
+    [SerializeField] List<Sprite> mapImages;
+    [SerializeField] UI_WarningRoom warningPopup;
+    [SerializeField] UI_SelectMap selectMap;
+
     RoomUserController roomController;
 
     enum GameObjects
@@ -23,7 +27,8 @@ public class UI_Room : PopUpUI
         DaoSelect,
         CappiSelect,
         BazziSelect,
-        MaridSelect
+        MaridSelect,
+        MapImage
     }
 
 
@@ -33,11 +38,22 @@ public class UI_Room : PopUpUI
         if (Time.timeScale == 0)
             Time.timeScale = 1;
         GetUI<Button>(GameObjects.ExitButton.ToString()).onClick.AddListener(ExitRoom);
+        GetUI<Button>(GameObjects.SelectMapButton.ToString()).onClick.AddListener(SelectMapClick);
         GetUI<Button>(GameObjects.DaoSelect.ToString()).onClick.AddListener(()=> SelectCharacter(Define.Characters.Dao));
         GetUI<Button>(GameObjects.CappiSelect.ToString()).onClick.AddListener(()=> SelectCharacter(Define.Characters.Cappi));
         GetUI<Button>(GameObjects.BazziSelect.ToString()).onClick.AddListener(()=> SelectCharacter(Define.Characters.Bazzi));
         GetUI<Button>(GameObjects.MaridSelect.ToString()).onClick.AddListener(()=> SelectCharacter(Define.Characters.Marid));
         GetUI<Button>(GameObjects.BazziSelect.ToString()).Select();
+    }
+
+    private void OnEnable()
+    {
+        Manager.Game.OnChangeMap += ChangeMapImage;
+    }
+
+    private void OnDisable()
+    {
+        Manager.Game.OnChangeMap -= ChangeMapImage;
     }
 
     private void Start()
@@ -78,15 +94,15 @@ public class UI_Room : PopUpUI
         {
             if(roomController.IsStart())
             {
-                Manager.Game.GamePlayers = roomController.Players;
+                Manager.Game.GamePlayers = roomController.GetNowPlayerList();
                 Debug.Log($"게임 참가 플레이어 수 : {Manager.Game.GamePlayers.Count}");
                 //씬 로드 코드 작성하기
 
             }
             else
             {
-                UI_Warning warning = Manager.UI.ShowPopUpUI(warningPopup);
-                warning.SetLog("플레이어가 모두 레디하기 전까지는 시작할 수 없습니다.");
+                UI_WarningRoom warning = Instantiate(warningPopup);
+                warning.SetLog("플레이어가 한명이거나, 플레이어가 모두 레디하기 전까지는 시작할 수 없습니다.");
             }
         }
         else
@@ -96,5 +112,23 @@ public class UI_Room : PopUpUI
             Manager.Game.Player.IsReady = readyInfo;
             roomController.ReadyChange(readyInfo);
         }
+    }
+
+    public void SelectMapClick()
+    {
+        if (PhotonNetwork.IsMasterClient == false)
+            return;
+        UI_SelectMap selectUI = Instantiate(selectMap);
+        selectUI.SetRoom(this);
+    }
+
+    public void ChangeMapImage()
+    {
+        GetUI<Image>(GameObjects.MapImage.ToString()).sprite = mapImages[(int)Manager.Game.MapType];
+    }
+
+    public void SelectMapConfirm()
+    {
+        roomController.MapChage(Manager.Game.MapType);
     }
 }

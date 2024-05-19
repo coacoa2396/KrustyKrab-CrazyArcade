@@ -146,9 +146,9 @@ GameObject:
   - component: {fileID: 1171356876216477908}
   - component: {fileID: 5597010118084362351}
   - component: {fileID: 5729629461820503055}
-  - component: {fileID: 2830730982586570911}
+  - component: {fileID: 9104423673542333883}
   m_Layer: 5
-  m_Name: UI_Warning
+  m_Name: UI_WarningRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -239,7 +239,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &2830730982586570911
+--- !u!114 &9104423673542333883
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -248,9 +248,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5806143543224700414}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 193f72d0e76b4f54bbea7562536ba9aa, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a94683b0d70f6f4b83aa394de1e80ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  log: {fileID: 3240392539055949961}
+  closeBtn: {fileID: 5351187057188817781}
 --- !u!1 &6277421465358989436
 GameObject:
   m_ObjectHideFlags: 0
@@ -371,7 +373,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4116020581127426607}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5806143543224700414}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6337053125151945300
 GameObject:
   m_ObjectHideFlags: 0

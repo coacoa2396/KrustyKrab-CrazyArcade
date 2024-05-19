@@ -139,6 +139,14 @@ PrefabInstance:
       propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3681433117662651663, guid: da6d9004050057e40bf50e930fe5bbbb, type: 3}
+      propertyPath: m_Size
+      value: 0.22422522
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681433117662651663, guid: da6d9004050057e40bf50e930fe5bbbb, type: 3}
+      propertyPath: m_Value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6277581764680378550, guid: da6d9004050057e40bf50e930fe5bbbb, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -219,6 +227,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7274151202733814664, guid: da6d9004050057e40bf50e930fe5bbbb, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.0000020268365
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -237,6 +249,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4355855695288204530}
     m_Modifications:
+    - target: {fileID: 392619891041693362, guid: 962292e80eb0f3249a37a385fa1a3770, type: 3}
+      propertyPath: sprites.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: ecde005428ed9c843969bacaa4f3d8ad, type: 3}
+    - target: {fileID: 392619891041693362, guid: 962292e80eb0f3249a37a385fa1a3770, type: 3}
+      propertyPath: sprites.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: c5e5bfff22b363c42a8708284331154a, type: 3}
+    - target: {fileID: 392619891041693362, guid: 962292e80eb0f3249a37a385fa1a3770, type: 3}
+      propertyPath: sprites.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: b844a97ec3f860a4b8bd01fcf4ef7d28, type: 3}
+    - target: {fileID: 392619891041693362, guid: 962292e80eb0f3249a37a385fa1a3770, type: 3}
+      propertyPath: sprites.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 1cf414d055899e54c9d779ba85169000, type: 3}
     - target: {fileID: 5176127438778105645, guid: 962292e80eb0f3249a37a385fa1a3770, type: 3}
       propertyPath: m_Name
       value: UserList

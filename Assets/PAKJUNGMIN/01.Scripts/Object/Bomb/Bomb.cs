@@ -15,6 +15,11 @@ namespace pakjungmin
         //물줄기의 파워
         public int bombPower;
 
+        [SerializeField] TileNode bombNode;
+        public int PosX { get { return bombNode.posX; } set { bombNode.posX = value; } }
+        public int PosY { get { return bombNode.posY; } set { bombNode.posY = value; } }
+
+
         Coroutine explodeCoroutine;
 
         // Coroutine : 물풍선의 폭파 대기 시간 구현.
@@ -36,17 +41,15 @@ namespace pakjungmin
         }
         private void OnEnable()
         {
-            if(!GetComponentInChildren<BombTileCalculator>()) { 
-                return;
-            }
             explodeCoroutine = StartCoroutine(WaitExplode());
+
+
         }
         private void OnDisable()
         {
             ownTime = defaultTime;
-            GetComponentInChildren<BombTileCalculator>().PosX = 0;
-            GetComponentInChildren<BombTileCalculator>().PosY = 0;
-
+            PosX = 0;
+            PosY = 0;
         }
 
         public void CommandExplode()

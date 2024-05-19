@@ -12,6 +12,7 @@ namespace pakjungmin
     public class PlayerInputHandler : MonoBehaviour
     {
         PlayerMediator playerMediator;
+      
         Vector3 moveDir;
 
         public Vector3 MoveDir { get { return moveDir; } } // 외부에서 확인 할 프로퍼티 -> 유찬규 추가

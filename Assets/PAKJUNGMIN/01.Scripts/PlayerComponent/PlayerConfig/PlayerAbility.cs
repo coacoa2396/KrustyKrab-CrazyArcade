@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 /// <summary>
 /// Class : 플레이어에게 부여된 능력 혹은 상태이상
@@ -15,12 +16,13 @@ public class PlayerAbility : MonoBehaviour
     public bool canThrow;
     public bool canKick;
     //던지기와 킥이 둘다 가능할때 던지기만 하도록 조정해야한다.
-    public bool firstIsThrow;
 
     private void Start()
     {
         playerMediator = GetComponentInParent<PlayerMediator>();
     }
+
+
     /// <summary>
     /// Method : 플레이어가 탈 것을 탑승
     /// </summary>
@@ -34,14 +36,15 @@ public class PlayerAbility : MonoBehaviour
     public void Throw()
     {
         if (!canThrow) { return; }
-        if (!playerMediator.playerInventory.Inven.Exists((gameObject_ => gameObject_.GetComponent<Glove>()))) {
-            //Debug.Log("글러브 없음");
+        if (!playerMediator.playerInventory.Inven.Exists((gameObject_ => gameObject_.GetComponent<Glove>())))
+        {
+           // Debug.Log("글러브 없음");
             return; 
         }
-
         if(canThrow)
         {
-            //Debug.Log("폭탄 던지기!!");
+          // Bomb bomb = GetComponentInChildren<KickAbilityChecker>().targetBomb;
+           // bomb.gameObject.
         }
         
     }
@@ -51,14 +54,24 @@ public class PlayerAbility : MonoBehaviour
     public void Kick()
     {
         if (!canKick) { return; }
+
         if (!playerMediator.playerInventory.Inven.Exists((gameObject_ => gameObject_.GetComponent<Shoes>())))
         {
-            Debug.Log("신발 없음");
+            //Debug.Log("신발 없음");
             return;
         }
+       // Debug.Log("킥!!");
 
+        Bomb bomb = GetComponentInChildren<KickAbilityChecker>().targetBomb;
+        
+         Vector2 kickDir = (bomb.gameObject.transform.position- playerMediator.forwardDir.transform.position).normalized;
 
+        RaycastHit2D ray = Physics2D.Raycast(bomb.transform.position,kickDir,float.MaxValue);
 
+        if(ray.collider.gameObject.GetComponent<BreakableWall>())
+        {
+           // Debug.Log("뭔가에 부딪힘");
+        }
 
     }
     

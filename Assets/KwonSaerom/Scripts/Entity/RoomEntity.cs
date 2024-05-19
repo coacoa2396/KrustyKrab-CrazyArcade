@@ -31,20 +31,4 @@ public class RoomEntity
         maxPlayer = info.MaxPlayers;
         nowPlayer = info.PlayerCount;
     }
-
-    public string Serialize()
-    {
-        return $"{roomName}/{roomNum}/{maxPlayer}";
-    }
-
-    public void DeSrialize(string code)
-    {
-        string[] token = code.Split('/');
-
-        Debug.Log(code);
-        Debug.Log($"{token[0]} {token[1]} {token[2]}");
-        roomName = token[0];
-        roomNum = int.Parse(token[1]);
-        maxPlayer = int.Parse(token[2]);
-    }
 }

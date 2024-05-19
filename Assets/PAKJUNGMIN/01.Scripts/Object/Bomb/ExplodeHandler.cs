@@ -5,22 +5,13 @@ using UnityEngine;
 
 public class ExplodeHandler : MonoBehaviour
 {
-
     public void Explode(int power)
     {
-        if (GetComponentInParent<Bomb>().GetComponentInChildren<BombTileCalculator>())
-        {
-            int posX = GetComponentInParent<Bomb>().GetComponentInChildren<BombTileCalculator>().PosX;
-            int posY = GetComponentInParent<Bomb>().GetComponentInChildren<BombTileCalculator>().PosY;
 
+      int posX = GetComponentInParent<Bomb>().PosX;
+      int posY = GetComponentInParent<Bomb>().PosY;
 
-            StreamManager.Stream.CalculateStream(posX, posY, power);
-
-
-            GetComponentInParent<Bomb>().Release();
-
-            //GetComponentInParent<Bomb>().gameObject.SetActive(false); //---->0,0이 되는 오류
-
-        }
+      StreamManager.Stream.CalculateStream(posX, posY, power);
+      GetComponentInParent<Bomb>().Release();
     }
 }
