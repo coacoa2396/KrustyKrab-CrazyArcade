@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee63e67fb95231145943c38af8fb3bc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetBomb: {fileID: 0}
 --- !u!61 &2554065588046735038
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -89,7 +90,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.4}
+  m_Size: {x: 0.7, y: 0.7}
   m_EdgeRadius: 0
 --- !u!50 &4883544107695174602
 Rigidbody2D:
@@ -163,7 +164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bombChance: 0
-  chanceTimer: 7
+  chanceTimer: 6
 --- !u!1 &1940927758981435098
 GameObject:
   m_ObjectHideFlags: 0
@@ -218,6 +219,37 @@ MonoBehaviour:
   trapSpeed: 0.2
   aliveSpeed: 0
   dieSpeed: 0
+--- !u!1 &1960445525870752649
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4425027927827986793}
+  m_Layer: 0
+  m_Name: ForwardDir
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4425027927827986793
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1960445525870752649}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.39, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1976657950225911536}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2608491038159064541
 GameObject:
   m_ObjectHideFlags: 0
@@ -367,7 +399,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.4}
+  m_Size: {x: 0.25, y: 0.25}
   m_EdgeRadius: 0
 --- !u!114 &1091871373332094752
 MonoBehaviour:
@@ -636,7 +668,7 @@ GameObject:
   m_Layer: 0
   m_Name: PlayerAbillity
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -653,6 +685,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 4425027927827986793}
   - {fileID: 1169053638116411641}
   - {fileID: 3913448616032233378}
   m_Father: {fileID: 7536406032021052491}
@@ -672,7 +705,6 @@ MonoBehaviour:
   onRide: 0
   canThrow: 0
   canKick: 0
-  firstIsThrow: 0
 --- !u!1 &8637128536137346432
 GameObject:
   m_ObjectHideFlags: 0
@@ -785,6 +817,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerBehavior: {fileID: 7590254009986311755}
   playerInputHandler: {fileID: 6142184973041010365}
+  forwardDir: {fileID: 1960445525870752649}
   characterStats: {fileID: 11400000, guid: 449459e613b40b049b82d3d6a108f181, type: 2}
   playerStats: {fileID: 4230409823527359473}
   playerState: {fileID: 1896374510925927560}
