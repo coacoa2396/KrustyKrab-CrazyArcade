@@ -7427,7 +7427,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 596289305}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: BreakWalls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12634,10 +12634,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4470792413054758498, guid: e0d0f3830d1f3e641a43692869c0568d, type: 3}
-      propertyPath: m_Name
-      value: PlayerTileDectector
-      objectReference: {fileID: 0}
     - target: {fileID: 7536406032021052491, guid: e0d0f3830d1f3e641a43692869c0568d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.14
@@ -21746,7 +21742,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1776665267}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: CantbreakWalls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27639,7 +27635,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7866031963055319673
 RectTransform:
   m_ObjectHideFlags: 0

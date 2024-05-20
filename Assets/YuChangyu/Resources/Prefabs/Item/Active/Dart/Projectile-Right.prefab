@@ -161,7 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dc40838e7d84e3498e332cc5daea559, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigid: {fileID: 0}
+  rigid: {fileID: 538078824209706130}
   bombCheck:
     serializedVersion: 2
     m_Bits: 64

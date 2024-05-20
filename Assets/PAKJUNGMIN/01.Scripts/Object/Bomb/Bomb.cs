@@ -41,9 +41,7 @@ namespace pakjungmin
         }
         private void OnEnable()
         {
-            explodeCoroutine = StartCoroutine(WaitExplode());
-
-
+            StartExplodeCoroutine();
         }
         private void OnDisable()
         {
@@ -51,7 +49,15 @@ namespace pakjungmin
             PosX = 0;
             PosY = 0;
         }
+        public void StopExplodeCoroutine()
+        {
+            StopCoroutine(explodeCoroutine);
+        }
+        public void StartExplodeCoroutine()
+        {
+            explodeCoroutine = StartCoroutine(WaitExplode());
 
+        }
         public void CommandExplode()
         {
             GetComponentInChildren<ExplodeHandler>().Explode(bombPower);
