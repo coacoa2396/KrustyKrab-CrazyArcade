@@ -178,6 +178,11 @@ public class RoomUserController : MonoBehaviourPunCallbacks
         photonView.RPC("UpdateMap", RpcTarget.All, map);
     }
 
+    public void GameStart(string sceneName)
+    {
+        photonView.RPC("LoadScene", RpcTarget.All, sceneName);
+    }
+
     //마스터 바뀌면 준비 꺼져야함.
     [PunRPC] 
     public void UpdateCharacterChange(string key,Characters character)
@@ -211,6 +216,10 @@ public class RoomUserController : MonoBehaviourPunCallbacks
         Manager.Game.MapType = map;
     }
 
-
+    [PunRPC]
+    public void LoadScene(string scene)
+    {
+        Manager.Scene.LoadScene(scene, PhotonNetwork.IsMasterClient);
+    }
 
 }

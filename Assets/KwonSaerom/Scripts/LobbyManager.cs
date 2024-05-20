@@ -65,6 +65,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         nowRoomPopup = room;
         room.SetRoomInfo(entity);
 
+        PhotonNetwork.AutomaticallySyncScene = true;
     }
 
     public override void OnLeftRoom()
@@ -72,6 +73,9 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         Debug.Log("방에서 나감");
         nowRoomPopup.Close();
         nowRoomPopup = null;
+
+
+        PhotonNetwork.AutomaticallySyncScene = false;
     }
 
 

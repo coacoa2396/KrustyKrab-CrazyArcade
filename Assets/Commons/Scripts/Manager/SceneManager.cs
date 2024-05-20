@@ -30,9 +30,9 @@ public class SceneManager : Singleton<SceneManager>
         return curScene as T;
     }
 
-    public void LoadScene(string sceneName)
+    public void LoadScene(string sceneName, bool master = true)
     {
-        StartCoroutine(PhotonLoadingRoutine(sceneName));
+        StartCoroutine(PhotonLoadingRoutine(sceneName, master));
     }
 
     IEnumerator LoadingRoutine(string sceneName)
@@ -95,7 +95,7 @@ public class SceneManager : Singleton<SceneManager>
         }
     }
 
-    IEnumerator PhotonLoadingRoutine(string sceneName)
+    IEnumerator PhotonLoadingRoutine(string sceneName, bool master = true)
     {
         fade.gameObject.SetActive(true);
         yield return FadeOut();
@@ -107,13 +107,14 @@ public class SceneManager : Singleton<SceneManager>
 
         loadingBar.gameObject.SetActive(true);
 
-        PhotonNetwork.LoadLevel(sceneName);
+        if(master)
+            PhotonNetwork.LoadLevel(sceneName);
         float oper = 0;
         while (oper < 0.7f)
         {
             loadingBar.value = oper;
-            oper += Random.Range(0.1f, 0.5f);
-            float random = Random.Range(0.1f, 0.7f);
+            oper += 0.12f;
+            float random = 0.3f;
             yield return new WaitForSeconds(random);
         }
 
@@ -126,4 +127,5 @@ public class SceneManager : Singleton<SceneManager>
         yield return FadeIn();
         fade.gameObject.SetActive(false);
     }
+
 }

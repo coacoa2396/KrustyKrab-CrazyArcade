@@ -90,14 +90,16 @@ public class UI_Room : PopUpUI
 
     public void GameStart()
     {
-        if(PhotonNetwork.IsMasterClient)
+        if (PhotonNetwork.IsMasterClient)
         {
             if(roomController.IsStart())
             {
                 Manager.Game.GamePlayers = roomController.GetNowPlayerList();
                 Debug.Log($"게임 참가 플레이어 수 : {Manager.Game.GamePlayers.Count}");
-                //씬 로드 코드 작성하기
-
+                PhotonNetwork.CurrentRoom.IsOpen = false;
+                PhotonNetwork.CurrentRoom.IsVisible = false;
+                if (Manager.Game.MapType == Maps.BlockMap)
+                    roomController.GameStart("VillageScene");
             }
             else
             {
