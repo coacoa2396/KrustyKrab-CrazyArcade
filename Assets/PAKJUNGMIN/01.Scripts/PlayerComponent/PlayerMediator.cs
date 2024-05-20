@@ -16,7 +16,8 @@ namespace pakjungmin
         public PlayerBehavior playerBehavior; //플레이어의 행동.
         public PlayerInputHandler playerInputHandler; //캐릭터 인풋 시스템 
 
-        public GameObject forwardDir;
+        [Header("플레이어의 앞방향을 가리키는 지침")]
+        public ForwardGuide forwardGuide;
 
         [Header("플레이어의 스텟")]
         public CharacterStats characterStats; // 캐릭터별 스텟 데이터 스크럽터블 오브젝트
@@ -43,11 +44,10 @@ namespace pakjungmin
         public void InputMove(Vector3 moveDir)
         {
             playerBehavior.Move(moveDir);
-            UpdatePlayerForward(moveDir);
+            SetForwardGuide(moveDir);
         }
         public void InputPlant()
-        {
-           
+        {       
             if (playerAbility.canKick && playerAbility.canThrow)
             {
                 playerAbility.Throw();
@@ -71,23 +71,26 @@ namespace pakjungmin
         
         public void InputUse() { playerBehavior.Use(); }
 
-        void UpdatePlayerForward(Vector3 moveDir)
+        void SetForwardGuide(Vector3 moveDir)
         {
             if(moveDir.x > 0 && moveDir.z == 0)
             {
-                forwardDir.transform.position = new Vector3(transform.position.x + 0.5f, transform.position.y, 0) ;
+                forwardGuide.ChangeForward(ForwardGuide.ForwardState.left);            
             }
             else if(moveDir.x < 0 && moveDir.z == 0)
             {
-                forwardDir.transform.position = new Vector3(transform.position.x -0.5f, transform.position.y, 0);
+                forwardGuide.ChangeForward(ForwardGuide.ForwardState.right);
+              
             }
             else if(moveDir.x == 0 && moveDir.z > 0)
             {
-                forwardDir.transform.position = new Vector3(transform.position.x, transform.position.y + 0.5f,0);
+                forwardGuide.ChangeForward(ForwardGuide.ForwardState.up);
+              
             }
             else if (moveDir.x == 0 && moveDir.z < 0)
             {
-                forwardDir.transform.position = new Vector3(transform.position.x, transform.position.y - 0.5f,0);
+                forwardGuide.ChangeForward(ForwardGuide.ForwardState.down);
+               
             }
         }
     }
