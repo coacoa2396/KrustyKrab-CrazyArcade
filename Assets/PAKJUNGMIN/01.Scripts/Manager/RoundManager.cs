@@ -22,29 +22,8 @@ public class RoundManager : MonoBehaviour
     }
     private void Start()
     {
-        // ***** 지금 당장은 로비씬과 게임씬의 정보 교환이 어렵기에, Tag 사용 *******************
         playerList = GameObject.FindGameObjectsWithTag("Player").ToList<GameObject>();
     }
-    private void Update()
-    {
-        if(playerList != null)
-        {
-            CheckSurvivor();
-        }
-
-    }
-
-    /// <summary>
-    /// Method :  라운드 시작 시 플레이어들을 정해진 시작 위치에 지정한다.
-    /// </summary>
-    //void SetStartpos()
-    //{
-
-    //}
-
-
-    // ****** 로비 씬에서 플레이어의 정보 및 플레이어의 수를 알아올 수 있다면 아래 코드 전부 삭제 *************
-
 
     /// <summary>
     /// Method : 생존한 플레이어 체크 -> 임시용. 바꿀 수 있음.
@@ -66,6 +45,8 @@ public class RoundManager : MonoBehaviour
 
     }
 
+
+
     /// <summary>
     /// Method : Win,Lose,Draw 여부 계산. 플레이어마다 다르게 작용.
     /// </summary>
@@ -83,6 +64,5 @@ public class RoundManager : MonoBehaviour
         else if(survivorList.Count > 1) { Debug.Log($"Draw"); }
 
     }
-
 
 }

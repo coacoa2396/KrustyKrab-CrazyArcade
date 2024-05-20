@@ -12634,6 +12634,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 612196405146062351, guid: e0d0f3830d1f3e641a43692869c0568d, type: 3}
+      propertyPath: sceneViewId
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2554065588046735038, guid: e0d0f3830d1f3e641a43692869c0568d, type: 3}
+      propertyPath: m_Size.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2554065588046735038, guid: e0d0f3830d1f3e641a43692869c0568d, type: 3}
+      propertyPath: m_Size.y
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 7536406032021052491, guid: e0d0f3830d1f3e641a43692869c0568d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.14
@@ -12679,7 +12691,8 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3397215090942853654, guid: e0d0f3830d1f3e641a43692869c0568d, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0d0f3830d1f3e641a43692869c0568d, type: 3}
@@ -24226,6 +24239,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 612196405146062351, guid: e0d0f3830d1f3e641a43692869c0568d, type: 3}
+      propertyPath: sceneViewId
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4969008624260581873, guid: e0d0f3830d1f3e641a43692869c0568d, type: 3}
       propertyPath: m_Color.a
       value: 1
@@ -24292,7 +24309,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8637128536137346432, guid: e0d0f3830d1f3e641a43692869c0568d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -27093,6 +27110,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   viewPort: {fileID: 0}
   content: {fileID: 0}
+  contents: []
   notices: []
   scrollSpeed: 0
   offset: 0

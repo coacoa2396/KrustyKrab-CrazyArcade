@@ -1,6 +1,7 @@
 using pakjungmin;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -69,6 +70,7 @@ public class PlayerAbility : MonoBehaviour
 
         RaycastHit2D ray;
         RaycastHit2D[] tilerays;
+        RaycastHit2D[] bombrays;
 
         int wallmask = 1 << LayerMask.NameToLayer("Wall");
         int tilemask = 1 << LayerMask.NameToLayer("Tile");
@@ -79,7 +81,6 @@ public class PlayerAbility : MonoBehaviour
             case ForwardGuide.ForwardState.up:
 
                 ray = Physics2D.Raycast(startPos, startTile.transform.up,15f,wallmask); //Wall만 체크하는 레이캐스트 발사.
-
                 if (ray.collider != null && ray.collider.gameObject.GetComponent<BaseWall>()) //Wall이 걸리면.
                 {
                     ResetBombData(bomb, ray, 0,-1);
@@ -87,35 +88,38 @@ public class PlayerAbility : MonoBehaviour
                 }
                 else if (ray.collider == null) //아무것도 없었을 경우.
                 {
-                    ////ray = Physics2D.Raycast(startPos, startTile.transform.up, 15f, bombmask); //폭탄 체크
-                    //////if (ray.collider.gameObject.GetComponent<Bomb>())
-                    //////{
-                    //////    TileNode tilenode_;
-                    //////    tilenode_ = ray.collider.gameObject.GetComponent<Bomb>().tileNode;
-                    //////    bomb.StopExplodeCoroutine();
-                    //////    bomb.PosX = tilenode_.posX;
-                    //////    bomb.PosY = tilenode_.posY;
-                    //////    bomb.transform.position = TileManager.Tile.tileDic[$"{tilenode_.posX},{tilenode_.posY}"].transform.position;
-                    //////    playerMediator.playerBombPlantCalculator.BombChance = 0;
-                    //////    playerMediator.playerBombPlantCalculator.WaitBombPlant();
-                    //////    bomb.StartExplodeCoroutine();
-                    //////    Debug.Log("2");
-                    ////////}}
-                    
-                     tilerays = Physics2D.RaycastAll(startPos, startTile.transform.up, 15f, tilemask);
+                    bombrays = Physics2D.RaycastAll(startPos, startTile.transform.up, 15f, bombmask); //폭탄 체크
 
-                    if (tilerays[tilerays.Length - 1].collider.gameObject.GetComponent<Tile>()) //마지막으로 타일 체크
+                    if (bombrays.Length >= 2)
                     {
-                        Tile lastTile = tilerays[tilerays.Length - 1].collider.gameObject.GetComponent<Tile>();
+                        TileNode tilenode_;
+                        tilenode_ = bombrays[bombrays.Length-1].collider.gameObject.GetComponent<Bomb>().tileNode;
                         bomb.StopExplodeCoroutine();
-                        bomb.PosX = lastTile.tileNode.posX;
-                        bomb.PosY = lastTile.tileNode.posY;
-                        bomb.transform.position = TileManager.Tile.tileDic[$"{lastTile.tileNode.posX},{lastTile.tileNode.posY}"].transform.position;
-                        playerMediator.playerBombPlantCalculator.BombChance = 0;
-                        playerMediator.playerBombPlantCalculator.WaitBombPlant();
+                        bomb.PosX = tilenode_.posX;
+                        bomb.PosY = tilenode_.posY;
+                        bomb.transform.position = TileManager.Tile.tileDic[$"{tilenode_.posX},{tilenode_.posY}"].transform.position;
+                        //playerMediator.playerBombPlantCalculator.BombChance = 0;
+                        //playerMediator.playerBombPlantCalculator.WaitBombPlant();
                         bomb.StartExplodeCoroutine();
-                        Debug.Log("3");
                     }
+                    else
+                    {
+                        tilerays = Physics2D.RaycastAll(startPos, startTile.transform.up, 15f, tilemask);
+
+                        if (tilerays[tilerays.Length - 1].collider.gameObject.GetComponent<Tile>()) //마지막으로 타일 체크
+                        {
+                            Tile lastTile = tilerays[tilerays.Length - 1].collider.gameObject.GetComponent<Tile>();
+                            bomb.StopExplodeCoroutine();
+                            bomb.PosX = lastTile.tileNode.posX;
+                            bomb.PosY = lastTile.tileNode.posY;
+                            bomb.transform.position = TileManager.Tile.tileDic[$"{lastTile.tileNode.posX},{lastTile.tileNode.posY}"].transform.position;
+                            //playerMediator.playerBombPlantCalculator.BombChance = 0;
+                            //playerMediator.playerBombPlantCalculator.WaitBombPlant();
+                            bomb.StartExplodeCoroutine();
+                            Debug.Log("3");
+                        }
+                    }
+                   
                 }
                 break;
             case ForwardGuide.ForwardState.down:
@@ -135,8 +139,8 @@ public class PlayerAbility : MonoBehaviour
                         bomb.PosX = lastTile.tileNode.posX;
                         bomb.PosY = lastTile.tileNode.posY;
                         bomb.transform.position = TileManager.Tile.tileDic[$"{lastTile.tileNode.posX},{lastTile.tileNode.posY}"].transform.position;
-                        playerMediator.playerBombPlantCalculator.BombChance = 0;
-                        playerMediator.playerBombPlantCalculator.WaitBombPlant();
+                        //playerMediator.playerBombPlantCalculator.BombChance = 0;
+                        //playerMediator.playerBombPlantCalculator.WaitBombPlant();
                         bomb.StartExplodeCoroutine();
                     }
                 }
@@ -157,9 +161,9 @@ public class PlayerAbility : MonoBehaviour
                         bomb.StopExplodeCoroutine();
                         bomb.PosX = lastTile.tileNode.posX;
                         bomb.PosY = lastTile.tileNode.posY;
-                        bomb.transform.position = TileManager.Tile.tileDic[$"{lastTile.tileNode.posX},{lastTile.tileNode.posY}"].transform.position;
-                        playerMediator.playerBombPlantCalculator.BombChance = 0;
-                        playerMediator.playerBombPlantCalculator.WaitBombPlant();
+                        //bomb.transform.position = TileManager.Tile.tileDic[$"{lastTile.tileNode.posX},{lastTile.tileNode.posY}"].transform.position;
+                        //playerMediator.playerBombPlantCalculator.BombChance = 0;
+                        //playerMediator.playerBombPlantCalculator.WaitBombPlant();
                         bomb.StartExplodeCoroutine();
                     }
                 }
@@ -182,8 +186,8 @@ public class PlayerAbility : MonoBehaviour
                         bomb.PosX = lastTile.tileNode.posX;
                         bomb.PosY = lastTile.tileNode.posY;
                         bomb.transform.position = TileManager.Tile.tileDic[$"{lastTile.tileNode.posX},{lastTile.tileNode.posY}"].transform.position;
-                        playerMediator.playerBombPlantCalculator.BombChance = 0;
-                        playerMediator.playerBombPlantCalculator.WaitBombPlant();
+                        //playerMediator.playerBombPlantCalculator.BombChance = 0;
+                        //playerMediator.playerBombPlantCalculator.WaitBombPlant();
                         bomb.StartExplodeCoroutine();
                     }
                 }
@@ -202,21 +206,11 @@ public class PlayerAbility : MonoBehaviour
             bomb.PosX = tilenode_.posX + x;
             bomb.PosY = tilenode_.posY + y;
             bomb.transform.position = TileManager.Tile.tileDic[$"{tilenode_.posX + x},{tilenode_.posY + y}"].transform.position;
-            playerMediator.playerBombPlantCalculator.BombChance = 0;
-            playerMediator.playerBombPlantCalculator.WaitBombPlant();
+            //playerMediator.playerBombPlantCalculator.BombChance = 0;
+            //playerMediator.playerBombPlantCalculator.WaitBombPlant();
             bomb.StartExplodeCoroutine();
         }
-        //else if (ray.collider.GetComponent<BombPlayerDectector>())
-        //{
-        //    tilenode_ = ray.collider.gameObject.GetComponentInParent<Bomb>().tileNode;
-        //    bomb.StopExplodeCoroutine();
-        //    bomb.PosX = tilenode_.posX + x;
-        //    bomb.PosY = tilenode_.posY + y;
-        //    bomb.transform.position = TileManager.Tile.tileDic[$"{tilenode_.posX + x},{tilenode_.posY + y}"].transform.position;
-        //    playerMediator.playerBombPlantCalculator.BombChance = 0;
-        //    playerMediator.playerBombPlantCalculator.WaitBombPlant();
-        //    bomb.StartExplodeCoroutine();
-        //}
+
 
     }
     
