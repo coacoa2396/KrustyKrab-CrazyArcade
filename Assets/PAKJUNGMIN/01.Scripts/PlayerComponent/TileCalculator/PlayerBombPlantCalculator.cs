@@ -35,6 +35,11 @@ public class PlayerBombPlantCalculator : MonoBehaviour
             }
         }
     }
+    //킥이나 아이템 사용 시 잠깐 폭탄 설치 못하게 만드는 메소드.
+    public void WaitBombPlant()
+    {
+        ownChanceTimer = 1.3f;
+    }
 
     IEnumerator GetChance()
     {

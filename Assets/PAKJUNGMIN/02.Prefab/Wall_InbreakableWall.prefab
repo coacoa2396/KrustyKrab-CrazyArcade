@@ -131,6 +131,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3259acf9d6633f489efd6106ce11dfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tileNode:
+    posX: 0
+    posY: 0
 --- !u!50 &3309333214313369730
 Rigidbody2D:
   serializedVersion: 4
@@ -201,5 +204,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.1537755}
+  m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0

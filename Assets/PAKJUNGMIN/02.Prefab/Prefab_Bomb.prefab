@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6828072665403441246}
   - component: {fileID: 1557422956976502318}
   - component: {fileID: 2099152004447301572}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Prefab_Bomb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ MonoBehaviour:
   defaultTime: 4
   ownTime: 0
   bombPower: 0
-  bombNode:
+  tileNode:
     posX: 0
     posY: 0
 --- !u!95 &6828072665403441246

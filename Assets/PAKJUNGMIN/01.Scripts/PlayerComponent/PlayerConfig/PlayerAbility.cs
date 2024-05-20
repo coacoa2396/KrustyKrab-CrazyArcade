@@ -62,50 +62,162 @@ public class PlayerAbility : MonoBehaviour
         }
 
         Bomb bomb = GetComponentInChildren<KickAbilityChecker>().targetBomb;
-
         Tile startTile = TileManager.Tile.tileDic[$"{bomb.GetComponent<Bomb>().tileNode.posX},{bomb.GetComponent<Bomb>().tileNode.posY}"];
-             
+
+        
         Vector2 startPos = startTile.transform.position; //폭탄의 위치 노드
 
         RaycastHit2D ray;
+        RaycastHit2D[] tilerays;
 
         int wallmask = 1 << LayerMask.NameToLayer("Wall");
+        int tilemask = 1 << LayerMask.NameToLayer("Tile");
+        int bombmask = 1 << LayerMask.NameToLayer("WaterBomb");
 
         switch (playerMediator.forwardGuide.Forward)
         {
             case ForwardGuide.ForwardState.up:
-                Debug.DrawRay(startPos,startTile.transform.up*15, Color.red,3f);
 
-                ray = Physics2D.Raycast(startPos, startTile.transform.up,15f,wallmask);
-                Debug.Log($"레이케스트에 부딪힌 물체 이름 : {ray.collider.gameObject.name}");
-                if (ray.collider.gameObject.GetComponent<BaseWall>())
+                ray = Physics2D.Raycast(startPos, startTile.transform.up,15f,wallmask); //Wall만 체크하는 레이캐스트 발사.
+
+                if (ray.collider != null && ray.collider.gameObject.GetComponent<BaseWall>()) //Wall이 걸리면.
                 {
-                    TileNode tilenode_ = ray.collider.gameObject.GetComponent<BaseWall>().tileNode;
-                    Vector2 moveDir = TileManager.Tile.tileDic[$"{tilenode_.posX},{tilenode_.posY}"].transform.position;
-                    bomb.transform.Translate(TileManager.Tile.tileDic[$"{tilenode_.posX},{tilenode_.posY-1}"].transform.position);
-                    Debug.Log("sfdasdf");
+                    ResetBombData(bomb, ray, 0,-1);
+
+                }
+                else if (ray.collider == null) //아무것도 없었을 경우.
+                {
+                    ////ray = Physics2D.Raycast(startPos, startTile.transform.up, 15f, bombmask); //폭탄 체크
+                    //////if (ray.collider.gameObject.GetComponent<Bomb>())
+                    //////{
+                    //////    TileNode tilenode_;
+                    //////    tilenode_ = ray.collider.gameObject.GetComponent<Bomb>().tileNode;
+                    //////    bomb.StopExplodeCoroutine();
+                    //////    bomb.PosX = tilenode_.posX;
+                    //////    bomb.PosY = tilenode_.posY;
+                    //////    bomb.transform.position = TileManager.Tile.tileDic[$"{tilenode_.posX},{tilenode_.posY}"].transform.position;
+                    //////    playerMediator.playerBombPlantCalculator.BombChance = 0;
+                    //////    playerMediator.playerBombPlantCalculator.WaitBombPlant();
+                    //////    bomb.StartExplodeCoroutine();
+                    //////    Debug.Log("2");
+                    ////////}}
+                    
+                     tilerays = Physics2D.RaycastAll(startPos, startTile.transform.up, 15f, tilemask);
+
+                    if (tilerays[tilerays.Length - 1].collider.gameObject.GetComponent<Tile>()) //마지막으로 타일 체크
+                    {
+                        Tile lastTile = tilerays[tilerays.Length - 1].collider.gameObject.GetComponent<Tile>();
+                        bomb.StopExplodeCoroutine();
+                        bomb.PosX = lastTile.tileNode.posX;
+                        bomb.PosY = lastTile.tileNode.posY;
+                        bomb.transform.position = TileManager.Tile.tileDic[$"{lastTile.tileNode.posX},{lastTile.tileNode.posY}"].transform.position;
+                        playerMediator.playerBombPlantCalculator.BombChance = 0;
+                        playerMediator.playerBombPlantCalculator.WaitBombPlant();
+                        bomb.StartExplodeCoroutine();
+                        Debug.Log("3");
+                    }
                 }
                 break;
             case ForwardGuide.ForwardState.down:
 
                 ray = Physics2D.Raycast(startPos, -startTile.transform.up, 15f, wallmask);
-                Debug.Log($"레이케스트에 부딪힌 물체 이름 : {ray.collider.gameObject.name}");
-                Debug.DrawRay(startPos,-startTile.transform.up *15, Color.red, 3f);
+                if (ray && ray.collider.gameObject.GetComponent<BaseWall>())
+                {
+                    ResetBombData(bomb, ray, 0, +1);
+                }
+                else if (!ray)
+                {
+                    tilerays = Physics2D.RaycastAll(startPos,-startTile.transform.up, 15f, tilemask);
+                    if (tilerays[tilerays.Length - 1].collider.gameObject.GetComponent<Tile>())
+                    {
+                        Tile lastTile = tilerays[tilerays.Length - 1].collider.gameObject.GetComponent<Tile>();
+                        bomb.StopExplodeCoroutine();
+                        bomb.PosX = lastTile.tileNode.posX;
+                        bomb.PosY = lastTile.tileNode.posY;
+                        bomb.transform.position = TileManager.Tile.tileDic[$"{lastTile.tileNode.posX},{lastTile.tileNode.posY}"].transform.position;
+                        playerMediator.playerBombPlantCalculator.BombChance = 0;
+                        playerMediator.playerBombPlantCalculator.WaitBombPlant();
+                        bomb.StartExplodeCoroutine();
+                    }
+                }
                 break;
 
             case ForwardGuide.ForwardState.left:
                 ray = Physics2D.Raycast(startPos, startTile.transform.right, 15f, wallmask);
-                Debug.Log($"레이케스트에 부딪힌 물체 이름 : {ray.collider.gameObject.name}");
-                Debug.DrawRay(startPos,startTile.transform.right *15, Color.red, 3f);
+                if (ray && ray.collider.gameObject.GetComponent<BaseWall>()) 
+                {
+                    ResetBombData(bomb, ray, -1, 0);
+                }
+                else if (!ray)
+                {
+                    tilerays = Physics2D.RaycastAll(startPos, startTile.transform.right, 15f, tilemask);
+                    if (tilerays[tilerays.Length - 1].collider.gameObject.GetComponent<Tile>())
+                    {
+                        Tile lastTile = tilerays[tilerays.Length - 1].collider.gameObject.GetComponent<Tile>();
+                        bomb.StopExplodeCoroutine();
+                        bomb.PosX = lastTile.tileNode.posX;
+                        bomb.PosY = lastTile.tileNode.posY;
+                        bomb.transform.position = TileManager.Tile.tileDic[$"{lastTile.tileNode.posX},{lastTile.tileNode.posY}"].transform.position;
+                        playerMediator.playerBombPlantCalculator.BombChance = 0;
+                        playerMediator.playerBombPlantCalculator.WaitBombPlant();
+                        bomb.StartExplodeCoroutine();
+                    }
+                }
                 break;
 
             case ForwardGuide.ForwardState.right:
                 ray = Physics2D.Raycast(startPos, -startTile.transform.right, 15f, wallmask);
-                Debug.Log($"레이케스트에 부딪힌 물체 이름 : {ray.collider.gameObject.name}");
-                Debug.DrawRay(startPos,-startTile.transform.right *15, Color.red, 3f);
+                if (ray && ray.collider.gameObject.GetComponent<BaseWall>())
+                {
+                   ResetBombData(bomb, ray, +1, 0);
+                }
+
+                else if (!ray)
+                {
+                    tilerays = Physics2D.RaycastAll(startPos,-startTile.transform.right, 15f, tilemask);
+                    if (tilerays[tilerays.Length - 1].collider.gameObject.GetComponent<Tile>())
+                    {
+                        Tile lastTile = tilerays[tilerays.Length - 1].collider.gameObject.GetComponent<Tile>();
+                        bomb.StopExplodeCoroutine();
+                        bomb.PosX = lastTile.tileNode.posX;
+                        bomb.PosY = lastTile.tileNode.posY;
+                        bomb.transform.position = TileManager.Tile.tileDic[$"{lastTile.tileNode.posX},{lastTile.tileNode.posY}"].transform.position;
+                        playerMediator.playerBombPlantCalculator.BombChance = 0;
+                        playerMediator.playerBombPlantCalculator.WaitBombPlant();
+                        bomb.StartExplodeCoroutine();
+                    }
+                }
                 break;
         }
         
+    }
+
+    void ResetBombData(Bomb bomb,RaycastHit2D ray,int x,int y)
+    {
+        TileNode tilenode_;
+        if (ray.collider.GetComponent<BaseWall>())
+        {
+            tilenode_ = ray.collider.gameObject.GetComponent<BaseWall>().tileNode;
+            bomb.StopExplodeCoroutine();
+            bomb.PosX = tilenode_.posX + x;
+            bomb.PosY = tilenode_.posY + y;
+            bomb.transform.position = TileManager.Tile.tileDic[$"{tilenode_.posX + x},{tilenode_.posY + y}"].transform.position;
+            playerMediator.playerBombPlantCalculator.BombChance = 0;
+            playerMediator.playerBombPlantCalculator.WaitBombPlant();
+            bomb.StartExplodeCoroutine();
+        }
+        //else if (ray.collider.GetComponent<BombPlayerDectector>())
+        //{
+        //    tilenode_ = ray.collider.gameObject.GetComponentInParent<Bomb>().tileNode;
+        //    bomb.StopExplodeCoroutine();
+        //    bomb.PosX = tilenode_.posX + x;
+        //    bomb.PosY = tilenode_.posY + y;
+        //    bomb.transform.position = TileManager.Tile.tileDic[$"{tilenode_.posX + x},{tilenode_.posY + y}"].transform.position;
+        //    playerMediator.playerBombPlantCalculator.BombChance = 0;
+        //    playerMediator.playerBombPlantCalculator.WaitBombPlant();
+        //    bomb.StartExplodeCoroutine();
+        //}
+
     }
     
 
