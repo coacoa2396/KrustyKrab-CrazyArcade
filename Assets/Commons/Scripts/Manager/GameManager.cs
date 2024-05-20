@@ -8,6 +8,8 @@ public class GameManager : Singleton<GameManager>
     private Define.Maps mapType = Define.Maps.BlockMap;
     public PlayerEntity Player { get { return player; } set { player = value; } }
     public List<PlayerEntity> GamePlayers { get; set; } //게임에 참여하는 전체 게임 플레이어 정보
+    
+    public GameObject PlayerGameObject { get; set; }
     public Define.Maps MapType
     {
         get 

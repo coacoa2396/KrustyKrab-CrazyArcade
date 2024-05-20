@@ -1,18 +1,11 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerPhotonContoller : MonoBehaviour
+public class PlayerPhotonContoller : MonoBehaviourPun
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public PhotonView PV { get { return photonView; } }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }

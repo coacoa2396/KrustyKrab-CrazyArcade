@@ -5,29 +5,37 @@ using UnityEngine;
 
 public class GameScene : BaseScene
 {
+    Transform[] loadPosList;
+    List<bool> isLoad;
+    int index = -1;
+    int completePlayer = 0;
+
+    private void Start()
+    {
+        loadPosList = GetComponentsInChildren<Transform>();
+        isLoad = new List<bool>();
+        for (int i = 0; i < loadPosList.Length; i++)
+            isLoad.Add(false);
+    }
+
     public override IEnumerator LoadingRoutine()
     {
         yield return null;
-        LayerMask layer = LayerMask.GetMask("Wall");
-        float randomPosX, randomPosY;
-        while (true)
+        while(true)
         {
-            randomPosX = Random.Range(-9f, 8.5f);
-            randomPosY = Random.Range(-9.5f, 4f);
-
-            Vector3 spawnPos = new Vector3(randomPosX, randomPosY, 0);
-            Vector3 startPos = Camera.main.transform.position;
-
-            Debug.DrawRay(startPos, (spawnPos - startPos), Color.red, 3);
-            if (Physics.Raycast(startPos, (spawnPos - startPos), out RaycastHit hit))
+            int num = Random.Range(0, loadPosList.Length);
+            if (isLoad[num] == false)
             {
-                if (layer.Contain(hit.collider.gameObject.layer) == false) //벽이 아니면
-                {
-                    break;
-                }
+                index = num;
+                isLoad[index] = true;
+                break;
             }
-            yield return new WaitForSecondsRealtime(5f);
+            yield return new WaitForSecondsRealtime(0.2f);
         }
-        PhotonNetwork.Instantiate("Player", new Vector3(randomPosX, randomPosY, 0), Quaternion.identity);
+
+        Transform transform = loadPosList[index];
+        GameObject player = PhotonNetwork.Instantiate("Prefabs/Character/Player", transform.position, Quaternion.identity);
+        Manager.Game.PlayerGameObject = player;
     }
+
 }
