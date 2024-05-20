@@ -38,6 +38,9 @@ public class ItemSpawner : MonoBehaviour
     /// <param name="tilePos"></param>
     public void SpawnItem(Vector3 tilePos)
     {
+        if (PhotonNetwork.IsMasterClient == false) //마스터 클라이언트만 아이템을 생성할 수 있음. --> 권새롬 추가
+            return;
+
         if(randomitemList == null) { return; }
 
         int randomnumber_ = Random.Range(0, 10);
@@ -45,6 +48,7 @@ public class ItemSpawner : MonoBehaviour
         {
             int R = Random.Range(0, randomitemList.Count);
 
+            // ---- 권새롬 추가
             GameObject itemGo = null;
             foreach (string activeItem in activeItemList)
             {
@@ -54,6 +58,7 @@ public class ItemSpawner : MonoBehaviour
             if(itemGo == null)
                 itemGo = PhotonNetwork.InstantiateRoomObject($"Prefabs/Item/{randomitemList[R]}", tilePos, Quaternion.identity);
             itemGo.SetActive(true);
+            // ----
         }
     }
 }

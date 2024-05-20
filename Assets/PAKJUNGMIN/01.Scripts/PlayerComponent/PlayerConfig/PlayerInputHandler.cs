@@ -23,7 +23,7 @@ namespace pakjungmin
         }
 
         //권새롬 추가
-        private void Update()
+        private void LateUpdate()
         {
             if (photonView.IsMine)
                 return;
@@ -67,8 +67,6 @@ namespace pakjungmin
         {
             playerMediator.InputUse();
         }
-
-    
 
         public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
         {
