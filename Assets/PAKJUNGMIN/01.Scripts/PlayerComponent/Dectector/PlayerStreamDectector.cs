@@ -19,7 +19,7 @@ public class PlayerStreamDectector : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<Stream>())
         {
-            Debug.Log("플레이어가 물줄기에 맞음");
+            //Debug.Log("플레이어가 물줄기에 맞음");
             playerMediator.playerState.ChangeState(PlayerStateMachine.State.Trapped);
         }
     }

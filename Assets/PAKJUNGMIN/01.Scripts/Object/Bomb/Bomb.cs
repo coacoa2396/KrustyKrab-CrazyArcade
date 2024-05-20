@@ -15,9 +15,9 @@ namespace pakjungmin
         //물줄기의 파워
         public int bombPower;
 
-        [SerializeField] TileNode bombNode;
-        public int PosX { get { return bombNode.posX; } set { bombNode.posX = value; } }
-        public int PosY { get { return bombNode.posY; } set { bombNode.posY = value; } }
+        [SerializeField] public TileNode tileNode;
+        public int PosX { get { return tileNode.posX; } set { tileNode.posX = value; } }
+        public int PosY { get { return tileNode.posY; } set { tileNode.posY = value; } }
 
 
         Coroutine explodeCoroutine;
