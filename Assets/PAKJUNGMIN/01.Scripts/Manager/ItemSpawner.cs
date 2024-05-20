@@ -1,4 +1,5 @@
 using pakjungmin;
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -12,7 +13,8 @@ public class ItemSpawner : MonoBehaviour
     [Header("아이템이 나올 확률 변수: 10에 가까울 수록 확률 높아짐")]
     [SerializeField] int randomNumber;
 
-    [SerializeField] List<GameObject> randomitemList;
+    [SerializeField] List<string> randomitemList;
+    private string[] itemPath = { "Dart","Needle","Shield"};
 
     public static ItemSpawner Inst {  get { return instance; } }
 
@@ -23,11 +25,11 @@ public class ItemSpawner : MonoBehaviour
     }
     private void Start()
     {
-        randomitemList = new List<GameObject>();
+        randomitemList = new List<string>();
 
         foreach (KeyValuePair<string,GameObject> itemData in ItemManager.ItemData.itemDir)
         {
-            randomitemList.Add(itemData.Value);      
+            randomitemList.Add(itemData.Key);
         }
     }
     /// <summary>
@@ -42,7 +44,15 @@ public class ItemSpawner : MonoBehaviour
         if(randomNumber >= randomnumber_)
         {
             int R = Random.Range(0, randomitemList.Count);
-            Instantiate(randomitemList[R], tilePos, Quaternion.identity);
+
+            GameObject itemGo = PhotonNetwork.InstantiateRoomObject($"Prefabs/Item/{randomitemList[R]}", tilePos, Quaternion.identity);
+            foreach(string path in itemPath)
+            {
+                if (itemGo != null)
+                    break;
+                itemGo = PhotonNetwork.InstantiateRoomObject($"Prefabs/Item/Active/{path}/{randomitemList[R]}", tilePos, Quaternion.identity);
+            }
+            itemGo.SetActive(true);
         }
     }
 }
