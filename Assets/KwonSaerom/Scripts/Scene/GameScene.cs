@@ -34,7 +34,8 @@ public class GameScene : BaseScene
         }
 
         Transform transform = loadPosList[index];
-        PhotonNetwork.Instantiate("Prefabs/Character/Player", transform.position, Quaternion.identity);
+        GameObject player = PhotonNetwork.Instantiate("Prefabs/Character/Player", transform.position, Quaternion.identity);
+        Manager.Game.PlayerGameObject = player;
     }
 
 }

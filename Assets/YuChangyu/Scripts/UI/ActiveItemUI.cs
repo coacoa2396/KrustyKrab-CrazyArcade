@@ -17,27 +17,34 @@ public class ActiveItemUI : MonoBehaviourPun
 
     private void Start()
     {
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        PlayerPhotonContoller[] _players = new PlayerPhotonContoller[players.Length];
-        for (int i = 0; i < players.Length; i++)
-        {
-            _players[i] = players[i].GetComponent<PlayerPhotonContoller>();
-        }
+        //GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        //PlayerPhotonContoller[] _players = new PlayerPhotonContoller[players.Length];
+        //for (int i = 0; i < players.Length; i++)
+        //{
+        //    _players[i] = players[i].GetComponent<PlayerPhotonContoller>();
+        //}
 
-        foreach (PlayerPhotonContoller player in _players)
-        {
-            if (!player.PV.IsMine)
-                continue;
+        //foreach (PlayerPhotonContoller player in _players)
+        //{
+        //    if (!player.PV.IsMine)
+        //        continue;
 
-            this.player = player.GetComponent<PlayerMediator>();
-            break;
-        }
+        //    this.player = player.GetComponent<PlayerMediator>();
+        //    break;
+        //}
 
         name = null;
     }
 
     private void LateUpdate()
     {
+        if (player == null)
+        {
+            if (Manager.Game.PlayerGameObject == null)
+                return;
+            player = Manager.Game.PlayerGameObject.GetComponent<PlayerMediator>();
+        }
+
         if (player.CurActiveItem == null)
         {
             itemImage.sprite = null;
