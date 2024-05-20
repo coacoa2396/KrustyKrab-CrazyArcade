@@ -1,11 +1,9 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VillageScene : BaseScene
+public class VillageScene : GameScene
 {
-    public override IEnumerator LoadingRoutine()
-    {
-        yield return null;
-    }
+    
 }
