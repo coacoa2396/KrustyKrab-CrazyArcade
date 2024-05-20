@@ -3,11 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameScene : BaseScene,IPunObservable
+public class GameScene : BaseScene
 {
     Transform[] loadPosList;
     List<bool> isLoad;
     int index = -1;
+    int completePlayer = 0;
 
     private void Start()
     {
@@ -36,17 +37,4 @@ public class GameScene : BaseScene,IPunObservable
         PhotonNetwork.Instantiate("Prefabs/Character/Player", transform.position, Quaternion.identity);
     }
 
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        if(stream.IsWriting)
-        {
-            if (index != -1)
-                stream.SendNext(index);
-        }
-        else
-        {
-            int receive = (int)stream.ReceiveNext();
-            isLoad[receive] = true;
-        }
-    }
 }
