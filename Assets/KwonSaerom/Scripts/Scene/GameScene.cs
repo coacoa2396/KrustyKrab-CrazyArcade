@@ -3,34 +3,50 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameScene : BaseScene
+public class GameScene : BaseScene,IPunObservable
 {
+    Transform[] loadPosList;
+    List<bool> isLoad;
+    int index = -1;
+
+    private void Start()
+    {
+        loadPosList = GetComponentsInChildren<Transform>();
+        isLoad = new List<bool>();
+        for (int i = 0; i < loadPosList.Length; i++)
+            isLoad.Add(false);
+    }
+
     public override IEnumerator LoadingRoutine()
     {
         yield return null;
-        LayerMask layer = LayerMask.GetMask("Wall");
-        float randomPosX, randomPosY;
-        while (true)
+        while(true)
         {
-            randomPosX = Random.Range(-9f, 8.5f);
-            randomPosY = Random.Range(-9.5f, 4f);
-
-            Vector3 spawnPos = new Vector3(randomPosX, randomPosY, 0);
-            Vector3 startPos = Camera.main.transform.position;
-            Vector3 direction = (spawnPos - startPos).normalized;
-            float maxDistance = Vector3.Distance(startPos, spawnPos);
-
-            Debug.DrawRay(startPos, direction * maxDistance, Color.red, 3);
-            RaycastHit2D hit = Physics2D.Raycast(startPos, spawnPos - startPos);
-            if (hit.collider != null)
+            int num = Random.Range(0, loadPosList.Length);
+            if (isLoad[num] == false)
             {
-                if (layer.Contain(hit.collider.gameObject.layer) == false) //벽이 아니면
-                {
-                    break;
-                }
+                index = num;
+                isLoad[index] = true;
+                break;
             }
-            yield return new WaitForSecondsRealtime(0.5f);
+            yield return new WaitForSecondsRealtime(0.2f);
         }
-        PhotonNetwork.Instantiate("Prefabs/Character/Player", new Vector3(randomPosX, randomPosY, 0), Quaternion.identity);
+
+        Transform transform = loadPosList[index];
+        PhotonNetwork.Instantiate("Prefabs/Character/Player", transform.position, Quaternion.identity);
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if(stream.IsWriting)
+        {
+            if (index != -1)
+                stream.SendNext(index);
+        }
+        else
+        {
+            int receive = (int)stream.ReceiveNext();
+            isLoad[receive] = true;
+        }
     }
 }
