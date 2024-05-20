@@ -7,6 +7,5 @@ public class VillageScene : BaseScene
     public override IEnumerator LoadingRoutine()
     {
         yield return null;
-        Debug.LogError("VillageScene");
     }
 }
