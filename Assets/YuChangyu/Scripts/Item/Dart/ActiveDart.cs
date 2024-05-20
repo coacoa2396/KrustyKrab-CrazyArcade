@@ -1,3 +1,4 @@
+using pakjungmin;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,17 +13,22 @@ public class ActiveDart : ActiveBase
     [SerializeField] Projectile right;
     [SerializeField] Projectile left;
 
-    int useNumber;
+    bool checkUse;
 
     public override void Use()
     {
-        Fire();
+        if (!checkUse)
+        {
+            checkUse = true;
+            Fire();
+            checkUse = false;
+        }
     }
 
     public void Fire()
     {
         Vector3 shootVec = Player.playerInputHandler.MoveDir;
-        
+
         switch ((shootVec.x, shootVec.y, shootVec.z))
         {
             case (-1, 0, 0):
@@ -40,5 +46,17 @@ public class ActiveDart : ActiveBase
             default:
                 break;
         }
+
+        UseNumber--;
+
+        if (UseNumber == 0)
+            Player.CurActiveItem = null;
+    }
+
+    public override void Init(PlayerMediator player)
+    {
+        base.Init(player);
+        Name = "Dart";
+        UseNumber = 3;
     }
 }

@@ -9,8 +9,6 @@ using static PlayerStateMachine;
 /// </summary>
 public class ActiveNeedle : ActiveBase
 {
-    int useNumber;          // 사용횟수
-
     public override void Use()
     {
         SaveMyself();
@@ -25,16 +23,17 @@ public class ActiveNeedle : ActiveBase
         Player.playerAnimCon.Animator.SetTrigger("Revive");
 
         Player.playerState.ChangeState(State.Alive);       // 플레이어의 상태를 Alive로 바꿔준다
-        useNumber--;
+        UseNumber--;
 
         // 사용횟수를 다 쓰면 CurActiveItem에서 제거하기
-        if (useNumber == 0)
+        if (UseNumber == 0)
             Player.CurActiveItem = null;
     }
 
     public override void Init(PlayerMediator player)
     {
         base.Init(player);
-        useNumber = 1;
+        Name = "Needle";
+        UseNumber = 1;
     }
 }
