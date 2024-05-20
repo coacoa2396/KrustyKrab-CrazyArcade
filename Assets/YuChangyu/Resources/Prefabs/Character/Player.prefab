@@ -228,8 +228,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4425027927827986793}
+  - component: {fileID: 5714448959362928219}
   m_Layer: 0
-  m_Name: ForwardDir
+  m_Name: ForwardGuide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -250,6 +251,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1976657950225911536}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5714448959362928219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1960445525870752649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 140d7e8793988c4459dbc18808977f34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2608491038159064541
 GameObject:
   m_ObjectHideFlags: 0
@@ -817,7 +830,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerBehavior: {fileID: 7590254009986311755}
   playerInputHandler: {fileID: 6142184973041010365}
-  forwardDir: {fileID: 1960445525870752649}
+  forwardGuide: {fileID: 5714448959362928219}
   characterStats: {fileID: 11400000, guid: 449459e613b40b049b82d3d6a108f181, type: 2}
   playerStats: {fileID: 4230409823527359473}
   playerState: {fileID: 1896374510925927560}

@@ -60,19 +60,52 @@ public class PlayerAbility : MonoBehaviour
             //Debug.Log("신발 없음");
             return;
         }
-       // Debug.Log("킥!!");
 
         Bomb bomb = GetComponentInChildren<KickAbilityChecker>().targetBomb;
-        
-         Vector2 kickDir = (bomb.gameObject.transform.position- playerMediator.forwardDir.transform.position).normalized;
 
-        RaycastHit2D ray = Physics2D.Raycast(bomb.transform.position,kickDir,float.MaxValue);
+        Tile startTile = TileManager.Tile.tileDic[$"{bomb.GetComponent<Bomb>().tileNode.posX},{bomb.GetComponent<Bomb>().tileNode.posY}"];
+             
+        Vector2 startPos = startTile.transform.position; //폭탄의 위치 노드
 
-        if(ray.collider.gameObject.GetComponent<BreakableWall>())
+        RaycastHit2D ray;
+
+        int wallmask = 1 << LayerMask.NameToLayer("Wall");
+
+        switch (playerMediator.forwardGuide.Forward)
         {
-           // Debug.Log("뭔가에 부딪힘");
-        }
+            case ForwardGuide.ForwardState.up:
+                Debug.DrawRay(startPos,startTile.transform.up*15, Color.red,3f);
 
+                ray = Physics2D.Raycast(startPos, startTile.transform.up,15f,wallmask);
+                Debug.Log($"레이케스트에 부딪힌 물체 이름 : {ray.collider.gameObject.name}");
+                if (ray.collider.gameObject.GetComponent<BaseWall>())
+                {
+                    TileNode tilenode_ = ray.collider.gameObject.GetComponent<BaseWall>().tileNode;
+                    Vector2 moveDir = TileManager.Tile.tileDic[$"{tilenode_.posX},{tilenode_.posY}"].transform.position;
+                    bomb.transform.Translate(TileManager.Tile.tileDic[$"{tilenode_.posX},{tilenode_.posY-1}"].transform.position);
+                    Debug.Log("sfdasdf");
+                }
+                break;
+            case ForwardGuide.ForwardState.down:
+
+                ray = Physics2D.Raycast(startPos, -startTile.transform.up, 15f, wallmask);
+                Debug.Log($"레이케스트에 부딪힌 물체 이름 : {ray.collider.gameObject.name}");
+                Debug.DrawRay(startPos,-startTile.transform.up *15, Color.red, 3f);
+                break;
+
+            case ForwardGuide.ForwardState.left:
+                ray = Physics2D.Raycast(startPos, startTile.transform.right, 15f, wallmask);
+                Debug.Log($"레이케스트에 부딪힌 물체 이름 : {ray.collider.gameObject.name}");
+                Debug.DrawRay(startPos,startTile.transform.right *15, Color.red, 3f);
+                break;
+
+            case ForwardGuide.ForwardState.right:
+                ray = Physics2D.Raycast(startPos, -startTile.transform.right, 15f, wallmask);
+                Debug.Log($"레이케스트에 부딪힌 물체 이름 : {ray.collider.gameObject.name}");
+                Debug.DrawRay(startPos,-startTile.transform.right *15, Color.red, 3f);
+                break;
+        }
+        
     }
     
 
