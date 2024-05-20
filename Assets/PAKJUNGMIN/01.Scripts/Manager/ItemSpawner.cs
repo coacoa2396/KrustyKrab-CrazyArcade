@@ -48,7 +48,7 @@ public class ItemSpawner : MonoBehaviour
             GameObject itemGo = null;
             foreach (string activeItem in activeItemList)
             {
-                if (activeItem == randomitemList[R])
+                if (activeItem.Equals(randomitemList[R]))
                     itemGo = PhotonNetwork.InstantiateRoomObject($"Prefabs/Item/Active/{activeItem}/{randomitemList[R]}", tilePos, Quaternion.identity);
             }
             if(itemGo == null)
