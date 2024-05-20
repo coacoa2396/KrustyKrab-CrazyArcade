@@ -43,26 +43,12 @@ namespace pakjungmin
 
         public void InputMove(Vector3 moveDir)
         {
+            if (playerAbility.canKick) { playerAbility.Kick(); }
             playerBehavior.Move(moveDir);
             SetForwardGuide(moveDir);
         }
         public void InputPlant()
-        {       
-            if (playerAbility.canKick && playerAbility.canThrow)
-            {
-                playerAbility.Throw();
-            }
-            else if (playerAbility.canKick)
-            {
-                playerAbility.Kick();
-            }
-            else if (playerAbility.canThrow)
-            {
-                playerAbility.Throw();
-            }
-
-
-
+        { 
             if (playerTileCalculator.nowTile != null)
             {
                 playerBehavior.Plant(bomb, TileManager.Tile.tileDic[$"{playerTileCalculator.nowTile.tileNode.posX},{playerTileCalculator.nowTile.tileNode.posY}"]);

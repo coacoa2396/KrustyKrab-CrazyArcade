@@ -7,17 +7,19 @@ using UnityEngine;
 public class BombPlayerDectector : MonoBehaviour
 {
     [SerializeField] BoxCollider2D playercollider;
+    public bool IsActive;
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.GetComponent<PlayerStreamDectector>() == null)
         {
-            //Debug.Log("콜라이더 On");
             playercollider.enabled = true;
+            IsActive = true;
         }
     }
     private void OnDisable()
     {
         playercollider.enabled = false;
+        IsActive = false;
     }
 }
