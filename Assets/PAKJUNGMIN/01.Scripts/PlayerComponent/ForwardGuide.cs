@@ -22,16 +22,16 @@ public class ForwardGuide : MonoBehaviour
         switch (forwardState)
         {
             case ForwardState.up:
-                transform.position = new Vector3(transform.parent.position.x, transform.parent.position.y + 0.5f, 0);
+                transform.position = new Vector3(transform.parent.position.x, transform.parent.position.y + 0.6f, 0);
                 break;
             case ForwardState.down:
-                transform.position = new Vector3(transform.parent.position.x, transform.parent.position.y - 0.5f, 0);
+                transform.position = new Vector3(transform.parent.position.x, transform.parent.position.y - 0.6f, 0);
                 break;
             case ForwardState.left:
-                transform.position = new Vector3(transform.parent.position.x + 0.5f, transform.parent.position.y, 0);
+                transform.position = new Vector3(transform.parent.position.x + 0.6f, transform.parent.position.y, 0);
                 break;
             case ForwardState.right:
-                transform.position = new Vector3(transform.parent.position.x - 0.5f, transform.parent.position.y, 0);
+                transform.position = new Vector3(transform.parent.position.x - 0.6f, transform.parent.position.y, 0);
                 break;
         }
     }
