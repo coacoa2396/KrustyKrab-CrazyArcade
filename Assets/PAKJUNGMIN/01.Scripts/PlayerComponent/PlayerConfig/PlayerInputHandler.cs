@@ -17,9 +17,6 @@ namespace pakjungmin
 
         public Vector3 MoveDir { get { return moveDir; } } // 외부에서 확인 할 프로퍼티 -> 유찬규 추가
 
-
-        private bool canPlant,canUse; //--> 권새롬 추가
-
         private void Awake()
         {
             playerMediator = GetComponent<PlayerMediator>();
@@ -30,16 +27,6 @@ namespace pakjungmin
         {
             if (photonView.IsMine)
                 return;
-            if(canPlant)
-            {
-                playerMediator.InputPlant();
-                canPlant = false;
-            }
-            if (canUse)
-            {
-                playerMediator.InputUse();
-                canUse = false;
-            }
             playerMediator.InputMove(moveDir);
         }
 
@@ -56,35 +43,44 @@ namespace pakjungmin
         {
             if (photonView.IsMine)
             {
-                playerMediator.InputPlant();
-                canPlant = true;
+                photonView.RPC("InputPlant", RpcTarget.All); //--> 권새롬 추가
             }
         }
         public void OnUse(InputValue value)
         {
             if (photonView.IsMine)
             {
-                playerMediator.InputUse();
-                canUse = true;
+                photonView.RPC("InputUse", RpcTarget.All); //--> 권새롬 추가
             }
         }
 
 
-        //권새롬 추가
+        //--> 권새롬 추가
+        [PunRPC]
+        public void InputPlant()
+        {
+            playerMediator.InputPlant();
+        }
+
+        [PunRPC]
+        public void InputUse()
+        {
+            playerMediator.InputUse();
+        }
+
+    
+
         public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
         {
             if(stream.IsWriting)
             {
-                stream.SendNext(canPlant);
-                stream.SendNext(canUse);
                 stream.SendNext(moveDir);
             }
-            else
+            else if(stream.IsReading)
             {
-                canPlant = (bool)stream.ReceiveNext();
-                canUse = (bool)stream.ReceiveNext();
                 moveDir = (Vector3)stream.ReceiveNext();
             }
         }
+        //------
     }
 }
