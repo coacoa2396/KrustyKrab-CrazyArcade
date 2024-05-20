@@ -44,17 +44,15 @@ public class ItemSpawner : MonoBehaviour
         if(randomNumber >= randomnumber_)
         {
             int R = Random.Range(0, randomitemList.Count);
-            string item = randomitemList[R];
-            Debug.LogError(item);
 
-            GameObject itemGo = PhotonNetwork.InstantiateRoomObject($"Prefabs/Item/{item}", tilePos, Quaternion.identity);
+            GameObject itemGo = PhotonNetwork.InstantiateRoomObject($"Prefabs/Item/{randomitemList[R]}", tilePos, Quaternion.identity);
             foreach(string path in itemPath)
             {
                 if (itemGo != null)
                     break;
-                itemGo = PhotonNetwork.InstantiateRoomObject($"Prefabs/Item/Active/{path}/{item}", tilePos, Quaternion.identity);
+                itemGo = PhotonNetwork.InstantiateRoomObject($"Prefabs/Item/Active/{path}/{randomitemList[R]}", tilePos, Quaternion.identity);
             }
-            Debug.LogError(itemGo);
+            itemGo.SetActive(true);
         }
     }
 }
