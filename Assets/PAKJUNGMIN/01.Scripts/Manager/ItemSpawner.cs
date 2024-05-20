@@ -14,7 +14,7 @@ public class ItemSpawner : MonoBehaviour
     [SerializeField] int randomNumber;
 
     [SerializeField] List<string> randomitemList;
-    private string[] itemPath = { "Dart","Needle","Shield"};
+    private string[] activeItemList = { "Dart","Needle","Shield"};
 
     public static ItemSpawner Inst {  get { return instance; } }
 
@@ -45,13 +45,14 @@ public class ItemSpawner : MonoBehaviour
         {
             int R = Random.Range(0, randomitemList.Count);
 
-            GameObject itemGo = PhotonNetwork.InstantiateRoomObject($"Prefabs/Item/{randomitemList[R]}", tilePos, Quaternion.identity);
-            foreach(string path in itemPath)
+            GameObject itemGo = null;
+            foreach (string activeItem in activeItemList)
             {
-                if (itemGo != null)
-                    break;
-                itemGo = PhotonNetwork.InstantiateRoomObject($"Prefabs/Item/Active/{path}/{randomitemList[R]}", tilePos, Quaternion.identity);
+                if (activeItem == randomitemList[R])
+                    itemGo = PhotonNetwork.InstantiateRoomObject($"Prefabs/Item/Active/{activeItem}/{randomitemList[R]}", tilePos, Quaternion.identity);
             }
+            if(itemGo == null)
+                itemGo = PhotonNetwork.InstantiateRoomObject($"Prefabs/Item/{randomitemList[R]}", tilePos, Quaternion.identity);
             itemGo.SetActive(true);
         }
     }
