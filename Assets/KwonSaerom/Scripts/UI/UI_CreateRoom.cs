@@ -13,7 +13,7 @@ public class UI_CreateRoom : PopUpUI
 
     private string[] roomNameList =
     {
-        "즐거운 게임해요","매너겜 필수","초보자 환영!!!","덤벼라 세상아"
+        "즐거운 게임해요","매너겜 필수","초보자 환영!!!","환영합니다"
     };
 
     enum GameObjects

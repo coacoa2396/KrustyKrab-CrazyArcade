@@ -81,7 +81,7 @@ SpriteRenderer:
   m_Size: {x: 1.1875, y: 1.1875}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &3462546552756294570
@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 6918678206295854566}
   - component: {fileID: 7223795954314195666}
   - component: {fileID: 7647393448605806605}
+  - component: {fileID: -8710261346369061147}
   m_Layer: 0
   m_Name: Shield
   m_TagString: Untagged
@@ -224,3 +225,25 @@ MonoBehaviour:
   player: {fileID: 0}
   waterProof: 0
   activeShield: {fileID: 9097076165098504451, guid: caa48d82e993bc54a9a35b0cf6825244, type: 3}
+--- !u!114 &-8710261346369061147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3462546552756294570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
