@@ -17,17 +17,20 @@ public class GameScene : BaseScene
 
             Vector3 spawnPos = new Vector3(randomPosX, randomPosY, 0);
             Vector3 startPos = Camera.main.transform.position;
+            Vector3 direction = (spawnPos - startPos).normalized;
+            float maxDistance = Vector3.Distance(startPos, spawnPos);
 
-            Debug.DrawRay(startPos, (spawnPos - startPos), Color.red, 3);
-            if (Physics.Raycast(startPos, (spawnPos - startPos), out RaycastHit hit))
+            Debug.DrawRay(startPos, direction * maxDistance, Color.red, 3);
+            RaycastHit2D hit = Physics2D.Raycast(startPos, spawnPos - startPos);
+            if (hit.collider != null)
             {
                 if (layer.Contain(hit.collider.gameObject.layer) == false) //벽이 아니면
                 {
                     break;
                 }
             }
-            yield return new WaitForSecondsRealtime(5f);
+            yield return new WaitForSecondsRealtime(0.5f);
         }
-        PhotonNetwork.Instantiate("Player", new Vector3(randomPosX, randomPosY, 0), Quaternion.identity);
+        PhotonNetwork.Instantiate("Prefabs/Character/Player", new Vector3(randomPosX, randomPosY, 0), Quaternion.identity);
     }
 }
