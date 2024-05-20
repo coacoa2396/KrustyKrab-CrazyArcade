@@ -2,6 +2,7 @@ using pakjungmin;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static ForwardGuide;
 /// <summary>
 /// 제작 : 찬규 
 /// 아이템 : Dart의 액티브기능
@@ -27,23 +28,26 @@ public class ActiveDart : ActiveBase
 
     public void Fire()
     {
-        Vector3 shootVec = Player.playerInputHandler.MoveDir;
-
-        switch ((shootVec.x, shootVec.y, shootVec.z))
+        switch (Player.forwardGuide.Forward)
         {
-            case (-1, 0, 0):
-                Instantiate(left, transform.position, Quaternion.identity);
+            case ForwardState.left:
+                Instantiate(right, Player.forwardGuide.transform.position, Quaternion.identity);
+                Debug.Log("좌 생성");
                 break;
-            case (0, 0, 1):
-                Instantiate(up, transform.position, Quaternion.identity);
+            case ForwardState.up:
+                Instantiate(up, Player.forwardGuide.transform.position, Quaternion.identity);
+                Debug.Log("상 생성");
                 break;
-            case (1, 0, 0):
-                Instantiate(right, transform.position, Quaternion.identity);
+            case ForwardState.right:
+                Instantiate(left, Player.forwardGuide.transform.position, Quaternion.identity);
+                Debug.Log("우 생성");
                 break;
-            case (0, 0, -1):
-                Instantiate(down, transform.position, Quaternion.identity);
+            case ForwardState.down:
+                Instantiate(down, Player.forwardGuide.transform.position, Quaternion.identity);
+                Debug.Log("하 생성");
                 break;
             default:
+                Debug.Log("생성안됨");
                 break;
         }
 
