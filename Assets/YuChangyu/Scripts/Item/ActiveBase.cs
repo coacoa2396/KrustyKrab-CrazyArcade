@@ -9,7 +9,13 @@ using UnityEngine;
 public class ActiveBase : MonoBehaviour
 {
     [SerializeField] PlayerMediator player;            // 플레이어
+
+    string name;
+    int useNumber;
+
     public PlayerMediator Player { get { return player; } set { player = value; } }
+    public string Name { get { return name; } set { name = value; } }
+    public int UseNumber { get { return useNumber; } set { useNumber = value; } }
 
     public virtual void Use()
     {

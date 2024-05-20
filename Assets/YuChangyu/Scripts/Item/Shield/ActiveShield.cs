@@ -10,8 +10,6 @@ public class ActiveShield : ActiveBase
 {
     [SerializeField] float godTime;
 
-    int useNumber;      // 사용횟수
-
     bool casting;       // 사용중 체크
     bool godMode;       // 무적 체크
 
@@ -27,9 +25,9 @@ public class ActiveShield : ActiveBase
     {
         StartCoroutine(GodMode());      // 무적 코루틴
 
-        useNumber--;
+        UseNumber--;
 
-        if (useNumber == 0)
+        if (UseNumber == 0)
             Player.CurActiveItem = null;
     }
 
@@ -44,6 +42,7 @@ public class ActiveShield : ActiveBase
     public override void Init(PlayerMediator player)
     {
         base.Init(player);
-        useNumber = 2;
+        Name = "Shield";
+        UseNumber = 2;
     }
 }
