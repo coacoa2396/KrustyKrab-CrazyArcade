@@ -1,6 +1,7 @@
 using pakjungmin;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 /// <summary>
 /// 제작 : 찬규 
@@ -11,8 +12,9 @@ public class PlayerAnimationController : MonoBehaviour
     [Header("Component")]
     [SerializeField] PlayerMediator player;
     [SerializeField] Animator animator;
+    [SerializeField] AnimatorOverrideController[] overrideCon;
 
-    public Animator Animator {get {return animator;}}
+    public Animator Animator { get { return animator; } }
 
     [Header("variable")]
     [SerializeField] Vector2 checkIdle;
