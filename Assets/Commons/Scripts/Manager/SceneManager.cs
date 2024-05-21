@@ -1,9 +1,10 @@
 using Photon.Pun;
+using Photon.Realtime;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
-
+using Hashtable = ExitGames.Client.Photon.Hashtable;
 public class SceneManager : Singleton<SceneManager>
 {
     [SerializeField] Image fade;
@@ -95,6 +96,7 @@ public class SceneManager : Singleton<SceneManager>
         }
     }
 
+    //권새롬 추가 ---> 게임시작 동기화
     IEnumerator PhotonLoadingRoutine(string sceneName, bool master = true)
     {
         fade.gameObject.SetActive(true);
@@ -114,8 +116,8 @@ public class SceneManager : Singleton<SceneManager>
         {
             loadingBar.value = oper;
             oper += 0.12f;
-            float random = 0.3f;
-            yield return new WaitForSeconds(random);
+            float time = 0.3f;
+            yield return new WaitForSecondsRealtime(time);
         }
 
         Manager.UI.EnsureEventSystem();
@@ -123,9 +125,29 @@ public class SceneManager : Singleton<SceneManager>
         BaseScene curScene = GetCurScene();
         yield return curScene.LoadingRoutine();
 
+        while(PhotonNetwork.InRoom && curScene as GameScene)
+        {
+            Player[] players = PhotonNetwork.PlayerList;
+            bool isAllConnect = true;
+            for (int i = 0; i < players.Length; i++)
+            {
+                Hashtable ht = players[i].CustomProperties;
+                if ((bool)ht["IsLoad"] == false)
+                {
+                    isAllConnect = false;
+                    break;
+                }
+            }
+            if (isAllConnect)
+                break;
+            else
+                yield return null;
+        }
+
         loadingBar.gameObject.SetActive(false);
         yield return FadeIn();
         fade.gameObject.SetActive(false);
+
     }
 
 }

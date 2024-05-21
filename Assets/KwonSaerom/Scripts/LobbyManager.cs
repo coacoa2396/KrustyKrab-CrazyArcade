@@ -54,6 +54,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         //캐릭터 설정
         PhotonNetwork.LocalPlayer.SetCustomProperties(new Hashtable() { { "Character", 0 } });
         PhotonNetwork.LocalPlayer.SetCustomProperties(new Hashtable() { { "Ready", false } });
+        PhotonNetwork.LocalPlayer.SetCustomProperties(new Hashtable() { { "IsLoad", false } });
 
         //방 정보를 들고와서 UI에 연결
         RoomEntity entity = new RoomEntity(PhotonNetwork.CurrentRoom);

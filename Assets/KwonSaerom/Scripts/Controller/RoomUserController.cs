@@ -45,6 +45,7 @@ public class RoomUserController : MonoBehaviourPunCallbacks
     {
         newPlayer.SetCustomProperties(new Hashtable() { { "Character", 0 } });
         newPlayer.SetCustomProperties(new Hashtable() { { "Ready", false } });
+        newPlayer.SetCustomProperties(new Hashtable() { { "IsLoad", false } });
         AddPlayer(newPlayer,LobbyManager.NowRoom.NowPlayer++);
     }
 
@@ -138,7 +139,6 @@ public class RoomUserController : MonoBehaviourPunCallbacks
             return false;
         for(int i=1;i< LobbyManager.NowRoom.NowPlayer ;i++)
         {
-            Debug.Log(i + ":"+players[i].IsReady);
             if (players[i].IsReady == false)
                 return false;
         }
