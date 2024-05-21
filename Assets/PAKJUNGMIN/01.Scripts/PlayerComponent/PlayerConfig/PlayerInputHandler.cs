@@ -43,9 +43,11 @@ namespace pakjungmin
         {
             if (photonView.IsMine)
             {
-                photonView.RPC("InputPlant", RpcTarget.All); //--> 권새롬 추가
+                TileNode nowTile = playerMediator.GetNowTile();
+                photonView.RPC("InputPlant", RpcTarget.All, nowTile.posX,nowTile.posY); //--> 권새롬 추가(물풍선이 모두 같은 위치에 놓여야함)
             }
         }
+
         public void OnUse(InputValue value)
         {
             if (photonView.IsMine)
@@ -57,9 +59,9 @@ namespace pakjungmin
 
         //--> 권새롬 추가
         [PunRPC]
-        public void InputPlant()
+        public void InputPlant(int posX,int posY)
         {
-            playerMediator.InputPlant();
+            playerMediator.InputPlant(posX,posY);
         }
 
         [PunRPC]

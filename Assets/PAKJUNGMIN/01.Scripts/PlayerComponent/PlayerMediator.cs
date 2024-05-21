@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -47,14 +48,23 @@ namespace pakjungmin
             playerBehavior.Move(moveDir);
             SetForwardGuide(moveDir);
         }
-        public void InputPlant()
+
+        public void InputPlant(int posX,int posY)
         { 
             if (playerTileCalculator.nowTile != null)
             {
-                playerBehavior.Plant(bomb, TileManager.Tile.tileDic[$"{playerTileCalculator.nowTile.tileNode.posX},{playerTileCalculator.nowTile.tileNode.posY}"]);
+                // 권새롬 수정 --> 모든 클라이언트에게 같은위치에 물풍선이 놓이도록함.
+                playerBehavior.Plant(bomb, TileManager.Tile.tileDic[$"{posX},{posY}"]);
             }
         }
         
+        /// --- 권새롬 추가
+        public TileNode GetNowTile()
+        {
+            return playerTileCalculator.nowTile.tileNode;
+        }
+        ///
+
         public void InputUse() { playerBehavior.Use(); }
 
         void SetForwardGuide(Vector3 moveDir)
