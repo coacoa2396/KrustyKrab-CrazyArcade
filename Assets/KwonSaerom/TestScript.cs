@@ -12,7 +12,8 @@ public class TestScript : MonoBehaviourPunCallbacks
     private void Start()
     {
          PhotonNetwork.LocalPlayer.NickName = $"DebugPlayer {Random.Range(1000, 10000)}";
-         PhotonNetwork.ConnectUsingSettings();
+        if(PhotonNetwork.IsConnected == false)
+            PhotonNetwork.ConnectUsingSettings();
     }
 
     public override void OnConnectedToMaster()
