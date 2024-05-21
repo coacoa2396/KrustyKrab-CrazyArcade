@@ -1,4 +1,5 @@
 using Photon.Pun;
+using Photon.Pun.UtilityScripts;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -36,6 +37,8 @@ public class GameScene : BaseScene
         Transform transform = loadPosList[index];
         GameObject player = PhotonNetwork.Instantiate("Prefabs/Character/Player", transform.position, Quaternion.identity);
         Manager.Game.PlayerGameObject = player;
+
     }
+
 
 }
