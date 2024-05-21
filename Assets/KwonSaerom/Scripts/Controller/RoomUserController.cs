@@ -189,9 +189,16 @@ public class RoomUserController : MonoBehaviourPunCallbacks
     {
         foreach (PlayerEntity player in players)
         {
-            if (player != null && player.Key.Equals(key))
+            if (player == null)
+                break;
+            if (player.Key.Equals(key))
             {
                 player.Character = character;
+            }
+
+            if(player.Key.Equals(Manager.Game.Player.Key))
+            {
+                Manager.Game.Player.Character = character;
             }
         }
         UpdatePlayer();

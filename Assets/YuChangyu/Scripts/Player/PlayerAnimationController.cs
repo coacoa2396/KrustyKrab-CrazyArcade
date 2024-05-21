@@ -1,7 +1,5 @@
 using pakjungmin;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Animations;
 using UnityEngine;
 /// <summary>
 /// 제작 : 찬규 

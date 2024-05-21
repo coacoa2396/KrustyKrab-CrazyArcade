@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
-
+using static Define;
 
 public class GameScene : BaseScene
 {
@@ -37,7 +37,7 @@ public class GameScene : BaseScene
         }
 
         Transform transform = loadPosList[index];
-        GameObject player = PhotonNetwork.Instantiate("Prefabs/Character/Player", transform.position, Quaternion.identity);
+        GameObject player = PhotonNetwork.Instantiate($"Prefabs/Character/{Manager.Game.Player.Character.ToString()}", transform.position, Quaternion.identity);
         Manager.Game.PlayerGameObject = player;
         yield return new WaitForSecondsRealtime(0.2f);
         PhotonNetwork.LocalPlayer.SetCustomProperties(new Hashtable() { { "IsLoad", true } });
