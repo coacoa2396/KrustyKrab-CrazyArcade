@@ -22,13 +22,6 @@ namespace pakjungmin
             playerMediator = GetComponent<PlayerMediator>();
         }
 
-        //권새롬 추가
-        private void LateUpdate()
-        {
-            if (photonView.IsMine)
-                return;
-            playerMediator.InputMove(moveDir);
-        }
 
         public void OnMove(InputValue value)
         {
