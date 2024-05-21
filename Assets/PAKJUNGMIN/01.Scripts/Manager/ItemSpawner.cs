@@ -57,7 +57,7 @@ public class ItemSpawner : MonoBehaviour
             }
             if(itemGo == null)
                 itemGo = PhotonNetwork.InstantiateRoomObject($"Prefabs/Item/{randomitemList[R]}", tilePos, Quaternion.identity);
-            itemGo.SetActive(true);
+            itemGo.GetComponent<Item>().SetActive(true);
             // ----
         }
     }

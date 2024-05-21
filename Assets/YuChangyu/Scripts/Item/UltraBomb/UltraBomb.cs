@@ -1,4 +1,5 @@
 using pakjungmin;
+using Photon.Pun;
 using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,7 +17,9 @@ public class UltraBomb : Item,IAcquirable
         {
             if (WaterProof <= 0)
             {
-                Destroy(gameObject);
+                //권새롬 추가 --> 아이템 삭제는 마스터 클라이언트만. (룸오브젝트이기 때문)
+                if (PhotonNetwork.IsMasterClient)
+                    PhotonNetwork.Destroy(gameObject);
                 return;
             }
             WaterProof--;
