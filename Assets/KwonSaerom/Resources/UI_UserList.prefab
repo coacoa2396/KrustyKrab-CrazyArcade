@@ -141,7 +141,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3681433117662651663, guid: da6d9004050057e40bf50e930fe5bbbb, type: 3}
       propertyPath: m_Size
-      value: 0.33466524
+      value: 0.01086667
       objectReference: {fileID: 0}
     - target: {fileID: 3681433117662651663, guid: da6d9004050057e40bf50e930fe5bbbb, type: 3}
       propertyPath: m_Value
@@ -228,6 +228,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7274151202733814664, guid: da6d9004050057e40bf50e930fe5bbbb, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 7274151202733814664, guid: da6d9004050057e40bf50e930fe5bbbb, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -0.0000020268365
       objectReference: {fileID: 0}
@@ -260,15 +264,15 @@ PrefabInstance:
     - target: {fileID: 392619891041693362, guid: 962292e80eb0f3249a37a385fa1a3770, type: 3}
       propertyPath: sprites.Array.data[1]
       value: 
-      objectReference: {fileID: 21300000, guid: c5e5bfff22b363c42a8708284331154a, type: 3}
+      objectReference: {fileID: 21300000, guid: e6f6975b9950b274eb35203065ca5ff7, type: 3}
     - target: {fileID: 392619891041693362, guid: 962292e80eb0f3249a37a385fa1a3770, type: 3}
       propertyPath: sprites.Array.data[2]
       value: 
-      objectReference: {fileID: 21300000, guid: b844a97ec3f860a4b8bd01fcf4ef7d28, type: 3}
+      objectReference: {fileID: 21300000, guid: e2179584dcfd6da44a5f46d920201d51, type: 3}
     - target: {fileID: 392619891041693362, guid: 962292e80eb0f3249a37a385fa1a3770, type: 3}
       propertyPath: sprites.Array.data[3]
       value: 
-      objectReference: {fileID: 21300000, guid: 1cf414d055899e54c9d779ba85169000, type: 3}
+      objectReference: {fileID: 21300000, guid: c7a8607c7641c1d488a02186d052c974, type: 3}
     - target: {fileID: 1558470471713534234, guid: 962292e80eb0f3249a37a385fa1a3770, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0.50975037

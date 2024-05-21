@@ -39,6 +39,7 @@ public class GameScene : BaseScene
         Transform transform = loadPosList[index];
         GameObject player = PhotonNetwork.Instantiate("Prefabs/Character/Player", transform.position, Quaternion.identity);
         Manager.Game.PlayerGameObject = player;
+        yield return new WaitForSecondsRealtime(0.2f);
         PhotonNetwork.LocalPlayer.SetCustomProperties(new Hashtable() { { "IsLoad", true } });
     }
 
