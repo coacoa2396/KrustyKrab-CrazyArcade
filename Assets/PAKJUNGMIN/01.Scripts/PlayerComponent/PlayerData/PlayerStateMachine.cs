@@ -3,11 +3,14 @@ using Photon.Pun.Demo.PunBasics;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class PlayerStateMachine : MonoBehaviour
 {
     PlayerMediator playerMediator;
+
+    public UnityAction OnDied;
 
     public enum State
     {
@@ -88,6 +91,7 @@ public class PlayerStateMachine : MonoBehaviour
         playerMediator.playerStats.OwnSpeed = playerMediator.playerStats.dieSpeed;
 
         StartCoroutine(DieTime());      // Die애니메이션 재생을 위한 시간벌이 코루틴 -> 유찬규 추가
+        OnDied?.Invoke(); //죽었을 때 RoundManager에게 사망 이벤트 통보용.
     }
     /// <summary>
     /// 제작 : 찬규 

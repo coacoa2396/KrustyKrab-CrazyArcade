@@ -11,10 +11,21 @@ namespace pakjungmin
     /// <summary>
     /// Class : 플레이어가 현재 서 있는 발판과 폭탄 설치 위치 등을 계산한다.
     /// </summary>
+    /// 
+
+    /*
+     * 작동방식 개괄.
+     * 0. 플레이어와 충돌중인 모든 Tile 오브젝트를 인접타일 리스트에 삽입한다. 만일 충돌에서 벗어났다면 그 타일은 리스트에서 삭제한다.
+     * 1. 실시간으로 인접타일리스트의 각각 타일의 위치와 플레이어의 위치의 거리를 계산하고, 그 결과값들을 distanceList에 삽입한다.
+     * 2. distanceList의 최솟값을 반환하여, 이 값을 플레이어가 지금 서 있는 타일이라고 취급하고, nowTile에 할당한다.
+     * 3. 이 후 dinstanceList의 모든 요소를 없앤다.
+     */
+
+
     public class PlayerTileCalculator : MonoBehaviour
     {
-        public Tile nowTile; //현재 플레이어가 서 있는 타일 == 인접타일 리스트 중 가장 가까운 거리의 타일.
-        [SerializeField] List<Tile> touchedTiles = new List<Tile>(); // 인접 타일 리스트
+        public Tile nowTile; //현재 플레이어가 서 있는 타일.
+        [SerializeField] List<Tile> touchedTiles = new List<Tile>(); // 인접타일 리스트
         [SerializeField] List<float> distanceList = new List<float>();
 
 
@@ -47,21 +58,17 @@ namespace pakjungmin
         void AddList(Collider2D collision)
         {
             if (touchedTiles.Contains(collision.gameObject.GetComponent<Tile>())) { return; }
-            //인접한 타일을 인접타일 리스트에 추가
             touchedTiles.Add(collision.gameObject.GetComponent<Tile>());
         }
 
         void RemoveList(Collider2D collision)
         {
-            //벗어난 타일을 인접타일 리스트에서 제거.
             touchedTiles.Remove(collision.gameObject.GetComponent<Tile>());
         }
 
         //Method : 플레이어의 위치와 리스트 안 타일의 정점들의 거리를 각각 계산하여, 제일 가까운 타일을 현재 타일로 취급한다.
         void LocatePlayer()
         {
-            //플레이어의 위치와 리스트 안 타일의 정점을 계산하여, 제일 가까운 타일을 현재 타일로 취급하는 로직.
-            
             if(touchedTiles.Count == 1)
             { 
                 nowTile = touchedTiles[0];

@@ -98,8 +98,6 @@ public class PlayerAbility : MonoBehaviour
                         bomb.PosX = tilenode_.posX;
                         bomb.PosY = tilenode_.posY;
                         bomb.transform.position = TileManager.Tile.tileDic[$"{tilenode_.posX},{tilenode_.posY}"].transform.position;
-                        //playerMediator.playerBombPlantCalculator.BombChance = 0;
-                        //playerMediator.playerBombPlantCalculator.WaitBombPlant();
                         bomb.StartExplodeCoroutine();
                     }
                     else
@@ -113,10 +111,8 @@ public class PlayerAbility : MonoBehaviour
                             bomb.PosX = lastTile.tileNode.posX;
                             bomb.PosY = lastTile.tileNode.posY;
                             bomb.transform.position = TileManager.Tile.tileDic[$"{lastTile.tileNode.posX},{lastTile.tileNode.posY}"].transform.position;
-                            //playerMediator.playerBombPlantCalculator.BombChance = 0;
-                            //playerMediator.playerBombPlantCalculator.WaitBombPlant();
                             bomb.StartExplodeCoroutine();
-                            Debug.Log("3");
+                            
                         }
                     }
                    
@@ -139,8 +135,6 @@ public class PlayerAbility : MonoBehaviour
                         bomb.PosX = lastTile.tileNode.posX;
                         bomb.PosY = lastTile.tileNode.posY;
                         bomb.transform.position = TileManager.Tile.tileDic[$"{lastTile.tileNode.posX},{lastTile.tileNode.posY}"].transform.position;
-                        //playerMediator.playerBombPlantCalculator.BombChance = 0;
-                        //playerMediator.playerBombPlantCalculator.WaitBombPlant();
                         bomb.StartExplodeCoroutine();
                     }
                 }
@@ -161,9 +155,7 @@ public class PlayerAbility : MonoBehaviour
                         bomb.StopExplodeCoroutine();
                         bomb.PosX = lastTile.tileNode.posX;
                         bomb.PosY = lastTile.tileNode.posY;
-                        //bomb.transform.position = TileManager.Tile.tileDic[$"{lastTile.tileNode.posX},{lastTile.tileNode.posY}"].transform.position;
-                        //playerMediator.playerBombPlantCalculator.BombChance = 0;
-                        //playerMediator.playerBombPlantCalculator.WaitBombPlant();
+                        bomb.transform.position = TileManager.Tile.tileDic[$"{lastTile.tileNode.posX},{lastTile.tileNode.posY}"].transform.position;
                         bomb.StartExplodeCoroutine();
                     }
                 }
@@ -186,8 +178,6 @@ public class PlayerAbility : MonoBehaviour
                         bomb.PosX = lastTile.tileNode.posX;
                         bomb.PosY = lastTile.tileNode.posY;
                         bomb.transform.position = TileManager.Tile.tileDic[$"{lastTile.tileNode.posX},{lastTile.tileNode.posY}"].transform.position;
-                        //playerMediator.playerBombPlantCalculator.BombChance = 0;
-                        //playerMediator.playerBombPlantCalculator.WaitBombPlant();
                         bomb.StartExplodeCoroutine();
                     }
                 }
@@ -206,8 +196,6 @@ public class PlayerAbility : MonoBehaviour
             bomb.PosX = tilenode_.posX + x;
             bomb.PosY = tilenode_.posY + y;
             bomb.transform.position = TileManager.Tile.tileDic[$"{tilenode_.posX + x},{tilenode_.posY + y}"].transform.position;
-            //playerMediator.playerBombPlantCalculator.BombChance = 0;
-            //playerMediator.playerBombPlantCalculator.WaitBombPlant();
             bomb.StartExplodeCoroutine();
         }
 
