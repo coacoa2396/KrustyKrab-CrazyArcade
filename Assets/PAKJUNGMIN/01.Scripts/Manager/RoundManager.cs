@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -30,11 +31,24 @@ public class RoundManager : MonoBehaviour
     static RoundManager instance;
     public static RoundManager Round { get { return instance; } }
 
-    List<GameObject> playerList;
+    [SerializeField] List<PlayerRoundData> playerList; //게임에 참가한 모든 플레이어 리스트
+    [SerializeField] List<GameObject> survivorList; //현재 살아남은 플레이어 리스트
 
-    public List<GameObject> PlayerList { get { return playerList; } }
+    public enum Outcome
+    {
+        Win,
+        lose,
+        draw
+    }
 
-
+    //******************************
+    IEnumerator TestLoad()
+    {
+        yield return new WaitForSeconds(5f);
+        InitSetPlayer();
+    }
+    Coroutine ss;
+    //****************************
     private void Awake()
     {
         if(instance != null) { Destroy(gameObject); }
@@ -43,60 +57,81 @@ public class RoundManager : MonoBehaviour
     }
     private void Start()
     {
-        playerList = GameObject.FindGameObjectsWithTag("Player").ToList<GameObject>();
-        Debug.Log($"playerList.Count : {playerList.Count}");
-        foreach(GameObject player in playerList)
-        {
-            if(player.GetComponentInChildren<PlayerStateMachine>() == null) { continue; }
-            player.GetComponentInChildren<PlayerStateMachine>().OnDied += PlayerDieEvent;
+        ss = StartCoroutine(TestLoad()); //************************************
+    }
 
+    void InitSetPlayer()
+    {
+        playerList = new List<PlayerRoundData>();
+        GameObject[] playerArray = GameObject.FindGameObjectsWithTag("Player");
+
+        foreach (GameObject player in playerArray)
+        {
+            if (player.GetComponentInChildren<PlayerStateMachine>() == null) { continue; }
+            player.GetComponentInChildren<PlayerStateMachine>().OnDied += PlayerDieEvent;
             if (player.GetComponentInChildren<PlayerStateMachine>().OnDied != null)
             {
                 Debug.Log("사망 이벤트 함수 추가됨");
             }
+            survivorList.Add(player);
+            playerList.Add(new PlayerRoundData(player));
+            Debug.Log($"playerList.Count : {playerList.Count}");
         }
-
     }
+
 
     //Method : 생존한 플레이어의 인원수 체크
     void CheckSurvivor()
     {
-        foreach (GameObject player in playerList)
+        foreach(PlayerRoundData playerData in playerList)
         {
-            if(!player.activeSelf)
+            if (!survivorList.Contains(playerData.player))
             {
-                playerList.Remove(player);
+                playerData.outcome = Outcome.lose;
             }
-            if(playerList.Count <= 1)
+            else
             {
-                ShowOutcome();
-                return;
+                playerData.outcome = Outcome.Win;
             }
         }
 
+        if (survivorList.Count <= 1)
+        {
+            SetOutcome();
+            return;
+        }
+
     }
-    void PlayerDieEvent()
+
+    void PlayerDieEvent(PlayerStateMachine playerStateMachine)
     {
+        GameObject playerobject = playerStateMachine.transform.parent.gameObject;
+        if (survivorList.Contains(playerobject)) { survivorList.Remove(playerobject); }
         Debug.Log("플레이어 사망");
         CheckSurvivor();
 
     }
+
     /// <summary>
     /// Method : Win,Lose,Draw 여부 계산. 플레이어마다 다르게 작용.
     /// </summary>
-    void ShowOutcome()
+    void SetOutcome()
     {
-        List<GameObject> survivorList = new List<GameObject>();
-        foreach(GameObject player in playerList)
+        if (!playerList.Exists(item => item.outcome == Outcome.Win)) // 살아남은 플레이어가 없었을 경우, 즉 무승부.
         {
-            if(player.activeSelf == true) { survivorList.Add(player); }
-        }      
-        if(survivorList.Count <= 0) { return; }
+            foreach (PlayerRoundData playerData in playerList)
+            {
+                playerData.outcome = Outcome.draw;
+            }
+            Debug.Log("Draw");
+            return;
+        }
 
-        if(survivorList.Count == 1 ) { Debug.Log($"{survivorList[0]} is win."); }
+        foreach (PlayerRoundData playerData in playerList)
+        {
 
-        else if(survivorList.Count > 1) { Debug.Log($"Draw"); }
-
+            Debug.Log($"{playerData.player.gameObject.name} is {playerData.outcome}");
+        
+        }
     }
-
 }

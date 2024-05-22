@@ -860,6 +860,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   animator: {fileID: 0}
+  overrideCon: []
   checkIdle: {x: 0, y: 0}
 --- !u!114 &1939273329001176629
 MonoBehaviour:
@@ -988,6 +989,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
+  - {fileID: 6142184973041010365}
   - {fileID: 3520180687500651795}
   - {fileID: 8916311967851354184}
   sceneViewId: 0
