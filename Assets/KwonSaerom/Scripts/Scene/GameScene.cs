@@ -43,5 +43,18 @@ public class GameScene : BaseScene
         PhotonNetwork.LocalPlayer.SetCustomProperties(new Hashtable() { { "IsLoad", true } });
     }
 
+    public void GoToLobby()
+    {
+        PhotonNetwork.AutomaticallySyncScene = false;
+        PhotonNetwork.LeaveRoom();
+        PhotonNetwork.LeaveLobby();
+        Manager.Scene.LoadScene("LobbyScene");
+    }
+
+    public void GoToRoom()
+    {
+        Manager.Scene.LoadScene("LobbyScene",PhotonNetwork.IsMasterClient);
+    
+    }
 
 }

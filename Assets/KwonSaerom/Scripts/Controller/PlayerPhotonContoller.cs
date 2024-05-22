@@ -7,5 +7,4 @@ public class PlayerPhotonContoller : MonoBehaviourPun
 {
     public PhotonView PV { get { return photonView; } }
 
-
 }

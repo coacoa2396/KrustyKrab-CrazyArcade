@@ -1,9 +1,8 @@
 using Photon.Pun;
-using Photon.Pun.UtilityScripts;
 using Photon.Realtime;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class LobbyManager : MonoBehaviourPunCallbacks
@@ -22,6 +21,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     private void Awake()
     {
         createdRooms = new List<RoomEntity>();
+        if (PhotonNetwork.InRoom)
+            LoadRoom();
     }
 
     private void Update()
@@ -59,17 +60,20 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         //방 정보를 들고와서 UI에 연결
         RoomEntity entity = new RoomEntity(PhotonNetwork.CurrentRoom);
         NowRoom = entity;
+        LoadRoom();
+    }
+
+    public void LoadRoom()
+    {
         NowRoom.NowPlayer = PhotonNetwork.CurrentRoom.PlayerCount;
 
         //방 팝업 켜기
         UI_Room room = Manager.UI.ShowPopUpUI(roomPopup);
         nowRoomPopup = room;
-        room.SetRoomInfo(entity);
+        room.SetRoomInfo(NowRoom);
 
         PhotonNetwork.AutomaticallySyncScene = true;
     }
-
-
 
 
     public override void OnLeftRoom()
@@ -77,7 +81,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         Debug.Log("방에서 나감");
         nowRoomPopup.Close();
         nowRoomPopup = null;
-
 
         PhotonNetwork.AutomaticallySyncScene = false;
     }

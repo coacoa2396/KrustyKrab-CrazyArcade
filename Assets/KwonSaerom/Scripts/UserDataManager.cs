@@ -56,12 +56,37 @@ public class UserDataManager
 
     public static void LocalUserSetConnect(int curConnect)
     {
+        Debug.Log(Manager.Game.Player);
         string key = ToKey(Manager.Game.Player.Key);
         FirebaseManager.DB
             .GetReference("User")
             .Child(key)
             .Child("isConnect")
             .SetValueAsync(curConnect)
+            .ContinueWithOnMainThread(task =>
+            {
+                if (task.IsCanceled)
+                {
+                    Debug.Log("GetUserData : IsCanceled");
+                    return;
+                }
+                if (task.IsFaulted)
+                {
+                    Debug.Log("GetUserData : IsFaulted");
+                    return;
+                }
+                Debug.Log("LocalUserSetConnect : DB 처리 완료");
+            });
+    }
+
+    //UserDataManager.SetPlayerExp(player.Key,100)
+    public static void SetPlayerExp(PlayerEntity player,float exp)
+    {
+        FirebaseManager.DB
+            .GetReference("User")
+            .Child(player.Key)
+            .Child("exp")
+            .SetValueAsync(exp)
             .ContinueWithOnMainThread(task =>
             {
                 if (task.IsCanceled)
