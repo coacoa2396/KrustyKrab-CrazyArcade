@@ -8,17 +8,28 @@ using UnityEngine.UI;
 /// 캐릭터셀렉칸에 마우스를 올리면 캐릭터의 초기스탯과 최대스텟을 보여주는 UI를 띄워준다
 /// 마우스를 내리면 다시 꺼진다
 /// </summary>
-public class CharacterStatUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class CharacterSelectUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    [SerializeField] Image characterStatImage;
+    [SerializeField] Canvas characterStatImage;
+    [SerializeField] Canvas curImage;
+
+    bool isInst;
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        characterStatImage.gameObject.SetActive(true);
+        if (isInst == false)
+        {
+            curImage = Instantiate(characterStatImage);
+            isInst = true;
+        }
+        else
+        {
+            curImage.gameObject.SetActive(true);
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        characterStatImage?.gameObject.SetActive(false);
+        curImage.gameObject.SetActive(false);
     }
 }
