@@ -50,7 +50,6 @@ public class UserDataManager
                 }
                 DataSnapshot snapshot = task.Result;
                 UserEntity user = JsonUtility.FromJson<UserEntity>(snapshot.GetRawJsonValue());
-                Debug.LogError("LocalLoginGetUserData : " + user.isConnect);
                 Manager.Game.Player = new PlayerEntity(user);
             });
     }

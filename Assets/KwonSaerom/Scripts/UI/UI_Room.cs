@@ -13,6 +13,7 @@ public class UI_Room : PopUpUI
     [SerializeField] List<Sprite> mapImages;
     [SerializeField] UI_WarningRoom warningPopup;
     [SerializeField] UI_SelectMap selectMap;
+    [SerializeField] UI_RoomInfoChange roomInfoChangePopup;
 
     RoomUserController roomController;
 
@@ -39,6 +40,7 @@ public class UI_Room : PopUpUI
             Time.timeScale = 1;
         GetUI<Button>(GameObjects.ExitButton.ToString()).onClick.AddListener(ExitRoom);
         GetUI<Button>(GameObjects.SelectMapButton.ToString()).onClick.AddListener(SelectMapClick);
+        GetUI<Button>(GameObjects.RoomInfoChangeButton.ToString()).onClick.AddListener(RoomChangeClick);
         GetUI<Button>(GameObjects.DaoSelect.ToString()).onClick.AddListener(()=> SelectCharacter(Define.Characters.Dao));
         GetUI<Button>(GameObjects.CappiSelect.ToString()).onClick.AddListener(()=> SelectCharacter(Define.Characters.Cappi));
         GetUI<Button>(GameObjects.BazziSelect.ToString()).onClick.AddListener(()=> SelectCharacter(Define.Characters.Bazzi));
@@ -86,6 +88,18 @@ public class UI_Room : PopUpUI
     public void SelectCharacter(Define.Characters character)
     {
         roomController.CharacterChange(character);
+    }
+
+    public void RoomChangeClick()
+    {
+        UI_RoomInfoChange popup = Instantiate(roomInfoChangePopup);
+        popup.SetRoom(this);
+    }
+
+    public void RoomChange()
+    {
+        SetRoomInfo(LobbyManager.NowRoom);
+        roomController.InitMaxPlayer();
     }
 
     public void GameStart()

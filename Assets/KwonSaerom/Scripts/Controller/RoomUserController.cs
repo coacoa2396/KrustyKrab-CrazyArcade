@@ -30,8 +30,13 @@ public class RoomUserController : MonoBehaviourPunCallbacks
     {
         Debug.Log("들어왔을때 플레이어 수 : " + LobbyManager.NowRoom.NowPlayer);
         userTokens = GetComponentsInChildren<UI_UserToken>();
+        InitMaxPlayer();
+    }
+
+    public void InitMaxPlayer()
+    {
         int maxPlayer = LobbyManager.NowRoom.MaxPlayer;
-        for (int i=0;i<userTokens.Length;i++)
+        for (int i = 0; i < userTokens.Length; i++)
         {
             if (i < maxPlayer)
                 userTokens[i].SetVisit(true);
@@ -40,7 +45,6 @@ public class RoomUserController : MonoBehaviourPunCallbacks
         }
         InitRoom();
     }
-
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         newPlayer.SetCustomProperties(new Hashtable() { { "Character", 0 } });

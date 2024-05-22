@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class UI_CreateRoom : PopUpUI
 {
@@ -32,6 +33,7 @@ public class UI_CreateRoom : PopUpUI
         GetUI<Button>(GameObjects.CreateButton.ToString()).onClick.AddListener(CreateRoom);
         GetUI<Button>(GameObjects.CloseButton.ToString()).onClick.AddListener(Manager.UI.ClearPopUpUI);
         GetUI<TMP_InputField>(GameObjects.RoomNameInput.ToString()).text = roomNameList[Random.Range(0, roomNameList.Length)];
+        GetUI<TMP_InputField>(GameObjects.MaxPlayerInput.ToString()).text = "8";
     }
 
 
@@ -50,20 +52,22 @@ public class UI_CreateRoom : PopUpUI
         if (roomName == "")
             roomName = roomNameList[Random.Range(0, roomNameList.Length)];
 
+
         int maxPlayer = maxPlayerStr == "" ? 8 : int.Parse(maxPlayerStr);
         maxPlayer = Mathf.Clamp(maxPlayer, 1, 8);
 
         RoomOptions options = new RoomOptions();
         options.MaxPlayers = maxPlayer;
-        if(Time.timeScale < 0.1f)
+        options.CustomRoomProperties = new Hashtable() { { "RoomName",roomName},{"Map",Define.Maps.BlockMap } };
+        options.CustomRoomPropertiesForLobby = new string[] { "RoomName", "Map" };
+
+        if (Time.timeScale < 0.1f)
             Time.timeScale = 1;
 
-        string roomkey = $"{LobbyManager.RoomNum}/{roomName}";
-        PhotonNetwork.CreateRoom(roomkey, options);
+        PhotonNetwork.CreateRoom(LobbyManager.RoomNum.ToString(), options);
 
         RoomEntity roomInfo = new RoomEntity(roomName, LobbyManager.RoomNum, maxPlayer);
         LobbyManager.NowRoom = roomInfo;
-
 
         Close();
     }

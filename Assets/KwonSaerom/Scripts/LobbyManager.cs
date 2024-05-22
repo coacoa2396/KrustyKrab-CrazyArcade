@@ -58,6 +58,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
         //방 정보를 들고와서 UI에 연결
         RoomEntity entity = new RoomEntity(PhotonNetwork.CurrentRoom);
+        Debug.Log($"{entity.RoomName}/{entity.NowPlayer}");
         NowRoom = entity;
         NowRoom.NowPlayer = PhotonNetwork.CurrentRoom.PlayerCount;
 
@@ -68,6 +69,9 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
         PhotonNetwork.AutomaticallySyncScene = true;
     }
+
+
+
 
     public override void OnLeftRoom()
     {
@@ -99,11 +103,14 @@ public class LobbyManager : MonoBehaviourPunCallbacks
                 bool isNew = true;
                 for (int i = 0; i < createdRooms.Count; i++)
                 {
-                    int roomInfoNum = int.Parse(roomInfo.Name.Split('/')[0]);
+                    int roomInfoNum = int.Parse(roomInfo.Name);
                     if (createdRooms[i].RoomNum == roomInfoNum)
                     {
-                        Debug.Log("플레이어 숫자가 바뀌었다");
-                        createdRooms[i].NowPlayer = roomInfo.PlayerCount;
+                        Hashtable ht = roomInfo.CustomProperties;
+                        Debug.Log(ht.Count);
+                        Debug.Log((string)ht["RoomName"]);
+                        createdRooms[i].UpdateRoomInfo((string)ht["RoomName"], roomInfo.PlayerCount);
+                        createdRooms[i].MaxPlayer = roomInfo.MaxPlayers;
                         isNew = false;
                     }
                 }
@@ -117,6 +124,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         }
         lobbyScene.UpdateRoomList(createdRooms);
     }
+
      
     public override void OnMasterClientSwitched(Player newMasterClient)
     {
