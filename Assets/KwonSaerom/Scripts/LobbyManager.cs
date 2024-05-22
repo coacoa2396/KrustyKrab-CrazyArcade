@@ -39,9 +39,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         Debug.Log("OnCreatedRoom");
         RoomNum++;
-        //프로퍼티 설정
-        PhotonNetwork.CurrentRoom.SetCustomProperties(new Hashtable() { { "RoomName", NowRoom.RoomName } });
-        PhotonNetwork.CurrentRoom.SetCustomProperties(new Hashtable() { { "Map", NowRoom.Map } });
     }
 
     public override void OnConnectedToMaster()
@@ -61,6 +58,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
         //방 정보를 들고와서 UI에 연결
         RoomEntity entity = new RoomEntity(PhotonNetwork.CurrentRoom);
+        Debug.Log($"{entity.RoomName}/{entity.NowPlayer}");
         NowRoom = entity;
         NowRoom.NowPlayer = PhotonNetwork.CurrentRoom.PlayerCount;
 
@@ -72,7 +70,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         PhotonNetwork.AutomaticallySyncScene = true;
     }
 
-    
+
+
 
     public override void OnLeftRoom()
     {
@@ -104,7 +103,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
                 bool isNew = true;
                 for (int i = 0; i < createdRooms.Count; i++)
                 {
-                    int roomInfoNum = int.Parse(roomInfo.Name.Split('/')[0]);
+                    int roomInfoNum = int.Parse(roomInfo.Name);
                     if (createdRooms[i].RoomNum == roomInfoNum)
                     {
                         Hashtable ht = roomInfo.CustomProperties;

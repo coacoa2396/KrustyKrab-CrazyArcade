@@ -1,5 +1,5 @@
 using Photon.Realtime;
-using Hashtable = ExitGames.Client.Photon.Hashtable;
+using System.Diagnostics;
 
 public class RoomEntity
 {
@@ -28,9 +28,8 @@ public class RoomEntity
 
     public RoomEntity(RoomInfo info)
     {
-        string[] s = info.Name.Split("/");
         roomName = (string)info.CustomProperties["RoomName"];
-        roomNum = int.Parse(s[0]);
+        roomNum = int.Parse(info.Name);
         maxPlayer = info.MaxPlayers;
         nowPlayer = info.PlayerCount;
     }

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
+using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class UI_CreateRoom : PopUpUI
 {
@@ -58,11 +58,13 @@ public class UI_CreateRoom : PopUpUI
 
         RoomOptions options = new RoomOptions();
         options.MaxPlayers = maxPlayer;
-        if(Time.timeScale < 0.1f)
+
+        options.CustomRoomProperties = new Hashtable() { { "RoomName",roomName},{"Map",Define.Maps.BlockMap } };
+
+        if (Time.timeScale < 0.1f)
             Time.timeScale = 1;
 
-        string roomkey = $"{LobbyManager.RoomNum}/{roomName}";
-        PhotonNetwork.CreateRoom(roomkey, options);
+        PhotonNetwork.CreateRoom(LobbyManager.RoomNum.ToString(), options);
 
         RoomEntity roomInfo = new RoomEntity(roomName, LobbyManager.RoomNum, maxPlayer);
         LobbyManager.NowRoom = roomInfo;
