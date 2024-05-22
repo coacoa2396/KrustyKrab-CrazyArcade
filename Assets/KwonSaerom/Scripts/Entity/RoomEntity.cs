@@ -1,8 +1,5 @@
 using Photon.Realtime;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class RoomEntity
 {
@@ -13,7 +10,7 @@ public class RoomEntity
     private Define.Maps map;
     public string RoomName { get { return roomName; } }
     public int RoomNum { get { return roomNum; } }
-    public int MaxPlayer { get { return maxPlayer; } }
+    public int MaxPlayer { get { return maxPlayer; } set { maxPlayer = value; } }
     public int NowPlayer { get { return nowPlayer; } set { nowPlayer = value; } }
     public Define.Maps Map
     {
@@ -32,7 +29,7 @@ public class RoomEntity
     public RoomEntity(RoomInfo info)
     {
         string[] s = info.Name.Split("/");
-        roomName = s[1];
+        roomName = (string)info.CustomProperties["RoomName"];
         roomNum = int.Parse(s[0]);
         maxPlayer = info.MaxPlayers;
         nowPlayer = info.PlayerCount;
