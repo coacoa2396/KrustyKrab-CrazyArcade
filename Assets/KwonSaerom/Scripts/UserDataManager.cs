@@ -54,7 +54,7 @@ public class UserDataManager
             });
     }
 
-    public static void LocalUserSetConnect(bool curConnect)
+    public static void LocalUserSetConnect(int curConnect)
     {
         string key = ToKey(Manager.Game.Player.Key);
         FirebaseManager.DB

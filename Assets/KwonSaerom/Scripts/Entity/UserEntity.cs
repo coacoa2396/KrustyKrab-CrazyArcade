@@ -8,7 +8,7 @@ public class UserEntity
 {
     public string key;
     public string nickName;
-    public bool isConnect;
+    public int isConnect; //bool 계속 잘못받아와서 --> 1 : 연결됨 / 나머지 숫자 : 연결안됨
     public float exp;
     public float maxExp;
     public int level;
@@ -20,11 +20,11 @@ public class UserEntity
         this.exp = 0;
         this.level = level;
         this.maxExp = Define.MAX_EXP[level-1];
-        isConnect = false;
+        isConnect = 0;
     }
 
 
-    public void SetConnect(bool isConnect)
+    public void SetConnect(int isConnect)
     {
         this.isConnect = isConnect;
     }

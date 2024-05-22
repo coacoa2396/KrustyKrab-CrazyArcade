@@ -37,6 +37,6 @@ public class GameManager : Singleton<GameManager>
 
     public void Logout()
     {
-        UserDataManager.LocalUserSetConnect(false);
+        UserDataManager.LocalUserSetConnect(0);
     }
 }

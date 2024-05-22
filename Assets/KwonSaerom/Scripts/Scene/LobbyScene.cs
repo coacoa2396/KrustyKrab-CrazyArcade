@@ -8,7 +8,7 @@ public class LobbyScene : BaseScene
     public override IEnumerator LoadingRoutine()
     {
         //플레이어 연결
-        UserDataManager.LocalUserSetConnect(true);
+        UserDataManager.LocalUserSetConnect(1);
         yield return 1f;
         PhotonNetwork.JoinLobby();
         yield return 2f;
