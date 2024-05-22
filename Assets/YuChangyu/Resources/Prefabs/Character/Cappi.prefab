@@ -496,7 +496,7 @@ MonoBehaviour:
   playerBehavior: {fileID: 4661147094493608713}
   playerInputHandler: {fileID: 2829405197798490723}
   forwardGuide: {fileID: 4922834570548774114}
-  characterStats: {fileID: 11400000, guid: 449459e613b40b049b82d3d6a108f181, type: 2}
+  characterStats: {fileID: 11400000, guid: e93a94f532c3dcb439e37b2c49fde7ff, type: 2}
   playerStats: {fileID: 8036892837616507639}
   playerState: {fileID: 5855458342420032352}
   playerAnimCon: {fileID: 5781678855759799318}

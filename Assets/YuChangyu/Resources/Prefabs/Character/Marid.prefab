@@ -365,7 +365,7 @@ MonoBehaviour:
   playerBehavior: {fileID: 3936625473328141137}
   playerInputHandler: {fileID: 1691583217934810206}
   forwardGuide: {fileID: 1317478752018775139}
-  characterStats: {fileID: 11400000, guid: 449459e613b40b049b82d3d6a108f181, type: 2}
+  characterStats: {fileID: 11400000, guid: 3b93cd67a18a3ca4fa636d4e9ed5804f, type: 2}
   playerStats: {fileID: 4698705777440079119}
   playerState: {fileID: 3259055582123922661}
   playerAnimCon: {fileID: 323400187620211796}

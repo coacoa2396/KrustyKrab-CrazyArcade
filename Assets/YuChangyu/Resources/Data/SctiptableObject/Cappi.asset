@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 685264dee10edeb479c46dce06d9bc74, type: 3}
-  m_Name: Dao
+  m_Name: Cappi
   m_EditorClassIdentifier: 
-  initSpeed: 5
-  maxSpeed: 7
-  initPower: 1
-  maxPower: 7
+  initSpeed: 4
+  maxSpeed: 9
+  initPower: 2
+  maxPower: 8
   initBomb: 1
-  maxBomb: 10
+  maxBomb: 8

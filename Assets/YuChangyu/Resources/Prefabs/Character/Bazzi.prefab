@@ -835,7 +835,7 @@ MonoBehaviour:
   playerBehavior: {fileID: 7590254009986311755}
   playerInputHandler: {fileID: 6142184973041010365}
   forwardGuide: {fileID: 5714448959362928219}
-  characterStats: {fileID: 11400000, guid: 449459e613b40b049b82d3d6a108f181, type: 2}
+  characterStats: {fileID: 11400000, guid: 28a0f720fca0df942abb8c32e887fd66, type: 2}
   playerStats: {fileID: 4230409823527359473}
   playerState: {fileID: 1896374510925927560}
   playerAnimCon: {fileID: 5358685496621376991}
@@ -860,6 +860,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   animator: {fileID: 0}
+  overrideCon: []
   checkIdle: {x: 0, y: 0}
 --- !u!114 &1939273329001176629
 MonoBehaviour:
@@ -988,6 +989,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
+  - {fileID: 6142184973041010365}
   - {fileID: 3520180687500651795}
   - {fileID: 8916311967851354184}
   sceneViewId: 0
