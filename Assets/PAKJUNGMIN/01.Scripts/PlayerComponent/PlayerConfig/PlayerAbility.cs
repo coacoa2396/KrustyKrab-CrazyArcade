@@ -14,16 +14,22 @@ public class PlayerAbility : MonoBehaviour
     PlayerMediator playerMediator;
     //능력 여부 
     public bool onRide;
-    public bool canThrow;
     public bool canKick;
-    //던지기와 킥이 둘다 가능할때 던지기만 하도록 조정해야한다.
+
+    int wallmask = 1 << LayerMask.NameToLayer("Wall");
+    int tilemask = 1 << LayerMask.NameToLayer("Tile");
+    int bombmask = 1 << LayerMask.NameToLayer("WaterBomb");
+
+    RaycastHit2D ray;
+    RaycastHit2D[] tilerays;
+    RaycastHit2D[] bombrays;
+
+
 
     private void Start()
     {
         playerMediator = GetComponentInParent<PlayerMediator>();
     }
-
-
     /// <summary>
     /// Method : 플레이어가 탈 것을 탑승
     /// </summary>
@@ -32,212 +38,84 @@ public class PlayerAbility : MonoBehaviour
 
     }
     /// <summary>
-    /// Method : 플레이어가 물풍선을 던지는 능력. --> 물풍선이 발 밑에 있을 경우만 작동
-    /// </summary>
-    public void Throw()
-    {
-        if (!canThrow) { return; }
-        if (!playerMediator.playerInventory.Inven.Exists((gameObject_ => gameObject_.GetComponent<Glove>())))
-        {
-           // Debug.Log("글러브 없음");
-            return; 
-        }
-        if(canThrow)
-        {
-          // Bomb bomb = GetComponentInChildren<KickAbilityChecker>().targetBomb;
-           // bomb.gameObject.
-        }
-        
-    }
-    /// <summary>
     /// Method : 플레이어가 물풍선을 차는 능력. --> 물풍선이 플레이어의 앞에 있을 경우에만 작동
     /// </summary>
     public void Kick()
     {
         if (!canKick) { return; }
+        if (!playerMediator.playerInventory.Inven.Exists((gameObject_ => gameObject_.GetComponent<Shoes>()))) { return; }
 
-        if (!playerMediator.playerInventory.Inven.Exists((gameObject_ => gameObject_.GetComponent<Shoes>())))
-        {
-            //Debug.Log("신발 없음");
-            return;
-        }
+        Bomb bomb = GetComponentInChildren<KickAbilityChecker>().targetBomb; //플레이어에게 붙은 폭탄. 즉 발로 차려는 목표 폭탄.
+        int bombPosX = bomb.GetComponent<Bomb>().tileNode.posX; // bomb.GetComponent<Bomb>().tileNode.PosX -> 너무 길므로 요약표현.
+        int bombPosY = bomb.GetComponent<Bomb>().tileNode.posY; // bomb.GetComponent<Bomb>().tileNode.PosY -> 너무 길므로 요약표현.
 
-        Bomb bomb = GetComponentInChildren<KickAbilityChecker>().targetBomb;
-        Tile startTile = TileManager.Tile.tileDic[$"{bomb.GetComponent<Bomb>().tileNode.posX},{bomb.GetComponent<Bomb>().tileNode.posY}"];
+        Tile startTile = TileManager.Tile.tileDic[$"{bombPosX},{bombPosY}"];      //폭탄의 현재 타일 좌표. 레이캐스트가 시작될 위치 타일.
 
-        
-        Vector2 startPos = startTile.transform.position; //폭탄의 위치 노드
+        Vector2 startPos = startTile.transform.position; //폭탄의 전역 공간 좌표.               
 
-        RaycastHit2D ray;
-        RaycastHit2D[] tilerays;
-        RaycastHit2D[] bombrays;
-
-        int wallmask = 1 << LayerMask.NameToLayer("Wall");
-        int tilemask = 1 << LayerMask.NameToLayer("Tile");
-        int bombmask = 1 << LayerMask.NameToLayer("WaterBomb");
 
         switch (playerMediator.forwardGuide.Forward)
         {
             case ForwardGuide.ForwardState.up:
-
-                ray = Physics2D.Raycast(startPos, startTile.transform.up,15f,wallmask); //Wall만 체크하는 레이캐스트 발사.
-                if (ray.collider != null && ray.collider.gameObject.GetComponent<BaseWall>()) //Wall이 걸리면.
-                {
-                    ResetBombData(bomb, ray, 0,-1);
-
-                }
-                else if (ray.collider == null) //아무것도 없었을 경우.
-                {
-                    bombrays = Physics2D.RaycastAll(startPos, startTile.transform.up, 15f, bombmask); //폭탄 체크
-                    if (bombrays.Length >= 2)
-                    {
-                        TileNode tilenode_;
-                        tilenode_ = bombrays[bombrays.Length-1].collider.gameObject.GetComponent<Bomb>().tileNode;
-                        bomb.StopExplodeCoroutine();
-                        bomb.PosX = tilenode_.posX;
-                        bomb.PosY = tilenode_.posY-1;
-                        bomb.transform.position = TileManager.Tile.tileDic[$"{bomb.PosX},{bomb.PosY}"].transform.position;
-                        bomb.StartExplodeCoroutine();
-                    }
-                    else
-                    {
-                        tilerays = Physics2D.RaycastAll(startPos, startTile.transform.up, 15f, tilemask);
-
-                        if (tilerays[tilerays.Length - 1].collider.gameObject.GetComponent<Tile>()) //마지막으로 타일 체크
-                        {
-                            Tile lastTile = tilerays[tilerays.Length - 1].collider.gameObject.GetComponent<Tile>();
-                            bomb.StopExplodeCoroutine();
-                            bomb.PosX = lastTile.tileNode.posX;
-                            bomb.PosY = lastTile.tileNode.posY;
-                            bomb.transform.position = TileManager.Tile.tileDic[$"{lastTile.tileNode.posX},{lastTile.tileNode.posY}"].transform.position;
-                            bomb.StartExplodeCoroutine();
-                            
-                        }
-                    }
-                   
-                }
+                CalculateKickPos(startPos,startTile.transform.up, bomb, 0, -1);
                 break;
             case ForwardGuide.ForwardState.down:
-
-                ray = Physics2D.Raycast(startPos, -startTile.transform.up, 15f, wallmask);
-                if (ray && ray.collider.gameObject.GetComponent<BaseWall>())
-                {
-                    ResetBombData(bomb, ray, 0, +1);
-                }
-                else if (ray.collider == null) //아무것도 없었을 경우.
-                {
-                    bombrays = Physics2D.RaycastAll(startPos, startTile.transform.up, 15f, bombmask); //폭탄 체크
-
-                    if (bombrays.Length >= 2)
-                    {
-                        TileNode tilenode_;
-                        tilenode_ = bombrays[bombrays.Length - 1].collider.gameObject.GetComponent<Bomb>().tileNode;
-                        bomb.StopExplodeCoroutine();
-                        bomb.PosX = tilenode_.posX;
-                        bomb.PosY = tilenode_.posY + 1;
-                        bomb.transform.position = TileManager.Tile.tileDic[$"{tilenode_.posX},{tilenode_.posY + 1}"].transform.position;
-                        bomb.StartExplodeCoroutine();
-                    }
-                    else
-                    {
-                        tilerays = Physics2D.RaycastAll(startPos, startTile.transform.up, 15f, tilemask);
-
-                        if (tilerays[tilerays.Length - 1].collider.gameObject.GetComponent<Tile>()) //마지막으로 타일 체크
-                        {
-                            Tile lastTile = tilerays[tilerays.Length - 1].collider.gameObject.GetComponent<Tile>();
-                            bomb.StopExplodeCoroutine();
-                            bomb.PosX = lastTile.tileNode.posX;
-                            bomb.PosY = lastTile.tileNode.posY;
-                            bomb.transform.position = TileManager.Tile.tileDic[$"{lastTile.tileNode.posX},{lastTile.tileNode.posY}"].transform.position;
-                            bomb.StartExplodeCoroutine();
-
-                        }
-                    }
-
-                }
+                CalculateKickPos(startPos,-startTile.transform.up, bomb, 0, +1);
                 break;
 
             case ForwardGuide.ForwardState.left:
-                ray = Physics2D.Raycast(startPos, startTile.transform.right, 15f, wallmask);
-                if (ray && ray.collider.gameObject.GetComponent<BaseWall>())
-                {
-                    ResetBombData(bomb, ray, -1, 0);
-                }
-                else if (ray.collider == null) //아무것도 없었을 경우.
-                {
-                    bombrays = Physics2D.RaycastAll(startPos, startTile.transform.up, 15f, bombmask); //폭탄 체크
-
-                    if (bombrays.Length >= 2)
-                    {
-                        TileNode tilenode_;
-                        tilenode_ = bombrays[bombrays.Length - 1].collider.gameObject.GetComponent<Bomb>().tileNode;
-                        bomb.StopExplodeCoroutine();
-                        bomb.PosX = tilenode_.posX+1;
-                        bomb.PosY = tilenode_.posY;
-                        bomb.transform.position = TileManager.Tile.tileDic[$"{tilenode_.posX+1},{tilenode_.posY}"].transform.position;
-                        bomb.StartExplodeCoroutine();
-                    }
-                    else
-                    {
-                        tilerays = Physics2D.RaycastAll(startPos, startTile.transform.up, 15f, tilemask);
-
-                        if (tilerays[tilerays.Length - 1].collider.gameObject.GetComponent<Tile>()) //마지막으로 타일 체크
-                        {
-                            Tile lastTile = tilerays[tilerays.Length - 1].collider.gameObject.GetComponent<Tile>();
-                            bomb.StopExplodeCoroutine();
-                            bomb.PosX = lastTile.tileNode.posX;
-                            bomb.PosY = lastTile.tileNode.posY;
-                            bomb.transform.position = TileManager.Tile.tileDic[$"{lastTile.tileNode.posX},{lastTile.tileNode.posY}"].transform.position;
-                            bomb.StartExplodeCoroutine();
-
-                        }
-                    }
-
-                }
+                CalculateKickPos(startPos, -startTile.transform.right, bomb, 1,0);
                 break;
 
             case ForwardGuide.ForwardState.right:
-                ray = Physics2D.Raycast(startPos, -startTile.transform.right, 15f, wallmask);
-                if (ray && ray.collider.gameObject.GetComponent<BaseWall>())
-                {
-                   ResetBombData(bomb, ray, +1, 0);
-                }
-                else if (ray.collider == null) //아무것도 없었을 경우.
-                {
-                    bombrays = Physics2D.RaycastAll(startPos, startTile.transform.up, 15f, bombmask); //폭탄 체크
-
-                    if (bombrays.Length >= 2)
-                    {
-                        TileNode tilenode_;
-                        tilenode_ = bombrays[bombrays.Length - 1].collider.gameObject.GetComponent<Bomb>().tileNode;
-                        bomb.StopExplodeCoroutine();
-                        bomb.PosX = tilenode_.posX -1;
-                        bomb.PosY = tilenode_.posY;
-                        bomb.transform.position = TileManager.Tile.tileDic[$"{tilenode_.posX-1},{tilenode_.posY}"].transform.position;
-                        bomb.StartExplodeCoroutine();
-                    }
-                    else
-                    {
-                        tilerays = Physics2D.RaycastAll(startPos, startTile.transform.up, 15f, tilemask);
-
-                        if (tilerays[tilerays.Length - 1].collider.gameObject.GetComponent<Tile>()) //마지막으로 타일 체크
-                        {
-                            Tile lastTile = tilerays[tilerays.Length - 1].collider.gameObject.GetComponent<Tile>();
-                            bomb.StopExplodeCoroutine();
-                            bomb.PosX = lastTile.tileNode.posX;
-                            bomb.PosY = lastTile.tileNode.posY;
-                            bomb.transform.position = TileManager.Tile.tileDic[$"{lastTile.tileNode.posX},{lastTile.tileNode.posY}"].transform.position;
-                            bomb.StartExplodeCoroutine();
-
-                        }
-                    }
-
-                }
+                CalculateKickPos(startPos, startTile.transform.right, bomb, -1,0);
                 break;
         }
         
     }
+    void CalculateKickPos(Vector2 rayStart,Vector2 rayDir,Bomb bomb,int x,int y)  // up : (0, -1) ,down : (0 ,+1),right : (-1,0), left (1,0)
+    {
 
+        ray = Physics2D.Raycast(rayStart, rayDir, 15f, wallmask); //우선 Wall만 체크하는 레이캐스트 발사.
+
+        if (ray.collider != null && ray.collider.gameObject.GetComponent<BaseWall>()) //Wall이 걸리면.
+        {
+            ResetBombData(bomb, ray, x,y);
+        }
+        else if (ray.collider == null) //아무것도 없었을 경우.
+        {
+            bombrays = Physics2D.RaycastAll(rayStart, rayDir, 15f, bombmask); //경로에 폭탄이 있었을 경우 
+
+            if (bombrays.Length >= 2)
+            {
+                TileNode tilenode_;
+                tilenode_ = bombrays[bombrays.Length - 1].collider.gameObject.GetComponent<Bomb>().tileNode;
+
+                bomb.StopExplodeCoroutine();
+                bomb.PosX = tilenode_.posX + x;
+                bomb.PosY = tilenode_.posY + y;
+                bomb.transform.position = TileManager.Tile.tileDic[$"{bomb.PosX},{bomb.PosY}"].transform.position;
+                bomb.StartExplodeCoroutine();
+            }
+            else //파괴불가능한 벽 혹은 몰라 ㅆㅂ
+            {
+                tilerays = Physics2D.RaycastAll(rayStart, rayDir, 15f, tilemask);
+
+                if (tilerays[tilerays.Length - 1].collider.gameObject.GetComponent<Tile>()) //마지막으로 타일 체크
+                {
+                    Tile lastTile = tilerays[tilerays.Length - 1].collider.gameObject.GetComponent<Tile>();
+
+                    bomb.StopExplodeCoroutine();
+                    bomb.PosX = lastTile.tileNode.posX;
+                    bomb.PosY = lastTile.tileNode.posY;
+                    bomb.transform.position = TileManager.Tile.tileDic[$"{bomb.PosX},{bomb.PosY}"].transform.position;
+                    bomb.StartExplodeCoroutine();
+
+                }
+            }
+
+        }
+    }
     void ResetBombData(Bomb bomb,RaycastHit2D ray,int x,int y)
     {
         TileNode tilenode_;
