@@ -77,9 +77,6 @@ public class RoundManager : MonoBehaviour
         {
             if (player.GetComponentInChildren<PlayerStateMachine>() == null) { continue; }
             player.GetComponentInChildren<PlayerStateMachine>().OnDied += PlayerDieEvent;
-            if (player.GetComponentInChildren<PlayerStateMachine>().OnDied != null)
-            {
-            }
             survivorList.Add(player);
             playerList.Add(new PlayerRoundData(player));
         }

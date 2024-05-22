@@ -72,7 +72,7 @@ public class PlayerStateMachine : MonoBehaviour
     void Alive()
     {
         bubbleCollider.gameObject.SetActive(false);
-
+      
         if (transform.parent.gameObject.layer != 3) { transform.parent.gameObject.layer = 3; }
 
         playerMediator.playerStats.OwnSpeed = playerMediator.playerStats.aliveSpeed;
@@ -91,6 +91,7 @@ public class PlayerStateMachine : MonoBehaviour
     void Trapped()
     {
         transform.parent.gameObject.layer = 0;
+        transform.parent.gameObject.GetComponent<BoxCollider2D>().enabled = false;
         bubbleCollider.gameObject.SetActive(true);
         playerMediator.playerStats.aliveSpeed = playerMediator.playerStats.OwnSpeed;
         playerMediator.playerStats.OwnSpeed = playerMediator.playerStats.trapSpeed;
@@ -98,10 +99,6 @@ public class PlayerStateMachine : MonoBehaviour
     }
     void Die()
     {
-        //if(coroutinedrown != null)
-        //{
-        //    StopCoroutine(coroutinedrown); 
-        //}
 
         playerMediator.playerStats.OwnSpeed = playerMediator.playerStats.dieSpeed;
         StartCoroutine(DieTime());      // Die애니메이션 재생을 위한 시간벌이 코루틴 -> 유찬규 추가
@@ -116,7 +113,7 @@ public class PlayerStateMachine : MonoBehaviour
     /// <returns></returns>
     IEnumerator DieTime()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(3f);
         GetComponentInParent<PlayerMediator>().gameObject.SetActive(false);
     }
 }
