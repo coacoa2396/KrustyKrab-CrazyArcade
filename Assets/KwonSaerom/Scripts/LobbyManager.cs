@@ -58,7 +58,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
         //방 정보를 들고와서 UI에 연결
         RoomEntity entity = new RoomEntity(PhotonNetwork.CurrentRoom);
-        Debug.Log($"{entity.RoomName}/{entity.NowPlayer}");
         NowRoom = entity;
         NowRoom.NowPlayer = PhotonNetwork.CurrentRoom.PlayerCount;
 

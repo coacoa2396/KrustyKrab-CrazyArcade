@@ -70,6 +70,7 @@ public class UI_Room : PopUpUI
             roomController = GameObject.Find("UserList").GetComponentInChildren<RoomUserController>();
         }
         GetUI<Button>(GameObjects.GameStartButton.ToString()).onClick.AddListener(GameStart);
+        Manager.Game.MapType = (Define.Maps)PhotonNetwork.CurrentRoom.CustomProperties["Map"];
     }
 
 
@@ -145,6 +146,11 @@ public class UI_Room : PopUpUI
 
     public void SelectMapConfirm()
     {
+        //프로퍼티 바꾸기
+        Hashtable ht = PhotonNetwork.CurrentRoom.CustomProperties;
+        ht["Map"] = Manager.Game.MapType;
+        PhotonNetwork.CurrentRoom.SetCustomProperties(ht);
+
         roomController.MapChage(Manager.Game.MapType);
     }
 }
