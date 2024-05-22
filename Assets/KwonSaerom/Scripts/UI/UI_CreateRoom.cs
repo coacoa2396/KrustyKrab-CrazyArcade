@@ -7,6 +7,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class UI_CreateRoom : PopUpUI
 {
     [SerializeField] UI_Warning warningPopup;
@@ -32,6 +33,7 @@ public class UI_CreateRoom : PopUpUI
         GetUI<Button>(GameObjects.CreateButton.ToString()).onClick.AddListener(CreateRoom);
         GetUI<Button>(GameObjects.CloseButton.ToString()).onClick.AddListener(Manager.UI.ClearPopUpUI);
         GetUI<TMP_InputField>(GameObjects.RoomNameInput.ToString()).text = roomNameList[Random.Range(0, roomNameList.Length)];
+        GetUI<TMP_InputField>(GameObjects.MaxPlayerInput.ToString()).text = "8";
     }
 
 
@@ -50,6 +52,7 @@ public class UI_CreateRoom : PopUpUI
         if (roomName == "")
             roomName = roomNameList[Random.Range(0, roomNameList.Length)];
 
+
         int maxPlayer = maxPlayerStr == "" ? 8 : int.Parse(maxPlayerStr);
         maxPlayer = Mathf.Clamp(maxPlayer, 1, 8);
 
@@ -63,7 +66,6 @@ public class UI_CreateRoom : PopUpUI
 
         RoomEntity roomInfo = new RoomEntity(roomName, LobbyManager.RoomNum, maxPlayer);
         LobbyManager.NowRoom = roomInfo;
-
 
         Close();
     }

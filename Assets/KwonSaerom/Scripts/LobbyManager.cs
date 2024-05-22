@@ -39,6 +39,9 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         Debug.Log("OnCreatedRoom");
         RoomNum++;
+        //프로퍼티 설정
+        PhotonNetwork.CurrentRoom.SetCustomProperties(new Hashtable() { { "RoomName", NowRoom.RoomName } });
+        PhotonNetwork.CurrentRoom.SetCustomProperties(new Hashtable() { { "Map", NowRoom.Map } });
     }
 
     public override void OnConnectedToMaster()
