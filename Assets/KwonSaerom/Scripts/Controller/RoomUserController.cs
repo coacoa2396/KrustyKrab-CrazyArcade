@@ -196,7 +196,7 @@ public class RoomUserController : MonoBehaviourPunCallbacks
                 player.Character = character;
             }
 
-            if(player.Key.Equals(Manager.Game.Player.Key))
+            if(key.Equals(Manager.Game.Player.Key))
             {
                 Manager.Game.Player.Character = character;
             }
