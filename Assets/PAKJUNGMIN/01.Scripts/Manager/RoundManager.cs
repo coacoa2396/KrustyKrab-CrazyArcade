@@ -77,13 +77,8 @@ public class RoundManager : MonoBehaviour
         {
             if (player.GetComponentInChildren<PlayerStateMachine>() == null) { continue; }
             player.GetComponentInChildren<PlayerStateMachine>().OnDied += PlayerDieEvent;
-            if (player.GetComponentInChildren<PlayerStateMachine>().OnDied != null)
-            {
-                Debug.Log("사망 이벤트 함수 추가됨");
-            }
             survivorList.Add(player);
             playerList.Add(new PlayerRoundData(player));
-            Debug.Log($"playerList.Count : {playerList.Count}");
         }
     }
 
@@ -115,7 +110,6 @@ public class RoundManager : MonoBehaviour
     {
         GameObject playerobject = playerStateMachine.transform.parent.gameObject;
         if (survivorList.Contains(playerobject)) { survivorList.Remove(playerobject); }
-        Debug.Log("플레이어 사망");
         CheckSurvivor();
 
     }

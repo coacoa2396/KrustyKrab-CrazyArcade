@@ -13,6 +13,5 @@ public class PlayerRoundData
     public PlayerRoundData(GameObject player_)
     {
         this.player = player_;
-        Debug.Log($"{this.player.name} 플레이어 정보 객체 생성");
     }
 }

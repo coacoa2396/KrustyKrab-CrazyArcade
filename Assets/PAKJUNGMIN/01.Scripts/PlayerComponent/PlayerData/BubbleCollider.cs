@@ -7,20 +7,16 @@ public class BubbleCollider : MonoBehaviour
 {
     [SerializeField] PlayerStateMachine playerState;
 
-    int otherPlayerLayer;
-
-    private void Awake()
-    {
-        otherPlayerLayer = LayerMask.NameToLayer("Player");
-        Debug.Log($"otherPlayerLayer : {otherPlayerLayer}");
-    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log($"123123123123123123123123123123123123123");
-        if ((gameObject.layer | otherPlayerLayer) != 0)
+        // if ((1 << collision.gameObject.layer & otherPlayerLayer) == 0)
+
+        if(collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            Debug.Log($"123433443");
+            if (playerState.ownState != PlayerStateMachine.State.Trapped) { return; }
+
             playerState.ChangeState(PlayerStateMachine.State.Die);
+
         }
     }
 
