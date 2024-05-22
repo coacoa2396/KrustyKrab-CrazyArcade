@@ -107,6 +107,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
                     if (createdRooms[i].RoomNum == roomInfoNum)
                     {
                         Hashtable ht = roomInfo.CustomProperties;
+                        Debug.Log(ht.Count);
                         Debug.Log((string)ht["RoomName"]);
                         createdRooms[i].UpdateRoomInfo((string)ht["RoomName"], roomInfo.PlayerCount);
                         createdRooms[i].MaxPlayer = roomInfo.MaxPlayers;

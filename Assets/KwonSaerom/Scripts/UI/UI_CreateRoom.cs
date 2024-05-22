@@ -58,8 +58,8 @@ public class UI_CreateRoom : PopUpUI
 
         RoomOptions options = new RoomOptions();
         options.MaxPlayers = maxPlayer;
-
         options.CustomRoomProperties = new Hashtable() { { "RoomName",roomName},{"Map",Define.Maps.BlockMap } };
+        options.CustomRoomPropertiesForLobby = new string[] { "RoomName", "Map" };
 
         if (Time.timeScale < 0.1f)
             Time.timeScale = 1;
