@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 6149668891543565480}
   - component: {fileID: 2410375242896508448}
   - component: {fileID: 6154590359582694755}
+  - component: {fileID: 5580890535583640706}
   m_Layer: 5
   m_Name: DaoSelect
   m_TagString: Untagged
@@ -240,6 +241,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5580890535583640706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 442987465969028954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36344405b7cd77f468f4c72b4d54647d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterStatImage: {fileID: 8889575919871221016, guid: 041cb0f2231c05b45bcbc94cce9ea5a8, type: 3}
 --- !u!1 &1149535028515214368
 GameObject:
   m_ObjectHideFlags: 0
@@ -386,6 +400,7 @@ GameObject:
   - component: {fileID: 3775892070872030065}
   - component: {fileID: 8969626703214705796}
   - component: {fileID: 2689002811096434439}
+  - component: {fileID: 1629669075336545488}
   m_Layer: 5
   m_Name: MaridSelect
   m_TagString: Untagged
@@ -494,6 +509,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1629669075336545488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1743599496439346798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36344405b7cd77f468f4c72b4d54647d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterStatImage: {fileID: 8306938362001735652, guid: 7c1c0ceae9c391442ba4cd1acf222234, type: 3}
 --- !u!1 &2087989262743749751
 GameObject:
   m_ObjectHideFlags: 0
@@ -506,6 +534,7 @@ GameObject:
   - component: {fileID: 2922038280120163151}
   - component: {fileID: 1509598897206811583}
   - component: {fileID: 2651242226432266423}
+  - component: {fileID: 6328804023567125181}
   m_Layer: 5
   m_Name: CappiSelect
   m_TagString: Untagged
@@ -614,6 +643,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6328804023567125181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2087989262743749751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36344405b7cd77f468f4c72b4d54647d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterStatImage: {fileID: 2069826100936245296, guid: 2b084670c5562fb4995de742a530add1, type: 3}
 --- !u!1 &2429628564731990089
 GameObject:
   m_ObjectHideFlags: 0
@@ -844,7 +886,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.609498, y: 0.157}
   m_AnchorMax: {x: 0.7982313, y: 0.38948533}
-  m_AnchoredPosition: {x: 0.0072631836, y: 0.2400055}
+  m_AnchoredPosition: {x: 0.0072631836, y: 0.24002075}
   m_SizeDelta: {x: -2.385498, y: -2.6800003}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8018340359286893319
@@ -1227,6 +1269,7 @@ GameObject:
   - component: {fileID: 4366560101885933555}
   - component: {fileID: 8702063859997515977}
   - component: {fileID: 6204883764415474615}
+  - component: {fileID: 1007352783504120764}
   m_Layer: 5
   m_Name: BazziSelect
   m_TagString: Untagged
@@ -1335,6 +1378,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1007352783504120764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7659259014827425951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36344405b7cd77f468f4c72b4d54647d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterStatImage: {fileID: 2239906698456045872, guid: c24d20108f3a90e4cbf6da73d4a721fd, type: 3}
 --- !u!1 &7725279002953616521
 GameObject:
   m_ObjectHideFlags: 0

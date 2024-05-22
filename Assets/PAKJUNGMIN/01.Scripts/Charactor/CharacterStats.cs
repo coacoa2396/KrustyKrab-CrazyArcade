@@ -5,7 +5,7 @@ using UnityEngine;
 namespace pakjungmin
 {
     // Scriptable Object : 스크럽터블 오브젝트로 캐릭터별 스텟 저장
-    [CreateAssetMenu(fileName = "CharactorStats", menuName = "PAKJUNGMIN_ScriptableObject/New_CharactorStats")]
+    [CreateAssetMenu(fileName = "CharacterStats", menuName = "PAKJUNGMIN_ScriptableObject/New_CharacterStats")]
     public class CharacterStats : ScriptableObject
     {
 
