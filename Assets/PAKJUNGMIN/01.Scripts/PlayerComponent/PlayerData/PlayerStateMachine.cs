@@ -72,7 +72,7 @@ public class PlayerStateMachine : MonoBehaviour
     void Alive()
     {
         bubbleCollider.gameObject.SetActive(false);
-      
+        transform.parent.gameObject.GetComponent<BoxCollider2D>().enabled = true;
         if (transform.parent.gameObject.layer != 3) { transform.parent.gameObject.layer = 3; }
 
         playerMediator.playerStats.OwnSpeed = playerMediator.playerStats.aliveSpeed;
@@ -91,8 +91,10 @@ public class PlayerStateMachine : MonoBehaviour
     void Trapped()
     {
         transform.parent.gameObject.layer = 0;
+
         transform.parent.gameObject.GetComponent<BoxCollider2D>().enabled = false;
         bubbleCollider.gameObject.SetActive(true);
+
         playerMediator.playerStats.aliveSpeed = playerMediator.playerStats.OwnSpeed;
         playerMediator.playerStats.OwnSpeed = playerMediator.playerStats.trapSpeed;
         coroutinedrown = StartCoroutine(DrownCoroutine());
