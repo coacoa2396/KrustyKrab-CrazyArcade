@@ -12,14 +12,15 @@ public class BubbleCollider : MonoBehaviour
     private void Awake()
     {
         otherPlayerLayer = LayerMask.NameToLayer("Player");
-        Debug.Log($"otherPlayerLayer : {otherPlayerLayer}");
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log($"123123123123123123123123123123123123123");
-        if ((gameObject.layer | otherPlayerLayer) != 0)
+        Debug.Log($"Bubble Collider Layer {gameObject.layer}");
+        Debug.Log($"otherPlayerLayer : {otherPlayerLayer}");
+        Debug.Log($"PlayerLayer : {transform.parent.gameObject.layer}");
+        if ((gameObject.layer & otherPlayerLayer) != 0)
         {
-            Debug.Log($"123433443");
+            Debug.Log("sss");
             playerState.ChangeState(PlayerStateMachine.State.Die);
         }
     }

@@ -94,7 +94,6 @@ public class PlayerStateMachine : MonoBehaviour
         bubbleCollider.gameObject.SetActive(true);
         playerMediator.playerStats.aliveSpeed = playerMediator.playerStats.OwnSpeed;
         playerMediator.playerStats.OwnSpeed = playerMediator.playerStats.trapSpeed;
-
         coroutinedrown = StartCoroutine(DrownCoroutine());
     }
     void Die()

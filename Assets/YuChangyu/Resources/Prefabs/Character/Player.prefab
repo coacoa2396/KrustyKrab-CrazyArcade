@@ -664,7 +664,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bubbleCollider: {fileID: 4930228115096582792}
-  drownTimer: 7
+  drownTimer: 6
   ownTimer: 0
   ownState: 0
 --- !u!1 &6329253290272671365
