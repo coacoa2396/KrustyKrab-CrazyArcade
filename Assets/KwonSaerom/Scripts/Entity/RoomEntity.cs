@@ -1,8 +1,5 @@
 using Photon.Realtime;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System.Diagnostics;
 
 public class RoomEntity
 {
@@ -10,10 +7,16 @@ public class RoomEntity
     private int roomNum;
     private int maxPlayer;
     private int nowPlayer;
+    private Define.Maps map;
     public string RoomName { get { return roomName; } }
     public int RoomNum { get { return roomNum; } }
-    public int MaxPlayer { get { return maxPlayer; } }
+    public int MaxPlayer { get { return maxPlayer; } set { maxPlayer = value; } }
     public int NowPlayer { get { return nowPlayer; } set { nowPlayer = value; } }
+    public Define.Maps Map
+    {
+        get { return map; }
+        set { map = value; }
+    }
 
     public RoomEntity(string roomName,int roomNum,int maxPlayer)
     {
@@ -25,10 +28,16 @@ public class RoomEntity
 
     public RoomEntity(RoomInfo info)
     {
-        string[] s = info.Name.Split("/");
-        roomName = s[1];
-        roomNum = int.Parse(s[0]);
+        roomName = (string)info.CustomProperties["RoomName"];
+        roomNum = int.Parse(info.Name);
         maxPlayer = info.MaxPlayers;
         nowPlayer = info.PlayerCount;
+    }
+
+    public void UpdateRoomInfo(string name,int maxPlayer)
+    {
+        roomName = name;
+        this.maxPlayer = maxPlayer;
+
     }
 }

@@ -52,7 +52,7 @@ public class UI_RoomToken : BaseUI
 
     public void EnterRoom()
     {
-        string key = $"{roomInfo.RoomNum}/{roomInfo.RoomName}";
+        string key = roomInfo.RoomNum.ToString();
         LobbyManager.NowRoom = roomInfo;
         if (roomInfo.NowPlayer == roomInfo.MaxPlayer)
         {
