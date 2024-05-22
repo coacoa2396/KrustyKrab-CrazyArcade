@@ -48,6 +48,7 @@ public class RoundManager : MonoBehaviour
     [SerializeField] List<PlayerRoundData> playerList; //게임에 참가한 모든 플레이어 리스트
     [SerializeField] List<GameObject> survivorList; //현재 살아남은 플레이어 리스트
 
+    public List<PlayerRoundData> PlayerList { get { return playerList; } }
 
     //****************************** 게임씬에서 로드 시 버그가 있기에, 잠시 
     IEnumerator TestLoad()
