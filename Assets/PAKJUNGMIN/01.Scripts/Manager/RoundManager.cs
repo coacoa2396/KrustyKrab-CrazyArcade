@@ -13,17 +13,31 @@ using UnityEngine.UIElements;
 /// 
 
 /*
-    Start 시 개괄
-    
-    0.모든 플레이어를 라운드 매니저의 playerList에 삽입.
-    1.모든 플레이어의 PlayerStateMachine.cs의 OnDie 필드에 PlayerDieEvent() 이벤트 등록.
-    
-    작동 방식 개괄
-    
-    0.플레이어가 상태 패턴이 Die()로 바뀌면
-    1.PlayerStateMachine.cs의 OnDie()  -> RoundManager의 PlayerDieEvent() ->  CheckSurvivor();
-    2.이 때 PlayerList.Count가 1보다 작거나 같다면, 즉 생존한 플레이어가 0이거나 한명뿐이라면
-    3.CheckSurvivor() -> ShowOutcome(); 으로 승패 판정.
+ *  작동방식 개괄
+
+    0.게임에 참여한 모든 플레이어를 playerList에 삽입.이때 PlayerRoundData객체로 등록됨
+      PlayerRoundData 객체에 Player GameObject 필드,승패여부 (outcome)필드 존재
+      승패필드는 이 클래스의 열거형.
+
+    1.현재 생존중인 플레이어를 SurvivorList에 삽입.
+
+    2.모든 플레이어의 PlayerStateMachine.cs의 OnDie 필드에 PlayerDieEvent() 이벤트 등록.
+      PlayerDieEvent()는 플레이어 사망 시 호출되는 이벤트 메소드. --> (플레이어가 상태 패턴이 Die()로 바뀌면 PlayerStateMachine.cs의 OnDie()  -> RoundManager의 PlayerDieEvent());
+
+    3.CheckSurvivor()는 오직 PlayerDieEvent()가 호출될 때마다 호출됨. 
+
+    4.CheckSurvivor가 호출되면, 우선 사망한 플레이어를 SurvivorList에서 제거하고,
+      PlayerList을 순회하여 모든 플레이어의 사망 여부를 판단하여,
+      사망한 플레이어의 PlayerRoundData.outcome 필드를 lose로, 생존한 플레이어는 Win으로 변경.
+
+    5.CheckSurvivor에서 (SurvivorList.Count <= 1)이면 SetOutcome() 호출
+
+    6. SetOutcome()는 PlayerList의 각각 PlayerRoundData의 outcome 필드를 확인하고, 
+       우선 모든 PlayerRoundData의 outcome 필드가 win인 객체가 하나도 없었을 경우, outcome 필드를 모두 draw로 바꾼다.
+
+       그 후 다시 한번 각각 PlayerRoundData의 outcome 필드를 다시 한번 순회하여,
+       모든 객체의 결과값들을 Debug.Log로 반환한다.
+       
 
 */
 public class RoundManager : MonoBehaviour
@@ -34,14 +48,8 @@ public class RoundManager : MonoBehaviour
     [SerializeField] List<PlayerRoundData> playerList; //게임에 참가한 모든 플레이어 리스트
     [SerializeField] List<GameObject> survivorList; //현재 살아남은 플레이어 리스트
 
-    public enum Outcome
-    {
-        Win,
-        lose,
-        draw
-    }
 
-    //******************************
+    //****************************** 게임씬에서 로드 시 버그가 있기에, 잠시 
     IEnumerator TestLoad()
     {
         yield return new WaitForSeconds(5f);
@@ -130,8 +138,15 @@ public class RoundManager : MonoBehaviour
         foreach (PlayerRoundData playerData in playerList)
         {
 
-            Debug.Log($"{playerData.player.gameObject.name} is {playerData.outcome}");
+            Debug.Log($"{playerData.player.name} is {playerData.outcome}");
         
         }
     }
+    public enum Outcome
+    {
+        Win,
+        lose,
+        draw
+}
+
 }

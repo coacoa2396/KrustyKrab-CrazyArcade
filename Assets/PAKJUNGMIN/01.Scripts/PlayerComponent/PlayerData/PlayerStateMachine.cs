@@ -12,6 +12,8 @@ public class PlayerStateMachine : MonoBehaviour
 
     public UnityAction<PlayerStateMachine> OnDied;
 
+    [SerializeField] BubbleCollider bubbleCollider;
+
     public enum State
     {
         Alive,
@@ -24,11 +26,14 @@ public class PlayerStateMachine : MonoBehaviour
     [SerializeField] float ownTimer;
 
     Coroutine coroutinedrown;
+    bool Iscoroutine;
     [Header("플레이어의 상태")]
     public State ownState;
 
+
     IEnumerator DrownCoroutine()
     {
+        Iscoroutine = true;
         while (true)
         {
             ownTimer -= Time.deltaTime;
@@ -36,6 +41,7 @@ public class PlayerStateMachine : MonoBehaviour
             if (ownTimer <= 0)
             {
                 ChangeState(State.Die);
+                Iscoroutine = false;
                 break;
             }
         }
@@ -65,6 +71,10 @@ public class PlayerStateMachine : MonoBehaviour
     }
     void Alive()
     {
+        bubbleCollider.gameObject.SetActive(false);
+
+        if (transform.parent.gameObject.layer != 3) { transform.parent.gameObject.layer = 3; }
+
         playerMediator.playerStats.OwnSpeed = playerMediator.playerStats.aliveSpeed;
 
         if (coroutinedrown != null)
@@ -80,7 +90,8 @@ public class PlayerStateMachine : MonoBehaviour
     }
     void Trapped()
     {
-
+        transform.parent.gameObject.layer = 0;
+        bubbleCollider.gameObject.SetActive(true);
         playerMediator.playerStats.aliveSpeed = playerMediator.playerStats.OwnSpeed;
         playerMediator.playerStats.OwnSpeed = playerMediator.playerStats.trapSpeed;
 
@@ -88,11 +99,16 @@ public class PlayerStateMachine : MonoBehaviour
     }
     void Die()
     {
-        playerMediator.playerStats.OwnSpeed = playerMediator.playerStats.dieSpeed;
+        //if(coroutinedrown != null)
+        //{
+        //    StopCoroutine(coroutinedrown); 
+        //}
 
+        playerMediator.playerStats.OwnSpeed = playerMediator.playerStats.dieSpeed;
         StartCoroutine(DieTime());      // Die애니메이션 재생을 위한 시간벌이 코루틴 -> 유찬규 추가
         OnDied?.Invoke(this); //죽었을 때 RoundManager에게 사망 이벤트 통보용.
     }
+
     /// <summary>
     /// 제작 : 찬규 
     /// 죽자마자 바로 게임오브젝트의 active를 false로 해버리면 die 애니메이션이 재생이 될 시간이 없음
