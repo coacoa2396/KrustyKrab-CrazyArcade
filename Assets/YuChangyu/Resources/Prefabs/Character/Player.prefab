@@ -827,7 +827,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onRide: 0
-  canThrow: 0
   canKick: 0
 --- !u!1 &8637128536137346432
 GameObject:
