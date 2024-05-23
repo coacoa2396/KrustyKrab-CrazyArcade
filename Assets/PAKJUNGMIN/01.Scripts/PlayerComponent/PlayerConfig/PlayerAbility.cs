@@ -1,8 +1,10 @@
 using pakjungmin;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -16,12 +18,6 @@ public class PlayerAbility : MonoBehaviour
     public bool onRide;
     public bool canKick;
 
-    RaycastHit2D ray;
-    RaycastHit2D[] tilerays;
-    RaycastHit2D[] bombrays;
-
-
-
     private void Start()
     {
         playerMediator = GetComponentInParent<PlayerMediator>();
@@ -30,7 +26,7 @@ public class PlayerAbility : MonoBehaviour
     /// Method : 플레이어가 탈 것을 탑승
     /// </summary>
     public void Ride()
-    { 
+    {
 
     }
     /// <summary>
@@ -45,6 +41,8 @@ public class PlayerAbility : MonoBehaviour
         int bombPosX = bomb.GetComponent<Bomb>().tileNode.posX; // bomb.GetComponent<Bomb>().tileNode.PosX -> 너무 길므로 요약표현.
         int bombPosY = bomb.GetComponent<Bomb>().tileNode.posY; // bomb.GetComponent<Bomb>().tileNode.PosY -> 너무 길므로 요약표현.
 
+       Debug.Log($"Origin : (({bombPosX},{bombPosY}))");
+
         Tile startTile = TileManager.Tile.tileDic[$"{bombPosX},{bombPosY}"];      //폭탄의 현재 타일 좌표. 레이캐스트가 시작될 위치 타일.
 
         Vector2 startPos = startTile.transform.position; //폭탄의 전역 공간 좌표.               
@@ -53,92 +51,87 @@ public class PlayerAbility : MonoBehaviour
         switch (playerMediator.forwardGuide.Forward)
         {
             case ForwardGuide.ForwardState.up:
-                CalculateKickPos(startPos, startTile.transform.up, bomb, 0, -1);
+                CalculateKickPos(startPos, startTile.transform.up, bomb,ForwardGuide.ForwardState.up);
                 break;
             case ForwardGuide.ForwardState.down:
-                CalculateKickPos(startPos, -startTile.transform.up, bomb, 0, +1);
+                CalculateKickPos(startPos, -startTile.transform.up, bomb,ForwardGuide.ForwardState.down);
                 break;
 
             case ForwardGuide.ForwardState.left:
-                CalculateKickPos(startPos, -startTile.transform.right, bomb, 1, 0);
+                CalculateKickPos(startPos, -startTile.transform.right, bomb,ForwardGuide.ForwardState.left);
                 break;
 
             case ForwardGuide.ForwardState.right:
-                CalculateKickPos(startPos, startTile.transform.right, bomb, -1, 0);
+                CalculateKickPos(startPos, startTile.transform.right, bomb,ForwardGuide.ForwardState.right);
                 break;
         }
 
     }
 
     //Method : 신발로 폭탄을 찼을때 폭탄의 위치를 계산한다.
-    void CalculateKickPos(Vector2 rayStart, Vector2 rayDir, Bomb bomb, int x, int y)  // up : (0, -1) ,down : (0 ,+1),right : (-1,0), left (1,0)
+    void CalculateKickPos(Vector2 rayStart, Vector2 rayDir, Bomb bomb,ForwardGuide.ForwardState state)
     {
+        RaycastHit2D[] raycasthit_Tiles;
 
-        int wallmask = 1 << LayerMask.NameToLayer("Wall");
-        int tilemask = 1 << LayerMask.NameToLayer("Tile");
-        int bombmask = 1 << LayerMask.NameToLayer("WaterBomb");
+        int tileLayerMask = 1 << LayerMask.NameToLayer("Tile"); // --->레이캐스트와 레이어마스크 복습 필요.
 
-        /*작동방식 개괄
-         * 
-         * 레이캐스트로 선을 쏴봐서, 충돌하는 물체가 무엇이고 어떤 좌표냐에 따라 좌표를 결정하는 로직이다.
-         * 
-         * 
-         * 
-         * 
-         * 
-         */
-        ray = Physics2D.Raycast(rayStart, rayDir, 15f, wallmask); //0. 
-        if (ray.collider != null && ray.collider.gameObject.GetComponent<BaseWall>())
+        raycasthit_Tiles = Physics2D.RaycastAll(rayStart, rayDir, 15f,tileLayerMask);
+
+        if (raycasthit_Tiles != null)
         {
-            ResetBombData(bomb, ray, x, y);
-        }
-        else if (ray.collider == null) //아무것도 없었을 경우.
-        {
-            bombrays = Physics2D.RaycastAll(rayStart, rayDir, 15f, bombmask); //경로에 폭탄이 있었을 경우 
-
-            if (bombrays.Length >= 2)
+            Tile[] tileArray = new Tile[raycasthit_Tiles.Length];
+            for (int a = 0; a < raycasthit_Tiles.Length; a++)
             {
-                TileNode tilenode_;
-                tilenode_ = bombrays[bombrays.Length - 1].collider.gameObject.GetComponent<Bomb>().tileNode;
-
-                bomb.StopExplodeCoroutine();
-                bomb.PosX = tilenode_.posX + x;
-                bomb.PosY = tilenode_.posY + y;
-                bomb.transform.position = TileManager.Tile.tileDic[$"{bomb.PosX},{bomb.PosY}"].transform.position;
-                bomb.StartExplodeCoroutine();
-            }
-            else //파괴불가능한 벽 혹은 몰라 ㅆㅂ
-            {
-                tilerays = Physics2D.RaycastAll(rayStart, rayDir, 15f, tilemask);
-
-                if (tilerays[tilerays.Length - 1].collider.gameObject.GetComponent<Tile>()) //마지막으로 타일 체크
+                if (raycasthit_Tiles[a].collider.GetComponent<Tile>() != null)
                 {
-                    Tile lastTile = tilerays[tilerays.Length - 1].collider.gameObject.GetComponent<Tile>();
-
-                    bomb.StopExplodeCoroutine();
-                    bomb.PosX = lastTile.tileNode.posX;
-                    bomb.PosY = lastTile.tileNode.posY;
-                    bomb.transform.position = TileManager.Tile.tileDic[$"{bomb.PosX},{bomb.PosY}"].transform.position;
-                    bomb.StartExplodeCoroutine();
-
+                    tileArray[a] = raycasthit_Tiles[a].collider.GetComponent<Tile>(); //tlqkf
                 }
             }
 
+            if(!Array.Exists<Tile>(tileArray,item => item != null)){ Debug.Log("타일이 없습니다."); return; }
+
+            else
+            {
+                //타일 경로 상에 빈 타일이 있음. 타일어레이는 먼 타일부터 가까운 타일 순서대로.
+                //먼타일이 null인지 계산하고, null이면 나머지타일이 null인지를 계산한다. 하나라도 널이 아니면 넘어간다.
+                for (int a = 0; a < tileArray.Length; a++) //0,1,2,3,4
+                {
+                    if (a == 4)
+                    {
+                        Debug.Log("폭탄 앞의 모든 타일이 이동불가능하다.");
+                        return;
+                    }
+
+                    if (!tileArray[tileArray.Length-(a+1)].OnObject) //타겟 타일이 비어있다면.
+                    {
+                        if (a < 4)
+                        { //타겟 타일이 비어있다는 건 확인했으니, 이제 그 타일 사이의 경로가 뚫려있는지 알아야한다.
+                            int isPassed = Array.FindIndex<Tile>(tileArray, 0, tileArray.Length - (a + 2), item => item.OnObject);
+
+                            if (isPassed != -1) //조건을 만족한다면
+                            {
+                                Debug.Log($"{bomb.PosX},{bomb.PosY} => ({tileArray[a].tileNode.posX},{tileArray[a].tileNode.posX})");
+                                TransformBomb(tileArray[a], bomb);
+                                return;
+                            }
+                            else
+                            {
+                                continue;
+                            }
+                        }
+                    }
+                }   
+            }
         }
     }
-    void ResetBombData(Bomb bomb, RaycastHit2D ray, int x, int y)
+    void TransformBomb(Tile newTile,Bomb bomb)
     {
-        TileNode tilenode_;
-        if (ray.collider.GetComponent<BaseWall>())
-        {
-            tilenode_ = ray.collider.gameObject.GetComponent<BaseWall>().tileNode;
-            bomb.StopExplodeCoroutine();
-            bomb.PosX = tilenode_.posX + x;
-            bomb.PosY = tilenode_.posY + y;
-            bomb.transform.position = TileManager.Tile.tileDic[$"{tilenode_.posX + x},{tilenode_.posY + y}"].transform.position;
-            bomb.StartExplodeCoroutine();
-        }
+        bomb.StopExplodeCoroutine();
+        bomb.PosX = newTile.tileNode.posX;
+        bomb.PosY = newTile.tileNode.posY;
+        bomb.transform.position = TileManager.Tile.tileDic[$"{bomb.PosX},{bomb.PosY}"].transform.position;
+        bomb.StartExplodeCoroutine();
     }
-
-
 }
+    
+
