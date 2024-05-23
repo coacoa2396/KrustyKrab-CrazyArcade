@@ -55,7 +55,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4930951400839706607
 RectTransform:
   m_ObjectHideFlags: 0
@@ -398,7 +398,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1914707645313106581
 RectTransform:
   m_ObjectHideFlags: 0
@@ -684,6 +684,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9542473d339ca4148a6d219caebbf462, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  win: {fileID: 3975303932404833000}
+  lose: {fileID: 5166998733324105713}
+  draw: {fileID: 2389703679200528784}
+  nickName: {fileID: 4627474071079980892}
+  level: {fileID: 7475383584714790207}
+  EXP: {fileID: 5318247215522223919}
+  levelUp: {fileID: 7751129412212978494}
 --- !u!1 &7407180584615600470
 GameObject:
   m_ObjectHideFlags: 0
@@ -701,7 +708,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7595366683211725295
 RectTransform:
   m_ObjectHideFlags: 0
@@ -835,7 +842,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2641384762907870388
 RectTransform:
   m_ObjectHideFlags: 0
