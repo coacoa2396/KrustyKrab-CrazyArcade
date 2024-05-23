@@ -34,7 +34,7 @@ public class PlayerAbility : MonoBehaviour
         int bombPosX = bomb.GetComponent<Bomb>().tileNode.posX; // bomb.GetComponent<Bomb>().tileNode.PosX -> 너무 길므로 요약표현.
         int bombPosY = bomb.GetComponent<Bomb>().tileNode.posY; // bomb.GetComponent<Bomb>().tileNode.PosY -> 너무 길므로 요약표현.
 
-        Debug.Log($"Origin : (({bombPosX},{bombPosY}))");
+       // Debug.Log($"Origin : (({bombPosX},{bombPosY}))");
 
         Tile startTile = TileManager.Tile.tileDic[$"{bombPosX},{bombPosY}"];      //폭탄의 현재 타일 좌표. 레이캐스트가 시작될 위치 타일.
 

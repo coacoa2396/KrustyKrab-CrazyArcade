@@ -48,8 +48,11 @@ public class ForwardGuide : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<BombPlayerDectector>())
         {
-            playerMediator.playerAbility.canKick = true;
-            targetBomb = collision.transform.parent.GetComponent<Bomb>();
+            if (collision.gameObject.GetComponent<BombPlayerDectector>().IsActive)
+            {
+                playerMediator.playerAbility.canKick = true;
+                targetBomb = collision.transform.parent.GetComponent<Bomb>();
+            }
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
