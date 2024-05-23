@@ -20,8 +20,6 @@ namespace pakjungmin
         public GameObject objectOnTile;  //타일 위에 존재하는 오브젝트명
         public TileNode tileNode;  //타일 좌표(x,y) 구조체
 
-
-
         public bool OnObject { get { return onObject; } set { onObject = value; } }
         
     }
