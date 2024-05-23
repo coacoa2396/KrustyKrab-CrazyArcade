@@ -530,9 +530,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bubbleCollider: {fileID: 4930228115096582792}
-  drownTimer: 6
-  ownTimer: 0
+  maxDrownTime: 6
+  ownDrownTime: 0
   ownState: 0
+  maxDevilTime: 10
+  ownDevilTime: 0
 --- !u!1 &6329253290272671365
 GameObject:
   m_ObjectHideFlags: 0
@@ -938,7 +940,7 @@ MonoBehaviour:
   - {fileID: 6142184973041010365}
   - {fileID: 3520180687500651795}
   - {fileID: 8916311967851354184}
-  sceneViewId: 0
+  sceneViewId: 1
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!114 &8189846130541332227
