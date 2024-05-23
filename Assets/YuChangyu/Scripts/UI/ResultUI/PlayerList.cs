@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class PlayerList : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] PlayerInfo playerInfoPrefab;
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        int playerNum = RoundManager.Round.PlayerList.Count;
+
+        for (int i = 0; i < playerNum; i++)
+        {
+            //Instantiate(playerInfoPrefab, );
+        }
     }
 }
