@@ -46,16 +46,19 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+       
         if (bombCheck.Contain(collision.gameObject.layer))
         {
-            Bomb bomb = collision.gameObject.GetComponent<Bomb>();
-            bomb.CommandExplode();
-            //Destroy(gameObject);
+            if(collision.gameObject.GetComponentInParent<Bomb>() != null)
+            {
+                Bomb bomb = collision.gameObject.GetComponentInParent<Bomb>();
+                bomb.CommandExplode();
+
+            }
             return;
         }
         else if (destroyCheck.Contain(collision.gameObject.layer))
         {
-            //Destroy(gameObject);
             return;
         }
     }
