@@ -2,7 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static RoundManager;
-
+/// <summary>
+/// 제작 : 찬규
+/// 게임씬의 게임플로우를 담당
+/// </summary>
 public class RoundGameFlow : MonoBehaviour
 {
 
