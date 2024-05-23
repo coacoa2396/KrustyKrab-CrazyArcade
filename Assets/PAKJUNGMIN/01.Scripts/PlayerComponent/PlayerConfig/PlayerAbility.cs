@@ -11,30 +11,30 @@ using UnityEngine.EventSystems;
 /// </summary>
 public class PlayerAbility : MonoBehaviour
 {
-    //PlayerMediator playerMediator;
-    ////능력 여부 
-    //public bool onRide;
-    //public bool canKick;
+    PlayerMediator playerMediator;
+    //능력 여부 
+    public bool onRide;
+    public bool canKick;
 
-    //RaycastHit2D ray;
-    //RaycastHit2D[] tilerays;
-    //RaycastHit2D[] bombrays;
+    RaycastHit2D ray;
+    RaycastHit2D[] tilerays;
+    RaycastHit2D[] bombrays;
 
 
-    //private void Start()
-    //{
-    //    playerMediator = GetComponentInParent<PlayerMediator>();
-    //}
-    ///// <summary>
-    ///// Method : 플레이어가 탈 것을 탑승
-    ///// </summary>
-    //public void Ride()
-    //{
+    private void Start()
+    {
+        playerMediator = GetComponentInParent<PlayerMediator>();
+    }
+    /// <summary>
+    /// Method : 플레이어가 탈 것을 탑승
+    /// </summary>
+    public void Ride()
+    {
 
-    //}
-    ///// <summary>
-    ///// Method : 플레이어가 물풍선을 차는 능력. --> 물풍선이 플레이어의 앞에 있을 경우에만 작동
-    ///// </summary>
+    }
+    /// <summary>
+    /// Method : 플레이어가 물풍선을 차는 능력. --> 물풍선이 플레이어의 앞에 있을 경우에만 작동
+    /// </summary>
     //public void Kick()
     //{
     //    if (!canKick) { return; }
