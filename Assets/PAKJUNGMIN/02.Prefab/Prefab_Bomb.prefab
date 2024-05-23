@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1229910882982573769}
   - component: {fileID: 1149463310955052931}
   - component: {fileID: 6828072665403441246}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Prefab_Bomb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -218,7 +218,7 @@ GameObject:
   - component: {fileID: 4126179975043965328}
   - component: {fileID: 3323864680554651005}
   - component: {fileID: 608610582721590377}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player_Detector_Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -456,7 +456,7 @@ GameObject:
   - component: {fileID: 7594181350062855994}
   - component: {fileID: 4241111694175220452}
   - component: {fileID: 686222470225852834}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player_Dectector
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -131,18 +131,33 @@ public class PlayerStateMachine : MonoBehaviour
         GetComponentInParent<PlayerMediator>().gameObject.SetActive(false);
     }
 
-    IEnumerator DevilTime()
+    IEnumerator Devil_1()
     {
         while (true)
         {
-           Debug.Log("데빌 코루틴 진행중");
+           //Debug.Log("데빌 코루틴 진행중");
             playerMediator.playerInputHandler.InputPlant(playerMediator.playerTileCalculator.nowTile.tileNode.posX, playerMediator.playerTileCalculator.nowTile.tileNode.posY);
             ownDevilTime -= Time.deltaTime;
             yield return null;
             if(ownDevilTime <= 0)
             {
                 ChangeState(State.Alive);
-               Debug.Log("데빌 코루틴 끝!");
+              // Debug.Log("데빌 코루틴 끝!");
+                break;
+            }
+        }
+    }
+    IEnumerator Devil_2()
+    {
+        
+        while (true)
+        {
+            playerMediator.playerInputHandler.moveDir = -playerMediator.playerInputHandler.moveDir;
+            ownDevilTime -= Time.deltaTime;
+            yield return null;
+            if (ownDevilTime <= 0)
+            {
+                ChangeState(State.Alive);
                 break;
             }
         }
@@ -150,9 +165,17 @@ public class PlayerStateMachine : MonoBehaviour
     void Devil()
     {
         if(ownDevilTime != maxDevilTime) { ownDevilTime = maxDevilTime; }
-        coroutinedevil = StartCoroutine(DevilTime());
-       Debug.Log("데빌 메서드 끝 부분");
+        int a = Random.Range(0, 1);
+        if(a != 0)
+        {
+            Debug.Log("1번 데빌");
+            coroutinedevil = StartCoroutine(Devil_1());
+        }
+        else
+        {
+            Debug.Log("2번 데빌");
+            coroutinedevil = StartCoroutine(Devil_2());
+        }
     }
-
 
 }
