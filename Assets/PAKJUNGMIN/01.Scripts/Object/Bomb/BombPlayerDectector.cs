@@ -11,7 +11,7 @@ public class BombPlayerDectector : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<PlayerStreamDectector>() == null)
+        if (collision.gameObject.GetComponent<PlayerStreamDectector>())
         {
             playercollider.enabled = true;
             IsActive = true;
