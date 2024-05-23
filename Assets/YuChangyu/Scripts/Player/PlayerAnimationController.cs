@@ -40,7 +40,7 @@ public class PlayerAnimationController : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (player.playerState.ownState == PlayerStateMachine.State.Alive)
+        if (player.playerState.ownState == PlayerStateMachine.State.Alive || player.playerState.ownState == PlayerStateMachine.State.Devil)
         {
             checkTrap = false;
             time = 0;
