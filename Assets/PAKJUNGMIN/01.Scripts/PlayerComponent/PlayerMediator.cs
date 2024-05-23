@@ -44,7 +44,7 @@ namespace pakjungmin
 
         public void InputMove(Vector3 moveDir)
         {
-           // if (playerAbility.canKick) { playerAbility.Kick(); }
+            if (playerAbility.canKick) { playerAbility.Kick(); }
             playerBehavior.Move(moveDir);
             SetForwardGuide(moveDir);
         }

@@ -48,6 +48,8 @@ public class RoundManager : MonoBehaviour
     [SerializeField] List<PlayerRoundData> playerList; //게임에 참가한 모든 플레이어 리스트
     [SerializeField] List<GameObject> survivorList; //현재 살아남은 플레이어 리스트
 
+    [SerializeField] RoundGameFlow roundGameFlow; // 자식 오브젝트의 roundGameFlow;
+
     public List<PlayerRoundData> PlayerList { get { return playerList; } }
 
     //****************************** 게임씬에서 로드 시 버그가 있기에, 잠시 
@@ -56,8 +58,10 @@ public class RoundManager : MonoBehaviour
         yield return new WaitForSeconds(5f);
         InitSetPlayer();
     }
+
+
     Coroutine ss;
-    //****************************
+
     private void Awake()
     {
         if(instance != null) { Destroy(gameObject); }
@@ -101,7 +105,7 @@ public class RoundManager : MonoBehaviour
 
         if (survivorList.Count <= 1)
         {
-            SetOutcome();
+            roundGameFlow.SetOutcome();
             return;
         }
 
@@ -116,27 +120,8 @@ public class RoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Method : Win,Lose,Draw 여부 계산. 플레이어마다 다르게 작용.
+    /// Method : Win,Lose,Draw 여부 계산.플레이어마다 다르게 작용.
     /// </summary>
-    void SetOutcome()
-    {
-        if (!playerList.Exists(item => item.outcome == Outcome.Win)) // 살아남은 플레이어가 없었을 경우, 즉 무승부.
-        {
-            foreach (PlayerRoundData playerData in playerList)
-            {
-                playerData.outcome = Outcome.draw;
-            }
-            Debug.Log("Draw");
-            return;
-        }
-
-        foreach (PlayerRoundData playerData in playerList)
-        {
-
-            Debug.Log($"{playerData.player.name} is {playerData.outcome}");
-        
-        }
-    }
     public enum Outcome
     {
         Win,
