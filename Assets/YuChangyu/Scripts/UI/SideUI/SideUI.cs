@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,28 +10,62 @@ public class SideUI : MonoBehaviour
 {
     [SerializeField] SidePlayerInfo prefab;
 
+    private void Start()
+    {
+        StartCoroutine(CoInitSideUI());
+    }
+
     public void InitSideUI()
     {
-        if (RoundManager.Round == null)
-        {
-            Debug.LogError("Round is null");
-        }
+        List<PlayerRoundData> list = RoundManager.Round.PlayerList;
 
-        if (RoundManager.Round.PlayerList == null)
+        foreach (PlayerRoundData p in list)
         {
-            Debug.LogError("PlayerList is null");
-        }
+            SidePlayerInfo _info = Instantiate(prefab, transform);
+            // 캐릭터 아이콘 설정            
+            switch (p.playerEntity.Character)
+            {
+                case Define.Characters.Bazzi:
+                    _info.CharacterIcon.sprite = _info.CharacterRender[0];
+                    break;
+                case Define.Characters.Cappi:
+                    _info.CharacterIcon.sprite = _info.CharacterRender[1];
+                    break;
+                case Define.Characters.Dao:
+                    _info.CharacterIcon.sprite = _info.CharacterRender[2];
+                    break;
+                case Define.Characters.Marid:
+                    _info.CharacterIcon.sprite = _info.CharacterRender[3];
+                    break;
+            }
 
-        if (RoundManager.Round.PlayerList[0] == null)
-        {
-            Debug.LogError("PlayerList[0] is null");
-        }
+            // 레벨 설정
+            _info.Level.text = $"{p.playerEntity.User.level}";
 
+            // 닉네임 설정
+            _info.NickName.text = $"{p.playerEntity.User.nickName}";
+
+            _info.SetPlayer(p);
+        }        
+    }
+
+    // --> 권새롬 추가. 플레이어가 다 로드가 되었을 때 UI를 지정
+    IEnumerator CoInitSideUI()
+    {
+        int tmpPlayerCount = PhotonNetwork.PlayerList.Length;
         int playerNum = RoundManager.Round.PlayerList.Count;
 
+        while (true)
+        {
+            playerNum = RoundManager.Round.PlayerList.Count;
+            if (playerNum == tmpPlayerCount)
+                break;
+            yield return new WaitForSecondsRealtime(0.1f);
+        }
         for (int i = 0; i < playerNum; i++)
         {
-            Instantiate(prefab, transform);
+            Debug.LogError(i);
+            InitSideUI();
         }
     }
 }
