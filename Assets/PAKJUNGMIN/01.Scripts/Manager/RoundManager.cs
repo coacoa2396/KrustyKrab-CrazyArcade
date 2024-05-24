@@ -70,13 +70,11 @@ public class RoundManager : MonoBehaviour
         if (instance != null) { Destroy(gameObject); }
 
         instance = this;
-    }
 
-    private void Start()
-    {
+        // --> 권새롬 추가 playerList가 null이 뜨는 문제 버그 해결
+        playerList = new List<PlayerRoundData>();
         StartCoroutine(WaitSetPlayer());
     }
-
 
     IEnumerator WaitSetPlayer()
     {
@@ -107,7 +105,6 @@ public class RoundManager : MonoBehaviour
 
     void InitSetPlayer()
     {
-        playerList = new List<PlayerRoundData>();
         GameObject[] playerArray = GameObject.FindGameObjectsWithTag("Player");
 
         if (playerArray[0] == null)
