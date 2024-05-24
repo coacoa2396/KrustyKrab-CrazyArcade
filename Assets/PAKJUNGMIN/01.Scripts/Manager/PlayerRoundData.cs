@@ -21,6 +21,15 @@ public class PlayerRoundData
         {
             if (_player.ActorNumber == ownerId)
             {
+                if(Manager.Game == null)
+                Debug.LogError("Manager.Game is null");
+
+                if (Manager.Game.GamePlayers == null)
+                    Debug.LogError("Manager.Game.GamePlayers is null");
+
+                if (Manager.Game.GamePlayers[0] == null)
+                    Debug.LogError("Manager.Game.GamePlayers[0] is null");
+
                 foreach (PlayerEntity playerEntity in Manager.Game.GamePlayers)
                 {
                     if (_player.NickName.Equals(playerEntity.Key))

@@ -74,12 +74,18 @@ public class RoundManager : MonoBehaviour
 
     private void Start()
     {
+        StartCoroutine(WaitSetPlayer());
+    }
+
+
+    IEnumerator WaitSetPlayer()
+    {
         while (true)
         {
             Player[] players = PhotonNetwork.PlayerList;
             bool isAllConnect = true;
             for (int i = 0; i < players.Length; i++)
-            {                
+            {
                 ExitGames.Client.Photon.Hashtable ht = players[i].CustomProperties;
                 if ((bool)ht["IsLoad"] == false)
                 {
@@ -87,21 +93,20 @@ public class RoundManager : MonoBehaviour
                     break;
                 }
             }
-            Debug.LogError("for문 끝");
+
             if (isAllConnect)
             {
-                Debug.LogError("전부 로딩됨");
                 InitSetPlayer();
                 break;
             }
             else
-                continue;
+                yield return new WaitForSeconds(0.5f);
         }
+
     }
 
     void InitSetPlayer()
     {
-        Debug.LogError("이닛셋플레이어 시작");
         playerList = new List<PlayerRoundData>();
         GameObject[] playerArray = GameObject.FindGameObjectsWithTag("Player");
 

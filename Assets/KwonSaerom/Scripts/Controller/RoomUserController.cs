@@ -230,6 +230,7 @@ public class RoomUserController : MonoBehaviourPunCallbacks
     [PunRPC]
     public void LoadScene(string scene)
     {
+        Manager.Game.GamePlayers = GetNowPlayerList();
         Manager.Scene.LoadScene(scene, PhotonNetwork.IsMasterClient);
     }
 

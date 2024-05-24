@@ -41,10 +41,10 @@ public class UI_Room : PopUpUI
         GetUI<Button>(GameObjects.ExitButton.ToString()).onClick.AddListener(ExitRoom);
         GetUI<Button>(GameObjects.SelectMapButton.ToString()).onClick.AddListener(SelectMapClick);
         GetUI<Button>(GameObjects.RoomInfoChangeButton.ToString()).onClick.AddListener(RoomChangeClick);
-        GetUI<Button>(GameObjects.DaoSelect.ToString()).onClick.AddListener(()=> SelectCharacter(Define.Characters.Dao));
-        GetUI<Button>(GameObjects.CappiSelect.ToString()).onClick.AddListener(()=> SelectCharacter(Define.Characters.Cappi));
-        GetUI<Button>(GameObjects.BazziSelect.ToString()).onClick.AddListener(()=> SelectCharacter(Define.Characters.Bazzi));
-        GetUI<Button>(GameObjects.MaridSelect.ToString()).onClick.AddListener(()=> SelectCharacter(Define.Characters.Marid));
+        GetUI<Button>(GameObjects.DaoSelect.ToString()).onClick.AddListener(() => SelectCharacter(Define.Characters.Dao));
+        GetUI<Button>(GameObjects.CappiSelect.ToString()).onClick.AddListener(() => SelectCharacter(Define.Characters.Cappi));
+        GetUI<Button>(GameObjects.BazziSelect.ToString()).onClick.AddListener(() => SelectCharacter(Define.Characters.Bazzi));
+        GetUI<Button>(GameObjects.MaridSelect.ToString()).onClick.AddListener(() => SelectCharacter(Define.Characters.Marid));
         GetUI<Button>(GameObjects.BazziSelect.ToString()).Select();
     }
 
@@ -60,7 +60,7 @@ public class UI_Room : PopUpUI
 
     private void Start()
     {
-        if(PhotonNetwork.IsMasterClient)
+        if (PhotonNetwork.IsMasterClient)
         {
             GameObject go = PhotonNetwork.InstantiateRoomObject("UI_UserList", transform.position, transform.rotation);
             roomController = go.GetComponentInChildren<RoomUserController>();
@@ -107,10 +107,9 @@ public class UI_Room : PopUpUI
     {
         if (PhotonNetwork.IsMasterClient)
         {
-            if(roomController.IsStart())
+            if (roomController.IsStart())
             {
-                Manager.Game.GamePlayers = roomController.GetNowPlayerList();
-                Debug.Log($"게임 참가 플레이어 수 : {Manager.Game.GamePlayers.Count}");
+                Debug.Log($"게임 참가 플레이어 수 : {roomController.GetNowPlayerList()}");
                 PhotonNetwork.CurrentRoom.IsOpen = false;
                 PhotonNetwork.CurrentRoom.IsVisible = false;
                 if (Manager.Game.MapType == Maps.BlockMap)
