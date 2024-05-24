@@ -41,17 +41,17 @@ using UnityEngine.UIElements;
 
 */
 public class RoundManager : MonoBehaviour
-{   
+{
     static RoundManager instance;
     public static RoundManager Round { get { return instance; } }
 
     [SerializeField] List<PlayerRoundData> playerList; //게임에 참가한 모든 플레이어 리스트
     [SerializeField] List<GameObject> survivorList; //현재 살아남은 플레이어 리스트
 
-    [SerializeField] GameFlow roundGameFlow; // 자식 오브젝트의 roundGameFlow;
+    [SerializeField] GameFlow gameFlow; // gameFlow 
 
     public List<PlayerRoundData> PlayerList { get { return playerList; } }
-    public List<GameObject> SurvivorList {get { return survivorList; } }    // 유찬규 추가
+    public List<GameObject> SurvivorList { get { return survivorList; } }    // 유찬규 추가
 
     //****************************** 게임씬에서 로드 시 버그가 있기에, 잠시 
     IEnumerator TestLoad()
@@ -65,7 +65,7 @@ public class RoundManager : MonoBehaviour
 
     private void Awake()
     {
-        if(instance != null) { Destroy(gameObject); }
+        if (instance != null) { Destroy(gameObject); }
 
         instance = this;
     }
@@ -92,7 +92,7 @@ public class RoundManager : MonoBehaviour
     //Method : 생존한 플레이어의 인원수 체크
     void CheckSurvivor()
     {
-        foreach(PlayerRoundData playerData in playerList)
+        foreach (PlayerRoundData playerData in playerList)
         {
             if (!survivorList.Contains(playerData.player))
             {
@@ -103,13 +103,6 @@ public class RoundManager : MonoBehaviour
                 playerData.outcome = Outcome.Win;
             }
         }
-
-        if (survivorList.Count <= 1)
-        {
-            roundGameFlow.TimeOut();
-            return;
-        }
-
     }
 
     void PlayerDieEvent(PlayerStateMachine playerStateMachine)
@@ -117,7 +110,7 @@ public class RoundManager : MonoBehaviour
         GameObject playerobject = playerStateMachine.transform.parent.gameObject;
         if (survivorList.Contains(playerobject)) { survivorList.Remove(playerobject); }
         CheckSurvivor();
-
+        gameFlow.Judge();       // 게임종료판정
     }
 
     /// <summary>
@@ -128,6 +121,6 @@ public class RoundManager : MonoBehaviour
         Win,
         lose,
         draw
-}
+    }
 
 }
