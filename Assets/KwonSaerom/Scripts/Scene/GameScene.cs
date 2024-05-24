@@ -26,7 +26,7 @@ public class GameScene : BaseScene
         yield return null;
         while(true)
         {
-            int num = Random.Range(0, loadPosList.Length);
+            int num = Random.Range(1, loadPosList.Length);
             if (isLoad[num] == false)
             {
                 index = num;
