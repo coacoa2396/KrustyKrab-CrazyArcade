@@ -19,16 +19,26 @@ public class PlayerStateMachine : MonoBehaviour
         Alive,
         Trapped,
         Die,
+        Devil
     }
     [Header("물방울 갇혔을 때, 익사 시간")]
-    [SerializeField] float drownTimer;
-    public float DrownTimer { get { return drownTimer; } } // 익사시간 프로퍼티 추가, 애니메이션에서 사용하기 위함 -> 유찬규 추가
-    [SerializeField] float ownTimer;
+    [SerializeField] float maxDrownTime;
+    public float DrownTimer { get { return maxDrownTime; } } // 익사시간 프로퍼티 추가, 애니메이션에서 사용하기 위함 -> 유찬규 추가
+    [SerializeField] float ownDrownTime;
 
     Coroutine coroutinedrown;
     bool Iscoroutine;
+
     [Header("플레이어의 상태")]
     public State ownState;
+
+
+    [Header("데빌 상태 관련")]
+    Coroutine coroutinedevil;
+    [SerializeField] public float maxDevilTime;
+    public float ownDevilTime;
+
+
 
 
     IEnumerator DrownCoroutine()
@@ -36,9 +46,9 @@ public class PlayerStateMachine : MonoBehaviour
         Iscoroutine = true;
         while (true)
         {
-            ownTimer -= Time.deltaTime;
+            ownDrownTime -= Time.deltaTime;
             yield return null;
-            if (ownTimer <= 0)
+            if (ownDrownTime <= 0)
             {
                 ChangeState(State.Die);
                 Iscoroutine = false;
@@ -46,7 +56,6 @@ public class PlayerStateMachine : MonoBehaviour
             }
         }
     }
-
     private void Start()
     {
         playerMediator = GetComponentInParent<PlayerMediator>();
@@ -67,6 +76,9 @@ public class PlayerStateMachine : MonoBehaviour
             case State.Die:
                 Die();
                 break;
+            case State.Devil:
+                Devil();
+                break;
         }
     }
     void Alive()
@@ -82,9 +94,9 @@ public class PlayerStateMachine : MonoBehaviour
             StopCoroutine(coroutinedrown); // 부활시 익사 코루틴을 멈춰줘야함 -> 유찬규
         }
 
-        if (drownTimer != ownTimer)
+        if (maxDrownTime != ownDrownTime)
         {
-            ownTimer = drownTimer;
+            ownDrownTime = maxDrownTime;
         }
 
     }
@@ -118,4 +130,52 @@ public class PlayerStateMachine : MonoBehaviour
         yield return new WaitForSeconds(3f);
         GetComponentInParent<PlayerMediator>().gameObject.SetActive(false);
     }
+
+    IEnumerator Devil_1()
+    {
+        while (true)
+        {
+           //Debug.Log("데빌 코루틴 진행중");
+            playerMediator.playerInputHandler.InputPlant(playerMediator.playerTileCalculator.nowTile.tileNode.posX, playerMediator.playerTileCalculator.nowTile.tileNode.posY);
+            ownDevilTime -= Time.deltaTime;
+            yield return null;
+            if(ownDevilTime <= 0)
+            {
+                ChangeState(State.Alive);
+              // Debug.Log("데빌 코루틴 끝!");
+                break;
+            }
+        }
+    }
+    IEnumerator Devil_2()
+    {
+        
+        while (true)
+        {
+            playerMediator.playerInputHandler.moveDir = -playerMediator.playerInputHandler.moveDir;
+            ownDevilTime -= Time.deltaTime;
+            yield return null;
+            if (ownDevilTime <= 0)
+            {
+                ChangeState(State.Alive);
+                break;
+            }
+        }
+    }
+    void Devil()
+    {
+        if(ownDevilTime != maxDevilTime) { ownDevilTime = maxDevilTime; }
+        int a = Random.Range(0, 1);
+        if(a != 0)
+        {
+            Debug.Log("1번 데빌");
+            coroutinedevil = StartCoroutine(Devil_1());
+        }
+        else
+        {
+            Debug.Log("2번 데빌");
+            coroutinedevil = StartCoroutine(Devil_2());
+        }
+    }
+
 }

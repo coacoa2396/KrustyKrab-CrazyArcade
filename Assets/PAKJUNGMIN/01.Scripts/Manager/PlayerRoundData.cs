@@ -15,21 +15,21 @@ public class PlayerRoundData
 
     public PlayerRoundData(GameObject player_)
     {
-        this.player = player_;
-        int ownerId = player.GetComponent<PhotonView>().OwnerActorNr;
-        foreach(Player _player in PhotonNetwork.PlayerList)
-        {
-            if(_player.ActorNumber == ownerId)
-            {
-                foreach(PlayerEntity playerEntity in Manager.Game.GamePlayers)
-                {
-                    if(_player.NickName.Equals(playerEntity.Key))
-                    {
-                        this.playerEntity = playerEntity;
-                    }
-                }
-            }
-        }
-        Debug.Log(playerEntity);
+        //this.player = player_;
+        //int ownerId = player.GetComponent<PhotonView>().OwnerActorNr;
+        //foreach(Player _player in PhotonNetwork.PlayerList)
+        //{
+        //    if(_player.ActorNumber == ownerId)
+        //    {
+        //        foreach(PlayerEntity playerEntity in Manager.Game.GamePlayers)
+        //        {
+        //            if(_player.NickName.Equals(playerEntity.Key))
+        //            {
+        //                this.playerEntity = playerEntity;
+        //            }
+        //        }
+        //    }
+        //}
+        //Debug.Log(playerEntity);
     }
 }

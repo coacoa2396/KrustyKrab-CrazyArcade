@@ -5,26 +5,26 @@ using UnityEngine;
 
 public class ThrowAbilityChecker : MonoBehaviour
 {
-    PlayerMediator playerMediator;
+    //PlayerMediator playerMediator;
 
-    private void Start()
-    {
-        playerMediator = GetComponentInParent<PlayerMediator>();
-    }
+    //private void Start()
+    //{
+    //    playerMediator = GetComponentInParent<PlayerMediator>();
+    //}
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
 
-        if(collision.gameObject.GetComponent<BombStreamDectector>())
-        {
-            playerMediator.playerAbility.canThrow = true;
-        }
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.GetComponent<BombStreamDectector>())
-        {
-            playerMediator.playerAbility.canThrow =false;
-        }
-    }
+    //    if(collision.gameObject.GetComponent<BombStreamDectector>())
+    //    {
+    //        playerMediator.playerAbility.canThrow = true;
+    //    }
+    //}
+    //private void OnTriggerExit2D(Collider2D collision)
+    //{
+    //    if (collision.gameObject.GetComponent<BombStreamDectector>())
+    //    {
+    //        playerMediator.playerAbility.canThrow =false;
+    //    }
+    //}
 }
