@@ -51,9 +51,9 @@ public class GameScene : BaseScene
 
     public void GoToRoom()
     {
-        Manager.Scene.LoadScene("LobbyScene",PhotonNetwork.IsMasterClient);
-    
+        Manager.Scene.LoadScene("LobbyScene", PhotonNetwork.IsMasterClient);
     }
+
 
     IEnumerator CoNetworkSet()
     {

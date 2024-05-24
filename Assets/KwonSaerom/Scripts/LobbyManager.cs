@@ -23,6 +23,12 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         createdRooms = new List<RoomEntity>();
     }
 
+    private void Start()
+    {
+        if (PhotonNetwork.InRoom)
+            LoadRoom();
+    }
+
     private void Update()
     {
         ClientState curState = PhotonNetwork.NetworkClientState;
@@ -36,8 +42,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public override void OnJoinedLobby()
     {
         Debug.Log("OnJoinedLobby");
-        if (PhotonNetwork.InRoom)
-            LoadRoom();
     }
 
     /// 방
