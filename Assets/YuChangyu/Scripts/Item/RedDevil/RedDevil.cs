@@ -38,7 +38,8 @@ public class RedDevil : Item, IAcquirable
 
         // 물풍선을 미는 기능 추가하기 (신발과 같은 기능)
         int ownerId = Player.GetComponent<PhotonView>().OwnerActorNr;
-        photonView.RPC("AddInven", RpcTarget.All, "RedDevil", ownerId);
+        if (photonView.IsMine)
+            photonView.RPC("AddInven", RpcTarget.All, "RedDevil", ownerId);
         gameObject.SetActive(false);
     }
 }

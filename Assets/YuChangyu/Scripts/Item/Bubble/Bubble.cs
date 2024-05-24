@@ -30,8 +30,10 @@ public class Bubble : Item, IAcquirable
         Player = collision.gameObject.GetComponent<PlayerMediator>();
 
         Player.playerStats.OwnBomb++; // 박정민 추가 : Bomb에서 OwnBomb으로 명칭 변경.
+
         int ownerId = Player.GetComponent<PhotonView>().OwnerActorNr;
-        photonView.RPC("AddInven", RpcTarget.All, "Bubble",ownerId);
+        if(photonView.IsMine)
+            photonView.RPC("AddInven", RpcTarget.All, "Bubble",ownerId);
         gameObject.SetActive(false);
     }
 

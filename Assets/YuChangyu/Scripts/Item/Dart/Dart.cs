@@ -37,7 +37,8 @@ public class Dart : Item, IAcquirable
 
         // 박정민 추가 
         int ownerId = Player.GetComponent<PhotonView>().OwnerActorNr;
-        photonView.RPC("AddInven", RpcTarget.All, "Dart", ownerId);
+        if (photonView.IsMine)
+            photonView.RPC("AddInven", RpcTarget.All, "Dart", ownerId);
         gameObject.SetActive(false);
     }
 }

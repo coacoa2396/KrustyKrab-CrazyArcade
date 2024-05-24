@@ -37,7 +37,8 @@ public class Needle : Item, IAcquirable
         activeNeedle.Init(Player);                                      // activeNeedle의 Player 바인딩
 
         int ownerId = Player.GetComponent<PhotonView>().OwnerActorNr;
-        photonView.RPC("AddInven", RpcTarget.All, "Needle", ownerId);
+        if (photonView.IsMine)
+            photonView.RPC("AddInven", RpcTarget.All, "Needle", ownerId);
         gameObject.SetActive(false);
     }
 

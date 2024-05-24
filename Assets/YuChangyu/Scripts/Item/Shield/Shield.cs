@@ -36,7 +36,8 @@ public class Shield : Item, IAcquirable
         activeShield.Init(Player);                                      // activeShield의 Player 바인딩
 
         int ownerId = Player.GetComponent<PhotonView>().OwnerActorNr;
-        photonView.RPC("AddInven", RpcTarget.All, "Shield", ownerId);
+        if (photonView.IsMine)
+            photonView.RPC("AddInven", RpcTarget.All, "Shield", ownerId);
         gameObject.SetActive(false);
     }
 

@@ -36,7 +36,8 @@ public class Fluid : Item, IAcquirable
         Player.playerStats.OwnPower++; //박정민 추가 : Power ->OwnPower로 변경
 
         int ownerId = Player.GetComponent<PhotonView>().OwnerActorNr;
-        photonView.RPC("AddInven", RpcTarget.All, "Fluid", ownerId);
+        if (photonView.IsMine)
+            photonView.RPC("AddInven", RpcTarget.All, "Fluid", ownerId);
         gameObject.SetActive(false);
     }
 }

@@ -26,7 +26,8 @@ public class Glove : Item,IAcquirable
         // 플레이어 스킬에서 던지기 기능 활성화 시키기
 
         int ownerId = Player.GetComponent<PhotonView>().OwnerActorNr;
-        photonView.RPC("AddInven", RpcTarget.All, "Glove", ownerId);
+        if (photonView.IsMine)
+            photonView.RPC("AddInven", RpcTarget.All, "Glove", ownerId);
         gameObject.SetActive(false);
     }
 }

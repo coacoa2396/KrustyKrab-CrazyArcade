@@ -37,7 +37,8 @@ public class Devil : Item, IAcquirable
         // 0이면 반대입력상태
         // 1이면 물풍선 마구 놓는 상태
         int ownerId = Player.GetComponent<PhotonView>().OwnerActorNr;
-        photonView.RPC("AddInven", RpcTarget.All, "Devil", ownerId);
+        if (photonView.IsMine)
+            photonView.RPC("AddInven", RpcTarget.All, "Devil", ownerId);
         gameObject.SetActive(false);
     }
 }

@@ -60,6 +60,7 @@ public class Item : MonoBehaviourPun
         gameObject.SetActive(active);
     }
 
+    // 권새롬 추가 --> 인벤토리 동기화
     [PunRPC]
     public void AddInven(string item,int key)
     {
@@ -73,7 +74,6 @@ public class Item : MonoBehaviourPun
                 this.player = player.GetComponent<PlayerMediator>();
             }
         }
-        Debug.Log(Player);
         Player.playerInventory.Inven.Add(ItemManager.ItemData.itemDir[item]);
     }
 }

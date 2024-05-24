@@ -37,7 +37,8 @@ public class UltraBomb : Item,IAcquirable
 
         
         int ownerId = Player.GetComponent<PhotonView>().OwnerActorNr;
-        photonView.RPC("AddInven", RpcTarget.All, "UltraBomb", ownerId);
+        if (photonView.IsMine)
+            photonView.RPC("AddInven", RpcTarget.All, "UltraBomb", ownerId);
         gameObject.SetActive(false);
     }
 }

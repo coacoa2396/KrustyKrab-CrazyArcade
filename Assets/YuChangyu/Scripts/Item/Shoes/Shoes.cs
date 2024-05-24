@@ -27,7 +27,8 @@ public class Shoes : Item, IAcquirable
 
         // 플레이어에게 물풍선을 발로 미는 기능 활성화 시키기
         int ownerId = Player.GetComponent<PhotonView>().OwnerActorNr;
-        photonView.RPC("AddInven", RpcTarget.All, "Shoes", ownerId);
+        if (photonView.IsMine)
+            photonView.RPC("AddInven", RpcTarget.All, "Shoes", ownerId);
         gameObject.SetActive(false);
     }
 }
