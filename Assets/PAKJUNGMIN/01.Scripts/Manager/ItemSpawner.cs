@@ -9,6 +9,9 @@ using UnityEngine.InputSystem;
 public class ItemSpawner : MonoBehaviour
 {
     static ItemSpawner instance;
+    private ItemSpawner() { }
+
+    public static ItemSpawner ItemSpawn { get{ return instance; } }
 
     [Header("아이템이 나올 확률 변수: 10에 가까울 수록 확률 높아짐")]
     [SerializeField] int randomNumber;
@@ -21,6 +24,8 @@ public class ItemSpawner : MonoBehaviour
     private void Awake()
     {
         if(instance != null) { instance = null; }
+
+
         instance = this;
     }
     private void Start()
@@ -60,5 +65,36 @@ public class ItemSpawner : MonoBehaviour
             itemGo.GetComponent<Item>().SetActive(true);
             // ----
         }
+    }
+
+    public void ReleaseItem(List<GameObject> inven)
+    {
+
+        if (inven.Count < 1) { return; }
+        List<Tile> SpawnList = new List<Tile>();
+
+        foreach (KeyValuePair<string,Tile> tile in TileManager.Tile.tileDic)
+        {
+            if (tile.Value.onObject) { continue; }
+            else if (!tile.Value.onObject)
+            {
+                SpawnList.Add(tile.Value);
+            }
+        }
+        foreach (GameObject item in inven)
+        {
+            if (item.GetComponent<Item>() == null) { continue; }
+            int randomIndex = Random.Range(0, SpawnList.Count-1);
+            try
+            {
+                Instantiate(item, SpawnList[randomIndex].transform.position, Quaternion.identity);
+                SpawnList.RemoveAt(randomIndex);
+            }
+            catch
+            {
+                Debug.Log($"스폰 리스트에 {randomIndex}번의 인덱스가 존재하지 않습니다.");
+            }
+        }
+        Debug.Log("플레이어 죽음과 동시에 인벤토리 아이템 방출 이벤트!");
     }
 }
