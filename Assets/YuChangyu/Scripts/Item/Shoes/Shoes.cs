@@ -26,8 +26,8 @@ public class Shoes : Item, IAcquirable
         Player = Player = collision.gameObject.GetComponent<PlayerMediator>();
 
         // 플레이어에게 물풍선을 발로 미는 기능 활성화 시키기
-
-        Player.playerInventory.Inven.Add(ItemManager.ItemData.itemDir["Shoes"]);
+        int ownerId = Player.GetComponent<PhotonView>().OwnerActorNr;
+        photonView.RPC("AddInven", RpcTarget.All, "Shoes", ownerId);
         gameObject.SetActive(false);
     }
 }

@@ -35,7 +35,9 @@ public class UltraBomb : Item,IAcquirable
 
         Player.playerStats.OwnPower = Player.characterStats.maxPower; //박정민 추가 : 필드명 재조정으로 인한 필드명 변경
 
-        Player.playerInventory.Inven.Add(ItemManager.ItemData.itemDir["UltraBomb"]);
+        
+        int ownerId = Player.GetComponent<PhotonView>().OwnerActorNr;
+        photonView.RPC("AddInven", RpcTarget.All, "UltraBomb", ownerId);
         gameObject.SetActive(false);
     }
 }

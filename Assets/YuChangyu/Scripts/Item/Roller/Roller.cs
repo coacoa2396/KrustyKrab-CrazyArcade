@@ -31,7 +31,8 @@ public class Roller : Item, IAcquirable
 
         Player.playerStats.OwnSpeed++;
 
-        Player.playerInventory.Inven.Add(ItemManager.ItemData.itemDir["Roller"]);
+        int ownerId = Player.GetComponent<PhotonView>().OwnerActorNr;
+        photonView.RPC("AddInven", RpcTarget.All, "Roller", ownerId);
         gameObject.SetActive(false);
 
     }
