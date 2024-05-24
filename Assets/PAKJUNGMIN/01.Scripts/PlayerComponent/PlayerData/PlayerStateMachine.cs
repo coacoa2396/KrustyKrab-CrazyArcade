@@ -1,4 +1,5 @@
 using pakjungmin;
+using Photon.Pun;
 using Photon.Pun.Demo.PunBasics;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,10 +7,10 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class PlayerStateMachine : MonoBehaviour
+public class PlayerStateMachine : MonoBehaviourPun
 {
     PlayerMediator playerMediator;
-
+    PhotonView pv; // 권새롬추가 --> 부모에있는 PhotonView를 불러오길위해
     public UnityAction<PlayerStateMachine> OnDied;
 
     [SerializeField] BubbleCollider bubbleCollider;
@@ -21,6 +22,7 @@ public class PlayerStateMachine : MonoBehaviour
         Die,
         Devil
     }
+
     [Header("물방울 갇혔을 때, 익사 시간")]
     [SerializeField] float maxDrownTime;
     public float DrownTimer { get { return maxDrownTime; } } // 익사시간 프로퍼티 추가, 애니메이션에서 사용하기 위함 -> 유찬규 추가
@@ -56,6 +58,13 @@ public class PlayerStateMachine : MonoBehaviour
             }
         }
     }
+
+    private void Awake()
+    {
+        pv = GetComponentInParent<PhotonView>();
+    }
+
+
     private void Start()
     {
         playerMediator = GetComponentInParent<PlayerMediator>();
@@ -63,6 +72,13 @@ public class PlayerStateMachine : MonoBehaviour
         ChangeState(State.Alive);
     }
     public void ChangeState(State playerState)
+    {
+        if(photonView.IsMine)
+            photonView.RPC("ChangeStateSend", RpcTarget.All, playerState);
+    }
+
+    [PunRPC]
+    public void ChangeStateSend(State playerState)
     {
         ownState = playerState;
         switch (playerState)
@@ -81,6 +97,7 @@ public class PlayerStateMachine : MonoBehaviour
                 break;
         }
     }
+
     void Alive()
     {
         bubbleCollider.gameObject.SetActive(false);
@@ -113,7 +130,7 @@ public class PlayerStateMachine : MonoBehaviour
     }
     void Die()
     {
-
+        Debug.LogError("Die");
         playerMediator.playerStats.OwnSpeed = playerMediator.playerStats.dieSpeed;
         StartCoroutine(DieTime());      // Die애니메이션 재생을 위한 시간벌이 코루틴 -> 유찬규 추가
         OnDied?.Invoke(this); //죽었을 때 RoundManager에게 사망 이벤트 통보용.

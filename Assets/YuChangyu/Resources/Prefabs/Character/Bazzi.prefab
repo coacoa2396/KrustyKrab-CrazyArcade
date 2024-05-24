@@ -329,6 +329,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6780671665956005235}
   - component: {fileID: 916240921797895281}
+  - component: {fileID: 697302159595701670}
   m_Layer: 0
   m_Name: PlayerStateMachine
   m_TagString: Untagged
@@ -370,6 +371,28 @@ MonoBehaviour:
   ownState: 0
   maxDevilTime: 10
   ownDevilTime: 0
+--- !u!114 &697302159595701670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6307027686812822142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &6308776562968402939
 GameObject:
   m_ObjectHideFlags: 0
