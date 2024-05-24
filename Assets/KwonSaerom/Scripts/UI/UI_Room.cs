@@ -114,6 +114,9 @@ public class UI_Room : PopUpUI
                 PhotonNetwork.CurrentRoom.IsVisible = false;
                 if (Manager.Game.MapType == Maps.BlockMap)
                     roomController.GameStart("VillageScene");
+                else if(Manager.Game.MapType == Maps.DesertMap)
+                    roomController.GameStart("DesertScene");
+
             }
             else
             {
