@@ -475,17 +475,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerBehavior: {fileID: 3936625473328141137}
   playerInputHandler: {fileID: 1691583217934810206}
-  forwardGuide: {fileID: 0}
+  forwardGuide: {fileID: 4459877686363218532}
   characterStats: {fileID: 11400000, guid: 3b93cd67a18a3ca4fa636d4e9ed5804f, type: 2}
-  playerStats: {fileID: 0}
-  playerState: {fileID: 0}
+  playerStats: {fileID: 2869486784178485744}
+  playerState: {fileID: 1373744724279867056}
   playerAnimCon: {fileID: 323400187620211796}
-  playerTileCalculator: {fileID: 0}
-  playerBombPlantCalculator: {fileID: 0}
-  playerInventory: {fileID: 0}
+  playerTileCalculator: {fileID: 360108624847918337}
+  playerBombPlantCalculator: {fileID: 5248301113673359362}
+  playerInventory: {fileID: 6880604705300028884}
   bomb: {fileID: 1149463310955052931, guid: 64fcebdb24d58dc4aa8d319cb1f5a5b9, type: 3}
-  playerAbility: {fileID: 0}
-  throwAbilityChecker: {fileID: 0}
+  playerAbility: {fileID: 111657026718350498}
   curActiveItem: {fileID: 0}
 --- !u!114 &323400187620211796
 MonoBehaviour:
