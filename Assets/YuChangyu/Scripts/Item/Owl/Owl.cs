@@ -32,7 +32,8 @@ public class Owl : Item, IAcquirable
 
         // 부엉이 프리팹을 생성해서 플레이어가 타도록 만들어준다
 
-        Player.playerInventory.Inven.Add(ItemManager.ItemData.itemDir["Owl"]);
+        int ownerId = Player.GetComponent<PhotonView>().OwnerActorNr;
+        photonView.RPC("AddInven", RpcTarget.All, "Owl", ownerId);
         gameObject.SetActive(false);
     }
 }

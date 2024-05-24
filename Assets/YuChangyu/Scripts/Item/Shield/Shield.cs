@@ -35,7 +35,10 @@ public class Shield : Item, IAcquirable
         Player.CurActiveItem = activeShield;                            // player의 CurActiveItem 바인딩
         activeShield.Init(Player);                                      // activeShield의 Player 바인딩
 
-        Player.playerInventory.Inven.Add(ItemManager.ItemData.itemDir["Shield"]);
+        int ownerId = Player.GetComponent<PhotonView>().OwnerActorNr;
+        photonView.RPC("AddInven", RpcTarget.All, "Shield", ownerId);
         gameObject.SetActive(false);
     }
+
+
 }

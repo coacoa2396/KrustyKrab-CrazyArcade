@@ -11,7 +11,7 @@ namespace pakjungmin
     /// <summary>
     /// Class : 플레이어 오브젝트 중재자
     /// </summary>
-    public class PlayerMediator : MonoBehaviour
+    public class PlayerMediator : MonoBehaviourPun
     {
         [Header("플레이어의 행동 관련")]
         public PlayerBehavior playerBehavior; //플레이어의 행동.
@@ -43,9 +43,15 @@ namespace pakjungmin
 
         public void InputMove(Vector3 moveDir)
         {
-            if (playerAbility.canKick) { playerAbility.Kick(); }
+            if (playerAbility.canKick) { photonView.RPC("KickSynch", RpcTarget.All); }
             playerBehavior.Move(moveDir);
             SetForwardGuide(moveDir);
+        }
+
+        [PunRPC]
+        public void KickSynch()
+        {
+            playerAbility.Kick();
         }
 
         public void InputPlant(int posX,int posY)

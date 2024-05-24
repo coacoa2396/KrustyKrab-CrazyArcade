@@ -1,5 +1,7 @@
 using pakjungmin;
 using Photon.Pun;
+using Photon.Pun.Demo.PunBasics;
+using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,11 +23,12 @@ public class Item : MonoBehaviourPun
 
     public PlayerMediator Player { get { return player; } set { player = value; } }
     public int WaterProof { get { return waterProof; } set { waterProof = value; } }
-
+    public GameObject[] players;
 
     private void Start()
     {
         waterProof = 1;
+        players = GameObject.FindGameObjectsWithTag("Player");
     }
 
     public bool CheckPlayer(GameObject gameObject)
@@ -55,5 +58,22 @@ public class Item : MonoBehaviourPun
     public void SetActiveSend(bool active)
     {
         gameObject.SetActive(active);
+    }
+
+    [PunRPC]
+    public void AddInven(string item,int key)
+    {
+        if(players == null)
+            players = GameObject.FindGameObjectsWithTag("Player");
+        foreach (GameObject player in players)
+        {
+            int playerOwnerId = player.GetComponent<PhotonView>().OwnerActorNr;
+            if (playerOwnerId == key)
+            {
+                this.player = player.GetComponent<PlayerMediator>();
+            }
+        }
+        Debug.Log(Player);
+        Player.playerInventory.Inven.Add(ItemManager.ItemData.itemDir[item]);
     }
 }

@@ -36,7 +36,8 @@ public class Dart : Item, IAcquirable
         activeDart.Init(Player);                                      // activeDart의 Player 바인딩
 
         // 박정민 추가 
-        Player.playerInventory.Inven.Add(ItemManager.ItemData.itemDir["Dart"]);
+        int ownerId = Player.GetComponent<PhotonView>().OwnerActorNr;
+        photonView.RPC("AddInven", RpcTarget.All, "Dart", ownerId);
         gameObject.SetActive(false);
     }
 }
