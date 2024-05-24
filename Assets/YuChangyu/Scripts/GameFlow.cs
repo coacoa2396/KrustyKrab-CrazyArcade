@@ -65,7 +65,7 @@ public class GameFlow : MonoBehaviourPun
     IEnumerator GoRoom()
     {
         yield return new WaitForSeconds(6f);
-        // Manager.Scene.GetCurScene<GameScene>().GoRoom();
+        Manager.Scene.GetCurScene<GameScene>().GoToRoom();
     }
 
     // 게임시간의 종료를 체크한다
