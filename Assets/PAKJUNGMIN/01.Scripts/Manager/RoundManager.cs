@@ -30,9 +30,9 @@ using UnityEngine.UIElements;
       PlayerList을 순회하여 모든 플레이어의 사망 여부를 판단하여,
       사망한 플레이어의 PlayerRoundData.outcome 필드를 lose로, 생존한 플레이어는 Win으로 변경.
 
-    5.CheckSurvivor에서 (SurvivorList.Count <= 1)이면 SetOutcome() 호출
+    5.CheckSurvivor에서 (SurvivorList.Count <= 1)이면 TimeOut() 호출
 
-    6. SetOutcome()는 PlayerList의 각각 PlayerRoundData의 outcome 필드를 확인하고, 
+    6. TimeOut()는 PlayerList의 각각 PlayerRoundData의 outcome 필드를 확인하고, 
        우선 모든 PlayerRoundData의 outcome 필드가 win인 객체가 하나도 없었을 경우, outcome 필드를 모두 draw로 바꾼다.
 
        그 후 다시 한번 각각 PlayerRoundData의 outcome 필드를 다시 한번 순회하여,
@@ -48,9 +48,10 @@ public class RoundManager : MonoBehaviour
     [SerializeField] List<PlayerRoundData> playerList; //게임에 참가한 모든 플레이어 리스트
     [SerializeField] List<GameObject> survivorList; //현재 살아남은 플레이어 리스트
 
-    [SerializeField] RoundGameFlow roundGameFlow; // 자식 오브젝트의 roundGameFlow;
+    [SerializeField] GameFlow roundGameFlow; // 자식 오브젝트의 roundGameFlow;
 
     public List<PlayerRoundData> PlayerList { get { return playerList; } }
+    public List<GameObject> SurvivorList {get { return survivorList; } }    // 유찬규 추가
 
     //****************************** 게임씬에서 로드 시 버그가 있기에, 잠시 
     IEnumerator TestLoad()
@@ -105,7 +106,7 @@ public class RoundManager : MonoBehaviour
 
         if (survivorList.Count <= 1)
         {
-            roundGameFlow.SetOutcome();
+            roundGameFlow.TimeOut();
             return;
         }
 
