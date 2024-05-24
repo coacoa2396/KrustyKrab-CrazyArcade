@@ -180,7 +180,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1940927758981435098}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -711,8 +711,8 @@ Transform:
   - {fileID: 283285050478700929}
   - {fileID: 4828405969473716277}
   - {fileID: 6667553848706100268}
-  - {fileID: 6185155556377655327}
   - {fileID: 1976657950225911536}
+  - {fileID: 6185155556377655327}
   - {fileID: 8624012022957362087}
   - {fileID: 7253767220021113226}
   m_Father: {fileID: 0}
@@ -941,7 +941,7 @@ MonoBehaviour:
   - {fileID: 6142184973041010365}
   - {fileID: 3520180687500651795}
   - {fileID: 8916311967851354184}
-  sceneViewId: 1
+  sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!114 &8189846130541332227

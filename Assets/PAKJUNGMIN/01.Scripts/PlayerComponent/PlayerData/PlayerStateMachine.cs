@@ -135,14 +135,12 @@ public class PlayerStateMachine : MonoBehaviour
     {
         while (true)
         {
-           //Debug.Log("데빌 코루틴 진행중");
             playerMediator.playerInputHandler.InputPlant(playerMediator.playerTileCalculator.nowTile.tileNode.posX, playerMediator.playerTileCalculator.nowTile.tileNode.posY);
             ownDevilTime -= Time.deltaTime;
             yield return null;
             if(ownDevilTime <= 0)
             {
                 ChangeState(State.Alive);
-              // Debug.Log("데빌 코루틴 끝!");
                 break;
             }
         }
@@ -152,7 +150,7 @@ public class PlayerStateMachine : MonoBehaviour
         
         while (true)
         {
-            playerMediator.playerInputHandler.moveDir = -playerMediator.playerInputHandler.moveDir;
+            //playerMediator.playerInputHandler.moveDir = -playerMediator.playerInputHandler.moveDir;
             ownDevilTime -= Time.deltaTime;
             yield return null;
             if (ownDevilTime <= 0)

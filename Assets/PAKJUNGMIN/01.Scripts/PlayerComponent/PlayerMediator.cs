@@ -35,7 +35,6 @@ namespace pakjungmin
         public Bomb bomb;
         [Header("플레이어의 스킬")]
         public PlayerAbility playerAbility;
-        public ThrowAbilityChecker throwAbilityChecker;
 
         [Space(3f)]
         [Header("플레이어 인벤토리")]
