@@ -28,6 +28,11 @@ public class SideUI : MonoBehaviour
 
         int playerNum = RoundManager.Round.PlayerList.Count;
 
+        if (playerNum == 0)
+            Debug.LogError("0");
+
+        Debug.Log($"playerMum is {playerNum}");
+
         for (int i = 0; i < playerNum; i++)
         {
             Instantiate(prefab, transform);
