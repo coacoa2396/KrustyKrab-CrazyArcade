@@ -9,8 +9,23 @@ public class SideUI : MonoBehaviour
 {
     [SerializeField] SidePlayerInfo prefab;
 
-    private void Start()
+    public void InitSideUI()
     {
+        if (RoundManager.Round == null)
+        {
+            Debug.LogError("Round is null");
+        }
+
+        if (RoundManager.Round.PlayerList == null)
+        {
+            Debug.LogError("PlayerList is null");
+        }
+
+        if (RoundManager.Round.PlayerList[0] == null)
+        {
+            Debug.LogError("PlayerList[0] is null");
+        }
+
         int playerNum = RoundManager.Round.PlayerList.Count;
 
         for (int i = 0; i < playerNum; i++)

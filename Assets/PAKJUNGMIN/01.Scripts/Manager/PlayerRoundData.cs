@@ -15,21 +15,30 @@ public class PlayerRoundData
 
     public PlayerRoundData(GameObject player_)
     {
-        //this.player = player_;
-        //int ownerId = player.GetComponent<PhotonView>().OwnerActorNr;
-        //foreach(Player _player in PhotonNetwork.PlayerList)
-        //{
-        //    if(_player.ActorNumber == ownerId)
-        //    {
-        //        foreach(PlayerEntity playerEntity in Manager.Game.GamePlayers)
-        //        {
-        //            if(_player.NickName.Equals(playerEntity.Key))
-        //            {
-        //                this.playerEntity = playerEntity;
-        //            }
-        //        }
-        //    }
-        //}
-        //Debug.Log(playerEntity);
+        this.player = player_;
+        int ownerId = player.GetComponent<PhotonView>().OwnerActorNr;
+        foreach (Player _player in PhotonNetwork.PlayerList)
+        {
+            if (_player.ActorNumber == ownerId)
+            {
+                if(Manager.Game == null)
+                Debug.LogError("Manager.Game is null");
+
+                if (Manager.Game.GamePlayers == null)
+                    Debug.LogError("Manager.Game.GamePlayers is null");
+
+                if (Manager.Game.GamePlayers[0] == null)
+                    Debug.LogError("Manager.Game.GamePlayers[0] is null");
+
+                foreach (PlayerEntity playerEntity in Manager.Game.GamePlayers)
+                {
+                    if (_player.NickName.Equals(playerEntity.Key))
+                    {
+                        this.playerEntity = playerEntity;
+                    }
+                }
+            }
+        }
+        Debug.Log(playerEntity);
     }
 }
