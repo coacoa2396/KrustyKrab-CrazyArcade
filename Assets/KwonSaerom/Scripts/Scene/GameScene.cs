@@ -46,9 +46,7 @@ public class GameScene : BaseScene
     public void GoToLobby()
     {
         PhotonNetwork.AutomaticallySyncScene = false;
-        PhotonNetwork.LeaveRoom();
-        PhotonNetwork.LeaveLobby();
-        Manager.Scene.LoadScene("LobbyScene");
+        StartCoroutine(CoNetworkSet());
     }
 
     public void GoToRoom()
@@ -57,4 +55,15 @@ public class GameScene : BaseScene
     
     }
 
+    IEnumerator CoNetworkSet()
+    {
+        PhotonNetwork.LeaveRoom();
+        while (PhotonNetwork.InRoom)
+            yield return null;
+        PhotonNetwork.LeaveLobby();
+        while (PhotonNetwork.InLobby)
+            yield return null;
+        Manager.Game.GamePlayers = null;
+        Manager.Scene.LoadScene("LobbyScene");
+    }
 }

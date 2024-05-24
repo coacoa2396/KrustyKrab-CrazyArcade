@@ -8,13 +8,14 @@ public class LobbyScene : BaseScene
     public override IEnumerator LoadingRoutine()
     {
         //플레이어 연결
-        if(PhotonNetwork.InLobby == false)
+        if(PhotonNetwork.InRoom == false)
         {
             UserDataManager.LocalUserSetConnect(1);
-            yield return 1f;
+            yield return new WaitForSecondsRealtime(1f);
             PhotonNetwork.JoinLobby();
+            Debug.Log("JoinLobby");
         }
-        yield return 2f;
+        yield return new WaitForSecondsRealtime(2f);
         PhotonNetwork.NickName = Manager.Game.Player.User.key;
     }
 }

@@ -21,8 +21,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     private void Awake()
     {
         createdRooms = new List<RoomEntity>();
-        if (PhotonNetwork.InRoom)
-            LoadRoom();
     }
 
     private void Update()
@@ -34,6 +32,13 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         Debug.Log(state);
     }
 
+
+    public override void OnJoinedLobby()
+    {
+        Debug.Log("OnJoinedLobby");
+        if (PhotonNetwork.InRoom)
+            LoadRoom();
+    }
 
     /// 방
     public override void OnCreatedRoom()
@@ -50,6 +55,12 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         PhotonNetwork.JoinLobby();
     }
 
+    public override void OnCreateRoomFailed(short returnCode, string message)
+    {
+        RoomNum++;
+        Debug.LogError(message);
+        Debug.LogError(RoomNum);
+    }
     public override void OnJoinedRoom()
     {
         //캐릭터 설정
@@ -58,13 +69,13 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         PhotonNetwork.LocalPlayer.SetCustomProperties(new Hashtable() { { "IsLoad", false } });
 
         //방 정보를 들고와서 UI에 연결
-        RoomEntity entity = new RoomEntity(PhotonNetwork.CurrentRoom);
-        NowRoom = entity;
         LoadRoom();
     }
 
     public void LoadRoom()
     {
+        RoomEntity entity = new RoomEntity(PhotonNetwork.CurrentRoom);
+        NowRoom = entity;
         NowRoom.NowPlayer = PhotonNetwork.CurrentRoom.PlayerCount;
 
         //방 팝업 켜기
@@ -118,7 +129,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
                 }
                 if(isNew)
                 {
-                    RoomNum++;
+                    RoomNum = int.Parse(roomInfo.Name) + 1;
                     RoomEntity entity = new RoomEntity(roomInfo);
                     createdRooms.Add(entity);
                 }

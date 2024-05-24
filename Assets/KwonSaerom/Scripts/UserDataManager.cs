@@ -56,7 +56,6 @@ public class UserDataManager
 
     public static void LocalUserSetConnect(int curConnect)
     {
-        Debug.Log(Manager.Game.Player);
         string key = ToKey(Manager.Game.Player.Key);
         FirebaseManager.DB
             .GetReference("User")
