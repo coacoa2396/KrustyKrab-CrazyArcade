@@ -9,7 +9,7 @@ public class SideUI : MonoBehaviour
 {
     [SerializeField] SidePlayerInfo prefab;
 
-    private void Start()
+    public void InitSideUI()
     {
         if (RoundManager.Round == null)
         {
