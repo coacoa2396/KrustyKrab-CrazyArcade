@@ -26998,7 +26998,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeChecker: {fileID: 8161201472926943612}
-  resultUI: {fileID: 0}
+  resultUI: {fileID: 117918883}
 --- !u!1 &1134081418994515658
 GameObject:
   m_ObjectHideFlags: 0
@@ -27299,7 +27299,8 @@ Transform:
   m_LocalPosition: {x: -2.1102855, y: -2.9854493, z: 0.38785288}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 4818621064699385370}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &3789434240846013729
@@ -27383,11 +27384,11 @@ Transform:
   m_GameObject: {fileID: 8074054196822208188}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.1102855, y: -2.9854493, z: 0.38785288}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 3666696568553187841}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!223 &4985848609537939307
 Canvas:
@@ -28243,7 +28244,6 @@ SceneRoots:
   - {fileID: 2110485173}
   - {fileID: 255861317}
   - {fileID: 3666696568553187841}
-  - {fileID: 4818621064699385370}
   - {fileID: 1788322191}
   - {fileID: 338973232}
   - {fileID: 1079033539}

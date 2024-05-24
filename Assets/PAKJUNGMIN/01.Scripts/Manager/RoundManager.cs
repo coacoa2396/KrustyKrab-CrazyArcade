@@ -1,4 +1,6 @@
 using pakjungmin;
+using Photon.Pun;
+using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,14 +56,14 @@ public class RoundManager : MonoBehaviour
     public List<GameObject> SurvivorList { get { return survivorList; } }    // 유찬규 추가
 
     //****************************** 게임씬에서 로드 시 버그가 있기에, 잠시 
-    IEnumerator TestLoad()
-    {
-        yield return new WaitForSeconds(5f);
-        InitSetPlayer();
-    }
+    //IEnumerator TestLoad()
+    //{
+    //    yield return new WaitForSeconds(5f);
+    //    InitSetPlayer();
+    //}
 
 
-    Coroutine ss;
+    //Coroutine ss;
 
     private void Awake()
     {
@@ -69,9 +71,30 @@ public class RoundManager : MonoBehaviour
 
         instance = this;
     }
+
     private void Start()
     {
-        ss = StartCoroutine(TestLoad()); //************************************
+        while (true)
+        {
+            Player[] players = PhotonNetwork.PlayerList;
+            bool isAllConnect = true;
+            for (int i = 0; i < players.Length; i++)
+            {
+                ExitGames.Client.Photon.Hashtable ht = players[i].CustomProperties;
+                if ((bool)ht["isLoad"] == false)
+                {
+                    isAllConnect = false;
+                    break;
+                }
+            }
+            if (isAllConnect)
+            {
+                InitSetPlayer();
+                break;
+            }
+            else
+                continue;
+        }
     }
 
     void InitSetPlayer()
@@ -81,7 +104,11 @@ public class RoundManager : MonoBehaviour
 
         foreach (GameObject player in playerArray)
         {
-            if (player.GetComponentInChildren<PlayerStateMachine>() == null) { continue; }
+            if (player.GetComponentInChildren<PlayerStateMachine>() == null)
+            {
+                continue;
+            }
+
             player.GetComponentInChildren<PlayerStateMachine>().OnDied += PlayerDieEvent;
             survivorList.Add(player);
             playerList.Add(new PlayerRoundData(player));
