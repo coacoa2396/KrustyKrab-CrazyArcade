@@ -17,32 +17,36 @@ public class SideUI : MonoBehaviour
 
     public void InitSideUI()
     {
-        if (RoundManager.Round == null)
+        List<PlayerRoundData> list = RoundManager.Round.PlayerList;
+
+        foreach (PlayerRoundData p in list)
         {
-            Debug.LogError("Round is null");
-        }
+            SidePlayerInfo _info = Instantiate(prefab, transform);
+            // 캐릭터 아이콘 설정            
+            switch (p.playerEntity.Character)
+            {
+                case Define.Characters.Bazzi:
+                    _info.CharacterIcon.sprite = _info.CharacterRender[0];
+                    break;
+                case Define.Characters.Cappi:
+                    _info.CharacterIcon.sprite = _info.CharacterRender[1];
+                    break;
+                case Define.Characters.Dao:
+                    _info.CharacterIcon.sprite = _info.CharacterRender[2];
+                    break;
+                case Define.Characters.Marid:
+                    _info.CharacterIcon.sprite = _info.CharacterRender[3];
+                    break;
+            }
 
-        if (RoundManager.Round.PlayerList == null)
-        {
-            Debug.LogError("PlayerList is null");
-        }
+            // 레벨 설정
+            _info.Level.text = $"{p.playerEntity.User.level}";
 
-        if (RoundManager.Round.PlayerList[0] == null)
-        {
-            Debug.LogError("PlayerList[0] is null");
-        }
+            // 닉네임 설정
+            _info.NickName.text = $"{p.playerEntity.User.nickName}";
 
-        int playerNum = RoundManager.Round.PlayerList.Count;
-
-        if (playerNum == 0)
-            Debug.LogError("0");
-
-        Debug.Log($"playerMum is {playerNum}");
-
-        for (int i = 0; i < playerNum; i++)
-        {
-            Instantiate(prefab, transform);
-        }
+            _info.SetPlayer(p);
+        }        
     }
 
     // --> 권새롬 추가. 플레이어가 다 로드가 되었을 때 UI를 지정
@@ -61,7 +65,7 @@ public class SideUI : MonoBehaviour
         for (int i = 0; i < playerNum; i++)
         {
             Debug.LogError(i);
-            Instantiate(prefab, transform);
+            InitSideUI();
         }
     }
 }

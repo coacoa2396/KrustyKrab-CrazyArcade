@@ -24,48 +24,24 @@ public class SidePlayerInfo : MonoBehaviour
     [Header("IconList")]
     [SerializeField] List<Sprite> characterRender;
 
-    List<PlayerRoundData> list;
+    PlayerRoundData player;
 
-    private void Start()
-    {
-        list = RoundManager.Round.PlayerList;
-
-        foreach (PlayerRoundData p in list)
-        {
-            // 캐릭터 아이콘 설정            
-            switch (p.playerEntity.Character)
-            {
-                case Define.Characters.Bazzi:
-                    characterIcon.sprite = characterRender[0];
-                    break;
-                case Define.Characters.Cappi:
-                    characterIcon.sprite = characterRender[1];
-                    break;
-                case Define.Characters.Dao:
-                    characterIcon.sprite = characterRender[2];
-                    break;
-                case Define.Characters.Marid:
-                    characterIcon.sprite = characterRender[3];
-                    break;
-            }
-
-            // 레벨 설정
-            level.text = $"{p.playerEntity.User.level}";
-
-            // 닉네임 설정
-            nickName.text = $"{p.playerEntity.User.nickName}";
-        }
-    }
+    public Image CharacterIcon { get { return characterIcon; } set { characterIcon = value; } }
+    public TMP_Text Level { get { return level; } set { level = value; } }
+    public TMP_Text NickName { get { return nickName; } set { nickName = value; } }
+    public List<Sprite> CharacterRender { get { return characterRender; } }
 
     private void LateUpdate()
     {
-        foreach (PlayerRoundData p in list)
+        // 사망 설정
+        if (player.outcome == RoundManager.Outcome.lose)
         {
-            // 사망 설정
-            if (p.outcome == RoundManager.Outcome.lose)
-            {
-                dieJudge.gameObject.SetActive(true);
-            }
+            dieJudge.gameObject.SetActive(true);
         }
+    }
+
+    public void SetPlayer(PlayerRoundData player)
+    {
+        this.player = player;
     }
 }
