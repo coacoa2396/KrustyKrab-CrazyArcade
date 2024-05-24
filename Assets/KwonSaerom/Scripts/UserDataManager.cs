@@ -78,14 +78,17 @@ public class UserDataManager
             });
     }
 
-    //UserDataManager.SetPlayerExp(player.Key,100)
+    //UserDataManager.SetPlayerExp(player,100)
     public static void SetPlayerExp(PlayerEntity player,float exp)
     {
+        float plusExp = player.User.exp + exp;
+        int updateLevel = player.User.level + (int)plusExp / (int)player.User.maxExp;
+        float updateExp = plusExp % player.User.maxExp;
         FirebaseManager.DB
             .GetReference("User")
             .Child(player.Key)
             .Child("exp")
-            .SetValueAsync(exp)
+            .SetValueAsync(updateExp)
             .ContinueWithOnMainThread(task =>
             {
                 if (task.IsCanceled)
@@ -98,7 +101,27 @@ public class UserDataManager
                     Debug.Log("GetUserData : IsFaulted");
                     return;
                 }
-                Debug.Log("LocalUserSetConnect : DB 처리 완료");
+                Debug.Log("SetPlayerExp : DB 처리 완료");
+            });
+
+        FirebaseManager.DB
+            .GetReference("User")
+            .Child(player.Key)
+            .Child("level")
+            .SetValueAsync(updateLevel)
+            .ContinueWithOnMainThread(task =>
+            {
+                if (task.IsCanceled)
+                {
+                    Debug.Log("GetUserData : IsCanceled");
+                    return;
+                }
+                if (task.IsFaulted)
+                {
+                    Debug.Log("GetUserData : IsFaulted");
+                    return;
+                }
+                Debug.Log("SetPlayerExp : DB 처리 완료");
             });
     }
 
