@@ -138,7 +138,7 @@ public class PlayerStateMachine : MonoBehaviour
             playerMediator.playerInputHandler.InputPlant(playerMediator.playerTileCalculator.nowTile.tileNode.posX, playerMediator.playerTileCalculator.nowTile.tileNode.posY);
             ownDevilTime -= Time.deltaTime;
             yield return null;
-            if(ownDevilTime <= 0)
+            if (ownDevilTime <= 0)
             {
                 ChangeState(State.Alive);
                 break;
@@ -147,7 +147,7 @@ public class PlayerStateMachine : MonoBehaviour
     }
     IEnumerator Devil_2()
     {
-        
+
         while (true)
         {
             //playerMediator.playerInputHandler.moveDir = -playerMediator.playerInputHandler.moveDir;
@@ -162,9 +162,9 @@ public class PlayerStateMachine : MonoBehaviour
     }
     void Devil()
     {
-        if(ownDevilTime != maxDevilTime) { ownDevilTime = maxDevilTime; }
-        int a = Random.Range(0, 1);
-        if(a != 0)
+        if (ownDevilTime != maxDevilTime) { ownDevilTime = maxDevilTime; }
+        int a = Random.Range(0, 2);
+        if (a != 0)
         {
             Debug.Log("1번 데빌");
             coroutinedevil = StartCoroutine(Devil_1());
@@ -175,5 +175,4 @@ public class PlayerStateMachine : MonoBehaviour
             coroutinedevil = StartCoroutine(Devil_2());
         }
     }
-
 }
