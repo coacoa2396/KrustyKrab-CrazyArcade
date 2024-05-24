@@ -212,17 +212,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerBehavior: {fileID: 4661147094493608713}
   playerInputHandler: {fileID: 2829405197798490723}
-  forwardGuide: {fileID: 0}
+  forwardGuide: {fileID: 7894416128697398052}
   characterStats: {fileID: 11400000, guid: e93a94f532c3dcb439e37b2c49fde7ff, type: 2}
-  playerStats: {fileID: 0}
-  playerState: {fileID: 0}
+  playerStats: {fileID: 7314109526094209161}
+  playerState: {fileID: 5924792632752601791}
   playerAnimCon: {fileID: 5781678855759799318}
-  playerTileCalculator: {fileID: 0}
-  playerBombPlantCalculator: {fileID: 0}
-  playerInventory: {fileID: 0}
+  playerTileCalculator: {fileID: 2934367119124631710}
+  playerBombPlantCalculator: {fileID: 392917908350594577}
+  playerInventory: {fileID: 7671522762337995366}
   bomb: {fileID: 1149463310955052931, guid: 64fcebdb24d58dc4aa8d319cb1f5a5b9, type: 3}
-  playerAbility: {fileID: 0}
-  throwAbilityChecker: {fileID: 0}
+  playerAbility: {fileID: 1668654273521081905}
   curActiveItem: {fileID: 0}
 --- !u!114 &5781678855759799318
 MonoBehaviour:
