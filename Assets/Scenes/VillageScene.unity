@@ -27644,7 +27644,7 @@ MonoBehaviour:
   contents: []
   notices: []
   scrollSpeed: 3
-  offset: 200
+  offset: 400
 --- !u!224 &6671836429038824883
 RectTransform:
   m_ObjectHideFlags: 0
