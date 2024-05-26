@@ -47,7 +47,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mixer: {fileID: 24100000, guid: 18a1ff0e3d1418f40bc2583b8bb5b16d, type: 2}
-  sfx: []
+  sfx:
+  - name: Intro
+    clip: {fileID: 8300000, guid: 8ca309b6503b7e6408db939031762878, type: 3}
   bgm: []
   bgmPlayer: {fileID: 2315522860339898961}
   sfxPlayer: {fileID: 105278731388737427}
