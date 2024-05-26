@@ -92,9 +92,9 @@ public class ItemSpawner : MonoBehaviour
             }
             catch
             {
-                Debug.Log($"스폰 리스트에 {randomIndex}번의 인덱스가 존재하지 않습니다.");
+
             }
         }
-        Debug.Log("플레이어 죽음과 동시에 인벤토리 아이템 방출 이벤트!");
+
     }
 }

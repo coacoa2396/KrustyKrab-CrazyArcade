@@ -39,6 +39,5 @@ public class PlayerRoundData
                 }
             }
         }
-        Debug.Log(playerEntity);
     }
 }

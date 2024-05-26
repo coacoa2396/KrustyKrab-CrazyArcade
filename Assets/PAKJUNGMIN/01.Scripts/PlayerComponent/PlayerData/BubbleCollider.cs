@@ -9,8 +9,6 @@ public class BubbleCollider : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // if ((1 << collision.gameObject.layer & otherPlayerLayer) == 0)
-
         if(collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             if (playerState.ownState != PlayerStateMachine.State.Trapped) { return; }
