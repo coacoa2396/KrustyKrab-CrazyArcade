@@ -1,10 +1,11 @@
 using pakjungmin;
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class ForwardGuide : MonoBehaviour
+public class ForwardGuide : MonoBehaviourPun
 {
    public enum ForwardState
     {
@@ -20,7 +21,18 @@ public class ForwardGuide : MonoBehaviour
 
     public ForwardState Forward { get { return forwardState; } }
 
+
+
     public void ChangeForward(ForwardState state)
+    {
+        if (photonView.IsMine)
+            photonView.RPC("ChangeForwardNetwork", RpcTarget.All, state);
+    }
+
+
+    //권새롬 추가 --> 동기화 
+    [PunRPC]
+    public void ChangeForwardNetwork(ForwardState state)
     {
         forwardState = state;
         switch (forwardState)
@@ -37,6 +49,7 @@ public class ForwardGuide : MonoBehaviour
             case ForwardState.right:
                 transform.position = new Vector3(transform.parent.position.x - 0.4f, transform.parent.position.y, 0);
                 break;
+
         }
     }
 
