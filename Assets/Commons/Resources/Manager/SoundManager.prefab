@@ -47,8 +47,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mixer: {fileID: 24100000, guid: 18a1ff0e3d1418f40bc2583b8bb5b16d, type: 2}
-  sfx: []
-  bgm: []
+  sfx:
+  - name: Intro
+    clip: {fileID: 8300000, guid: 8ca309b6503b7e6408db939031762878, type: 3}
+  - name: OnButton
+    clip: {fileID: 8300000, guid: 169957e594051874d9194ad60f882fe6, type: 3}
+  - name: Click
+    clip: {fileID: 8300000, guid: 9a532c48c7d20a44a968ac7427f0ddca, type: 3}
+  bgm:
+  - name: Title
+    clip: {fileID: 8300000, guid: 758fda48c70f96a4092eb942a25c05dd, type: 3}
   bgmPlayer: {fileID: 2315522860339898961}
   sfxPlayer: {fileID: 105278731388737427}
 --- !u!1 &3112071428299456759
