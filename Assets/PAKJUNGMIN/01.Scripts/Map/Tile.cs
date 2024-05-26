@@ -13,7 +13,6 @@ namespace pakjungmin
      * 0. TileObjectDectector 
      */
 
-
     public class Tile : MonoBehaviour
     {
         public bool onObject; // 타일 위에 벽 or 폭탄 존재 여부    

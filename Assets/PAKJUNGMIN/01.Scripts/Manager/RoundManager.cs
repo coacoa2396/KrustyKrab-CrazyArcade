@@ -55,16 +55,6 @@ public class RoundManager : MonoBehaviour
     public List<PlayerRoundData> PlayerList { get { return playerList; } }
     public List<GameObject> SurvivorList { get { return survivorList; } }    // 유찬규 추가
 
-    //****************************** 게임씬에서 로드 시 버그가 있기에, 잠시 
-    //IEnumerator TestLoad()
-    //{
-    //    yield return new WaitForSeconds(5f);
-    //    InitSetPlayer();
-    //}
-
-
-    //Coroutine ss;
-
     private void Awake()
     {
         if (instance != null) { Destroy(gameObject); }

@@ -40,9 +40,6 @@ public class PlayerStateMachine : MonoBehaviourPun
     [SerializeField] public float maxDevilTime;
     public float ownDevilTime;
 
-
-
-
     IEnumerator DrownCoroutine()
     {
         Iscoroutine = true;
@@ -130,7 +127,6 @@ public class PlayerStateMachine : MonoBehaviourPun
     }
     void Die()
     {
-        Debug.LogError("Die");
         playerMediator.playerStats.OwnSpeed = playerMediator.playerStats.dieSpeed;
         StartCoroutine(DieTime());      // Die애니메이션 재생을 위한 시간벌이 코루틴 -> 유찬규 추가
         OnDied?.Invoke(this); //죽었을 때 RoundManager에게 사망 이벤트 통보용.
@@ -183,12 +179,11 @@ public class PlayerStateMachine : MonoBehaviourPun
         int a = Random.Range(0, 2);
         if (a != 0)
         {
-            Debug.Log("1번 데빌");
+
             coroutinedevil = StartCoroutine(Devil_1());
         }
         else
         {
-            Debug.Log("2번 데빌");
             coroutinedevil = StartCoroutine(Devil_2());
         }
     }
