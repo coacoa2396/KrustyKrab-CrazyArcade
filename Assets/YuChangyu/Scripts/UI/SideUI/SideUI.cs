@@ -10,8 +10,11 @@ public class SideUI : MonoBehaviour
 {
     [SerializeField] SidePlayerInfo prefab;
 
+    bool inst;
+
     private void Start()
     {
+        inst = false;
         StartCoroutine(CoInitSideUI());
     }
 
@@ -19,34 +22,38 @@ public class SideUI : MonoBehaviour
     {
         List<PlayerRoundData> list = RoundManager.Round.PlayerList;
 
-        foreach (PlayerRoundData p in list)
+        if (!inst)
         {
-            SidePlayerInfo _info = Instantiate(prefab, transform);
-            // 캐릭터 아이콘 설정            
-            switch (p.playerEntity.Character)
+            inst = true;
+            foreach (PlayerRoundData p in list)
             {
-                case Define.Characters.Bazzi:
-                    _info.CharacterIcon.sprite = _info.CharacterRender[0];
-                    break;
-                case Define.Characters.Cappi:
-                    _info.CharacterIcon.sprite = _info.CharacterRender[1];
-                    break;
-                case Define.Characters.Dao:
-                    _info.CharacterIcon.sprite = _info.CharacterRender[2];
-                    break;
-                case Define.Characters.Marid:
-                    _info.CharacterIcon.sprite = _info.CharacterRender[3];
-                    break;
+                SidePlayerInfo _info = Instantiate(prefab, transform);
+                // 캐릭터 아이콘 설정            
+                switch (p.playerEntity.Character)
+                {
+                    case Define.Characters.Bazzi:
+                        _info.CharacterIcon.sprite = _info.CharacterRender[0];
+                        break;
+                    case Define.Characters.Cappi:
+                        _info.CharacterIcon.sprite = _info.CharacterRender[1];
+                        break;
+                    case Define.Characters.Dao:
+                        _info.CharacterIcon.sprite = _info.CharacterRender[2];
+                        break;
+                    case Define.Characters.Marid:
+                        _info.CharacterIcon.sprite = _info.CharacterRender[3];
+                        break;
+                }
+
+                // 레벨 설정
+                _info.Level.text = $"{p.playerEntity.User.level}";
+
+                // 닉네임 설정
+                _info.NickName.text = $"{p.playerEntity.User.nickName}";
+
+                _info.SetPlayer(p);
             }
-
-            // 레벨 설정
-            _info.Level.text = $"{p.playerEntity.User.level}";
-
-            // 닉네임 설정
-            _info.NickName.text = $"{p.playerEntity.User.nickName}";
-
-            _info.SetPlayer(p);
-        }        
+        }
     }
 
     // --> 권새롬 추가. 플레이어가 다 로드가 되었을 때 UI를 지정
