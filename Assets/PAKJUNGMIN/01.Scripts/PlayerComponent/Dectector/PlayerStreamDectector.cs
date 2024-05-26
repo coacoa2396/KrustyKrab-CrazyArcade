@@ -18,9 +18,11 @@ public class PlayerStreamDectector : MonoBehaviourPun
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (PhotonNetwork.IsMasterClient == false)
+            return;
         if (collision.gameObject.GetComponent<Stream>())
         {
-            photonView.RPC("CollisionStream", RpcTarget.MasterClient); // 권새롬추가 --> 마스터 클라이언트가 충돌함수를 호출함
+            photonView.RPC("CollisionStream", RpcTarget.All); // 권새롬추가 --> 마스터 클라이언트가 충돌함수를 호출함
         }
     }
 
