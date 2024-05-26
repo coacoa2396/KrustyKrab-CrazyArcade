@@ -546,7 +546,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.49375933, y: 0.45450965}
   m_AnchorMax: {x: 0.65000004, y: 0.4842356}
-  m_AnchoredPosition: {x: 0.734375, y: -1.4914246}
+  m_AnchoredPosition: {x: 0.734375, y: -1.4914551}
   m_SizeDelta: {x: -2.5315018, y: 1.9179993}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5407011324940864284
@@ -748,6 +748,7 @@ GameObject:
   - component: {fileID: 8303186039052473649}
   - component: {fileID: 1274519217212194155}
   - component: {fileID: 152022919622812629}
+  - component: {fileID: 8562446144608523786}
   m_Layer: 5
   m_Name: CloseButton
   m_TagString: Untagged
@@ -857,6 +858,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8562446144608523786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2551820694277719087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d8e9230409f4ef428e0031633762b7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3624555964590991180
 GameObject:
   m_ObjectHideFlags: 0
@@ -2310,6 +2323,7 @@ GameObject:
   - component: {fileID: 6262175260295277112}
   - component: {fileID: 4890796656231731170}
   - component: {fileID: 1045085009020522869}
+  - component: {fileID: 2009471777776106923}
   m_Layer: 5
   m_Name: SignUpButton
   m_TagString: Untagged
@@ -2419,6 +2433,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2009471777776106923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8114111947756918506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d8e9230409f4ef428e0031633762b7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8144987370917874532
 GameObject:
   m_ObjectHideFlags: 0
