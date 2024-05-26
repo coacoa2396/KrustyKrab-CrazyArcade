@@ -46,6 +46,12 @@ public class UI_Room : PopUpUI
         GetUI<Button>(GameObjects.BazziSelect.ToString()).onClick.AddListener(() => SelectCharacter(Define.Characters.Bazzi));
         GetUI<Button>(GameObjects.MaridSelect.ToString()).onClick.AddListener(() => SelectCharacter(Define.Characters.Marid));
         GetUI<Button>(GameObjects.BazziSelect.ToString()).Select();
+
+        if (PhotonNetwork.IsMasterClient)
+        {
+            GameObject go = PhotonNetwork.InstantiateRoomObject("UI_UserList", transform.position, transform.rotation);
+            roomController = go.GetComponentInChildren<RoomUserController>();
+        }
     }
 
     private void OnEnable()
@@ -60,12 +66,7 @@ public class UI_Room : PopUpUI
 
     private void Start()
     {
-        if (PhotonNetwork.IsMasterClient)
-        {
-            GameObject go = PhotonNetwork.InstantiateRoomObject("UI_UserList", transform.position, transform.rotation);
-            roomController = go.GetComponentInChildren<RoomUserController>();
-        }
-        else
+        if(roomController == null)
         {
             roomController = GameObject.Find("UserList").GetComponentInChildren<RoomUserController>();
         }
