@@ -41,6 +41,7 @@ public class SceneManager : Singleton<SceneManager>
         fade.gameObject.SetActive(true);
         yield return FadeOut();
 
+        Manager.Sound.StopBGM();
         Manager.Pool.ClearPool();        
         Manager.UI.ClearPopUpUI();
         Manager.UI.ClearWindowUI();
