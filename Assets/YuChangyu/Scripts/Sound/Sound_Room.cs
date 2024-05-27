@@ -13,13 +13,14 @@ public class Sound_Room : MonoBehaviour
         RoomSound();
     }
 
-    private void OnDestroy()
-    {
-        Manager.Sound.StopBGM();
-    }
-
     public void RoomSound()
     {
         Manager.Sound.PlayBGM("Room");
+    }
+
+    public void GoLobby()
+    {
+        Manager.Sound.StopBGM();
+        Manager.Sound.PlayBGM("Lobby");
     }
 }
