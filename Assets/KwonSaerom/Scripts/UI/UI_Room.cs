@@ -50,6 +50,8 @@ public class UI_Room : PopUpUI
         if (PhotonNetwork.IsMasterClient)
         {
             GameObject go = PhotonNetwork.InstantiateRoomObject("UI_UserList", transform.position, transform.rotation);
+            PhotonNetwork.CurrentRoom.IsOpen = true;
+            PhotonNetwork.CurrentRoom.IsVisible = true;
             roomController = go.GetComponentInChildren<RoomUserController>();
         }
     }
