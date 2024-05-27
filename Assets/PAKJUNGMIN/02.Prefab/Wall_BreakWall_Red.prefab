@@ -201,6 +201,7 @@ GameObject:
   - component: {fileID: 844020773547516611}
   - component: {fileID: 8256437448685959487}
   - component: {fileID: 5197798805425534468}
+  - component: {fileID: 4172485555666129055}
   m_Layer: 22
   m_Name: Wall_BreakWall_Red
   m_TagString: Untagged
@@ -312,3 +313,25 @@ MonoBehaviour:
   tileNode:
     posX: 0
     posY: 0
+--- !u!114 &4172485555666129055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4065323201655851375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 1
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
