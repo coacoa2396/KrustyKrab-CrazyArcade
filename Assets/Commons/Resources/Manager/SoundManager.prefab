@@ -62,6 +62,12 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 3d73e0083dd3c4344beec3d3633739b2, type: 3}
   - name: Die
     clip: {fileID: 8300000, guid: af9a5e772ce231e4b93f8c7d86158868, type: 3}
+  - name: EatItem
+    clip: {fileID: 8300000, guid: b5a47fd25f2a2d445ab4771b5a0358d6, type: 3}
+  - name: PlantBomb
+    clip: {fileID: 8300000, guid: d8373a15997bb294583ac8f026edcb4b, type: 3}
+  - name: BoomBomb
+    clip: {fileID: 8300000, guid: c3bfc7220af7b73448cbaaf794994236, type: 3}
   bgm:
   - name: Title
     clip: {fileID: 8300000, guid: 758fda48c70f96a4092eb942a25c05dd, type: 3}
