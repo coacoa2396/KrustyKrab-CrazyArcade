@@ -31,6 +31,7 @@ public class Devil : Item, IAcquirable
 
         Player.playerState.ChangeState(PlayerStateMachine.State.Devil);
 
+        Manager.Sound.PlaySFX("EatItem");
 
         // Player에서 PlayerState를 받아오고
         // Random.Range(0,2)를 해서
