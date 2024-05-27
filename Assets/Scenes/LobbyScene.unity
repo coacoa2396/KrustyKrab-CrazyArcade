@@ -340,18 +340,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d8e9230409f4ef428e0031633762b7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1352166269
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4777241962272471073}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8e9230409f4ef428e0031633762b7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1352166270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -419,6 +407,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1593481488}
+  - component: {fileID: 1593481489}
   m_Layer: 0
   m_Name: LobbySound
   m_TagString: Untagged
@@ -441,6 +430,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1593481489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593481487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18cd08d2803381a4fbd598d31b4ddebe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1671885400
 GameObject:
   m_ObjectHideFlags: 0
@@ -695,9 +696,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8492241666890716502, guid: b80f366124efc194c982cf80543b5d77, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1352166270}
-    - targetCorrespondingSourceObject: {fileID: 8492241666890716502, guid: b80f366124efc194c982cf80543b5d77, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1352166269}
     - targetCorrespondingSourceObject: {fileID: 2269065024409693113, guid: b80f366124efc194c982cf80543b5d77, type: 3}
       insertIndex: -1
       addedObject: {fileID: 398602933}
