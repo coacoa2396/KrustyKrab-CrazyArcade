@@ -942,7 +942,7 @@ MonoBehaviour:
     maxBomb: 0
     ownPower: 0
     maxPower: 0
-  trapSpeed: 0.2
+  trapSpeed: 0
   aliveSpeed: 0
   dieSpeed: 0
 --- !u!1 &6676249185693176907
@@ -1146,4 +1146,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bombChance: 0
-  chanceTimer: 6
+  chanceTimer: 4.5

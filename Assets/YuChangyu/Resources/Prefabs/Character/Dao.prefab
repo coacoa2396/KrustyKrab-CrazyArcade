@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bombChance: 0
-  chanceTimer: 6
+  chanceTimer: 4.5
 --- !u!1 &1492368847305369820
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,7 +337,7 @@ MonoBehaviour:
     maxBomb: 0
     ownPower: 0
     maxPower: 0
-  trapSpeed: 0.2
+  trapSpeed: 0
   aliveSpeed: 0
   dieSpeed: 0
 --- !u!1 &4267159817402558274
