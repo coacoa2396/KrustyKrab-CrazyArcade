@@ -31,7 +31,8 @@ public class Roller : Item, IAcquirable
 
         Player.playerStats.OwnSpeed++;
 
-        Manager.Sound.PlaySFX("EatItem");
+        if (collision.gameObject.GetComponent<PhotonView>().IsMine)
+            Manager.Sound.PlaySFX("EatItem");
 
         int ownerId = Player.GetComponent<PhotonView>().OwnerActorNr;
         if (photonView.IsMine)

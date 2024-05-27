@@ -25,7 +25,8 @@ public class Shoes : Item, IAcquirable
 
         Player = Player = collision.gameObject.GetComponent<PlayerMediator>();
 
-        Manager.Sound.PlaySFX("EatItem");
+        if (collision.gameObject.GetComponent<PhotonView>().IsMine)
+            Manager.Sound.PlaySFX("EatItem");
 
         // 플레이어에게 물풍선을 발로 미는 기능 활성화 시키기
         int ownerId = Player.GetComponent<PhotonView>().OwnerActorNr;
