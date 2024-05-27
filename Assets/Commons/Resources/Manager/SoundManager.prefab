@@ -68,6 +68,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: d8373a15997bb294583ac8f026edcb4b, type: 3}
   - name: BoomBomb
     clip: {fileID: 8300000, guid: c3bfc7220af7b73448cbaaf794994236, type: 3}
+  - name: BubblePop
+    clip: {fileID: 8300000, guid: cdbac6a42115c5e43893b9b7c3e15e05, type: 3}
   bgm:
   - name: Title
     clip: {fileID: 8300000, guid: 758fda48c70f96a4092eb942a25c05dd, type: 3}

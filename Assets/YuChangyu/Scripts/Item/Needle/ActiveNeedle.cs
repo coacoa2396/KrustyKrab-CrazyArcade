@@ -22,6 +22,8 @@ public class ActiveNeedle : ActiveBase
         // 방울에서 나오는 애니메이션 재생
         Player.playerAnimCon.Animator.SetTrigger("Revive");
 
+        Manager.Sound.PlaySFX("BubblePop");
+
         Player.playerState.ChangeState(State.Alive);       // 플레이어의 상태를 Alive로 바꿔준다
         UseNumber--;
 
