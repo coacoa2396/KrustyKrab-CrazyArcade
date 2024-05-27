@@ -8931,6 +8931,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b71a00084892584bba042032975b516, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  survivorList: []
+  gameFlow: {fileID: 0}
 --- !u!4 &714099995
 Transform:
   m_ObjectHideFlags: 0
@@ -13061,6 +13063,10 @@ PrefabInstance:
     - target: {fileID: 2554065588046735038, guid: e0d0f3830d1f3e641a43692869c0568d, type: 3}
       propertyPath: m_Size.y
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5963677707814548760, guid: e0d0f3830d1f3e641a43692869c0568d, type: 3}
+      propertyPath: sceneViewId
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 7536406032021052491, guid: e0d0f3830d1f3e641a43692869c0568d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -23846,6 +23852,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5963677707814548760, guid: e0d0f3830d1f3e641a43692869c0568d, type: 3}
+      propertyPath: sceneViewId
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 6231394580882749105, guid: e0d0f3830d1f3e641a43692869c0568d, type: 3}
       propertyPath: m_Actions
       value: 
@@ -26494,6 +26504,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9a262f2ffb93bf4b84369621aca3111, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameFlow: {fileID: 0}
   gameTime: 0
 --- !u!1 &4322060431210870631
 GameObject:

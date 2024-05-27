@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4023228354464149091}
   - component: {fileID: 5226896159195615538}
   m_Layer: 22
-  m_Name: Wall_BreakWall
+  m_Name: Wall_BreakWall_Sign
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -68,7 +68,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.024718195}
+  m_Offset: {x: 0.03, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -149,7 +149,7 @@ Transform:
   m_GameObject: {fileID: 6870378201543987059}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.42, z: 0}
+  m_LocalPosition: {x: 0.03, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -196,7 +196,7 @@ SpriteRenderer:
   m_SortingLayerID: -55509521
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1931974713, guid: bbf763d4bb0f83e45ae24edf5f097c99, type: 3}
+  m_Sprite: {fileID: 790540317, guid: af1d8a9c92e35444d9a25af5c9b60a03, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -272,7 +272,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.03134778, y: -0.0009993315}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -283,7 +283,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.99727887, y: 1.0073638}
   m_EdgeRadius: 0
 --- !u!50 &6271346981639531543
 Rigidbody2D:

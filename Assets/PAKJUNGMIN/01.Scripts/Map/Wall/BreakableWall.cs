@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using pakjungmin;
+using Photon.Pun;
 
 public class BreakableWall : BaseWall, IBreakable
 {
