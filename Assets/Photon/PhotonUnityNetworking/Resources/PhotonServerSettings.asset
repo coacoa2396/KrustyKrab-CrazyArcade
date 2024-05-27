@@ -54,6 +54,7 @@ MonoBehaviour:
   - CollisionStream
   - ChangeStateSend
   - ChangeForwardNetwork
+  - ChangeRoomNetwork
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
