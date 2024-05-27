@@ -31,6 +31,8 @@ public class Roller : Item, IAcquirable
 
         Player.playerStats.OwnSpeed++;
 
+        Manager.Sound.PlaySFX("EatItem");
+
         int ownerId = Player.GetComponent<PhotonView>().OwnerActorNr;
         if (photonView.IsMine)
             photonView.RPC("AddInven", RpcTarget.All, "Roller", ownerId);

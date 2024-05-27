@@ -36,6 +36,8 @@ public class RedDevil : Item, IAcquirable
         //    Player.playerStats.OwnSpeed = 10f;
         //}
 
+        Manager.Sound.PlaySFX("EatItem");
+
         // 물풍선을 미는 기능 추가하기 (신발과 같은 기능)
         int ownerId = Player.GetComponent<PhotonView>().OwnerActorNr;
         if (photonView.IsMine)
