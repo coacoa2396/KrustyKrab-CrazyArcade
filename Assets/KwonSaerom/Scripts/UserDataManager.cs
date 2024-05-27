@@ -78,6 +78,8 @@ public class UserDataManager
             });
     }
 
+
+    // 플레이어의 경험치를 업데이트하는 함수
     //UserDataManager.SetPlayerExp(player,100)
     public static void SetPlayerExp(PlayerEntity player,float exp)
     {
