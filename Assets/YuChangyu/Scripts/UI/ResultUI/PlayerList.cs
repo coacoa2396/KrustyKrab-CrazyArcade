@@ -15,6 +15,7 @@ public class PlayerList : MonoBehaviour
 
         foreach (PlayerRoundData p in list)
         {
+            UserDataManager.SetPlayerExp(p.playerEntity, 10);
             PlayerInfo _playerInfo = Instantiate(playerInfoPrefab, transform);
             _playerInfo.SetPlayerInfo(p);
         }
