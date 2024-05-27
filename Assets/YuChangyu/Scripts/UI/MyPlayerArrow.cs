@@ -41,6 +41,7 @@ public class MyPlayerArrow : MonoBehaviour
                 return;
             }
             player = Manager.Game.PlayerGameObject.GetComponent<PlayerPhotonContoller>();
+            gameObject.GetComponent<Image>().color = new Color(1, 1, 1, 1);
         }
         transform.position = new Vector3(player.transform.position.x, player.transform.position.y + offset , player.transform.position.z);
     }

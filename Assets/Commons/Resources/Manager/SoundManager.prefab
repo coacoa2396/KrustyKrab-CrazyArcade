@@ -79,6 +79,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 866a0b6f330b390448952c1cf429bff5, type: 3}
   - name: Village
     clip: {fileID: 8300000, guid: 29c0468629e528e44b7f35209c4e75b5, type: 3}
+  - name: Desert
+    clip: {fileID: 8300000, guid: fc5e7dd270e8cff4e90a8cc77afcc7e1, type: 3}
   bgmPlayer: {fileID: 2315522860339898961}
   sfxPlayer: {fileID: 105278731388737427}
 --- !u!1 &3112071428299456759
