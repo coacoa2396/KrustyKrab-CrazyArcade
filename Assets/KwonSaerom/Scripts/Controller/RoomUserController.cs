@@ -16,7 +16,7 @@ public class RoomUserController : MonoBehaviourPunCallbacks
 
     private UI_UserToken[] userTokens;
     private List<PlayerEntity> players;
-    private int nowPlayer;
+    private UI_Room nowRoomPopup;
     public List<PlayerEntity> Players { get { return players; } }
 
     private void Awake()
@@ -30,6 +30,7 @@ public class RoomUserController : MonoBehaviourPunCallbacks
     {
         Debug.Log("들어왔을때 플레이어 수 : " + LobbyManager.NowRoom.NowPlayer);
         userTokens = GetComponentsInChildren<UI_UserToken>();
+        nowRoomPopup = LobbyManager.NowRoomPopup;
         InitMaxPlayer();
     }
 
@@ -62,6 +63,13 @@ public class RoomUserController : MonoBehaviourPunCallbacks
     public override void OnMasterClientSwitched(Player newMasterClient)
     {
         userTokens[0].SwitchReady(false);
+    }
+
+    public override void OnRoomPropertiesUpdate(Hashtable propertiesThatChanged)
+    {
+        if (PhotonNetwork.IsMasterClient == false)
+            return;
+        photonView.RPC("ChangeRoomNetwork", RpcTarget.Others,LobbyManager.NowRoom.RoomName, PhotonNetwork.CurrentRoom.MaxPlayers);
     }
 
     private void InitRoom()
@@ -115,6 +123,8 @@ public class RoomUserController : MonoBehaviourPunCallbacks
 
                     //플레이어 정보를 UI에 저장
                     userTokens[index].SetPlayer(entity, sprites[(int)entity.Character]);
+                    if(index == 0)
+                        userTokens[0].SwitchReady(false);
                 });
     }
 
@@ -126,7 +136,7 @@ public class RoomUserController : MonoBehaviourPunCallbacks
             if (player.NickName.Equals(players[i].User.key))
             {
                 Debug.Log(i);
-                players[i] = null;
+                players[i] = null;   
                 for(int j=i;j< nowCount; j++)
                 {
                     players[j] = players[j + 1];
@@ -179,7 +189,7 @@ public class RoomUserController : MonoBehaviourPunCallbacks
 
     public void MapChage(Maps map)
     {
-        photonView.RPC("UpdateMap", RpcTarget.All, map);
+        photonView.RPC("UpdateMap", RpcTarget.Others, map);
     }
 
     public void GameStart(string sceneName)
@@ -234,4 +244,11 @@ public class RoomUserController : MonoBehaviourPunCallbacks
         Manager.Scene.LoadScene(scene, PhotonNetwork.IsMasterClient);
     }
 
+    [PunRPC]
+    public void ChangeRoomNetwork(string roomName, int maxPlayer)
+    {
+        LobbyManager.NowRoom.UpdateRoomInfo(roomName, maxPlayer);
+        nowRoomPopup.RoomChange();
+    }
 }
+ 

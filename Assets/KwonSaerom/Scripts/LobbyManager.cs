@@ -12,11 +12,11 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     private ClientState state;
     private List<RoomEntity> createdRooms;
-    private UI_Room nowRoomPopup;
+    private static UI_Room nowRoomPopup;
 
     public static int RoomNum = 0; //동기화 필요
     public static RoomEntity NowRoom; //현재 플레이어가 들어온 방의 정보 
-
+    public static UI_Room NowRoomPopup { get { return nowRoomPopup; } }
 
     private void Awake()
     {
@@ -101,11 +101,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         PhotonNetwork.AutomaticallySyncScene = false;
     }
 
-    public override void OnRoomPropertiesUpdate(Hashtable propertiesThatChanged)
-    {
-        Debug.Log("방 정보가 변경됨");
-        nowRoomPopup.RoomChange();
-    }
+    
 
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
@@ -154,5 +150,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         base.OnMasterClientSwitched(newMasterClient);
     }
+
 
 }

@@ -10,7 +10,7 @@ public class LobbyScene : BaseScene
         //플레이어 연결
         if(PhotonNetwork.InRoom == false)
         {
-            UserDataManager.LocalUserSetConnect(1);
+            UserDataManager.LocalUserSetConnect(Define.CONNECT_NUM);
             yield return new WaitForSecondsRealtime(1f);
             PhotonNetwork.JoinLobby();
         }
