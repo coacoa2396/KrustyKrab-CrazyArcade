@@ -1625,6 +1625,50 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 923172936851581049, guid: d29ec2480d156364388c53e38248d003, type: 3}
   m_PrefabInstance: {fileID: 811539418}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &91174549
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 91174550}
+  - component: {fileID: 91174551}
+  m_Layer: 0
+  m_Name: VillageSound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &91174550
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 91174549}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.9922681, y: -1.5995252, z: -0.107186556}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &91174551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 91174549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b456af79f853a02489b4a9284364e748, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &101416504
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21868,7 +21912,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1141843250699809215, guid: 9ab2974b05a931e45be00c8847deea23, type: 3}
       propertyPath: m_Name
-      value: villageScene
+      value: VillageScene
       objectReference: {fileID: 0}
     - target: {fileID: 2218288580316074271, guid: 9ab2974b05a931e45be00c8847deea23, type: 3}
       propertyPath: m_LocalPosition.x
@@ -26952,8 +26996,10 @@ GameObject:
   - component: {fileID: 8596832223302468683}
   - component: {fileID: 6389529564807444116}
   - component: {fileID: 2356304909613516167}
+  - component: {fileID: 8596832223302468684}
+  - component: {fileID: 8596832223302468685}
   m_Layer: 5
-  m_Name: Button
+  m_Name: ExitButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27190,7 +27236,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6389529564807444116}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8596832223302468684}
+        m_TargetAssemblyTypeName: ExitButton, Assembly-CSharp
+        m_MethodName: GoLobby
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &3003770271879070081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27981,6 +28039,30 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 875613972581791548}
   m_CullTransparentMesh: 1
+--- !u!114 &8596832223302468684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 875613972581791548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03386bf8237848c49a907ba6d2686eaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8596832223302468685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 875613972581791548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d8e9230409f4ef428e0031633762b7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &8745535864706222680
 RectTransform:
   m_ObjectHideFlags: 0
@@ -28222,4 +28304,5 @@ SceneRoots:
   - {fileID: 338973232}
   - {fileID: 1079033539}
   - {fileID: 1770353802}
+  - {fileID: 91174550}
   - {fileID: 499356598}

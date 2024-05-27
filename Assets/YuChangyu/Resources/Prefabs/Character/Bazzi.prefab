@@ -388,6 +388,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1718b16805cdb59479a2dc1ea317b823, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnTraped:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7421252083963132920}
+        m_TargetAssemblyTypeName: PlayerSoundController, Assembly-CSharp
+        m_MethodName: TakeHitSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _OnDied:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7421252083963132920}
+        m_TargetAssemblyTypeName: PlayerSoundController, Assembly-CSharp
+        m_MethodName: DieSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   bubbleCollider: {fileID: 7978229769244983860}
   maxDrownTime: 6
   ownDrownTime: 0
@@ -712,6 +742,50 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!1 &8049924871938028686
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5026577065851558641}
+  - component: {fileID: 7421252083963132920}
+  m_Layer: 0
+  m_Name: PlayerSoundController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5026577065851558641
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8049924871938028686}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.042108774, y: -0.29774588, z: -0.009261667}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7536406032021052491}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7421252083963132920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8049924871938028686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdfbfd5f3d325c64db7b5bdb43dc6730, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8637128536137346432
 GameObject:
   m_ObjectHideFlags: 0
@@ -761,6 +835,7 @@ Transform:
   - {fileID: 2614408833666075635}
   - {fileID: 9096891928401024364}
   - {fileID: 283285050478700929}
+  - {fileID: 5026577065851558641}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &6597740773180076954

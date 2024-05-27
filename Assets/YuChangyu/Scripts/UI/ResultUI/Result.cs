@@ -39,13 +39,16 @@ public class Result : MonoBehaviour
         switch (Me.outcome)
         {
             case RoundManager.Outcome.Win:
-                Win.gameObject.SetActive(true); 
+                Win.gameObject.SetActive(true);
+                Manager.Sound.PlaySFX("Win");
                 break;
             case RoundManager.Outcome.lose:
                 Lose.gameObject.SetActive(true);
+                Manager.Sound.PlaySFX("Lose");
                 break;
             case RoundManager.Outcome.draw:
                 Draw.gameObject.SetActive(true);
+                Manager.Sound.PlaySFX("Draw");
                 break;
         }
     }
