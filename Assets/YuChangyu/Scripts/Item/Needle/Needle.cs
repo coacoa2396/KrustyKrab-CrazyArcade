@@ -36,6 +36,8 @@ public class Needle : Item, IAcquirable
         Player.CurActiveItem = activeNeedle;                            // player의 CurActiveItem 바인딩
         activeNeedle.Init(Player);                                      // activeNeedle의 Player 바인딩
 
+        Manager.Sound.PlaySFX("EatItem");
+
         int ownerId = Player.GetComponent<PhotonView>().OwnerActorNr;
         if (photonView.IsMine)
             photonView.RPC("AddInven", RpcTarget.All, "Needle", ownerId);

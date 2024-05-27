@@ -8,10 +8,12 @@ public class ExplodeHandler : MonoBehaviour
     public void Explode(int power)
     {
 
-      int posX = GetComponentInParent<Bomb>().PosX;
-      int posY = GetComponentInParent<Bomb>().PosY;
+        int posX = GetComponentInParent<Bomb>().PosX;
+        int posY = GetComponentInParent<Bomb>().PosY;
 
-      StreamManager.Stream.CalculateStream(posX, posY, power);
-      GetComponentInParent<Bomb>().Release();
+        Manager.Sound.PlaySFX("BoomBomb");
+
+        StreamManager.Stream.CalculateStream(posX, posY, power);
+        GetComponentInParent<Bomb>().Release();
     }
 }

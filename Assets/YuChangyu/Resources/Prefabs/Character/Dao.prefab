@@ -387,6 +387,50 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onRide: 0
   canKick: 0
+--- !u!1 &5150422791038300019
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4846549787017128482}
+  - component: {fileID: 4621476738655379163}
+  m_Layer: 0
+  m_Name: PlayerSoundController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4846549787017128482
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5150422791038300019}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.0016560256, y: 0.10267225, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7360949647154004706}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4621476738655379163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5150422791038300019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdfbfd5f3d325c64db7b5bdb43dc6730, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5348956160392748696
 GameObject:
   m_ObjectHideFlags: 0
@@ -436,6 +480,7 @@ Transform:
   - {fileID: 3448952713491852095}
   - {fileID: 1544577094437460148}
   - {fileID: 7213132527787317217}
+  - {fileID: 4846549787017128482}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &5834286498235425840
@@ -1043,6 +1088,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1718b16805cdb59479a2dc1ea317b823, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnTraped:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4621476738655379163}
+        m_TargetAssemblyTypeName: PlayerSoundController, Assembly-CSharp
+        m_MethodName: TakeHitSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _OnDied:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4621476738655379163}
+        m_TargetAssemblyTypeName: PlayerSoundController, Assembly-CSharp
+        m_MethodName: DieSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   bubbleCollider: {fileID: 3379718413818127900}
   maxDrownTime: 6
   ownDrownTime: 0

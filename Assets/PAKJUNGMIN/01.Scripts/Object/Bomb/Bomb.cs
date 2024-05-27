@@ -42,6 +42,7 @@ namespace pakjungmin
         private void OnEnable()
         {
             StartExplodeCoroutine();
+            Manager.Sound.PlaySFX("PlantBomb");
         }
         private void OnDisable()
         {

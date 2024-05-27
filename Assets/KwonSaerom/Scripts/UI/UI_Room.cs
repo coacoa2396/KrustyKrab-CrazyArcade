@@ -94,6 +94,8 @@ public class UI_Room : PopUpUI
 
     public void RoomChangeClick()
     {
+        if (PhotonNetwork.IsMasterClient == false)
+            return;
         UI_RoomInfoChange popup = Instantiate(roomInfoChangePopup);
         popup.SetRoom(this);
     }

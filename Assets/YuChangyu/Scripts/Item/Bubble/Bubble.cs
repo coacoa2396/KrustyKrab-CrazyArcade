@@ -31,6 +31,8 @@ public class Bubble : Item, IAcquirable
 
         Player.playerStats.OwnBomb++; // 박정민 추가 : Bomb에서 OwnBomb으로 명칭 변경.
 
+        Manager.Sound.PlaySFX("EatItem");
+
         int ownerId = Player.GetComponent<PhotonView>().OwnerActorNr;
         if(photonView.IsMine)
             photonView.RPC("AddInven", RpcTarget.All, "Bubble",ownerId);

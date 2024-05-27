@@ -13,6 +13,9 @@ public class PlayerStateMachine : MonoBehaviourPun
     PhotonView pv; // 권새롬추가 --> 부모에있는 PhotonView를 불러오길위해
     public UnityAction<PlayerStateMachine> OnDied;
 
+    public UnityEvent<PlayerStateMachine> OnTraped;
+    public UnityEvent<PlayerStateMachine> _OnDied;
+
     [SerializeField] BubbleCollider bubbleCollider;
 
     public enum State
@@ -124,12 +127,14 @@ public class PlayerStateMachine : MonoBehaviourPun
         playerMediator.playerStats.aliveSpeed = playerMediator.playerStats.OwnSpeed;
         playerMediator.playerStats.OwnSpeed = playerMediator.playerStats.trapSpeed;
         coroutinedrown = StartCoroutine(DrownCoroutine());
+        OnTraped?.Invoke(this); // 사운드 재생용 -> 유찬규 추가
     }
     void Die()
     {
         playerMediator.playerStats.OwnSpeed = playerMediator.playerStats.dieSpeed;
         StartCoroutine(DieTime());      // Die애니메이션 재생을 위한 시간벌이 코루틴 -> 유찬규 추가
         OnDied?.Invoke(this); //죽었을 때 RoundManager에게 사망 이벤트 통보용.
+        _OnDied?.Invoke(this);  // 사운드 재생용 -> 유찬규 추가
     }
 
     /// <summary>

@@ -2,6 +2,7 @@ using pakjungmin;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MyPlayerArrow : MonoBehaviour
 {
@@ -35,8 +36,12 @@ public class MyPlayerArrow : MonoBehaviour
         if(player == null)
         {
             if (Manager.Game.PlayerGameObject == null)
+            {
+                gameObject.GetComponent<Image>().color = new Color(1, 1, 1, 0);
                 return;
+            }
             player = Manager.Game.PlayerGameObject.GetComponent<PlayerPhotonContoller>();
+            gameObject.GetComponent<Image>().color = new Color(1, 1, 1, 1);
         }
         transform.position = new Vector3(player.transform.position.x, player.transform.position.y + offset , player.transform.position.z);
     }

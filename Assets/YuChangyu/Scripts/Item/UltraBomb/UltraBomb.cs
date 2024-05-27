@@ -35,7 +35,8 @@ public class UltraBomb : Item,IAcquirable
 
         Player.playerStats.OwnPower = Player.characterStats.maxPower; //박정민 추가 : 필드명 재조정으로 인한 필드명 변경
 
-        
+        Manager.Sound.PlaySFX("EatItem");
+
         int ownerId = Player.GetComponent<PhotonView>().OwnerActorNr;
         if (photonView.IsMine)
             photonView.RPC("AddInven", RpcTarget.All, "UltraBomb", ownerId);

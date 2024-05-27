@@ -35,6 +35,8 @@ public class Dart : Item, IAcquirable
         Player.CurActiveItem = activeDart;                            // player의 CurActiveItem 바인딩
         activeDart.Init(Player);                                      // activeDart의 Player 바인딩
 
+        Manager.Sound.PlaySFX("EatItem");
+
         // 박정민 추가 
         int ownerId = Player.GetComponent<PhotonView>().OwnerActorNr;
         if (photonView.IsMine)

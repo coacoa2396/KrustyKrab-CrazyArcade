@@ -12,11 +12,11 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     private ClientState state;
     private List<RoomEntity> createdRooms;
-    private UI_Room nowRoomPopup;
+    private static UI_Room nowRoomPopup;
 
     public static int RoomNum = 0; //동기화 필요
     public static RoomEntity NowRoom; //현재 플레이어가 들어온 방의 정보 
-
+    public static UI_Room NowRoomPopup { get { return nowRoomPopup; } }
 
     private void Awake()
     {
@@ -70,7 +70,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         //캐릭터 설정
         PhotonNetwork.LocalPlayer.SetCustomProperties(new Hashtable() { { "Character", 0 } });
         PhotonNetwork.LocalPlayer.SetCustomProperties(new Hashtable() { { "Ready", false } });
-        PhotonNetwork.LocalPlayer.SetCustomProperties(new Hashtable() { { "IsLoad", false } });
 
         //방 정보를 들고와서 UI에 연결
         LoadRoom();
@@ -78,6 +77,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public void LoadRoom()
     {
+        PhotonNetwork.LocalPlayer.SetCustomProperties(new Hashtable() { { "IsLoad", false } });
+
         RoomEntity entity = new RoomEntity(PhotonNetwork.CurrentRoom);
         NowRoom = entity;
         NowRoom.NowPlayer = PhotonNetwork.CurrentRoom.PlayerCount;
@@ -100,11 +101,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         PhotonNetwork.AutomaticallySyncScene = false;
     }
 
-    public override void OnRoomPropertiesUpdate(Hashtable propertiesThatChanged)
-    {
-        Debug.Log("방 정보가 변경됨");
-        nowRoomPopup.RoomChange();
-    }
+    
 
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
@@ -153,5 +150,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         base.OnMasterClientSwitched(newMasterClient);
     }
+
 
 }
