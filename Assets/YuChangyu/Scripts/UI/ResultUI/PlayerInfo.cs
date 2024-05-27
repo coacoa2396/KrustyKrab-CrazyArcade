@@ -26,45 +26,40 @@ public class PlayerInfo : MonoBehaviour
     [Header("LevelUp")]
     [SerializeField] TMP_Text levelUp;
 
-    private void Start()
+    public void SetPlayerInfo(PlayerRoundData p)
     {
-        List<PlayerRoundData> _list = RoundManager.Round.PlayerList;
-
-        foreach (PlayerRoundData p in _list)
+        // result Judge
+        switch (p.outcome)
         {
-            // result Judge
-            switch (p.outcome)
-            {
-                case RoundManager.Outcome.Win:
-                    win.gameObject.SetActive(true);
-                    break;
-                case RoundManager.Outcome.lose:
-                    lose.gameObject.SetActive(true);
-                    break;
-                case RoundManager.Outcome.draw:
-                    draw.gameObject.SetActive(true);
-                    break;
-            }
+            case RoundManager.Outcome.Win:
+                win.gameObject.SetActive(true);
+                break;
+            case RoundManager.Outcome.lose:
+                lose.gameObject.SetActive(true);
+                break;
+            case RoundManager.Outcome.draw:
+                draw.gameObject.SetActive(true);
+                break;
+        }
 
-            // nickName Judge
-            nickName.text = p.playerEntity.User.nickName;
+        // nickName Judge
+        nickName.text = p.playerEntity.User.nickName;
 
 
-            // EXP Judge
-            if (p.playerEntity.User.exp + 10 < p.playerEntity.User.maxExp)      // 게임 경험치를 더해도 레벨업을 못할 때
-            {
-                // level Judge
-                level.text = (p.playerEntity.User.level).ToString();
-                EXP.text = $"{p.playerEntity.User.exp + 10} / {p.playerEntity.User.maxExp}";
-                // levelUp Judge
-                levelUp.gameObject.SetActive(false);
-            }
-            else                                                                // 맥스 경험치와 같거나 넘어서서 레벨업을 할 때
-            {
-                level.text = (p.playerEntity.User.level + 1).ToString();
-                EXP.text = $"{(p.playerEntity.User.exp + 10) - p.playerEntity.User.maxExp} / {Define.MAX_EXP[p.playerEntity.User.level]}";
-                levelUp.gameObject.SetActive(true);
-            }
+        // EXP Judge
+        if (p.playerEntity.User.exp + 10 < p.playerEntity.User.maxExp)      // 게임 경험치를 더해도 레벨업을 못할 때
+        {
+            // level Judge
+            level.text = (p.playerEntity.User.level).ToString();
+            EXP.text = $"{p.playerEntity.User.exp + 10} / {p.playerEntity.User.maxExp}";
+            // levelUp Judge
+            levelUp.gameObject.SetActive(false);
+        }
+        else                                                                // 맥스 경험치와 같거나 넘어서서 레벨업을 할 때
+        {
+            level.text = (p.playerEntity.User.level + 1).ToString();
+            EXP.text = $"{(p.playerEntity.User.exp + 10) - p.playerEntity.User.maxExp} / {Define.MAX_EXP[p.playerEntity.User.level]}";
+            levelUp.gameObject.SetActive(true);
         }
     }
 }

@@ -11,11 +11,12 @@ public class PlayerList : MonoBehaviour
 
     private void Start()
     {
-        int playerNum = RoundManager.Round.PlayerList.Count;
+        List<PlayerRoundData> list = RoundManager.Round.PlayerList;
 
-        for (int i = 0; i < playerNum; i++)
+        foreach (PlayerRoundData p in list)
         {
-            Instantiate(playerInfoPrefab, transform);
+            PlayerInfo _playerInfo = Instantiate(playerInfoPrefab, transform);
+            _playerInfo.SetPlayerInfo(p);
         }
     }
 }
