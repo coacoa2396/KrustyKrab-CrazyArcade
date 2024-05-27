@@ -530,6 +530,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1718b16805cdb59479a2dc1ea317b823, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerMediator: {fileID: 4342343708932555487}
+  OnTraped:
+    m_PersistentCalls:
+      m_Calls: []
+  _OnDied:
+    m_PersistentCalls:
+      m_Calls: []
   bubbleCollider: {fileID: 4930228115096582792}
   maxDrownTime: 6
   ownDrownTime: 0

@@ -832,6 +832,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1718b16805cdb59479a2dc1ea317b823, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerMediator: {fileID: 7007571075300755129}
   OnTraped:
     m_PersistentCalls:
       m_Calls:

@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 public class PlayerStateMachine : MonoBehaviourPun
 {
-    PlayerMediator playerMediator;
+    [SerializeField] PlayerMediator playerMediator;
     PhotonView pv; // 권새롬추가 --> 부모에있는 PhotonView를 불러오길위해
     public UnityAction<PlayerStateMachine> OnDied;
 
@@ -67,7 +67,6 @@ public class PlayerStateMachine : MonoBehaviourPun
 
     private void Start()
     {
-        playerMediator = GetComponentInParent<PlayerMediator>();
         playerMediator.playerStats.aliveSpeed = playerMediator.playerStats.OwnSpeed;
         ChangeState(State.Alive);
     }
