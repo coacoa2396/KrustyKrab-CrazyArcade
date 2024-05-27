@@ -75,15 +75,6 @@ public class Item : MonoBehaviourPun
             }
         }
         Player.playerInventory.Inven.Add(ItemManager.ItemData.itemDir[item]);
-        PrintInven();
     }
 
-    private void PrintInven()
-    {
-        Debug.LogError($"{player.name} 인벤토리 ===========");
-        foreach (GameObject itme in Player.playerInventory.Inven)
-        {
-            Debug.LogError($"{itme.name}");
-        }
-    }
 }
