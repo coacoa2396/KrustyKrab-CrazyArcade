@@ -57,6 +57,10 @@ MonoBehaviour:
   bgm:
   - name: Title
     clip: {fileID: 8300000, guid: 758fda48c70f96a4092eb942a25c05dd, type: 3}
+  - name: Lobby
+    clip: {fileID: 8300000, guid: 598204cb0db2a424db760aceb36917e0, type: 3}
+  - name: Room
+    clip: {fileID: 8300000, guid: 866a0b6f330b390448952c1cf429bff5, type: 3}
   bgmPlayer: {fileID: 2315522860339898961}
   sfxPlayer: {fileID: 105278731388737427}
 --- !u!1 &3112071428299456759

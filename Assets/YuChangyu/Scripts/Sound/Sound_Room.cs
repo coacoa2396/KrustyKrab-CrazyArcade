@@ -3,17 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 /// <summary>
 /// 제작 : 찬규 
-/// 타이틀의 사운드 관련
+/// 룸에 들어갔을 때 사운드
 /// </summary>
-public class Sound_Title : MonoBehaviour
+public class Sound_Room : MonoBehaviour
 {
     private void Start()
     {
-        Manager.Sound.PlayBGM("Title");
+        Manager.Sound.StopBGM();
+        RoomSound();
     }
 
     private void OnDestroy()
     {
         Manager.Sound.StopBGM();
+    }
+
+    public void RoomSound()
+    {
+        Manager.Sound.PlayBGM("Room");
     }
 }
