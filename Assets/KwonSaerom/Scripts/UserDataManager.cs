@@ -83,12 +83,14 @@ public class UserDataManager
     //UserDataManager.SetPlayerExp(player,100)
     public static void SetPlayerExp(PlayerEntity player,float exp)
     {
+        string key = ToKey(player.Key);
+
         float plusExp = player.User.exp + exp;
         int updateLevel = player.User.level + (int)plusExp / (int)player.User.maxExp;
         float updateExp = plusExp % player.User.maxExp;
         FirebaseManager.DB
             .GetReference("User")
-            .Child(player.Key)
+            .Child(key)
             .Child("exp")
             .SetValueAsync(updateExp)
             .ContinueWithOnMainThread(task =>
@@ -108,7 +110,7 @@ public class UserDataManager
 
         FirebaseManager.DB
             .GetReference("User")
-            .Child(player.Key)
+            .Child(key)
             .Child("level")
             .SetValueAsync(updateLevel)
             .ContinueWithOnMainThread(task =>
