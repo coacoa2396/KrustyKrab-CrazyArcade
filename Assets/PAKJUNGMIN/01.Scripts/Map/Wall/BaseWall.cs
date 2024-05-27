@@ -1,10 +1,11 @@
 using pakjungmin;
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class BaseWall : MonoBehaviour
+public class BaseWall : MonoBehaviourPun
 {
     public TileNode tileNode; // 맵의 타일 기준 (X,Y) 좌표 구조체
 

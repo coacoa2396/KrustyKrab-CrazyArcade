@@ -8,7 +8,7 @@ public class TitleScene : BaseScene
 {
     public override IEnumerator LoadingRoutine()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
         PhotonNetwork.ConnectUsingSettings();
         if(Manager.Game.Player != null)
             UserDataManager.LocalUserSetConnect(Define.DISCONNECT_NUM);
