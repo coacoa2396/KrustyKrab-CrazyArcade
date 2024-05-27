@@ -13,7 +13,6 @@ public class LobbyScene : BaseScene
             UserDataManager.LocalUserSetConnect(1);
             yield return new WaitForSecondsRealtime(1f);
             PhotonNetwork.JoinLobby();
-            Debug.Log("JoinLobby");
         }
         yield return new WaitForSecondsRealtime(2f);
         PhotonNetwork.NickName = Manager.Game.Player.User.key;

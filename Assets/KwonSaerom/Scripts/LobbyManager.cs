@@ -47,8 +47,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     /// 방
     public override void OnCreatedRoom()
     {
-        Debug.Log("OnCreatedRoom");
         RoomNum++;
+        Debug.Log("OnCreatedRoom");
     }
 
     public override void OnConnectedToMaster()
@@ -61,9 +61,9 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public override void OnCreateRoomFailed(short returnCode, string message)
     {
+        Debug.Log(message);
+        Debug.Log(RoomNum);
         RoomNum++;
-        Debug.LogError(message);
-        Debug.LogError(RoomNum);
     }
     public override void OnJoinedRoom()
     {
@@ -100,9 +100,15 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         PhotonNetwork.AutomaticallySyncScene = false;
     }
 
+    public override void OnRoomPropertiesUpdate(Hashtable propertiesThatChanged)
+    {
+        Debug.Log("방 정보가 변경됨");
+        nowRoomPopup.RoomChange();
+    }
 
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
+        Debug.Log(roomList.Count);
         foreach (RoomInfo roomInfo in roomList)
         {
             //방이 사라짐

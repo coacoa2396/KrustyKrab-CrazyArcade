@@ -10,5 +10,7 @@ public class TitleScene : BaseScene
     {
         yield return new WaitForSeconds(3f);
         PhotonNetwork.ConnectUsingSettings();
+        if(Manager.Game.Player != null)
+            UserDataManager.LocalUserSetConnect(0);
     }
 }
