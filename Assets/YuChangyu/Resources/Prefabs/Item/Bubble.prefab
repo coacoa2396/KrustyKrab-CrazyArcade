@@ -57,6 +57,7 @@ MonoBehaviour:
     m_Bits: 2147483648
   player: {fileID: 0}
   waterProof: 0
+  players: []
 --- !u!95 &3526062171772882494
 Animator:
   serializedVersion: 5

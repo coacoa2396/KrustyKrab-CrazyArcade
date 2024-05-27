@@ -140,6 +140,7 @@ MonoBehaviour:
     m_Bits: 2147483648
   player: {fileID: 0}
   waterProof: 0
+  players: []
   activeNeedle: {fileID: 3283536358914325079, guid: e6d244c725c622a429be2e88e05f29db, type: 3}
 --- !u!114 &5981656829761283839
 MonoBehaviour:
