@@ -10,6 +10,6 @@
  - 팀명 : 집게리아
  - 팀원 : 권새롬, 박정민, 유찬규
  - 프로젝트 기간 : 2024.05.09 ~ 2024.05.27(빨간날 제외 12일)
- - 사용 툴 : Unity Engine 2021.3.19, Visual Studio 2022, Git, Github, Photon, Firebase
+ - 사용 툴 : Unity Engine 2022.3.18, Visual Studio 2022, Git, Github, Photon, Firebase
 
 
