@@ -6,7 +6,7 @@ using UnityEngine;
 /// 제작 : 찬규 
 /// 액티브아이템의 베이스
 /// </summary>
-public class ActiveBase : MonoBehaviour
+public abstract class ActiveBase : MonoBehaviour
 {
     [SerializeField] PlayerMediator player;            // 플레이어
 
@@ -17,10 +17,7 @@ public class ActiveBase : MonoBehaviour
     public string Name { get { return name; } set { name = value; } }
     public int UseNumber { get { return useNumber; } set { useNumber = value; } }
 
-    public virtual void Use()
-    {
-
-    }
+    public abstract void Use();
 
     public virtual void Init(PlayerMediator player)
     {

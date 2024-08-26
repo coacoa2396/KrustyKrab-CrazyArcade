@@ -45,23 +45,11 @@ public class PlayerInfo : MonoBehaviour
         // nickName Judge
         nickName.text = p.playerEntity.User.nickName;
 
-
-        // EXP Judge
-        //if (p.playerEntity.User.exp + 10 < p.playerEntity.User.maxExp)      // 게임 경험치를 더해도 레벨업을 못할 때
-        //{
-
         // level Judge
         level.text = (p.playerEntity.User.level).ToString();
         EXP.text = $"{p.playerEntity.User.exp} / {p.playerEntity.User.maxExp}";
         // levelUp Judge
         levelUp.gameObject.SetActive(false);
 
-        //}
-        //else                                                                // 맥스 경험치와 같거나 넘어서서 레벨업을 할 때
-        //{
-        //    level.text = (p.playerEntity.User.level + 1).ToString();
-        //    EXP.text = $"{(p.playerEntity.User.exp + 10) - p.playerEntity.User.maxExp} / {Define.MAX_EXP[p.playerEntity.User.level]}";
-        //    levelUp.gameObject.SetActive(true);
-        //}
     }
 }
