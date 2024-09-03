@@ -29,7 +29,7 @@ public class Roller : Item
 
         Player = collision.gameObject.GetComponent<PlayerMediator>();
 
-        Player.playerStats.OwnSpeed++;
+        Execute();
 
         if (collision.gameObject.GetComponent<PhotonView>().IsMine)
             Manager.Sound.PlaySFX("EatItem");
@@ -39,5 +39,10 @@ public class Roller : Item
             photonView.RPC("AddInven", RpcTarget.All, "Roller", ownerId);
         gameObject.SetActive(false);
 
+    }
+
+    public override void Execute()
+    {
+        Player.playerStats.OwnSpeed++;
     }
 }

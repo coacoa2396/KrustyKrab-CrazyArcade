@@ -29,7 +29,7 @@ public class Devil : Item
 
         Player = Player = collision.gameObject.GetComponent<PlayerMediator>();
 
-        Player.playerState.ChangeState(PlayerStateMachine.State.Devil);
+        Execute();
 
         if (collision.gameObject.GetComponent<PhotonView>().IsMine)
             Manager.Sound.PlaySFX("EatItem");
@@ -42,5 +42,10 @@ public class Devil : Item
         if (photonView.IsMine)
             photonView.RPC("AddInven", RpcTarget.All, "Devil", ownerId);
         gameObject.SetActive(false);
+    }
+
+    public override void Execute()
+    {
+        Player.playerState.ChangeState(PlayerStateMachine.State.Devil);
     }
 }

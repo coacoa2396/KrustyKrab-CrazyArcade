@@ -16,7 +16,7 @@ public class Bubble : Item
         {
             if (WaterProof <= 0)
             {
-                //권새롬 추가 --> 아이템 삭제는 마스터 클라이언트만. (룸오브젝트이기 때문)
+                //아이템 삭제는 마스터 클라이언트만. (룸오브젝트이기 때문)
                 if (PhotonNetwork.IsMasterClient)
                     PhotonNetwork.Destroy(gameObject);
                 return;
@@ -29,7 +29,7 @@ public class Bubble : Item
 
         Player = collision.gameObject.GetComponent<PlayerMediator>();
 
-        Player.playerStats.OwnBomb++; // 박정민 추가 : Bomb에서 OwnBomb으로 명칭 변경.
+        Execute();
 
         if (collision.gameObject.GetComponent<PhotonView>().IsMine)
             Manager.Sound.PlaySFX("EatItem");
@@ -40,5 +40,8 @@ public class Bubble : Item
         gameObject.SetActive(false);
     }
 
-
+    public override void Execute()
+    {
+        Player.playerStats.OwnBomb++; // 박정민 추가 : Bomb에서 OwnBomb으로 명칭 변경.
+    }
 }

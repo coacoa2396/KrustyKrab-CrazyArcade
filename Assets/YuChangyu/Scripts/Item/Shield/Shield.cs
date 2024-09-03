@@ -30,10 +30,7 @@ public class Shield : Item
 
         Player = collision.gameObject.GetComponent<PlayerMediator>();
 
-        // playerBehavior의 Use함수를 사용할 때 PlayerMediator의 CurActiveItem의 Use를 불러와서 사용하게 해준다
-        // Player에서 CurActiveItem의 형식은 activeBase로 하면 됨
-        Player.CurActiveItem = activeShield;                            // player의 CurActiveItem 바인딩
-        activeShield.Init(Player);                                      // activeShield의 Player 바인딩
+        Execute();
 
         int ownerId = Player.GetComponent<PhotonView>().OwnerActorNr;
         if (photonView.IsMine)
@@ -41,5 +38,11 @@ public class Shield : Item
         gameObject.SetActive(false);
     }
 
-
+    public override void Execute()
+    {
+        // playerBehavior의 Use함수를 사용할 때 PlayerMediator의 CurActiveItem의 Use를 불러와서 사용하게 해준다
+        // Player에서 CurActiveItem의 형식은 activeBase로 하면 됨
+        Player.CurActiveItem = activeShield;                            // player의 CurActiveItem 바인딩
+        activeShield.Init(Player);                                      // activeShield의 Player 바인딩
+    }
 }

@@ -30,4 +30,9 @@ public class Glove : Item
             photonView.RPC("AddInven", RpcTarget.All, "Glove", ownerId);
         gameObject.SetActive(false);
     }
+
+    public override void Execute()
+    {
+
+    }
 }

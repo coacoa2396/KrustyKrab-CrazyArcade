@@ -77,4 +77,5 @@ public class Item : MonoBehaviourPun, IAcquirable
         Player.playerInventory.Inven.Add(ItemManager.ItemData.itemDir[item]);
     }
 
+    public virtual void Execute(){ Debug.Log("아이템 획득"); }
 }

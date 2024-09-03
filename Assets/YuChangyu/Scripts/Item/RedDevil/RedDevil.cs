@@ -29,7 +29,7 @@ public class RedDevil : Item
 
         Player = Player = collision.gameObject.GetComponent<PlayerMediator>();
 
-        Player.playerStats.OwnSpeed = 10f;
+        Execute();
 
         //if (Player.playerStats.OwnSpeed > 10f)                         // 플레이어 스피드 상한선
         //{
@@ -44,5 +44,10 @@ public class RedDevil : Item
         if (photonView.IsMine)
             photonView.RPC("AddInven", RpcTarget.All, "RedDevil", ownerId);
         gameObject.SetActive(false);
+    }
+
+    public override void Execute()
+    {
+        Player.playerStats.OwnSpeed = 10f;
     }
 }

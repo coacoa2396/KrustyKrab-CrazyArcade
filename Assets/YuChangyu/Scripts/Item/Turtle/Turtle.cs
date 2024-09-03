@@ -34,4 +34,9 @@ public class Turtle : Item
         Player.playerInventory.Inven.Add(ItemManager.ItemData.itemDir["Turtle"]);
         gameObject.SetActive(false);
     }
+
+    public override void Execute()
+    {
+
+    }
 }

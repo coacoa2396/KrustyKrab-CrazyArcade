@@ -31,10 +31,7 @@ public class Needle : Item
 
         Player = collision.gameObject.GetComponent<PlayerMediator>();
 
-        // playerBehavior의 Use함수를 사용할 때 PlayerMediator의 CurActiveItem의 Use를 불러와서 사용하게 해준다
-        // Player에서 CurActiveItem의 형식은 activeBase로 하면 됨
-        Player.CurActiveItem = activeNeedle;                            // player의 CurActiveItem 바인딩
-        activeNeedle.Init(Player);                                      // activeNeedle의 Player 바인딩
+        Execute();
 
         if (collision.gameObject.GetComponent<PhotonView>().IsMine)
             Manager.Sound.PlaySFX("EatItem");
@@ -45,5 +42,11 @@ public class Needle : Item
         gameObject.SetActive(false);
     }
 
-    
+    public override void Execute()
+    {
+        // playerBehavior의 Use함수를 사용할 때 PlayerMediator의 CurActiveItem의 Use를 불러와서 사용하게 해준다
+        // Player에서 CurActiveItem의 형식은 activeBase로 하면 됨
+        Player.CurActiveItem = activeNeedle;                            // player의 CurActiveItem 바인딩
+        activeNeedle.Init(Player);                                      // activeNeedle의 Player 바인딩
+    }
 }

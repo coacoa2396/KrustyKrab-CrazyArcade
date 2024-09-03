@@ -37,4 +37,9 @@ public class SpaceShip : Item
         Player.playerInventory.Inven.Add(ItemManager.ItemData.itemDir["SpaceShip"]);
         gameObject.SetActive(false);
     }
+
+    public override void Execute()
+    {
+
+    }
 }

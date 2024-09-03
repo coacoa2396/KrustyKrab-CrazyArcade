@@ -37,4 +37,9 @@ public class Owl : Item
             photonView.RPC("AddInven", RpcTarget.All, "Owl", ownerId);
         gameObject.SetActive(false);
     }
+
+    public override void Execute()
+    {
+
+    }
 }

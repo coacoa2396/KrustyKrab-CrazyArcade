@@ -33,14 +33,19 @@ public class Fluid : Item
         //    return;                                                             // 리턴
         // 박정민 추가 : PlayerStat에서 최대 스탯 안 넘어가는 구현했기에 주석 처리.
 
+        Execute();
+        
         if (collision.gameObject.GetComponent<PhotonView>().IsMine)
             Manager.Sound.PlaySFX("EatItem");
-
-        Player.playerStats.OwnPower++; //박정민 추가 : Power ->OwnPower로 변경
 
         int ownerId = Player.GetComponent<PhotonView>().OwnerActorNr;
         if (photonView.IsMine)
             photonView.RPC("AddInven", RpcTarget.All, "Fluid", ownerId);
         gameObject.SetActive(false);
+    }
+
+    public override void Execute()
+    {
+        Player.playerStats.OwnPower++; //박정민 추가 : Power ->OwnPower로 변경
     }
 }
