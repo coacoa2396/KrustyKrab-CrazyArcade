@@ -42,6 +42,6 @@ public class Bubble : Item
 
     public override void Execute()
     {
-        Player.playerStats.OwnBomb++; // 박정민 추가 : Bomb에서 OwnBomb으로 명칭 변경.
+        Player.playerStats.OwnBomb++;
     }
 }
