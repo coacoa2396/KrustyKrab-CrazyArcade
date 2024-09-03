@@ -31,6 +31,8 @@ public class RoomUserController : MonoBehaviourPunCallbacks
         Debug.Log("들어왔을때 플레이어 수 : " + LobbyManager.NowRoom.NowPlayer);
         userTokens = GetComponentsInChildren<UI_UserToken>();
         nowRoomPopup = LobbyManager.NowRoomPopup;
+
+        PhotonNetwork.LocalPlayer.SetCustomProperties(new Hashtable() { { "Ready", false } });
         InitMaxPlayer();
     }
 
@@ -51,7 +53,9 @@ public class RoomUserController : MonoBehaviourPunCallbacks
         newPlayer.SetCustomProperties(new Hashtable() { { "Character", 0 } });
         newPlayer.SetCustomProperties(new Hashtable() { { "Ready", false } });
         newPlayer.SetCustomProperties(new Hashtable() { { "IsLoad", false } });
-        AddPlayer(newPlayer,LobbyManager.NowRoom.NowPlayer++);
+
+        AddPlayer(newPlayer,LobbyManager.NowRoom.NowPlayer);
+        LobbyManager.NowRoom.NowPlayer++;
     }
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
@@ -130,7 +134,7 @@ public class RoomUserController : MonoBehaviourPunCallbacks
 
     private void RemovePlayer(Player player)
     {
-        int nowCount = LobbyManager.NowRoom.NowPlayer--;
+        int nowCount = LobbyManager.NowRoom.NowPlayer;
         for(int i=0;i< nowCount; i++)
         {
             if (player.NickName.Equals(players[i].User.key))
@@ -144,6 +148,7 @@ public class RoomUserController : MonoBehaviourPunCallbacks
                 break;
             }
         }
+        LobbyManager.NowRoom.NowPlayer--;
         UpdatePlayer();
     }
 

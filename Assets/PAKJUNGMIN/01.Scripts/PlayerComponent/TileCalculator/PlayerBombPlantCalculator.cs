@@ -1,4 +1,5 @@
 using pakjungmin;
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,7 @@ using UnityEngine;
 /// <summary>
 /// Class : PlayerBehavoir에서 폭탄 설치 명령을 받아, 실제 폭탄 설치를 담당하는 클래스.
 /// </summary>
-public class PlayerBombPlantCalculator : MonoBehaviour
+public class PlayerBombPlantCalculator : MonoBehaviourPun
 {
     PlayerMediator playerMediator;
     /*
@@ -28,11 +29,14 @@ public class PlayerBombPlantCalculator : MonoBehaviour
         get { return bombChance; }
         set
         {
+            if (photonView.IsMine == false) //권새롬 추가 --> 내가 아닌 다른사람이 바꾸면 곤란해짐.(동기화안됨)
+                return;
             bombChance = value;
             if (bombChance >= playerMediator.playerStats.OwnBomb)
             {
                 bombChance = playerMediator.playerStats.OwnBomb;
             }
+            photonView.RPC("BombChanceChange", RpcTarget.Others, bombChance);
         }
     }
     //킥이나 아이템 사용 시 잠깐 폭탄 설치 못하게 만드는 메소드.
@@ -58,7 +62,7 @@ public class PlayerBombPlantCalculator : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (bombChance < playerMediator.playerStats.OwnBomb)
+        if (BombChance < playerMediator.playerStats.OwnBomb)
         {
             chanceCoroutine = StartCoroutine(GetChance());
         }
@@ -69,13 +73,13 @@ public class PlayerBombPlantCalculator : MonoBehaviour
     }
     private void Start()
     {
-        bombChance = playerMediator.playerStats.OwnBomb;
+        BombChance = playerMediator.playerStats.OwnBomb;
     }
     public void PlantBomb(Bomb waterBomb, Tile tile)
     {
-        if (bombChance <= 0) { return; }
+        if (BombChance <= 0) { return; }
 
-        if (playerMediator.playerTileCalculator.nowTile.OnObject) { return; }
+        if (tile.OnObject) { return; }
 
        
         Vector3 tilePos = TileManager.Tile.tileDic[$"{tile.tileNode.posX},{tile.tileNode.posY}"].transform.position;
@@ -87,6 +91,13 @@ public class PlayerBombPlantCalculator : MonoBehaviour
         bomb.PosY = tile.tileNode.posY;
 
         bomb.bombPower = playerMediator.playerStats.OwnPower;
-        bombChance--;
+        BombChance--;
     }
+
+    [PunRPC]
+    public void BombChanceChange(int count)
+    {
+        bombChance = count;
+    }
+
 }
