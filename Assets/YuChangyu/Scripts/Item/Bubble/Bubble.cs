@@ -8,7 +8,7 @@ using UnityEngine;
 /// 아이템 : 물풍선 
 /// 플레이어가 한번에 놓을 수 있는 물풍선의 갯수가 1 증가한다
 /// </summary>
-public class Bubble : Item, IAcquirable
+public class Bubble : Item
 {
     void OnTriggerEnter2D(Collider2D collision)
     {

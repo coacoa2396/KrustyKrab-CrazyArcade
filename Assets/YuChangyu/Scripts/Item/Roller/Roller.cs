@@ -8,7 +8,7 @@ using UnityEngine;
 /// 아이템 : 롤러스케이트
 /// 플레이어의 속도가 1 상승한다
 /// </summary>
-public class Roller : Item, IAcquirable
+public class Roller : Item
 {
     void OnTriggerEnter2D(Collider2D collision)
     {

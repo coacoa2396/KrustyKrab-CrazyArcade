@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Glove : Item,IAcquirable
+public class Glove : Item
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {

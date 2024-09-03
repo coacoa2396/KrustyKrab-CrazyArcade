@@ -7,7 +7,7 @@ using UnityEngine;
 /// 제작 : 찬규 
 /// 탈 것 : 우주선
 /// </summary>
-public class SpaceShip : Item, IAcquirable
+public class SpaceShip : Item
 {
     // [SerializeField] GameObject spaceShipPrefab; 
     // [SerializeField] GameObject brokenSpaceShipPrefab; 

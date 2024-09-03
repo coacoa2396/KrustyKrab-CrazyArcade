@@ -7,7 +7,7 @@ using UnityEngine;
 /// 제작 : 찬규 
 /// 지속시간 동안 모든 공격을 방어한다
 /// </summary>
-public class Shield : Item, IAcquirable
+public class Shield : Item
 {
     [SerializeField] ActiveShield activeShield;
 

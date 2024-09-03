@@ -8,7 +8,7 @@ using UnityEngine;
 /// 아이템 : 레드데빌
 /// 플레이어의 속도를 최대치까지 올리고 물풍선을 밀 수 있게 된다
 /// </summary>
-public class RedDevil : Item, IAcquirable
+public class RedDevil : Item
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {

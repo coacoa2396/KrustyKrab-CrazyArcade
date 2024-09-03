@@ -7,7 +7,7 @@ using UnityEngine;
 /// 제작 : 찬규 
 /// 아이템 : Dart
 /// </summary>
-public class Dart : Item, IAcquirable
+public class Dart : Item
 {
     [SerializeField] ActiveDart activeDart;
 

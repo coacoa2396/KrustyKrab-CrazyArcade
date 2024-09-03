@@ -8,7 +8,7 @@ using UnityEngine;
 /// 아이템 : Needle
 /// 물풍선에 갖힌 상태일때 한번 스스로 나올 수 있다
 /// </summary>
-public class Needle : Item, IAcquirable
+public class Needle : Item
 {
     [SerializeField] ActiveNeedle activeNeedle;
 
