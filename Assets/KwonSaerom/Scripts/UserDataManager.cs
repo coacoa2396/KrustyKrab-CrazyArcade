@@ -84,7 +84,6 @@ public class UserDataManager
     public static void SetPlayerExp(PlayerEntity player,float exp)
     {
         string key = ToKey(player.Key);
-
         float plusExp = player.User.exp + exp;
         int updateLevel = player.User.level + (int)plusExp / (int)player.User.maxExp;
         float updateExp = plusExp % player.User.maxExp;
@@ -147,6 +146,26 @@ public class UserDataManager
                     return;
                 }
                 Debug.Log("SetPlayerMaxExp : DB 처리 완료");
+            });
+        float updateMaxExp = Define.MAX_EXP[updateLevel - 1];
+        FirebaseManager.DB
+            .GetReference("User")
+            .Child(key)
+            .Child("maxExp")
+            .SetValueAsync(updateLevel)
+            .ContinueWithOnMainThread(task =>
+            {
+                if (task.IsCanceled)
+                {
+                    Debug.Log("GetUserData : IsCanceled");
+                    return;
+                }
+                if (task.IsFaulted)
+                {
+                    Debug.Log("GetUserData : IsFaulted");
+                    return;
+                }
+                Debug.Log("SetPlayerExp : DB 처리 완료");
             });
     }
 
